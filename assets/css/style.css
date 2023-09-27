@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
 
 :root{
     --primary:#1f2e88;
@@ -18,7 +18,6 @@
     box-sizing: border-box;
     outline: none; border: none;
     text-decoration: none;
-    text-transform: capitalize;
     transition: .2s linear;
 }
 
@@ -41,4 +40,256 @@ html::-webkit-scrollbar-thumb{
     background: var(--primary);
     border-radius: 5rem;
 }
+
+/* HEADER */
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #418CFC;
+    height: 10vh;
+    align-items: center;
+}
+
+/* Menu */
+#div-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+    margin-left: 25px;
+}
+
+#menu-bar {
+    background-color: #FBFBFB;
+    width: 35px;
+    height: 3px;
+}
+
+#menu-bar:nth-child(2) {
+    margin: 8px;
+}
+
+/* Logo */
+#div-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+}
+
+#div-logo h1 {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 3px;
+    font-size: 34px;
+    color: #FBFBFB;
+    font-weight: 900;
+}
+
+#div-logo img {
+    height: 30px;
+    width: 30px;
+    margin-left: 8px;
+    margin-top: 5px;
+}
+
+/* Botão de entrar / cadastrar */
+#criar-conta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-right: 25px;
+}
+
+#botao-entrar-header {
+    border: none;
+    height: 38px;
+    width: 200px;
+    background-color: transparent;
+    font-weight: 700;
+    font-size: 16px;
+    color: #FBFBFB;
+    border-radius: 5px;
+}
+ 
+#botao-entrar-header:hover {
+    background-color: #0753ea;
+    transition: all 0.5s;
+} 
+
+/*----------------------------------------------------------*/
+/* Responsividade: Aparelho muito Pequeno */
+@media (max-width: 576px) { 
+    /* Menu */
+    #div-menu {
+        margin-left: 10px;
+    }
+
+    #menu-bar {
+        width: 25px;
+        height: 2px;
+    }
+
+    /* Logo */
+    #div-logo h1 {
+    font-size: 23px;
+    }
+
+    #div-logo img {
+        height: 23px;
+        width: 23px;
+    }
+
+    /*  Botão */
+    #criar-conta {
+        margin-right: 10px;
+    }
+
+    #botao-entrar-header {
+        height: 38px;
+        width: 80px;
+        font-size: 12px;
+    }
+}
+
+/* Responsividade: Aparelho pequeno */
+@media (min-width: 577px) {
+    /* Menu */
+    #div-menu {
+        margin-left: 10px;
+    }
+
+    #menu-bar {
+        width: 35px;
+        height: 3px;
+    }
+
+    /* Logo */
+    #div-logo h1 {
+    font-size: 30px;
+    }
+
+    #div-logo img {
+        height: 28px;
+        width: 28px;
+    }
+
+    /*  Botão */
+    #criar-conta {
+        margin-right: 10px;
+    }
+
+    #botao-entrar-header {
+        height: 38px;
+        width: 130px;
+        font-size: 13px;
+    }
+}
+
+/* Responsividade: Aparelho médio */
+@media (min-width: 768px) {
+    /* Menu */
+    #div-menu {
+        margin-left: 20px;
+    }
+
+    #menu-bar {
+        width: 35px;
+        height: 3px;
+    }
+
+    /*  Botão */
+    #criar-conta {
+        margin-right: 20px;
+    }
+
+    #botao-entrar-header {
+        height: 38px;
+        width: 170px;
+        font-size: 16px;
+    }
+}
+
+/* Responsividade: Aparelho grande */
+@media (min-width: 992px) {
+    /* Menu */
+    #div-menu {
+        margin-left: 25px;
+    }
+
+    /* Logo */
+    #div-logo h1 {
+        font-size: 34px;
+    }
+
+
+    #div-logo img {
+        height: 30px;
+        width: 30px;
+    }
+    
+    /*  Botão */
+    #criar-conta {
+        margin-right: 25px;
+    }
+
+    #botao-entrar-header {
+        width: 200px;
+    }
+}
+
+/* Home / principal */
+.home{
+    min-height: 100vh;
+    display: flex;
+    background: url(../img/site-fundo.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.home .content{
+    max-width: 60rem;
+    display: flex;
+    flex-direction: column;
+    padding-left: 6rem;
+    padding-top: 10rem;
+}
+
+.home .content h3{
+    font-size: 4rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.home .content p{
+    line-height: 2;
+    font-weight: 500;
+    font-size: 1.7rem;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+.btn-1{
+    margin-top: 3rem;
+    display: inline-block;
+    border-radius: 10px;
+    height: 4.5rem;
+    width: 25rem;
+    background: #0753ea;
+    cursor: pointer;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.btn-1:hover {
+    background-color: #0545c4;
+}
+
 
