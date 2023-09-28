@@ -619,7 +619,11 @@ header {
     width: 60% !important;
 }
 
-.carousel-item h5, p{
+.carousel-item h5{
+    color: black !important;
+}
+
+.carousel-item p{
     color: black !important;
 }
 
@@ -655,5 +659,79 @@ header {
     #carouselExampleCaptions {
         width: 60% !important;
     }
+}
+
+/*-----------------------------------------------------------------------------------------------------*/
+
+/* Footer */
+.footer{
+    text-align: center;
+    padding: 3rem;
+}
+
+.footer .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 2rem;
+}
+
+.footer .box-container .box h3{
+    font-size: 2.2rem;
+    padding: 1rem 0;
+    color: var(--secondary);
+}
+
+.footer .box-container .box p{
+    font-size: 1.5rem;
+    padding: .5rem 0;
+    line-height: 2;
+    color: var(--light-color);
+}
+
+.footer .box-container .box .share{
+    margin-top: 1rem;
+}
+
+.footer .box-container .box .share a{
+    height: 4.5rem;
+    width: 4.5rem;
+    background: var(--primary);
+    color: var(--white);
+    line-height: 4.5rem;
+    border-radius: 10%;
+    font-size: 1.7rem;
+    margin-right: .3rem;
+    text-align: center;
+}
+
+.footer .box-container .box .share a:hover{
+    background: var(--secondary);
+}
+
+.footer .box-container .box .link{
+    display: block;
+    font-size: 1.7rem;
+    line-height: 2;
+    color: var(--primary);
+    padding: .5rem 0;
+    text-decoration: none;
+}
+
+.footer .box-container .box .link:hover{
+    color: var(--hover);
+}
+
+.footer .credit{
+    margin-top: 3rem;
+    padding-top: 3rem;
+    font-size: 2rem;
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--primary);
+    border-top: .1rem solid var(--secondary);
+}
+
+.footer .credit span{
+    color: var(--secondary);
 }
 
