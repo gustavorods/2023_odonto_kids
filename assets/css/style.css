@@ -41,6 +41,8 @@ html::-webkit-scrollbar-thumb{
     border-radius: 5rem;
 }
 
+
+
 /* HEADER */
 header {
     display: flex;
@@ -121,7 +123,7 @@ header {
     transition: all 0.5s;
 } 
 
-/*----------------------------------------------------------*/
+
 /* Responsividade: Aparelho muito Pequeno */
 @media (max-width: 576px) { 
     /* Menu */
@@ -242,6 +244,8 @@ header {
     }
 }
 
+/*----------------------------------------------------------------------------------------------------------*/
+
 /* Home / principal */
 .home{
     min-height: 100vh;
@@ -262,7 +266,7 @@ header {
 .home .content h3{
     font-size: 4rem;
     font-weight: 600;
-    color: #fff;
+    color: #FBFBFB;
     line-height: 1.2;
     margin-bottom: 20px;
 }
@@ -271,7 +275,7 @@ header {
     line-height: 2;
     font-weight: 500;
     font-size: 1.7rem;
-    color: #fff;
+    color: #FBFBFB;
     padding: 1rem 0;
 }
 
@@ -290,6 +294,274 @@ header {
 
 .btn-1:hover {
     background-color: #0545c4;
+}
+
+
+/* Responsividade: Aparelho muito Pequeno */
+@media (max-width: 576px) { 
+    .home {
+        background-position: 60% 40%;    /* 20% à direita e 40% abaixo */
+    }
+
+    .home .content{
+        flex-direction: column;
+        align-items: center;
+        padding: 5rem;
+    }
+
+    .home .content h3{
+        font-size: 3rem;
+        text-align: center;
+        color: #FBFBFB;
+    }
+
+    .home .content p{
+        text-align: center;
+    }
+    
+}
+
+/* Responsividade: Aparelho pequeno */
+@media (min-width: 577px) {
+    .home .content {
+        max-width: 50rem;
+    }
+
+    .home .content h3{ 
+        font-size: 3.1rem;
+    }
+}
+
+/* Responsividade: Aparelho médio */
+@media (min-width: 768px) {
+    .home .content {
+        max-width: 60rem;
+    }
+
+    .home .content h3{ 
+        font-size: 3.5rem;
+    }
+}
+
+/* Responsividade: Aparelho grande */
+@media (min-width: 992px) {
+
+    .home .content h3{ 
+        font-size: 4rem;
+    }
+}
+
+/*----------------------------------------------------------------------------------------------------------*/
+
+/* Porque escolher a gente? */
+.services{
+    background: var(--light-bg);
+    padding: 5rem 7%;
+
+}
+
+.services .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 2rem;
+}
+
+.heading{
+    font-size: 4rem;
+    text-align: center;
+    color: var(--black);
+    text-transform: uppercase;
+    font-weight: bolder;
+    margin-bottom: 3rem;
+}
+
+.services .box-container .box{
+    padding: 4rem;
+    text-align: center;
+    background: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: 5rem;
+}
+
+.services .box-container .box:hover{
+    background: var(--hover);
+}
+
+.services .box-container .box img{
+    margin: 1rem 0;
+    height: 10rem;
+}
+
+.services .box-container .box h3{
+    font-size: 2rem;
+    padding: 1rem 0;
+    color: var(--black);
+}
+
+.services .box-container .box p{
+    font-size: 1.5rem;
+    color: var(--light-color);
+    line-height: 2;
+}
+
+@media (max-width: 576px) { 
+    .heading{
+        font-size: 3rem;
+    }
+}
+
+
+/*----------------------------------------------------------------------------------------------------------*/
+
+/* Feedbacks */
+.blog {
+    padding: 3rem;
+}
+
+.heading{
+    font-size: 4rem;
+    text-align: center;
+    color: var(--black);
+    text-transform: uppercase;
+    font-weight: bolder;
+    margin-bottom: 3rem;
+}
+
+.blog .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+
+.blog .box-container .box{
+    border: var(--border);
+}
+
+.blog .box-container .box .image{
+    height: 25rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+.blog .box-container .box .image img{
+    height: 100%;
+    width: 100%;
+    object-fit:cover;
+}
+
+.blog .box-container .box:hover .image img{
+    transform: scale(1.2);
+}
+
+.blog .box-container .box .content{
+    padding: 2rem 1.5rem;
+}
+
+.blog .box-container .box .content .link{
+    display: inline-block;
+    margin-bottom: 3rem;
+    padding: .6rem 1.5rem;
+    background: var(--primary);
+    font-size: 1.4rem;
+    color: var(--white);
+}
+
+.blog .box-container .box .content .link:hover{
+    background: var(--secondary);
+}
+
+.blog .box-container .box .content .icons{
+    padding-bottom: 1.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.blog .box-container .box .content .icons a{
+    font-size: 1.4rem;
+    color: var(--light-color);
+}
+
+.blog .box-container .box .content .icons a:hover{
+    color: var(--primary);
+}
+
+.blog .box-container .box .content .icons a i{
+    color: var(--primary);
+    padding-right: .5rem;
+}
+
+.blog .box-container .box .content h3{
+    font-size: 2.2rem;
+    color: var(--black);
+}
+
+.blog .box-container .box .content p{
+    padding: 1rem 0;
+    font-size: 1.4rem;
+    color: var(--light-color);
+    line-height: 2;
+}
+
+/* Responsividade: Aparelho muito Pequeno */
+@media (max-width: 576px) { 
+    .blog .box-container{
+        gap: 2rem;
+    }
+
+    .heading{
+        font-size: 3rem;
+    }
+}
+
+/*----------------------------------------------------------------------------------------------------------*/
+
+/* Perguntas frequentes */
+.perguntas {
+    padding: 3rem;
+    background: var(--light-bg);
+}
+
+.heading{
+    font-size: 4rem;
+    text-align: center;
+    color: var(--black);
+    text-transform: uppercase;
+    font-weight: bolder;
+    margin-bottom: 3rem;
+}
+
+.accordion {
+    padding: 0px 3rem;
+}
+
+.accordion-button {
+    font-size: 2rem !important;
+    font-weight: 600;
+}
+
+.accordion-body {
+    font-size: 1.7rem;
+}
+
+/* Responsividade: Aparelho muito Pequeno */
+@media (max-width: 576px) { 
+    .heading{
+        font-size: 3rem;
+    }
+
+    .accordion-button {
+        font-size: 1.7rem !important;
+        font-weight: 600;
+    }
+
+    .accordion-body {
+        font-size: 1.5rem;
+    }
+
+    .accordion {
+        padding: 0px 1rem;
+    }
 }
 
 
