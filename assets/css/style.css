@@ -564,4 +564,96 @@ header {
     }
 }
 
+/*----------------------------------------------------------------------------------------------------------*/
+
+/* Profissionais */
+.profissionais {
+    padding: 3rem;
+}
+
+.container-doutores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+
+.box-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    height: 35rem !important;
+}
+
+.card-img-top {
+    height: 50%;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 2rem;
+}
+
+.card-text {
+    font-size: 1.3rem;
+}
+
+.linkdin {
+    width: 5rem !important;
+}
+
+/*----------------------------------------------------------------------------------------------------------*/
+
+/* Espaço */
+.espaco {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--light-bg);
+}
+
+#carouselExampleCaptions {
+    width: 60% !important;
+}
+
+.carousel-item h5, p{
+    color: black !important;
+}
+
+/* Responsividade: Aparelho muito Pequeno */
+@media (max-width: 576px) { 
+    .espaco {
+        padding: 2rem;
+    }
+
+    .heading{
+        font-size: 2.8rem;
+    }
+
+    #carouselExampleCaptions {
+        width: 90% !important;
+    }
+}
+
+/* Responsividade: Aparelho pequeno */
+@media (min-width: 577px) {
+
+    #carouselExampleCaptions {
+        width: 90% !important;
+    }
+}
+
+/* Responsividade: Aparelho grande */
+@media (min-width: 992px) {
+    .espaco {
+        padding: 3rem;
+    }
+
+    #carouselExampleCaptions {
+        width: 60% !important;
+    }
+}
 
