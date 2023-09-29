@@ -413,7 +413,7 @@ div.container-fluid {
 
 /* Porque escolher a gente? */
 .services{
-    background: var(--light-bg);
+    background: #418CFC;
     padding: 5rem 7%;
 
 }
@@ -431,6 +431,10 @@ div.container-fluid {
     text-transform: uppercase;
     font-weight: bolder;
     margin-bottom: 3rem;
+}
+
+#confiar {
+    color: white;
 }
 
 .services .box-container .box{
@@ -670,7 +674,11 @@ div.container-fluid {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: var(--light-bg);
+    background: #5c9dff;
+}
+
+#espaco-text {
+    color: white;
 }
 
 #carouselExampleCaptions {
