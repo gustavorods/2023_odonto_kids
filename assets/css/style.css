@@ -41,37 +41,32 @@ html::-webkit-scrollbar-thumb{
     border-radius: 5rem;
 }
 
+/*----------------------------------------------------------------------------------------------------------*/
 
-
-/* HEADER */
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: #418CFC;
-    height: 10vh;
-    align-items: center;
+/* navbar */
+.navbar {
+    background-color: #418CFC !important;
 }
 
-/* Menu */
-#div-menu {
+div.container-fluid {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    height: 100%;
     justify-content: center;
-    margin-left: 25px;
+    padding: 0%;
 }
 
-#menu-bar {
-    background-color: #FBFBFB;
-    width: 35px;
-    height: 3px;
+/* navbar open*/
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
-#menu-bar:nth-child(2) {
-    margin: 8px;
+.nav .nav-item a{
+    font-size: 2rem;
 }
+
 
 /* Logo */
 #div-logo {
@@ -123,17 +118,47 @@ header {
     transition: all 0.5s;
 } 
 
+/* Liks de outras páginas */
+.nav a{
+    font-size: 1.2rem;
+    color: #fff;
+ margin: 0 7rem;
+    
+    
+}
+.nav a:hover{
+    color:#1f2e88; 
+}
+
 
 /* Responsividade: Aparelho muito Pequeno */
 @media (max-width: 576px) { 
     /* Menu */
-    #div-menu {
+    .navbar-toggler.collapsed {
         margin-left: 10px;
+        height: 3.5rem;
+        width: 4rem;
+        padding: 0%;
     }
 
-    #menu-bar {
-        width: 25px;
-        height: 2px;
+    .navbar-toggler-icon {
+        width: 2.5rem !important;
+        height: 3rem !important;
+    } 
+    
+    /* Menu Open */
+    button.navbar-toggler {
+        margin-left: 10px;
+    } 
+
+    .nav .nav-item a{
+        font-size: 1.7rem;
+    }
+
+    .linha {
+        width: 50%;
+        color: white;
+        border: 2px solid white;
     }
 
     /* Logo */
@@ -161,14 +186,22 @@ header {
 /* Responsividade: Aparelho pequeno */
 @media (min-width: 577px) {
     /* Menu */
-    #div-menu {
+    .navbar-toggler.collapsed {
         margin-left: 10px;
+        height: 3.5rem;
+        width: 4rem;
+        padding: 0%;
     }
 
-    #menu-bar {
-        width: 35px;
-        height: 3px;
-    }
+    .navbar-toggler-icon {
+        width: 2.5rem !important;
+        height: 3rem !important;
+    } 
+
+    /* Menu Open */
+    button.navbar-toggler {
+        margin-left: 10px;
+    } 
 
     /* Logo */
     #div-logo h1 {
@@ -195,14 +228,23 @@ header {
 /* Responsividade: Aparelho médio */
 @media (min-width: 768px) {
     /* Menu */
-    #div-menu {
+    .navbar-toggler.collapsed {
         margin-left: 20px;
+        height: 3.5rem;
+        width: 5rem;
     }
 
-    #menu-bar {
-        width: 35px;
-        height: 3px;
-    }
+    .navbar-toggler-icon {
+        width: 3rem !important;
+        height: 2rem !important;
+    } 
+
+    /* Menu Open */
+    button.navbar-toggler {
+        margin-left: 20px;
+        height: 3.5rem;
+        width: 5rem;
+    } 
 
     /*  Botão */
     #criar-conta {
@@ -219,9 +261,24 @@ header {
 /* Responsividade: Aparelho grande */
 @media (min-width: 992px) {
     /* Menu */
-    #div-menu {
+    .navbar-toggler.collapsed {
         margin-left: 25px;
+        height: 4rem;
+        width: 6rem;
+        padding: 0%;
     }
+
+    .navbar-toggler-icon {
+        width: 3.5rem !important;
+        height: 3rem !important;
+    } 
+
+    /* Menu Open */
+    button.navbar-toggler {
+        margin-left: 25px;
+        height: 4rem;
+        width: 6rem;
+    } 
 
     /* Logo */
     #div-logo h1 {
@@ -243,6 +300,7 @@ header {
         width: 200px;
     }
 }
+
 
 /*----------------------------------------------------------------------------------------------------------*/
 
