@@ -645,6 +645,21 @@ div.container-fluid {
     justify-content: center;
 }
 
+.box-card .card-img-top {
+    border-radius: 100%;
+    border: none;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 10px auto 0;
+}
+
+.box-card .card-body {
+    padding: 0 20px 0px 20px;
+    text-align: left;
+}
+
+
 .card {
     height: 35rem !important;
 }
