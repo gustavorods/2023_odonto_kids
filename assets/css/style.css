@@ -445,10 +445,6 @@ div.container-fluid {
     border-radius: 5rem;
 }
 
-.services .box-container .box:hover{
-    background: var(--hover);
-}
-
 .services .box-container .box img{
     margin: 1rem 0;
     height: 10rem;
