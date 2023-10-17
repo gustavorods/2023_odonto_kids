@@ -529,9 +529,8 @@ div.container-fluid {
 }
 
 .blog .box-container .box .content .icons{
-    padding-bottom: 1.7rem;
+    padding: 10px 20px 1.7rem 0;
     display: flex;
-    align-items: center;
     justify-content: space-between;
 }
 
@@ -546,7 +545,6 @@ div.container-fluid {
 
 .blog .box-container .box .content .icons a i{
     color: var(--primary);
-    padding-right: .5rem;
 }
 
 .blog .box-container .box .content h3{
