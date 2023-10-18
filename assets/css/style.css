@@ -46,6 +46,7 @@ html::-webkit-scrollbar-thumb{
 /* navbar */
 .navbar {
     background-color: #418CFC !important;
+    height: 65px;
 }
 
 div.container-fluid {
