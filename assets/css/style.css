@@ -130,178 +130,6 @@ div.container-fluid {
     color:#1f2e88; 
 }
 
-
-/* Responsividade: Aparelho muito Pequeno */
-@media (max-width: 576px) { 
-    /* Menu */
-    .navbar-toggler.collapsed {
-        margin-left: 10px;
-        height: 3.5rem;
-        width: 4rem;
-        padding: 0%;
-    }
-
-    .navbar-toggler-icon {
-        width: 2.5rem !important;
-        height: 3rem !important;
-    } 
-    
-    /* Menu Open */
-    button.navbar-toggler {
-        margin-left: 10px;
-    } 
-
-    .nav .nav-item a{
-        font-size: 1.7rem;
-    }
-
-    .linha {
-        width: 50%;
-        color: white;
-        border: 2px solid white;
-    }
-
-    /* Logo */
-    #div-logo h1 {
-    font-size: 23px;
-    }
-
-    #div-logo img {
-        height: 23px;
-        width: 23px;
-    }
-
-    /*  Botão */
-    #criar-conta {
-        margin-right: 10px;
-    }
-
-    #botao-entrar-header {
-        height: 38px;
-        width: 80px;
-        font-size: 12px;
-    }
-}
-
-/* Responsividade: Aparelho pequeno */
-@media (min-width: 577px) {
-    /* Menu */
-    .navbar-toggler.collapsed {
-        margin-left: 10px;
-        height: 3.5rem;
-        width: 4rem;
-        padding: 0%;
-    }
-
-    .navbar-toggler-icon {
-        width: 2.5rem !important;
-        height: 3rem !important;
-    } 
-
-    /* Menu Open */
-    button.navbar-toggler {
-        margin-left: 10px;
-    } 
-
-    /* Logo */
-    #div-logo h1 {
-    font-size: 30px;
-    }
-
-    #div-logo img {
-        height: 28px;
-        width: 28px;
-    }
-
-    /*  Botão */
-    #criar-conta {
-        margin-right: 10px;
-    }
-
-    #botao-entrar-header {
-        height: 38px;
-        width: 130px;
-        font-size: 13px;
-    }
-}
-
-/* Responsividade: Aparelho médio */
-@media (min-width: 768px) {
-    /* Menu */
-    .navbar-toggler.collapsed {
-        margin-left: 20px;
-        height: 3.5rem;
-        width: 5rem;
-    }
-
-    .navbar-toggler-icon {
-        width: 3rem !important;
-        height: 2rem !important;
-    } 
-
-    /* Menu Open */
-    button.navbar-toggler {
-        margin-left: 20px;
-        height: 3.5rem;
-        width: 5rem;
-    } 
-
-    /*  Botão */
-    #criar-conta {
-        margin-right: 20px;
-    }
-
-    #botao-entrar-header {
-        height: 38px;
-        width: 170px;
-        font-size: 16px;
-    }
-}
-
-/* Responsividade: Aparelho grande */
-@media (min-width: 992px) {
-    /* Menu */
-    .navbar-toggler.collapsed {
-        margin-left: 25px;
-        height: 4rem;
-        width: 6rem;
-        padding: 0%;
-    }
-
-    .navbar-toggler-icon {
-        width: 3.5rem !important;
-        height: 3rem !important;
-    } 
-
-    /* Menu Open */
-    button.navbar-toggler {
-        margin-left: 25px;
-        height: 4rem;
-        width: 6rem;
-    } 
-
-    /* Logo */
-    #div-logo h1 {
-        font-size: 34px;
-    }
-
-
-    #div-logo img {
-        height: 30px;
-        width: 30px;
-    }
-    
-    /*  Botão */
-    #criar-conta {
-        margin-right: 25px;
-    }
-
-    #botao-entrar-header {
-        width: 200px;
-    }
-}
-
-
 /*----------------------------------------------------------------------------------------------------------*/
 
 /* Home / principal */
@@ -355,60 +183,6 @@ div.container-fluid {
 }
 
 
-/* Responsividade: Aparelho muito Pequeno */
-@media (max-width: 576px) { 
-    .home {
-        background-position: 60% 40%;    /* 20% à direita e 40% abaixo */
-    }
-
-    .home .content{
-        flex-direction: column;
-        align-items: center;
-        padding: 5rem;
-    }
-
-    .home .content h3{
-        font-size: 3rem;
-        text-align: center;
-        color: #FBFBFB;
-    }
-
-    .home .content p{
-        text-align: center;
-    }
-    
-}
-
-/* Responsividade: Aparelho pequeno */
-@media (min-width: 577px) {
-    .home .content {
-        max-width: 50rem;
-    }
-
-    .home .content h3{ 
-        font-size: 3.1rem;
-    }
-}
-
-/* Responsividade: Aparelho médio */
-@media (min-width: 768px) {
-    .home .content {
-        max-width: 60rem;
-    }
-
-    .home .content h3{ 
-        font-size: 3.5rem;
-    }
-}
-
-/* Responsividade: Aparelho grande */
-@media (min-width: 992px) {
-
-    .home .content h3{ 
-        font-size: 4rem;
-    }
-}
-
 /*----------------------------------------------------------------------------------------------------------*/
 
 /* Porque escolher a gente? */
@@ -460,12 +234,6 @@ div.container-fluid {
     font-size: 1.5rem;
     color: var(--light-color);
     line-height: 2;
-}
-
-@media (max-width: 576px) { 
-    .heading{
-        font-size: 3rem;
-    }
 }
 
 
@@ -579,17 +347,6 @@ div.container-fluid {
 }
 
 
-/* Responsividade: Aparelho muito Pequeno */
-@media (max-width: 576px) { 
-    .blog .box-container{
-        gap: 2rem;
-    }
-
-    .heading{
-        font-size: 3rem;
-    }
-}
-
 /*----------------------------------------------------------------------------------------------------------*/
 
 /* Perguntas frequentes */
@@ -620,25 +377,6 @@ div.container-fluid {
     font-size: 1.7rem;
 }
 
-/* Responsividade: Aparelho muito Pequeno */
-@media (max-width: 576px) { 
-    .heading{
-        font-size: 3rem;
-    }
-
-    .accordion-button {
-        font-size: 1.7rem !important;
-        font-weight: 600;
-    }
-
-    .accordion-body {
-        font-size: 1.5rem;
-    }
-
-    .accordion {
-        padding: 0px 1rem;
-    }
-}
 
 /*----------------------------------------------------------------------------------------------------------*/
 
@@ -722,39 +460,6 @@ div.container-fluid {
     color: black !important;
 }
 
-/* Responsividade: Aparelho muito Pequeno */
-@media (max-width: 576px) { 
-    .espaco {
-        padding: 2rem;
-    }
-
-    .heading{
-        font-size: 2.8rem;
-    }
-
-    #carouselExampleCaptions {
-        width: 90% !important;
-    }
-}
-
-/* Responsividade: Aparelho pequeno */
-@media (min-width: 577px) {
-
-    #carouselExampleCaptions {
-        width: 90% !important;
-    }
-}
-
-/* Responsividade: Aparelho grande */
-@media (min-width: 992px) {
-    .espaco {
-        padding: 3rem;
-    }
-
-    #carouselExampleCaptions {
-        width: 60% !important;
-    }
-}
 
 /*-----------------------------------------------------------------------------------------------------*/
 
