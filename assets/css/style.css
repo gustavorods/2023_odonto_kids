@@ -6,7 +6,7 @@
     --hover: #a2d9f5;
     --black:#333;
     --white:#fff;
-    --light-color:#666;
+    --light-color:#393939;
     --light-bg:#eee;
     --border:.2rem solid rgba(0,0,0,.1);
     --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
@@ -187,37 +187,52 @@ div.container-fluid {
 /*----------------------------------------------------------------------------------------------------------*/
 
 /* Porque escolher a gente? */
+#services .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 59px;
+}
+
+#services .box-container .box {
+    height: 330px;
+    width: 430px;
+    padding: 20px;
+    padding: 4rem;
+    text-align: center;
+    background: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: 5rem;
+}
+
 .services{
     background: #418CFC;
     padding: 5rem 7%;
-
 }
 
 .services .box-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    gap: 2rem;
+    gap: 8px;
 }
 
-.heading{
+.services .heading{
     font-size: 4rem;
     text-align: center;
     color: var(--black);
     text-transform: uppercase;
     font-weight: bolder;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 }
 
 #confiar {
     color: white;
 }
 
-.services .box-container .box{
-    padding: 4rem;
-    text-align: center;
-    background: var(--white);
-    box-shadow: var(--box-shadow);
-    border-radius: 5rem;
+.services .box-container .box:hover {
+    transform: scale(1.05);
+    transition: 0.5s all;
 }
 
 .services .box-container .box img{
@@ -226,14 +241,16 @@ div.container-fluid {
 }
 
 .services .box-container .box h3{
-    font-size: 2rem;
+    font-size: 2.5rem;
     padding: 1rem 0;
-    color: var(--black);
+    font-weight: 600;
+    color: black;
 }
 
 .services .box-container .box p{
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--light-color);
+    font-weight: 400;
     line-height: 2;
 }
 
@@ -256,12 +273,15 @@ div.container-fluid {
 
 .blog .box-container{
     display: grid;
+    place-items: center;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 1.5rem;
 }
 
 .blog .box-container .box{
     border: var(--border);
+    border-radius: 15px;
+    width: 450px;
 }
 
 .blog .box-container .box .image{
@@ -274,31 +294,25 @@ div.container-fluid {
     height: 100%;
     width: 100%;
     object-fit:cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
-.blog .box-container .box:hover .image img{
-    transform: scale(1.2);
-}
 
 .blog .box-container .box .content{
-    margin-left: 1.5rem;
+    padding: 20px;
+    padding-bottom: 0px;
 }
 
-.blog .box-container .box .content .link{
-    display: inline-block;
-    margin-bottom: 3rem;
-    padding: .6rem 1.5rem;
-    background: var(--primary);
-    font-size: 1.4rem;
-    color: var(--white);
+.blog .box-container .box .content .dados{
+    text-decoration: underline;
+    font-size: 1.45rem;
+    color: var(--light-color);
 }
 
-.blog .box-container .box .content .link:hover{
-    background: var(--secondary);
-}
 
 .blog .box-container .box .content .icons{
-    padding: 10px 20px 1.7rem 0;
+    padding: 0px 0px 20px 0;
     display: flex;
     justify-content: space-between;
 }
@@ -323,22 +337,24 @@ div.container-fluid {
 
 .blog .box-container .box .content p{
     padding: 1rem 0;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    font-weight: 430;
     color: var(--light-color);
     line-height: 2;
+    margin: 0%;
 }
 
 .blog .estrelas {
     display: flex;
     align-items: center;
-    margin-top: -17px;
+    padding: 0px 8px 8px;
 }
 
 .blog .estrelas .nota{
-    font-size: 2.8rem;
+    font-size: 2.7rem;
     font-weight: bold;
     color: #0282f3;
-    padding: 9px 5px 0 1.3rem;
+    padding: 9px 8px 0 1.3rem;
 }
 
 .blog .estrelas img {
@@ -372,6 +388,7 @@ div.container-fluid {
 .accordion-button {
     font-size: 2rem !important;
     font-weight: 600;
+    height: 75px;
 }
 
 .accordion-body {

@@ -300,10 +300,105 @@
 /* Porque escolher a gente? */
 
 @media (max-width: 576px) { 
-    .heading{
-        font-size: 3rem;
+    #confiar{
+        font-size: 3.2rem;
     }
+
+    .services .box-container{
+        gap: 0px;
+    }
+
+    #services .box-container .box {
+        height: 280px;
+        width: 290px;
+        padding: 10px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .services .box-container .box img{
+        height: 8rem;
+    }
+
+    .services .box-container .box h3{
+        font-size: 2rem;
+    }
+
+    .services .box-container .box p{
+        font-size: 1.5rem;
+        color: var(--light-color);
+
+    }
+
 }
+
+@media (min-width: 577px) { 
+    #confiar{
+        font-size: 3.2rem;
+    }
+
+    .services .box-container{
+        gap: 0px;
+    }
+
+    #services .box-container .box {
+        height: 280px;
+        width: 290px;
+        padding: 10px 20px;
+    }
+
+
+    .services .box-container .box img{
+        height: 8rem;
+    }
+
+    .services .box-container .box h3{
+        font-size: 2rem;
+    }
+
+    .services .box-container .box p{
+        font-size: 1.5rem;
+        color: var(--light-color);
+    }
+
+}
+
+@media (min-width: 992px) { 
+    #confiar{
+        font-size: 4rem;
+    }
+
+    .services .box-container{
+        gap: 8px;
+    }
+
+    #services .box-container .box {
+        height: 330px;
+        width: 430px;
+        padding: 20px;
+        padding: 4rem;
+    }
+
+
+    .services .box-container .box img{
+        height: 10rem;
+    }
+
+    .services .box-container .box h3{
+        font-size: 2.5rem;
+    }
+
+    .services .box-container .box p{
+        font-size: 1.8rem;
+        color: var(--light-color);
+
+    }
+
+}
+
 
 /*----------------------------------------------------------------------------------------------------------*/
 /* Feedbacks */
@@ -314,10 +409,124 @@
         gap: 2rem;
     }
 
+    .blog .box-container .box{
+        width: 330px;
+    }
+
+    .blog .box-container .box .image{
+        height: 15rem;
+        width: 100%;
+    }    
+
+    .blog .box-container .box .content .dados{
+        font-size: 1.2rem;
+    }
+
+    .blog .box-container .box .content h3{
+        font-size: 2rem;
+    }
+
+    .blog .box-container .box .content p{
+        font-size: 1.3rem;
+        font-weight: 400;
+    }
+
+    .blog .estrelas .nota{
+        font-size: 2.3rem;
+
+    }
+    
+    .blog .estrelas img {
+        height: 18px;
+    }
+    
     .heading{
         font-size: 3rem;
     }
 }
+
+@media (min-width: 577px) { 
+    .blog .box-container{
+        gap: 2rem;
+    }
+
+    .blog .box-container .box{
+        width: 330px;
+    }
+
+    .blog .box-container .box .image{
+        height: 15rem;
+        width: 100%;
+    }    
+
+    .blog .box-container .box .content .dados{
+        font-size: 1.2rem;
+    }
+
+    .blog .box-container .box .content h3{
+        font-size: 2rem;
+    }
+
+    .blog .box-container .box .content p{
+        font-size: 1.3rem;
+        font-weight: 400;
+    }
+
+    .blog .estrelas .nota{
+        font-size: 2.3rem;
+
+    }
+    
+    .blog .estrelas img {
+        height: 18px;
+    }
+    
+    .heading{
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 1500px) { 
+    .blog .box-container{
+        gap: 1.5rem;
+    }
+
+    .blog .box-container .box{
+        width: 450px;
+    }
+
+    .blog .box-container .box .image{
+        height: 25rem;
+        width: 100%;
+    }    
+
+    .blog .box-container .box .content .dados{
+        font-size: 1.45rem;
+    }
+
+    .blog .box-container .box .content h3{
+        font-size: 2.2rem;
+    }
+
+    .blog .box-container .box .content p{
+        font-size: 1.6rem;
+        font-weight: 430;
+    }
+
+    .blog .estrelas .nota{
+        font-size: 2.7rem;
+
+    }
+    
+    .blog .estrelas img {
+        height: 24px;
+    }
+    
+    .heading{
+        font-size: 4rem;
+    }
+}
+
 
 /*----------------------------------------------------------------------------------------------------------*/
 /* Perguntas frequentes */
@@ -329,7 +538,7 @@
     }
 
     .accordion-button {
-        font-size: 1.7rem !important;
+        font-size: 1.3rem !important;
         font-weight: 600;
     }
 
@@ -342,6 +551,60 @@
     }
 }
 
+@media (min-width: 577px) { 
+    .heading{
+        font-size: 3rem;
+    }
+
+    .accordion-button {
+        font-size: 1.5rem !important;
+        font-weight: 600;
+    }
+
+    .accordion-body {
+        font-size: 1.5rem;
+    }
+
+    .accordion {
+        padding: 0px 1rem;
+    }
+}
+
+@media (min-width: 768px) { 
+
+    .accordion-button {
+        font-size: 1.7rem !important;
+    }
+
+    .accordion-body {
+        font-size: 1.5rem;
+    }
+
+    .accordion {
+        padding: 0px 3rem;
+    }
+}
+
+@media (min-width: 992px) { 
+
+    .accordion-button {
+        font-size: 1.8rem !important;
+    }
+
+    .accordion-body {
+        font-size: 1.7rem;
+    }
+
+}
+
+@media (min-width: 1500px) { 
+
+    .accordion-button {
+        font-size: 2rem !important;
+    }
+
+
+}
 /*----------------------------------------------------------------------------------------------------------*/
 /* Profissionais */
 
