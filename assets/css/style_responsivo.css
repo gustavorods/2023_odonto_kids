@@ -409,6 +409,10 @@
         gap: 2rem;
     }
 
+    .blog .heading{
+        font-size: 3.2rem;
+    }
+
     .blog .box-container .box{
         width: 330px;
     }
@@ -450,6 +454,10 @@
         gap: 2rem;
     }
 
+    .blog .heading{
+        font-size: 3.2rem;
+    }
+
     .blog .box-container .box{
         width: 330px;
     }
@@ -483,6 +491,12 @@
     
     .heading{
         font-size: 3rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .blog .heading{
+        font-size: 4.5rem;
     }
 }
 
@@ -533,8 +547,8 @@
 
 /* Responsividade: Aparelho muito Pequeno */
 @media (max-width: 576px) { 
-    .heading{
-        font-size: 3rem;
+    .perguntas .heading{
+        font-size: 3.2rem;
     }
 
     .accordion-button {
@@ -552,8 +566,8 @@
 }
 
 @media (min-width: 577px) { 
-    .heading{
-        font-size: 3rem;
+    .perguntas .heading{
+        font-size: 3.2rem;
     }
 
     .accordion-button {
@@ -587,6 +601,10 @@
 
 @media (min-width: 992px) { 
 
+    .perguntas .heading{
+        font-size: 4.5rem;
+    }
+
     .accordion-button {
         font-size: 1.8rem !important;
     }
@@ -605,8 +623,87 @@
 
 
 }
+
 /*----------------------------------------------------------------------------------------------------------*/
 /* Profissionais */
+@media (max-width: 576px) {
+    .profissionais .heading{
+        font-size: 3.2rem;
+    }
+
+    .box-card {
+        height: 25rem ;
+        width: 35rem;
+    }
+
+    .box-card .card-img-top {
+        width: 210px;
+        height: 210px;
+    }
+
+    .card-title {
+        font-size: 2.1rem;
+    }
+
+    .card-text {
+        font-size: 1.4rem;
+    }
+
+}
+
+@media (min-width: 577px) {
+    .profissionais .heading{
+        font-size: 3.2rem;
+    }
+
+    .box-card {
+        height: 25rem ;
+        width: 35rem;
+    }
+
+    .box-card .card-img-top {
+        width: 210px;
+        height: 210px;
+    }
+
+    .card-title {
+        font-size: 2.1rem;
+    }
+
+    .card-text {
+        font-size: 1.4rem;
+    }
+
+}
+
+@media (min-width: 992px) {
+    .profissionais .heading{
+        font-size: 4rem;
+    }
+}
+
+@media (min-width: 1500px) {
+
+    .box-card {
+        height: 45rem ;
+        width: 45rem;
+    }
+
+    .box-card .card-img-top {
+        width: 240px;
+        height: 240px;
+    }
+
+    .card-title {
+        font-size: 3rem;
+    }
+
+    .card-text {
+        font-size: 1.7rem;
+    }
+}
+
+
 
 /*----------------------------------------------------------------------------------------------------------*/
 /* Espaço */
@@ -617,8 +714,8 @@
         padding: 2rem;
     }
 
-    .heading{
-        font-size: 2.8rem;
+    .espaco .heading{
+        font-size: 3.2rem;
     }
 
     #carouselExampleCaptions {
@@ -628,6 +725,9 @@
 
 /* Responsividade: Aparelho pequeno */
 @media (min-width: 577px) {
+    .espaco .heading{
+        font-size: 3.2rem;
+    }
 
     #carouselExampleCaptions {
         width: 90% !important;
@@ -642,6 +742,10 @@
 
     #carouselExampleCaptions {
         width: 60% !important;
+    }
+
+    .espaco .heading{
+        font-size: 4rem;
     }
 }
 

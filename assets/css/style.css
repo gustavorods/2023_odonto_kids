@@ -262,8 +262,8 @@ div.container-fluid {
     padding: 3rem;
 }
 
-.heading{
-    font-size: 4rem;
+.blog .heading{
+    font-size: 4.5rem;
     text-align: center;
     color: var(--black);
     text-transform: uppercase;
@@ -372,8 +372,8 @@ div.container-fluid {
     background: var(--light-bg);
 }
 
-.heading{
-    font-size: 4rem;
+.perguntas .heading{
+    font-size: 4.5rem;
     text-align: center;
     color: var(--black);
     text-transform: uppercase;
@@ -399,6 +399,15 @@ div.container-fluid {
 /*----------------------------------------------------------------------------------------------------------*/
 
 /* Profissionais */
+.profissionais .heading{
+    font-size: 4.5rem;
+    text-align: center;
+    color: var(--black);
+    text-transform: uppercase;
+    font-weight: bolder;
+    margin-bottom: 4rem;
+}
+
 .profissionais {
     padding: 3rem;
 }
@@ -406,54 +415,53 @@ div.container-fluid {
 .container-doutores {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    gap: 1.5rem;
+    place-items: center;
 }
 
 .box-card {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: none;
+    height: 45rem !important;
+    width: 45rem;
+    
 }
 
 .box-card .card-img-top {
     border-radius: 100%;
     border: none;
-    width: 200px;
-    height: 200px;
+    width: 240px;
+    height: 240px;
     object-fit: cover;
     margin: 10px auto 0;
 }
 
 .box-card .card-body {
-    padding: 0 20px 0px 20px;
+    padding: 20px;
     text-align: left;
 }
 
-
-.card {
-    height: 35rem !important;
-}
-
-.card-img-top {
-    height: 50%;
-    object-fit: cover;
-}
-
 .card-title {
-    font-size: 2rem;
+    font-size: 3rem;
+    margin-bottom: 1rem;
 }
 
 .card-text {
-    font-size: 1.3rem;
+    font-size: 1.7rem;
 }
-
-.linkdin {
-    width: 5rem !important;
-}
-
 /*----------------------------------------------------------------------------------------------------------*/
 
 /* Espaço */
+.espaco .heading{
+    font-size: 4.5rem;
+    text-align: center;
+    color: var(--black);
+    text-transform: uppercase;
+    font-weight: bolder;
+    margin-bottom: 3rem;
+}
+
 .espaco {
     padding: 3rem;
     display: flex;
