@@ -214,7 +214,55 @@
 
 /*--------------------------------------------------*/
 /* responsive */
-@media(max-width: 767px){
+@media (max-width: 576px) {
+    .title h1 {
+        font-size: 2.8rem;
+    }
+
+    .title p {
+        font-size: 1.9rem;
+    }
+}
+
+@media (min-width: 576px) {
+    .title h1 {
+        font-size: 2.8rem;
+    }
+
+    .title p {
+        font-size: 1.9rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .title h1 {
+        font-size: 3rem;
+    }
+
+    .title p {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .title h1 {
+        font-size: 4rem;
+    }
+
+    .title p {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 1500px) {
+    .title h1 {
+        font-size: 5rem;
+    }
+
+}
+
+/*exeção pra timeline*/
+@media(max-width: 768px){
 	.timeline-items::before{
 		left: 7px;
 	}
