@@ -366,7 +366,7 @@
 
 }
 
-@media (min-width: 992px) { 
+@media (min-width: 1500px) { 
     #confiar{
         font-size: 4rem;
     }
@@ -377,7 +377,7 @@
 
     #services .box-container .box {
         height: 330px;
-        width: 430px;
+        width: 415px;
         padding: 20px;
         padding: 4rem;
     }
