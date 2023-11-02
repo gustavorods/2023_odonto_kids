@@ -459,15 +459,15 @@ div.container-fluid {
     color: var(--black);
     text-transform: uppercase;
     font-weight: bolder;
-    margin-bottom: 3rem;
+    padding: 2rem 0 1rem 0;
 }
 
 .espaco {
-    padding: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     background: #5c9dff;
+    padding-bottom: 3.8rem;
 }
 
 #espaco-text {
