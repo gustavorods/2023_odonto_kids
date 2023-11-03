@@ -127,18 +127,63 @@ div.container-fluid {
     color:#363846; 
 }
 
+
+/* Servicos */
+
+.servicos_section{
+    display: flex;
+    justify-content: center;
+    padding-top: 18vh;
+}
+
 .servicos{
     display: flex;
+    justify-content: center;
 }
 
 .cards{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    margin-right: 30px;
 }
 
 .cardInside{
-    background-color: #c7c7c7;
-    width: 100px;
+    background-color: white;
+    width: 120px;
     height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #0656F3;
+    border-radius: 15px;
+    cursor: pointer;
+    transition-duration: 0.1s;
+}
+
+.cardInside:hover{
+    border: 3px solid #0e47b9;
+    transform:translateY(-3px);
+}
+
+.cardInside h1{
+    font-size: 1.7rem;
+    font-weight: 1000;
+}
+
+.cardDescription{
+    background-color:white;
+    width: 50vw;
+    border: 2px solid #0656F3;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.cardDescription h1{
+    font-weight: 1000;
+}
+
+.cardDescription p{
+    font-size: 19px;
 }
 
