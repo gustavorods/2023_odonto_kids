@@ -133,7 +133,8 @@ div.container-fluid {
 .servicos_section{
     display: flex;
     justify-content: center;
-    padding-top: 18vh;
+    align-items: center;
+    height: calc(100vh - 60px);
 }
 
 .servicos{
