@@ -127,98 +127,18 @@ div.container-fluid {
     color:#363846; 
 }
 
-/*--------------------------------------------------*/
-/*Titulo*/
-.title {
+.servicos{
     display: flex;
-    margin: 40px 0px 0px 0px;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
 }
 
-.title h1 {
-    font-size: 5rem;
+.cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
-.title h1 span {
-    color: #418CFC;
+.cardInside{
+    background-color: #c7c7c7;
+    width: 100px;
+    height: 100px;
 }
-
-.title p {
-    font-size: 2.5rem;
-    font-weight: 400;
-    margin-top: 5px;
-}
-
-/*Timeline*/
-.timeline-section{
-	background-color: #FBFBFB;
-	min-height: 100vh;
-	padding: 100px 15px;
-}
-.timeline-items{
-	max-width: 1000px;
-	margin:auto;
-	display: flex;
-	flex-wrap: wrap;
-	position: relative;
-}
-.timeline-items::before{
-	content: '';
-	position: absolute;
-	width: 2px;
-	height: 100%;
-	background-color: #2f363e;
-	left: calc(50% - 1px);
-}
-.timeline-item{
-	margin-bottom: 40px;
-	width: 100%;
-	position: relative;
-}
-.timeline-item:last-child{
-	margin-bottom: 0;
-}
-.timeline-item:nth-child(odd){
-    padding-right: calc(50% + 30px);
-	text-align: right;
-}
-.timeline-item:nth-child(even){
-    padding-left: calc(50% + 30px);
-}
-.timeline-dot{
-	height: 16px;
-	width: 16px;
-	background-color: #00EAAF;
-	position: absolute;
-	left: calc(50% - 8px);
-	border-radius: 50%;
-	top:10px;
-}
-.timeline-date{
-	font-size: 23px;
-	color: #00EAAF;
-	margin:6px 0 15px;
-}
-.timeline-content{
-    background-color: #0753ea;
-	padding: 30px;
-	border-radius: 5px;
-}
-.timeline-content h3{
-    font-size: 20px;
-	color: #ffffff;
-	margin:0 0 10px;
-	text-transform: capitalize;
-	font-weight: 500;
-}
-.timeline-content p{
-    color: #ffffff;
-	font-size: 17px;
-	font-weight: 430;
-	line-height: 22px;
-}
-
 
