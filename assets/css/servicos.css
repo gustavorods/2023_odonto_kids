@@ -282,7 +282,7 @@ div.container-fluid {
 
     .cards{
         display: inline-grid;
-        margin: 50px auto 20px;
+        margin: 50px auto 15px;
     }
 
     .cardDescription {
@@ -302,7 +302,7 @@ div.container-fluid {
     }
 }
 
-@media (max-width: 375px){
+@media (max-width: 378px){
     .cards{
         gap: 8px;
     }
