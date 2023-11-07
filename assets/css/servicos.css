@@ -134,7 +134,7 @@ div.container-fluid {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin: 100px 0;
 
 }
 
@@ -175,7 +175,7 @@ div.container-fluid {
 
 .cardDescription{
     background-color:white;
-    width: 50vw;
+    width: 558px;
     border: 2px solid #0656F3;
     border-radius: 15px;
     padding: 20px;
@@ -189,9 +189,87 @@ div.container-fluid {
     font-size: 17px;
 }
 
+
+
+.footer{
+    text-align: center;
+    padding: 3rem;
+    background-color: #418CFC;
+}
+
+.footer .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 2rem;
+}
+
+.footer .box-container .box h3{
+    font-size: 2.2rem;
+    padding: 1rem 0;
+    color: #fff;
+}
+
+.footer .box-container .box p{
+    font-size: 1.5rem;
+    padding: .5rem 0;
+    line-height: 2;
+    color: #fff;
+}
+
+.footer .box-container .box .share{
+    margin-top: 1rem;
+}
+
+.footer .box-container .box .share a{
+    height: 4.5rem;
+    width: 4.5rem;
+    background: var(--primary);
+    color: var(--white);
+    line-height: 4.5rem;
+    border-radius: 10%;
+    font-size: 1.7rem;
+    margin-right: .3rem;
+    text-align: center;
+}
+
+.footer .box-container .box .share a:hover{
+    color: #fff;
+}
+
+.footer .box-container .box .link{
+    display: block;
+    font-size: 1.7rem;
+    line-height: 2;
+    color: #fff;
+    padding: .5rem 0;
+    text-decoration: none;
+}
+
+.footer .box-container .box .link:hover{
+    color: var(--hover);
+}
+
+.footer .credit{
+    margin-top: 3rem;
+    padding-top: 3rem;
+    font-size: 2rem;
+    text-align: center;
+    text-transform: capitalize;
+    color: #fff;
+    border-top: .1rem solid #fff;
+}
+
+.footer .credit span{
+    color: var(--secondary);
+}
+
+
+
+
 /* RESPOSIVIDADE */
 
-@media (max-width: 911px){
+
+@media (max-width: 1022px){
     .servicos{
         display: grid;
     }
