@@ -277,6 +277,7 @@ div.container-fluid {
     .servicos_section {
         display: block;
         margin-top: 0px;
+        margin: 0;
     }
 
     .cards{
