@@ -134,7 +134,8 @@ div.container-fluid {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 60px);
+    margin-top: 100px;
+
 }
 
 .servicos{
@@ -143,7 +144,7 @@ div.container-fluid {
 }
 
 .cards{
-    display: grid;
+    display: inline-grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1.5rem;
     margin-right: 30px;
@@ -167,12 +168,6 @@ div.container-fluid {
     transform:translateY(-3px);
 }
 
-.cardInside:not(.selected):hover {
-    border: 2px solid #0656F3;
-    transform: none;
-}
-
-
 .cardInside h1{
     font-size: 1.7rem;
     font-weight: 1000;
@@ -183,7 +178,7 @@ div.container-fluid {
     width: 50vw;
     border: 2px solid #0656F3;
     border-radius: 15px;
-    padding: 30px;
+    padding: 20px;
 }
 
 .cardDescription h1{
@@ -191,6 +186,49 @@ div.container-fluid {
 }
 
 .cardDescription p{
-    font-size: 19px;
+    font-size: 17px;
 }
 
+/* RESPOSIVIDADE */
+
+@media (max-width: 911px){
+    .servicos{
+        display: grid;
+    }
+
+    .servicos_section {
+        display: block;
+        margin-top: 0px;
+    }
+
+    .cards{
+        display: inline-grid;
+        margin: 50px auto 20px;
+    }
+
+    .cardDescription {
+        width: 390px;
+        margin-bottom: 50px;
+      }
+}
+
+@media (max-width: 465px){
+    .cardInside{
+        width: 112px;
+        height: 79px;
+    }
+
+    .cardDescription{
+        width: 367px;
+    }
+}
+
+@media (max-width: 375px){
+    .cards{
+        gap: 8px;
+    }
+
+    .cardDescription{
+        width: 353px;
+    }
+}
