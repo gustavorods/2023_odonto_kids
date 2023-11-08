@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            background: linear-gradient(to right, #89216b, #da4453);
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .flip-container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            perspective: 1200px;
+        }
+
+        .card{
+            width: 640px;
+            height: 480px;
+            transition: all 0.5s;
+            transform-style: preserve-3d;
+        }
+        .front, .back{
+            width: 640px;
+            height: 480px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="flip-container">
+        <div class="card">
+            <div class="front"><h1>oi</h1></div>
+            <div class="back"><h1>Teste</h1></div>
+        </div>
+    </div>
+</body>
+</html>

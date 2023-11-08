@@ -4,24 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/login.css">
-    <script src="https://kit.fontawesome.com/78372ad020.js" crossorigin="anonymous"></script>    <title>Login</title>
+    <script src="https://kit.fontawesome.com/78372ad020.js" crossorigin="anonymous"></script>
+    <title>Login</title>
 </head>
 <body>
     <div class="container" id="container">
         <!-- Criar Conta -->
         <div class="form-container sing-up">
             <form>
-                <h1>Cadastrar-se</h1>
+                <h1 id="titulo-cadastrar">Cadastrar-se</h1>
                 <span>Insira seus dados para continuar o cadastro</span>
-                <input type="text" 
-                placeholder="Nome">
-                <input type="email" 
-                placeholder="Email">
-                <input type="password" 
-                placeholder="Senha">
-                <button>Cadastrar-se</button>
+                <!-- Primeira informação -->
+                <div class="input-first-info">
+                    <input type="text" placeholder="Nome Completo">
+                    <input type="email" placeholder="Email">
+                    <input type="number" placeholder="CPF">
+                </div>
+
+                <!-- Segunda informação -->
+                <div class="input-second-info">
+                    <input type="tel" placeholder="Telefone">
+                    <input type="date" name="" id="">
+                    <select id="genero" name="genero">
+                        <option disabled selected>Selecione seu gênero</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="nao-binario">Não binário</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+                <div class="btn-form-back-next">
+                    <button type="button" id="btn-form-back">Voltar</button>
+                    <button type="button" id="btn-form-next">Próximo</button>
+                </div>
             </form>
         </div>
+
         <!-- Logar na Conta -->
         <div class="form-container sing-in">
             <form>
@@ -35,33 +53,24 @@
                     </a>
                 </div>
                 <span>Ou use seu email e senha para Entrar</span>
-                <input type="email" 
-                placeholder="Email">
-                <div class="password">
-                    <input type="password" 
-                    placeholder="Senha">
-
-                    <img src="../img/eye-solid.svg" alt="Icone olho">
-                </div>
-                <a href="#">
-                    Esqueceu sua senha?
-                </a>
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Senha">
+                <a href="#">Esqueceu sua senha?</a>
                 <button>Entrar</button>
             </form>
         </div>
+
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
                     <h1>Bem vindo de volta!</h1>
                     <p>Entre usando seus dados pessoais para usar tudo do site</p>
-                    <button class="hidden" 
-                    id="login">Entrar</button>
+                    <button class="hidden" id="login">Entrar</button>
                 </div>
                 <div class="toggle-panel toggle-right">
                     <h1>Olá! Novo aqui?</h1>
                     <p>Faça o cadastro usando seus dados pessoais para usar tudo do site</p>
-                    <button class="hidden" 
-                    id="register">Cadastrar</button>
+                    <button class="hidden" id="register">Cadastrar</button>
                 </div>
             </div>
         </div>

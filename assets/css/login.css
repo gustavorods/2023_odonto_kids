@@ -40,7 +40,7 @@ body {
 }
 
 .container span {
-    font-size: 15px;
+    font-size: 17px;
 }
 
 .container a {
@@ -69,6 +69,13 @@ body {
     border-color: #fff;
 }
 
+.container button.hidden:hover{
+    background-color: #fff;
+    color: #1150af;
+    transform: scale(1.1);
+    transition: all 0.25s ease-in-out;
+}
+
 .container form {
     background-color: #fff;
     display: flex;
@@ -79,23 +86,11 @@ body {
     height: 100%;
 }
 
-.container .password {
-    width: 100%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    color: #408CFC;
+.container #btn-form-proximo {
+    margin-left: 20px;
 }
 
-.container .password img {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    background-color: #eee;
-    height: 40px;
-}
-
-.container input {
+.container input, select {
     border: none;
     margin: 8px 0;
     background-color: #eee;
@@ -105,6 +100,12 @@ body {
     width: 100%;
     outline: none;
 }
+
+.container .input-second-info, #btn-form-back{
+    display: none;
+}
+
+
 
 .form-container {
     position: absolute;
