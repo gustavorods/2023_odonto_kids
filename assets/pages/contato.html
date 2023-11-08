@@ -71,14 +71,14 @@
                 Sua dúvida é sempre bem vinda!
             </p>
             <div class="botoes">
-                <div class="buttom">
+                <div class="buttom" data-link="linkDoWhatsapp">
                     <img src="../img/whatsapp_icon.webp" alt="">
                     <div>
                         <p>Whatsapp</p>
                         <p>+55 (11) 99999-9999</p>
                     </div>
                 </div>
-                <div class="buttom">
+                <div class="buttom" data-link="linkDoGmail">
                     <img src="../img/gmail_icon.webp" alt="">
                     <div>
                         <p>Gmail</p>
@@ -93,6 +93,18 @@
             </form>
         </div>
     </section>
+
+    <script>
+        const botoes = document.querySelectorAll('.buttom');
+    
+        botoes.forEach((botao) => {
+            botao.addEventListener('click', () => {
+                const link = botao.getAttribute('data-link');
+    
+                window.location.href = link;
+            });
+        });
+    </script>    
 
 </body>
 </html>
