@@ -15,16 +15,16 @@
                 <h1 id="titulo-cadastrar">Cadastrar-se</h1>
                 <span>Insira seus dados para continuar o cadastro</span>
                 <!-- Primeira informação -->
-                <div class="input-first-info">
+                <div id="input-first-info">
                     <input type="text" placeholder="Nome Completo">
                     <input type="email" placeholder="Email">
                     <input type="number" placeholder="CPF">
                 </div>
 
                 <!-- Segunda informação -->
-                <div class="input-second-info">
+                <div id="input-second-info">
                     <input type="tel" placeholder="Telefone">
-                    <input type="date" name="" id="">
+                    <input type="date">
                     <select id="genero" name="genero">
                         <option disabled selected>Selecione seu gênero</option>
                         <option value="masculino">Masculino</option>
@@ -33,9 +33,16 @@
                         <option value="outro">Outro</option>
                     </select>
                 </div>
+
+                <!-- Terceira informação --> 
+                <div id="input-three-info">
+                    <input type="password" class="" placeholder="Senha">
+                    <input type="password" class="" placeholder="Confirmar Senha">
+                </div>
                 <div class="btn-form-back-next">
                     <button type="button" id="btn-form-back">Voltar</button>
                     <button type="button" id="btn-form-next">Próximo</button>
+                    <button id="btn-form-send">Enviar</button>
                 </div>
             </form>
         </div>

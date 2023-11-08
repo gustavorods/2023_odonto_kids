@@ -101,7 +101,7 @@ body {
     outline: none;
 }
 
-.container .input-second-info, #btn-form-back{
+#input-second-info, #input-three-info, #btn-form-back, #btn-form-send {
     display: none;
 }
 
