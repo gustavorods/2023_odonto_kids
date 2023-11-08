@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/78372ad020.js" crossorigin="anonymous"></script>
     <title>Teste</title>
     <style>
         *{
@@ -13,6 +14,7 @@
         body{
             background: linear-gradient(to right, #89216b, #da4453);
             width: 100%;
+            color: white;
             min-height: 100vh;
         }
 
@@ -24,12 +26,17 @@
             perspective: 1200px;
         }
 
+        .flip-container:hover .card{
+            transform: rotateY(-180deg);
+        }
+
         .card{
             width: 640px;
             height: 480px;
-            transition: all 0.5s;
+            transition: all 0.4s ease-in-out;
             transform-style: preserve-3d;
         }
+
         .front, .back{
             width: 640px;
             height: 480px;
@@ -38,13 +45,49 @@
             left: 0;
             backface-visibility: hidden;
         }
+
+        .front{
+            background-color: #89216b;
+        }
+
+        .back {
+            background-color: black;
+            transform: rotateY(-180deg);
+        }
+
+
     </style>
 </head>
 <body>
     <div class="flip-container">
         <div class="card">
-            <div class="front"><h1>oi</h1></div>
-            <div class="back"><h1>Teste</h1></div>
+            <div class="front">
+                <div class="mobile-form-container">
+                    <form>
+                        <h1>Entrar</h1>
+                        <div class="social-icons">
+                            <a href="#" class="icon">
+                                <i class="fa-brands fa-google-plus-g"></i>
+                            </a>
+                            <a href="#" class="icon">
+                                <i class="fa-brands fa-apple"></i>
+                            </a>
+                        </div>
+                        <span>Ou use seu email e senha para Entrar</span>
+                        <input type="email" placeholder="Email">
+                        <input type="password" placeholder="Senha">
+                        <a href="#">Esqueceu sua senha?</a>
+                        <button>Entrar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="back">
+                <div class="mobile-form-container">
+                    <form>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </body>
