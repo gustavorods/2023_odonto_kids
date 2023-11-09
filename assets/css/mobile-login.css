@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
 
+/*Girar o card*/
 .flip-container{
     position: absolute;
     perspective: 1200px;
@@ -11,6 +12,7 @@
     height: 480px;
     transition: all 0.4s ease-in-out;
     transform-style: preserve-3d;
+    transform: rotateY(-180deg);
 }
 
 .front, .back{
@@ -24,6 +26,15 @@
     border-radius: 20px;
 }
 
+.front, .back{
+    background-color: white;
+}
+
+.back {
+    transform: rotateY(-180deg);
+}
+
+/*Formulario da parte "front"*/
 .mobile-form-container form{
     display: flex;
     align-items: center;
@@ -63,11 +74,15 @@
     cursor: pointer;
 }
 
-
-.front, .back{
-    background-color: white;
+/*formulario da parte "back"*/
+.back .mobile-form-container span {
+    margin-top: 40px;
+    margin-bottom: 5px
 }
 
-.back {
-    transform: rotateY(-180deg);
+
+.mobile-input-second-info, .mobile-input-third-info, .mobile-btn-form-back, .mobile-btn-form-send{
+    display: none;
 }
+
+

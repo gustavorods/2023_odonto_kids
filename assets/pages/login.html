@@ -105,14 +105,46 @@
                         <input type="password" placeholder="Senha">
                         <a href="#">Esqueceu sua senha?</a>
                         <button>Entrar</button>
-                        <button type="button" id="mobile-btn-SemContaAinda">Sem conta ainda?</button>
+                        <button type="button" class="mobile-btn-NoAccount">Sem conta ainda?</button>
                     </form>
                 </div>
             </div>
             <div class="back">
                 <div class="mobile-form-container">
                     <form>
+                        <h1 class="mobile-form-titulo">Cadastrar-se</h1>
+                        <span>Insira seus dados para continuar o cadastro</span>
+                        <!-- Primeiras informações -->
+                        <div class="mobile-input-first-info">
+                            <input type="text" placeholder="Nome completo">
+                            <input type="number" placeholder="CPF">
+                            <input type="email" placeholder="Email">
+                        </div>
 
+                        <!-- Segundas informações -->
+                        <div class="mobile-input-second-info">
+                            <input type="tel" placeholder="Telefone">
+                            <input type="date">
+                            <select name="genero">
+                                <option disabled selected>Selecione seu gênero</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="feminino">Feminino</option>
+                                <option value="nao-binario">Não binário</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+
+                        <!-- Terceiras informações --> 
+                        <div class="mobile-input-third-info">
+                            <input type="password" class="" placeholder="Senha">
+                            <input type="password" class="" placeholder="Confirmar Senha">
+                        </div>
+
+                        <!--Botões-->
+                        <button type="button" class="mobile-btn-form-next">Próximo</button>
+                        <button type="button" class="mobile-btn-form-send">Enviar</button>
+                        <button type="button" class="mobile-btn-form-BackToLogin">Já tem uma conta?</button>
+                        <button type="button" class="mobile-btn-form-back">Voltar</button>
                     </form>
                 </div>
             </div>
