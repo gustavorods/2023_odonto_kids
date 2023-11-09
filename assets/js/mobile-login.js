@@ -34,7 +34,7 @@ btn_proxim0.addEventListener('click', () => {
         btn_voltar_para_login.style.display = 'none'
         btn_v0ltar.style.display = 'inline'
     } else if(segundasInformacoes.style.display == "block"){
-        tituloAreaCadastrar.innerHTML = "Falta um teco assim 🤏"
+        tituloAreaCadastrar.innerHTML = "Falta um teco assim: 🤏"
         segundasInformacoes.style.display = 'none'
         terceirasInformacoes.style.display = 'block'
         btn_proxim0.style.display = 'none'

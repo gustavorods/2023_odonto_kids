@@ -36,7 +36,7 @@ btn_proximo.addEventListener('click', () => {
         btn_voltar.style.display = "inline";
     }
     else if(segundo_inputs.style.display == "block") {
-        titulo_cadastrar.innerHTML = "Falta um teco assim 🤏";
+        titulo_cadastrar.innerHTML = "Falta um teco assim: 🤏";
         segundo_inputs.style.display = "none";
         terceiro_inputs.style.display = "block";
         btn_proximo.style.display = "none";
