@@ -709,9 +709,9 @@
 /* Espaço */
 
 /* Responsividade: Aparelho muito Pequeno */
-@media (max-width: 576px) { 
-    .espaco {
-        padding: 2rem;
+@media (max-width: 576px) {
+    .espaco{
+        padding-bottom: 0;
     }
 
     .espaco .heading{
@@ -719,27 +719,27 @@
     }
 
     #carouselExampleCaptions {
-        width: 90% !important;
+        width: 100% !important;
     }
 }
 
 /* Responsividade: Aparelho pequeno */
-@media (min-width: 577px) {
+@media (max-width: 577px) {
+    .espaco{
+        padding-bottom: 0;
+    }
+
     .espaco .heading{
         font-size: 3.2rem;
     }
 
     #carouselExampleCaptions {
-        width: 90% !important;
+        width: 100% !important;
     }
 }
 
 /* Responsividade: Aparelho grande */
 @media (min-width: 992px) {
-    .espaco {
-        padding: 3rem;
-    }
-
     #carouselExampleCaptions {
         width: 60% !important;
     }
