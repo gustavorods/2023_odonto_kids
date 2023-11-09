@@ -1,0 +1,8 @@
+@media (max-width: 992px){
+    .container{
+        display: none;
+    }
+    .flip-container{
+        display: block;
+    }
+}
