@@ -5,10 +5,6 @@
     perspective: 1200px;
 }
 
-.flip-container:hover .card{
-    transform: rotateY(-180deg);
-}
-
 .card{
     color: black;
     width: 440px;
