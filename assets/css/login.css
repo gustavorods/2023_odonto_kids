@@ -9,19 +9,19 @@
     font-family: 'Roboto', sans-serif;
 }
 body {
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    background: rgb(192,192,192);
+    background: linear-gradient(90deg, rgba(192,192,192,1) 0%, rgba(201,214,255,1) 100%);
     background-size: cover;
 }
 
 /* Navbar */
 .navbar {
-    background-color: #408CFC !important;
+    background-color: transparent !important;
     height: 65px;
 }
 
 .backArrow{
-    width: 30px;
+    width: 40px;
     margin-left: 20px;
 }
 
@@ -33,32 +33,6 @@ div.container-fluid {
     width: 100%;
     padding: 0%;
 }
-
-#div-logo {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    position: absolute;
-    left: 40%;
-}
-
-#div-logo h1 {
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: 3px;
-    font-size: 34px;
-    color: #FBFBFB;
-    font-weight: 900;
-}
-
-#div-logo img {
-    height: 30px;
-    width: 30px;
-    margin-left: 8px;
-    margin-top: 5px;
-}
-
 
 /*pc & mobile */
 .main-container{
