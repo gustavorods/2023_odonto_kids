@@ -274,7 +274,7 @@ div.container-fluid {
     margin: 2px 10px;
 }
 
-/* RES-6NS5V5DADE */
+/* RESPONSIVIDADE */
 
 @media (max-width: 1238px){
     .input-double {
@@ -330,6 +330,12 @@ div.container-fluid {
 @media (max-width: 456px){
     .titulo_form {
         font-size: 16pt;
+    }
+}
+
+@media (max-width: 409px){
+    .titulo_form {
+        font-size: 14pt;
     }
 }
 
