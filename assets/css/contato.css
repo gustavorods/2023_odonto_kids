@@ -140,10 +140,12 @@ div.container-fluid {
     place-items: center;
     width: 50vw;
     margin: auto;
+    padding: 50px;
+    height: 465px;
 }
 
 .formulario{
-
+    padding: 50px 0px;
     width: 50vw;
     padding-left: 0px;
     align-items: center;
@@ -262,7 +264,64 @@ div.container-fluid {
     margin: 2px 10px;
 }
 
+/* RES-6NS5V5DADE */
 
+@media (max-width: 1238px){
+    .input-double {
+        width: 195px;
+    }
+}
+
+@media (max-width: 1038px){
+    .contato_section{
+        display: block;
+    }
+
+    .centralizar{
+        display: grid;
+        place-items: center;
+    }
+
+    .form{
+        width: 100%;
+    }
+
+    .formulario{
+        padding-top: 50px;
+        width: initial;
+    }
+
+    .info{
+        padding-bottom: 0px;
+        width: initial;
+        padding: 50px 0px;
+        padding-bottom: 0px;
+    }
+}
+
+@media (max-width: 884px){
+    .titulo_form{
+        font-size: 19pt;
+    }
+
+    .double{
+        display: initial;
+    }
+
+    .input-double {
+        width: 100%;
+    }
+
+    .input-mensagem{
+        height: 101px;
+    }
+}
+
+@media (max-width: 456px){
+    .titulo_form {
+        font-size: 16pt;
+    }
+}
 
 .footer{
     text-align: center;
