@@ -28,17 +28,35 @@ btn_voltar_para_login.addEventListener('click', () => {
 primeirasInformacoes.style.display = "block";
 btn_proxim0.addEventListener('click', () => {
     if(primeirasInformacoes.style.display == "block"){
+        tituloAreaCadastrar.innerHTML = "Quase lá...";
         primeirasInformacoes.style.display = 'none'
         segundasInformacoes.style.display = 'block'
         btn_voltar_para_login.style.display = 'none'
         btn_v0ltar.style.display = 'inline'
-        tituloAreaCadastrar.innerHTML = "Quase lá...";
     } else if(segundasInformacoes.style.display == "block"){
+        tituloAreaCadastrar.innerHTML = "Falta um teco assim 🤏"
         segundasInformacoes.style.display = 'none'
         terceirasInformacoes.style.display = 'block'
         btn_proxim0.style.display = 'none'
         btn_Enviar.style.display = 'inline'
-        tituloAreaCadastrar.innerHTML = "Falta um teco assim 🤏"
     }
 });
 
+// Botão de voltar 
+btn_v0ltar.addEventListener('click', () => {
+    if(segundasInformacoes.style.display == "block"){
+        tituloAreaCadastrar.innerHTML = "Cadastrar-se";
+        primeirasInformacoes.style.display = 'block'
+        segundasInformacoes.style.display = 'none'
+        btn_voltar_para_login.style.display = 'inline'
+        btn_v0ltar.style.display = 'none'
+    } else if(terceirasInformacoes.style.display == "block"){
+        tituloAreaCadastrar.innerHTML = "Quase lá...";
+        segundasInformacoes.style.display = 'block'
+        terceirasInformacoes.style.display = 'none'
+        btn_Enviar.style.display = 'none'
+        btn_proxim0.style.display = 'inline'
+
+    }
+    
+})
