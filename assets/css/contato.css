@@ -222,17 +222,17 @@ div.container-fluid {
     justify-content: center;
     display: grid;
     font-size: 20pt;
-    font-weight: 1000;
+    font-weight: 600;
     padding-top: 40px;
 }
 
 .titulo{
     font-size: 20pt;
-    font-weight: 1000;
+    font-weight: 600;
 }
 
 .paragrafo{
-    width: 320px;
+    width: 380px;
     text-align: center;
     font-size: 12pt;
     margin-bottom: 40px;
@@ -241,7 +241,7 @@ div.container-fluid {
 .chamada{
     font-weight: 500;
     font-size: 15pt;
-    margin-bottom: 23px;
+    margin-bottom: 10spx;
 }
 
 .botoes div:first-child{
