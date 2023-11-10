@@ -1,0 +1,19 @@
+/* mobile & pc */
+@media (max-width: 576px){
+    .card{
+        width: 340px;
+        height: 480px;
+    }
+    .backArrow{
+        width: 30px;
+    }
+}
+
+@media (max-width: 992px){
+    .container{
+        display: none;
+    }
+    .flip-container{
+        display: block;
+    }
+}
