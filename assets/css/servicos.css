@@ -170,7 +170,7 @@ div.container-fluid {
 
 .cardInside h1{
     font-size: 1.7rem;
-    font-weight: 1000;
+    font-weight: 700;
 }
 
 .cardDescription{
@@ -182,7 +182,7 @@ div.container-fluid {
 }
 
 .cardDescription h1{
-    font-weight: 1000;
+    font-weight: 700;
 }
 
 .cardDescription p{

@@ -183,6 +183,10 @@
         height: 40px;
         font-size: 15px;
     }
+
+    .linha{
+        display: none;
+    }
 }
 
 /* Responsividade: Aparelho muito grande */
@@ -208,6 +212,8 @@
         height: 45px;
         font-size: 18px;
     }
+
+  
 
 }
 
