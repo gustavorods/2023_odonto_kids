@@ -1,68 +1,54 @@
-
 # Odonto Kids ![enter image description here](https://i.postimg.cc/ZYLstBh5/Component-2.png)
 
-## Visão Geral 
-Odonto Kids é um site de uma clínica odonto pediátrica especializada no tratamento de problemas bucais em crianças, atendendo crianças com idades entre 6 meses e 12 anos. Seu foco está em cuidar da saúde bucal infantil.
+Overview
+Odonto Kids is a website for a pediatric dental clinic specialized in treating oral issues in children, catering to kids aged 6 months to 12 years. Its focus is on child dental health care.
 
 <br/> 
-
-##  Seu foco / Diferencial 
-O principal objetivo da Odonto Kids é proporcionar aos pais um ambiente de agendamento de consultas **rápido** e **eficiente**, garantindo ao mesmo tempo **conforto** e **segurança** ao utilizar um sistema online. Além disso, a plataforma se destaca pela oferta de uma **variedade de funcionalidades exclusivas**, o que a torna **única no mercado**.
-
-<br/> 
-
-## Funcionalidades 
-###	Como ele funciona
-O site Odonto Kids é uma plataforma que simplifica o agendamento de atendimentos na fictícia clínica odontológica Odonto Kids. O processo é **intuitivo** e **eficiente**: os responsáveis pela criança podem criar uma conta, fornecer informações pessoais e detalhes sobre o paciente, como nome, idade e eventuais problemas odontológicos. Em seguida, é possível agendar consultas na data de preferência do usuário. Além disso, o site oferece diversas funcionalidades, tais como:
-
--   Acompanhamento de dados de exames;
--   Orientações para situações de emergência;
-	-   Instruções sobre o comportamento adequado durante um incidente de emergência;
--   Possibilidade de reagendamento de consultas, se necessário;
--   Agendamento de consultas recorrentes.
-
-Essas características tornam o Odonto Kids uma **ferramenta completa e acessível para a gestão de cuidados odontológicos infantis.**
-
-### O que o site oferece 
-
--   **Página Inicial (Home):** Introdução ao site e seus serviços, fornecendo uma visão geral do que a clínica odontológica oferece para crianças e seus pais.
-    
--   **Catálogo de Serviços:** Uma lista detalhada dos serviços odontológicos disponíveis na clínica para crianças.
-    
--   **Sobre Nós:** Uma seção dedicada a apresentar informações sobre a clínica Odonto Kids, sua missão, visão, valores e equipe profissional, transmitindo confiança e credibilidade aos usuários.
-    
--   **Contato:** Uma página com informações de contato da clínica, como endereço, telefone e formulário de contato, facilitando a comunicação entre os pais e a equipe da clínica.
-    
-- **Área de Login:** Um espaço seguro onde os pais podem fazer login em suas contas pessoais ou criá-las,
+Focus / Differentiator
+Odonto Kids' primary objective is to provide parents with a fast and efficient appointment scheduling environment, ensuring comfort and security while using an online system. Additionally, the platform stands out for offering a variety of exclusive features, making it unique in the market.
 
 <br/> 
+Features
+How It Works
+The Odonto Kids website is a platform that simplifies appointment scheduling at the fictional Odonto Kids dental clinic. The process is intuitive and efficient: guardians of the child can create an account, provide personal information, and details about the patient, such as name, age, and any dental issues. Then, appointments can be scheduled on the user's preferred date. Additionally, the website offers various functionalities, such as:
 
-##   Tecnologias
+Tracking of examination data;
+Guidelines for emergency situations;
+Instructions on proper behavior during an emergency incident;
+Possibility of rescheduling appointments if necessary;
+Scheduling of recurring appointments.
+These features make Odonto Kids a comprehensive and accessible tool for managing pediatric dental care.
 
-### Código
+What the Website Offers
+Home Page: Introduction to the website and its services, providing an overview of what the dental clinic offers for children and their parents.
 
--   **HTML:** Estruturação do conteúdo.
--   **CSS:** Estilização da página.
--   **JavaScript:** Interação e dinamismo.
--   **Bootstrap:** Elementos pré-estilizados e responsivos.
+Service Catalog: A detailed list of dental services available at the clinic for children.
 
-### Design
--
--   **Figma:** Prototipagem visual.
--   **Google Imagens:** Fonte de imagens.
--   **Google Fonts:** Variedade de fontes de texto.
--   **Font Awesome:** Ícones vetoriais.
+About Us: A section dedicated to presenting information about the Odonto Kids clinic, its mission, vision, values, and professional team, conveying trust and credibility to users.
+
+Contact: A page with clinic contact information, such as address, phone, and contact form, facilitating communication between parents and the clinic team.
+
+Login Area: A secure space where parents can log in to their personal accounts or create them,
 
 <br/> 
-
-##   Link
-
-O site pode ser acessado através deste link: [Odonto Kids](https://gustavorods.github.io/2023_odonto_kids/)
+Technologies
+Code
+HTML: Content structuring.
+CSS: Page styling.
+JavaScript: Interaction and dynamism.
+Bootstrap: Pre-styled and responsive elements.
+Design
+Figma: Visual prototyping.
+Google Images: Image source.
+Google Fonts: Variety of text fonts.
+Font Awesome: Vector icons.
+<br/> 
+Link
+The website can be accessed through this link: Odonto Kids
 
 <br/> 
+Notices
+This repository is exclusively intended for educational purposes. We encourage responsible use of this code for learning and experimentation, in compliance with ethical and legal principles. Any attempt at unauthorized commercialization or rights violation is strictly discouraged. As the repository is publicly accessible, we are not responsible for any misuse or intention of sale by third parties.
 
-## Avisos
-Este repositório é exclusivamente destinado a fins educacionais. Incentivamos o uso responsável deste código para aprendizado e experimentação, em conformidade com os princípios éticos e legais. Qualquer tentativa de comercialização não autorizada ou violação de direitos é estritamente desencorajada. Como o repositório é de acesso público, não nos responsabilizamos por qualquer uso indevido ou intenção de venda por terceiros.
-
-## Possíveis Erros 
-Ao acessar o projeto, é fundamental ter em mente que podem ocorrer alguns contratempos. Estes podem estar relacionados à compatibilidade com navegadores específicos, variações nas configurações do navegador ou até mesmo conflitos com outros scripts na página da web. Adicionalmente, dado que o site está em constante desenvolvimento, é possível que durante esse processo, o acesso pelo link fornecido seja interrompido temporariamente.
+Possible Errors
+When accessing the project, it is essential to keep in mind that there may be some setbacks. These may be related to compatibility with specific browsers, variations in browser settings, or even conflicts with other scripts on the web page. Additionally, since the site is in constant development, it is possible that during this process, access via the provided link may be temporarily interrupted.
