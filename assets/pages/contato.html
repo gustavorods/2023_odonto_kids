@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
     <link rel="stylesheet" href="../css/contato.css">
-    <link rel="stylesheet" href="../css/time-line_responsivo.css">
+    <link rel="stylesheet" href="../css/contato_responsivo.css">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -59,6 +59,7 @@
             </div>
     </nav>
 
+    <!--Contato-->
     <section class="contato_section">
         <div class="info">
             <p class="titulo">
@@ -120,17 +121,27 @@
         </div>
     </section>
 
-    <script>
-        const botoes = document.querySelectorAll('.buttom');
-    
-        botoes.forEach((botao) => {
-            botao.addEventListener('click', () => {
-                const link = botao.getAttribute('data-link');
-    
-                window.location.href = link;
-            });
-        });
-    </script>    
+    <!-- Footer -->
+   <section class="footer">
+    <div class="box-container">
+        <div class="box">
+            <h3>Endereço</h3>
+            <p>Endereço: 619 Albuquerque Travessa - Tucano, PI / 60960-761<br>CNPJ: n° 87.313.818/0001-42</p>
+        </div>
+        <div class="box">
+            <h3>E-mail</h3>
+            <a href="#" class="link">OdontoKids@gmail.com</a>
+            <a href="#" class="link">SuporteOdontoKids@hotmail.com</a>
+        </div>
+        <div class="box">
+            <h3>Ligue</h3>
+            <p>+55 0000-0000</p>
+            <p>+55 0000-0000</p>
+        </div>
+    </div>
+    <div class="credit">Copyright © 2023 Odonto Kids LTDA</div>
+    </section>
 
+    <script src="../js/contato.js"></script>
 </body>
 </html>

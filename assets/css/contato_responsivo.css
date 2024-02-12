@@ -1,0 +1,65 @@
+/* RESPONSIVIDADE */
+
+@media (max-width: 1238px){
+    .input-double {
+        width: 195px;
+    }
+}
+
+@media (max-width: 1038px){
+    .contato_section{
+        display: block;
+    }
+
+    .centralizar{
+        display: grid;
+        place-items: center;
+    }
+
+    .form{
+        width: 100%;
+    }
+
+    .formulario{
+        padding-top: 50px;
+        width: initial;
+    }
+
+    .info{
+        padding-bottom: 0px;
+        width: initial;
+        padding: 50px 0px;
+        padding-bottom: 0px;
+    }
+}
+
+@media (max-width: 884px){
+    .titulo_form{
+        font-size: 19pt;
+    }
+
+    .double{
+        display: initial;
+    }
+
+    .input-double {
+        width: 100%;
+    }
+
+    .input-mensagem{
+        height: 101px;
+    }
+}
+
+@media (max-width: 456px){
+    .titulo_form {
+        font-size: 16pt;
+    }
+}
+
+@media (max-width: 409px){
+    .titulo_form {
+        font-size: 14pt;
+    }
+}
+

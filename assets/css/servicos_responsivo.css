@@ -1,219 +1,30 @@
-/* navbar */ 
 
-/* Responsividade: Aparelho muito Pequeno */
-@media (max-width: 576px) { 
-    /* Menu */
-    .navbar-toggler.collapsed {
-        margin-left: 10px;
-        height: 3.5rem;
-        width: 4rem;
-        padding: 0%;
-    }
-
-    .navbar-toggler-icon {
-        width: 2.5rem !important;
-        height: 3rem !important;
-    } 
-
-    .navbar {
-        height: 50px;
-    }
-    
-    /* Menu Open */
-    button.navbar-toggler {
-        margin-left: 10px;
-    } 
-
-    .nav .nav-item a{
-        font-size: 1.7rem;
-    }
-
-    .linha {
-        width: 50%;
-        color: white;
-        border: 2px solid white;
-    }
-
-    /* Logo */
-    #div-logo h1 {
-    font-size: 23px;
-    }
-
-    #div-logo img {
-        height: 23px;
-        width: 23px;
-    }
-
-    /*  Botão */
-    #criar-conta {
-        margin-right: 10px;
-    }
-
-    #botao-entrar-header {
-        height: 38px;
-        width: 80px;
-        font-size: 12px;
-    }
-}
-
-/* Responsividade: Aparelho pequeno */
-@media (min-width: 577px) {
-    /* Menu */
-    .navbar {
-        height: 55px;
-    }
-
-    .navbar-toggler.collapsed {
-        margin-left: 10px;
-        height: 3.5rem;
-        width: 4rem;
-        padding: 0%;
-    }
-
-    .navbar-toggler-icon {
-        width: 2.5rem !important;
-        height: 3rem !important;
-    } 
-
-    /* Menu Open */
-    button.navbar-toggler {
-        margin-left: 10px;
-    } 
-
-    /* Logo */
-    #div-logo h1 {
-    font-size: 30px;
-    }
-
-    #div-logo img {
-        height: 28px;
-        width: 28px;
-    }
-
-    /*  Botão */
-    #criar-conta {
-        margin-right: 10px;
-    }
-
-    #botao-entrar-header {
-        height: 38px;
-        width: 130px;
-        font-size: 13px;
-    }
-}
-
-/* Responsividade: Aparelho médio */
-@media (min-width: 768px) {
-    /* Menu */
-    .navbar-toggler.collapsed {
-        margin-left: 20px;
-        height: 3.5rem;
-        width: 5rem;
-    }
-
-    .navbar-toggler-icon {
-        width: 3rem !important;
-        height: 2rem !important;
-    } 
-
-    /* Menu Open */
-    button.navbar-toggler {
-        margin-left: 20px;
-        height: 3.5rem;
-        width: 5rem;
-    } 
-
-    /*  Botão */
-    #criar-conta {
-        margin-right: 20px;
-    }
-
-    #botao-entrar-header {
-        height: 38px;
-        width: 170px;
-        font-size: 16px;
-    }
-}
-
-/* Responsividade: Aparelho grande */
-@media (min-width: 992px) {
-    /* Menu */
-    .navbar {
-        height: 60px;
-    }
-
-    .navbar-toggler.collapsed {
-        margin-left: 25px;
-        height: 4rem;
-        width: 6rem;
-        padding: 0%;
-    }
-
-    .navbar-toggler-icon {
-        width: 3.5rem !important;
-        height: 3rem !important;
-    } 
-
-    /* Menu Open */
-    button.navbar-toggler {
-        margin-left: 25px;
-        height: 4rem;
-        width: 6rem;
-    } 
-
-    /* Logo */
-    #div-logo h1 {
-        font-size: 32px;
-    }
-
-
-    #div-logo img {
-        height: 29px;
-        width: 29px;
-        margin: 9px;
-    }
-    
-    /*  Botão */
-    #criar-conta {
-        margin-right: 25px;
-    }
-
-    #botao-entrar-header {
-        width: 180px;
-        height: 40px;
-        font-size: 15px;
-    }
-}
-
-/* Responsividade: Aparelho muito grande */
-@media (min-width: 1500px) {
-    /* Menu */
-    .navbar {
-        height: 65px;
-    }
-
-    /* Logo */
-    #div-logo h1 {
-        font-size: 37px;
-    }
-    
-    
-    #div-logo img {
-        height: 33px;
-        width: 33px;
-    }
-
-    #botao-entrar-header {
-        width: 200px;
-        height: 45px;
-        font-size: 18px;
-    }
-
-}
-
-
-/*--------------------------------------------------*/
 /* responsive */
+@media (max-width: 378px){
+    .cards{
+        gap: 6px;
+        margin-bottom: 8.4px;
+    }
+
+    .cardDescription{
+        width: 351px;
+    }
+}
+
+
+@media (max-width: 465px){
+    .cardInside{
+        width: 112px;
+        height: 79px;
+    }
+
+    .cardDescription{
+        width: 367px;
+    }
+}
+
+
+
 @media (max-width: 576px) {
     .title h1 {
         font-size: 2.8rem;
@@ -258,5 +69,27 @@
     .title h1 {
         font-size: 5rem;
     }
-
 }
+
+@media (max-width: 1022px){
+    .servicos{
+        display: grid;
+    }
+
+    .servicos_section {
+        display: block;
+        margin-top: 0px;
+        margin: 0;
+    }
+
+    .cards{
+        display: inline-grid;
+        margin: 50px auto 15px;
+    }
+
+    .cardDescription {
+        width: 390px;
+        margin-bottom: 50px;
+      }
+}
+
