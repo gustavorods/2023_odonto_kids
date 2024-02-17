@@ -1,17 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
 @import '../geral/header.css';
-@import '../geral/footer.css';
+@import '../geral/footerBlue.css';
 
 
 /*--------------------------------------------------*/
 /*Titulo*/
 .title {
     display: flex;
-    margin: 40px 0px 0px 0px;
+    padding: 40px 0px 0px 0px;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
+	background-color: #FBFBFB;
 }
 
 .title h1 {
@@ -96,5 +97,7 @@
 	font-weight: 430;
 	line-height: 22px;
 }
+
+
 
 
