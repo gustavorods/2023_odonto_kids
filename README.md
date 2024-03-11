@@ -74,3 +74,8 @@ This repository is exclusively intended for educational purposes. We encourage r
 ## Possible Errors
 
 When accessing the project, it is essential to keep in mind that there may be some setbacks. These may be related to compatibility with specific browsers, variations in browser settings, or even conflicts with other scripts on the web page. Additionally, since the site is in constant development, it is possible that during this process, access via the provided link may be temporarily interrupted.
+
+<br/>
+
+## Notes
+In addition, we are diligently working to resolve any errors in the project and ensure a smoother experience for all users.
