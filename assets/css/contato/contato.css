@@ -163,3 +163,33 @@
     margin: 2px 10px;
 }
 
+.botao-enviar {
+    background-color: transparent;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.00001s;
+}
+
+.img-arrow {
+    width: 43px;
+}
+
+.botao-enviar:hover::after {
+    content: "Enviar mensagem";
+    position: absolute;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.botao-enviar:hover:hover::after {
+    opacity: 1;
+}
