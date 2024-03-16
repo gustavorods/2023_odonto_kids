@@ -109,6 +109,7 @@
 .titulo_form{
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
     display: grid;
     font-size: 20pt;
     font-weight: 600;
