@@ -41,20 +41,6 @@
     align-items: normal;
 }
 
-.Div-enviar{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.Div-enviar .button-enviar{
-    width: 100px;
-    height: 35px;
-    color: white;
-    background-color: #418CFC;
-}
-
 .uni p{
     font-size: 11pt;
     font-weight: 500;
