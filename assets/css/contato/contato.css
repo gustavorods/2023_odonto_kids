@@ -175,6 +175,10 @@
     width: 43px;
 }
 
+.input-invalid {
+    border: 2px solid #dc3545; /* Cor vermelha para indicar erro */
+}
+
 .botao-enviar:hover::after {
     content: "Enviar mensagem";
     position: absolute;

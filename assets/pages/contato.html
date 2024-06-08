@@ -9,57 +9,54 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <title>Serviços</title>
+    <title>Contato</title>
 </head>
 <body>
 
     <!-- Navbar -->
     <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
-            <div class="bg-primary p-4 itens-nav">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="../../index.html">Home</a>
-                    </li>
-                    <hr class="linha">
-    
-                    <li class="nav-item">
-                        <a class="nav-link active" href="./servicos.html">Serviços</a>
-                    </li>
-                    <hr class="linha">
-    
-                    <li class="nav-item">
-                        <a class="nav-link active" href="./time-line.html">Sobre nós</a>
-                    </li>
-                    <hr class="linha">
-    
-                    <li class="nav-item">
-                        <a class="nav-link active" href="./contato.html">Contato</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="bg-primary p-4 itens-nav">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="../../index.html">Home</a>
+                </li>
+                <hr class="linha">
+                <li class="nav-item">
+                    <a class="nav-link active" href="./servicos.html">Serviços</a>
+                </li>
+                <hr class="linha">
+                <li class="nav-item">
+                    <a class="nav-link active" href="./time-line.html">Sobre nós</a>
+                </li>
+                <hr class="linha">
+                <li class="nav-item">
+                    <a class="nav-link active" href="./contato.html">Contato</a>
+                </li>
+            </ul>
+        </div>
     </div>
-        
+    
     <nav class="navbar navbar-dark">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
-                    aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-        
-                <div id="div-logo">
-                    <h1>Odonto kids</h1>
-                    <img src="../img/geral/Logo.svg" alt="Odonto Kids logo">
-                </div>
-        
-                <div id="criar-conta">
-                    <a href="./login.html">
-                        <button id="botao-entrar-header">Entrar / Cadastrar</button>
-                    </a>
-                </div>
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
+                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div id="div-logo">
+                <h1>Odonto kids</h1>
+                <img src="../img/geral/Logo.svg" alt="Odonto Kids logo">
             </div>
+    
+            <div id="criar-conta">
+                <a href="./login.html">
+                    <button id="botao-entrar-header">Entrar / Cadastrar</button>
+                </a>
+            </div>
+        </div>
     </nav>
 
-    <!--Contato-->
+    <!-- Contato -->
     <section class="contato_section">
         <div class="info">
             <p class="titulo">
@@ -88,61 +85,66 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Formulário de contato -->
         <div class="centralizar">
             <div class="formulario">
                 <div class="form">
                     <p class="titulo_form">...ou nos mande uma mensagem </p>
-                        <div class="uni">
-                            <img src="../img/user_icon.webp" alt="">
-                            <p class="complemento">Nome completo</p>
-                        </div>
+                    <div class="uni">
+                        <p class="complemento">Nome completo</p>
+                    </div>
                     <input type="text" class="input" data-campo="Nome">
-                        <div class="double">
-                            <div>
-                                <div class="uni">
-                                    <img src="../img/telefone_icon.webp" alt="">
-                                    <p class="complemento">Telefone</p>
-                                </div>
-                                <input type="text" class="input-double" data-campo="Telefone" placeholder="(DDD) 99999-9999">
+                    
+                    <div class="double">
+                        <div>
+                            <div class="uni">
+                                <p class="complemento">Telefone</p>
                             </div>
-                            <div>
-                                <div class="uni">
-                                    <p class="complemento">Objetivo</p>
-                                </div>
-                                <input type="text" class="input-double" data-campo="Objetivo" placeholder="O que você procura?">
-                            </div>
+                            <input type="number" min="0" max="11" class="input-double" data-campo="Telefone" placeholder="(DDD) 99999-9999">
                         </div>
+                        <div>
+                            <div class="uni">
+                                <p class="complemento">Objetivo</p>
+                            </div>
+                            <input type="text" class="input-double" data-campo="Objetivo" placeholder="O que você procura?">
+                        </div>
+                    </div>
+                    
                     <div class="uni">
                         <p class="complemento" id="mensagem">Mensagem</p>
                     </div>
                     <textarea name="input-mensagem" id="" cols="30" rows="10" class="input-mensagem" placeholder="Diga-nos como podemos te ajudar. Fique à vontade para entrar em detalhes se quiser :)"></textarea>
                 </div>
-                <button id="botaoEnviar" class="botao-enviar"><img class="img-arrow" src="../img/contato/right arrow.png" alt=""></button>
+                <button id="botaoEnviar" class="botao-enviar">
+                    <img class="img-arrow" src="../img/contato/right arrow.png" alt="">
+                </button>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-   <section class="footer">
-    <div class="box-container">
-        <div class="box">
-            <h3>Endereço</h3>
-            <p>Endereço: 619 Albuquerque Travessa - Tucano, PI / 60960-761<br>CNPJ: n° 87.313.818/0001-42</p>
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Endereço</h3>
+                <p>Endereço: 619 Albuquerque Travessa - Tucano, PI / 60960-761<br>CNPJ: n° 87.313.818/0001-42</p>
+            </div>
+            <div class="box">
+                <h3>E-mail</h3>
+                <a href="#" class="link">OdontoKids@gmail.com</a>
+                <a href="#" class="link">SuporteOdontoKids@hotmail.com</a>
+            </div>
+            <div class="box">
+                <h3>Ligue</h3>
+                <p>+55 0000-0000</p>
+                <p>+55 0000-0000</p>
+            </div>
         </div>
-        <div class="box">
-            <h3>E-mail</h3>
-            <a href="#" class="link">OdontoKids@gmail.com</a>
-            <a href="#" class="link">SuporteOdontoKids@hotmail.com</a>
-        </div>
-        <div class="box">
-            <h3>Ligue</h3>
-            <p>+55 0000-0000</p>
-            <p>+55 0000-0000</p>
-        </div>
-    </div>
-    <div class="credit">Copyright © 2023 Odonto Kids LTDA</div>
+        <div class="credit">Copyright © 2023 Odonto Kids LTDA</div>
     </section>
 
+    <!-- JS -->
     <script src="../js/contato.js"></script>
 </body>
 </html>
