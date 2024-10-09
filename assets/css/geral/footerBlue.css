@@ -1,7 +1,7 @@
 /* Footer */
 .footer{
     text-align: center;
-    padding: 3rem;
+    padding: 2rem;
     background-color: #418CFC;
 }
 
@@ -12,13 +12,13 @@
 }
 
 .footer .box-container .box h3{
-    font-size: 2.2rem;
+    font-size: 1.3em;
     padding: 1rem 0;
     color: white;
 }
 
 .footer .box-container .box p{
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: .5rem 0;
     line-height: 2;
     color: white;
@@ -46,7 +46,7 @@
 
 .footer .box-container .box .link{
     display: block;
-    font-size: 1.7rem;
+    font-size: 1rem;
     line-height: 2;
     color: white;
     padding: .5rem 0;
@@ -60,7 +60,7 @@
 .footer .credit{
     margin-top: 3rem;
     padding-top: 3rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: center;
     text-transform: capitalize;
     color: white;

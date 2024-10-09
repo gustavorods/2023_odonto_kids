@@ -145,17 +145,9 @@ div.container-fluid {
 
 /* Responsividade: Aparelho muito Pequeno */
 @media (max-width: 576px) { 
-    /* Menu */
-    .navbar-toggler.collapsed {
-        margin-left: 10px;
-        height: 3.5rem;
-        width: 4rem;
-        padding: 0%;
-    }
-
     .navbar-toggler-icon {
-        width: 2.5rem !important;
-        height: 3rem !important;
+        width: 2rem !important;
+        height: 1rem !important;
     } 
 
     .navbar {
@@ -164,15 +156,20 @@ div.container-fluid {
     
     /* Menu Open */
     button.navbar-toggler {
-        margin-left: 10px;
+        margin-left: 5px;
+        height: 1px;
+        width: 1px;        
     } 
 
+
     .nav .nav-item a{
-        font-size: 1.7rem;
+        font-size: 1.1rem;
+        justify-content: center;
+        align-items: center;
     }
 
     .linha {
-        width: 50%;
+        width: 60%;
         color: white;
         border: 2px solid white;
     }

@@ -13,7 +13,7 @@
     }
 
     .home .content h3{
-        font-size: 3rem;
+        font-size: 2.5rem;
         text-align: center;
         color: #FBFBFB;
     }
@@ -27,11 +27,11 @@
 /* Responsividade: Aparelho pequeno */
 @media (min-width: 577px) {
     .home .content {
-        max-width: 50rem;
+        max-width: 48rem;
     }
 
     .home .content h3{ 
-        font-size: 3.1rem;
+        font-size: 3rem;
     }
 }
 
@@ -42,7 +42,7 @@
     }
 
     .home .content h3{ 
-        font-size: 3.5rem;
+        font-size: 3rem;
     }
 
 
@@ -87,7 +87,7 @@
 
 @media (max-width: 576px) { 
     #confiar{
-        font-size: 3.2rem;
+        font-size: 3rem;
     }
 
     .services .box-container{
@@ -106,15 +106,15 @@
 
 
     .services .box-container .box img{
-        height: 8rem;
+        height: 5rem;
     }
 
     .services .box-container .box h3{
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .services .box-container .box p{
-        font-size: 1.5rem;
+        font-size: 1rem;
         color: var(--light-color);
 
     }
@@ -131,22 +131,22 @@
     }
 
     #services .box-container .box {
-        height: 280px;
+        height: 320px;
         width: 290px;
         padding: 10px 20px;
     }
 
 
     .services .box-container .box img{
-        height: 8rem;
+        height: 6rem;
     }
 
     .services .box-container .box h3{
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .services .box-container .box p{
-        font-size: 1.5rem;
+        font-size: 1.1rem;
         color: var(--light-color);
     }
 
