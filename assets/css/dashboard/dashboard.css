@@ -192,6 +192,10 @@
     margin-right: 4px;
 }
 
+.card-girl .perfil-detalhes .botao-detalhes .detalhes{
+    background-color: #FF55F8;
+}
+
 .card-boy .perfil-detalhes .perfil-imagem img{
     border-color: #0681F3;
 }
