@@ -14,15 +14,15 @@
 }
 
 .home .content{
-    max-width: 60rem;
+    max-width: 53rem;
     display: flex;
     flex-direction: column;
-    padding-left: 6rem;
-    padding-top: 10rem;
+    padding-left: 4rem;
+    padding-top: 4rem;
 }
 
 .home .content h3{
-    font-size: 4rem;
+    font-size: 3.1rem;
     font-weight: 600;
     color: #FBFBFB;
     line-height: 1.2;
@@ -32,20 +32,20 @@
 .home .content p{
     line-height: 2;
     font-weight: 500;
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     color: #FBFBFB;
     padding: 1rem 0;
 }
 
 .btn-1{
-    margin-top: 3rem;
+    margin-top: 1rem;
     display: inline-block;
     border-radius: 10px;
-    height: 4.5rem;
-    width: 25rem;
+    height: 3.5rem;
+    width: 20rem;
     background: #0753ea;
     cursor: pointer;
-    font-size: 1.7rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--white);
 }
@@ -58,6 +58,15 @@
 /*----------------------------------------------------------------------------------------------------------*/
 
 /* Porque escolher a gente? */
+.services .heading{
+    font-size: 3rem;
+    text-align: center;
+    color: var(--black);
+    text-transform: uppercase;
+    font-weight: bolder;
+    margin-bottom: 5rem;
+}   
+
 #services .box-container {
     display: flex;
     flex-wrap: wrap;
@@ -67,34 +76,24 @@
 }
 
 #services .box-container .box {
-    height: 330px;
-    width: 415px;
-    padding: 20px;
-    padding: 4rem;
+    height: 315px;
+    width: 295px;
+    padding: 1.3rem;
     text-align: center;
     background: var(--white);
     box-shadow: var(--box-shadow);
-    border-radius: 5rem;
+    border-radius: 4rem;
 }
 
 .services{
     background: #418CFC;
-    padding: 5rem 7%;
+    padding: 3.5rem 7%;
 }
 
 .services .box-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 8px;
-}
-
-.services .heading{
-    font-size: 4rem;
-    text-align: center;
-    color: var(--black);
-    text-transform: uppercase;
-    font-weight: bolder;
-    margin-bottom: 5rem;
 }
 
 #confiar {
@@ -108,23 +107,22 @@
 
 .services .box-container .box img{
     margin: 1rem 0;
-    height: 10rem;
+    height: 5rem;
 }
 
 .services .box-container .box h3{
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     padding: 1rem 0;
     font-weight: 600;
     color: black;
 }
 
 .services .box-container .box p{
-    font-size: 1.8rem;
+    font-size: 17px;
     color: var(--light-color);
     font-weight: 400;
     line-height: 2;
 }
-
 
 /*----------------------------------------------------------------------------------------------------------*/
 
@@ -134,7 +132,7 @@
 }
 
 .blog .heading{
-    font-size: 4.5rem;
+    font-size: 3rem;
     text-align: center;
     color: var(--black);
     text-transform: uppercase;
@@ -145,18 +143,17 @@
 .blog .box-container{
     display: grid;
     place-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(0rem, 1fr));
 }
 
 .blog .box-container .box{
     border: var(--border);
     border-radius: 15px;
-    width: 450px;
+    width: 350px;
 }
 
 .blog .box-container .box .image{
-    height: 25rem;
+    height: 15rem;
     width: 100%;
     overflow: hidden;
 }
@@ -177,7 +174,7 @@
 
 .blog .box-container .box .content .dados{
     text-decoration: underline;
-    font-size: 1.45rem;
+    font-size: 1rem;
     color: var(--light-color);
 }
 
@@ -202,13 +199,13 @@
 }
 
 .blog .box-container .box .content h3{
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     color: var(--black);
 }
 
 .blog .box-container .box .content p{
     padding: 1rem 0;
-    font-size: 1.6rem;
+    font-size: 1rem;
     font-weight: 430;
     color: var(--light-color);
     line-height: 2;
@@ -222,7 +219,7 @@
 }
 
 .blog .estrelas .nota{
-    font-size: 2.7rem;
+    font-size: 2rem;
     font-weight: bold;
     color: #0282f3;
     padding: 9px 8px 0 1.3rem;
@@ -244,7 +241,7 @@
 }
 
 .perguntas .heading{
-    font-size: 4.5rem;
+    font-size: 3rem;
     text-align: center;
     color: var(--black);
     text-transform: uppercase;
@@ -257,13 +254,13 @@
 }
 
 .accordion-button {
-    font-size: 2rem !important;
+    font-size: 1.5rem !important;
     font-weight: 600;
     height: 75px;
 }
 
 .accordion-body {
-    font-size: 1.7rem;
+    font-size: 1.3rem;
 }
 
 
@@ -271,7 +268,7 @@
 
 /* Profissionais */
 .profissionais .heading {
-    font-size: 4.5rem;
+    font-size: 3rem;
     text-align: center;
     color: var(--black);
     text-transform: uppercase;
@@ -402,7 +399,7 @@ hr {
 
 /* Espaço */
 .espaco .heading{
-    font-size: 4.5rem;
+    font-size: 3rem;
     text-align: center;
     color: var(--black);
     text-transform: uppercase;

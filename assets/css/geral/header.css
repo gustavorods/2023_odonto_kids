@@ -21,7 +21,6 @@
 }
 
 html{
-    font-size: 62.5%;
     overflow-x: hidden;
     scroll-padding-top: 9rem;
     scroll-behavior: smooth;
@@ -41,6 +40,18 @@ html::-webkit-scrollbar-thumb{
 }
 
 /*----------------------------------------------------------------------------------------------------------*/
+
+/* Botao de abrir o menu */
+.navbar .container-fluid .navbar-toggler {
+    width: 3.5rem !important;
+    height: 2.6rem;
+}
+
+.navbar .container-fluid .navbar-toggler .navbar-toggler-icon {
+    width: 3.1rem !important;
+    height: 2.1rem !important;
+}
+
 
 /* navbar */
 .navbar {
@@ -64,7 +75,7 @@ div.container-fluid {
 }
 
 .nav .nav-item a{
-    font-size: 2rem;
+    font-size: 1.1rem;
 }
 
 
