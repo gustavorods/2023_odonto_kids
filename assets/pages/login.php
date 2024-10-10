@@ -25,8 +25,61 @@
     <div class="main-container">
         <!--Pc-->
         <div class="container" id="container">
-            <!-- Criar Conta -->
-            <div class="form-container sing-up">
+            <!-- Logar na Conta -->
+            <div class="form-container sing-in">
+                <form method="POST">
+                    <h1>Entrar</h1>
+                    <div class="social-icons">
+                        <a href="#" class="icon">
+                            <i class="fa-brands fa-google-plus-g"></i>
+                        </a>
+                        <a href="#" class="icon">
+                            <i class="fa-brands fa-apple"></i>
+                        </a>
+                    </div>
+                    <span>Ou use seu email e senha para Entrar</span>
+                    <input type="email" placeholder="Email"name="input_login_email_desktop">
+                    <input type="password" placeholder="Senha" name="input_login_senha_desktop">
+                    <a href="#">Esqueceu sua senha?</a>
+                    <button type="submit" name="btn_login_desktop">Entrar</button>
+                    <!-- PHP script -->
+                    <?php
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            if (isset($_POST['btn_login_desktop'])) {
+                                include_once '../php/metodos_principais.php';
+                                $metodos_principais = new metodos_principais();
+                        
+                                // Armazena os valores em variáveis
+                                $email = $_POST['input_login_email_desktop'];
+                                $senha = $_POST['input_login_senha_desktop'];
+                        
+                                // Passa as variáveis
+                                $metodos_principais->set_email_user($email);
+                                $metodos_principais->set_senha_user($senha);
+                                $metodos_principais->set_email_medico($email);
+                                $metodos_principais->set_senha_medico($senha);
+                                
+                                $result = $metodos_principais->login();
+                        
+                                if ($result == "responsavel") {
+                                    header("Location:dashboard.html"); // Altere para o caminho desejado
+                                    exit(); // Importante para parar a execução do script
+                                } 
+                                else if($result == "medico") {
+                                    // Código pra ir pra dashboard do médico
+                                }
+                                else {
+                                    echo "<p style='color:red'>Email ou Senha inválidos</p>";
+                                    echo $result;
+                                }
+                            }
+                        }
+                    ?>
+                </form>
+            </div>
+
+             <!-- Criar Conta -->
+             <div class="form-container sing-up">
             <form method="POST">
                 <?php
                 // Inicializa as variáveis
@@ -69,7 +122,8 @@
                                 $responsavel->setSenha($senha_confirmar1);
 
                                 $responsavel->salvar();
-                                
+                                header("Location:dashboard.html"); // Altere para o caminho desejado
+                                exit(); // Importante para parar a execução do script
                             }
                         }
                     }
@@ -112,62 +166,10 @@
                 </div>
                 
                 <!-- Mensagem de retorno -->
-                <?php if (!empty($mensagem)): ?>
-                    <script>alert("<?php echo $mensagem; ?>");</script>
-                <?php endif; ?>
+                <?php if (!empty($mensagem)) { ?>
+                    <script>alert('<?php echo htmlspecialchars($mensagem); ?>');</script>
+                <?php } ?>
             </form>
-            </div>
-
-            <!-- Logar na Conta -->
-            <div class="form-container sing-in">
-                <form method="POST">
-                    <h1>Entrar</h1>
-                    <div class="social-icons">
-                        <a href="#" class="icon">
-                            <i class="fa-brands fa-google-plus-g"></i>
-                        </a>
-                        <a href="#" class="icon">
-                            <i class="fa-brands fa-apple"></i>
-                        </a>
-                    </div>
-                    <span>Ou use seu email e senha para Entrar</span>
-                    <input type="email" placeholder="Email"name="input_login_email_desktop">
-                    <input type="password" placeholder="Senha" name="input_login_senha_desktop">
-                    <a href="#">Esqueceu sua senha?</a>
-                    <button type="submit" name="btn_login_desktop">Entrar</button>
-                    <!-- PHP script -->
-                    <?php
-                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                            if (isset($_POST['btn_login_desktop'])) {
-                                include_once '../php/metodos_principais.php';
-                                $metodos_principais = new metodos_principais();
-                        
-                                // Armazena os valores em variáveis
-                                $email = $_POST['input_login_email_desktop'];
-                                $senha = $_POST['input_login_senha_desktop'];
-                        
-                                // Passa as variáveis
-                                $metodos_principais->set_email_user($email);
-                                $metodos_principais->set_senha_user($senha);
-                                $metodos_principais->set_email_medico($email);
-                                $metodos_principais->set_senha_medico($senha);
-                                
-                                $result = $metodos_principais->login();
-                        
-                                if ($result == "responsavel") {
-                                    // Código pra ir pra dashboard do responsável
-                                } 
-                                else if($result == "medico") {
-                                    // Código pra ir pra dashboard do médico
-                                }
-                                else {
-                                    echo "<p style='color:red'>Email ou Senha inválidos</p>";
-                                    echo $result;
-                                }
-                            }
-                        }
-                    ?>
-                </form>
             </div>
 
             <div class="toggle-container">
@@ -189,62 +191,10 @@
         <!--mobile-->
         <div class="flip-container">
             <div class="card">
-                <div class="front">
-                    <div class="mobile-form-container">
-                        <form method="POST">
-                            <h1>Entrar</h1>
-                            <div class="social-icons">
-                                <a href="#" class="icon">
-                                    <i class="fa-brands fa-google-plus-g"></i>
-                                </a>
-                                <a href="#" class="icon">
-                                    <i class="fa-brands fa-apple"></i>
-                                </a>
-                            </div>
-                            <span>Ou use seu email e senha para Entrar</span>
-                            <input type="email" placeholder="Email" name="input_login_email_mobile">
-                            <input type="password" placeholder="Senha" name="input_login_senha_mobile">
-                            <a href="#">Esqueceu sua senha?</a>
-                            <button name="btn_login_mobile" type="submit">Entrar</button>
-                            <button type="button" class="mobile-btn-NoAccount">Sem conta ainda?</button>
-
-                            <?php
-                                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                    if (isset($_POST['btn_login_mobile'])) {
-                                        include_once '../php/metodos_principais.php';
-                                        $metodos_principais = new metodos_principais();
-                                
-                                        // Armazena os valores em variáveis
-                                        $email = $_POST['input_login_email_mobile'];
-                                        $senha = $_POST['input_login_senha_mobile'];
-                                
-                                        // Passa as variáveis
-                                        $metodos_principais->set_email_user($email);
-                                        $metodos_principais->set_senha_user($senha);
-                                        $metodos_principais->set_email_medico($email);
-                                        $metodos_principais->set_senha_medico($senha);
-                                        
-                                        $result = $metodos_principais->login();
-                                
-                                        if ($result == "responsavel") {
-                                            // Código pra ir pra dashboard do responsável
-                                        } 
-                                        else if($result == "medico") {
-                                            // Código pra ir pra dashboard do médico
-                                        }
-                                        else {
-                                            echo "<p style='color:red'>Email ou Senha inválidos</p>";
-                                        }
-                                    }
-                                }
-                            ?>
-                        </form>
-                    </div>
-                </div>
                 <div class="back">
                     <div class="mobile-form-container">
+                        <!--lógica de cadastro-->
                         <form method="POST">
-                            <!--lógica de login-->
                             <?php
                             // Inicializa as variáveis
                             $nome = $email = $cpf = $telefone = $nasc = $genero = $senha_confirmar1 = $senha_confirmar2 = '';
@@ -286,7 +236,8 @@
                                             $responsavel->setSenha($senha_confirmar1);
 
                                             $responsavel->salvar();
-                                            
+                                            header("Location:dashboard.html"); // Altere para o caminho desejado
+                                            exit(); // Importante para parar a execução do script
                                         }
                                     }
                                 }
@@ -328,9 +279,63 @@
                             <button type="button" name="btn_cadastro_voltar_mobile" class="mobile-btn-form-back">Voltar</button>
 
                              <!-- Mensagem de retorno -->
-                            <?php if (!empty($mensagem)): ?>
-                                <script>alert("<?php echo $mensagem; ?>");</script>
-                            <?php endif; ?>
+                             <?php if (!empty($mensagem)) { ?>
+                                <script>alert('<?php echo htmlspecialchars($mensagem); ?>');</script>
+                            <?php } ?>
+                        </form>
+                    </div>
+                </div>
+                <div class="front">
+                    <div class="mobile-form-container">
+                         <!--Entrar na conta-->
+                        <form method="POST">
+                            <h1>Entrar</h1>
+                            <div class="social-icons">
+                                <a href="#" class="icon">
+                                    <i class="fa-brands fa-google-plus-g"></i>
+                                </a>
+                                <a href="#" class="icon">
+                                    <i class="fa-brands fa-apple"></i>
+                                </a>
+                            </div>
+                            <span>Ou use seu email e senha para Entrar</span>
+                            <input type="email" placeholder="Email" name="input_login_email_mobile">
+                            <input type="password" placeholder="Senha" name="input_login_senha_mobile">
+                            <a href="#">Esqueceu sua senha?</a>
+                            <button name="btn_login_mobile" type="submit">Entrar</button>
+                            <button type="button" class="mobile-btn-NoAccount">Sem conta ainda?</button>
+
+                            <?php
+                                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                    if (isset($_POST['btn_login_mobile'])) {
+                                        include_once '../php/metodos_principais.php';
+                                        $metodos_principais = new metodos_principais();
+                                
+                                        // Armazena os valores em variáveis
+                                        $email = $_POST['input_login_email_mobile'];
+                                        $senha = $_POST['input_login_senha_mobile'];
+                                
+                                        // Passa as variáveis
+                                        $metodos_principais->set_email_user($email);
+                                        $metodos_principais->set_senha_user($senha);
+                                        $metodos_principais->set_email_medico($email);
+                                        $metodos_principais->set_senha_medico($senha);
+                                        
+                                        $result = $metodos_principais->login();
+                                
+                                        if ($result == "responsavel") {
+                                            header("Location: ./dashboard.html"); // Altere para o caminho desejado
+                                            exit(); // Importante para parar a execução do script
+                                        } 
+                                        else if($result == "medico") {
+                                            // Código pra ir pra dashboard do médico
+                                        }
+                                        else {
+                                            echo "<p style='color:red'>Email ou Senha inválidos</p>";
+                                        }
+                                    }
+                                }
+                            ?>
                         </form>
                     </div>
                 </div>
