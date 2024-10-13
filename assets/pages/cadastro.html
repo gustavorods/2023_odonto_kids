@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/login/cadastro.css">
+    <!--Logo na aba da google-->
+    <link rel="icon" type="image/png" href="../img/geral/Logo.svg">
+    <title>Cadastro</title>
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <a href="javascript:history.back()"><img src="../img/login/seta_voltar.svg" alt="seta de voltar branca" class="navbar_seta_voltar"></a>
+    
+            <div id="div-logo">
+                <h1>Odonto kids</h1>
+                <img src="../img/geral/Logo.svg" alt="Odonto Kids logo">
+            </div>
+
+            <!--Apenas uma div sem nada, para que os elementos centralizem melhor na tela-->
+            <div></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h1 id="titulo-cadastrar">Cadastrar-se</h1>
+            <span id="subtitulo_cadastrar">O sorriso do seu filho começa aqui!</span>
+ 
+             <form method="POST">
+                <!-- Primeira informação -->
+                <div id="input-first-info">
+                    <div class="header_input">
+                        <img src="../img/login/Login_nome_input_icon.png" alt="icone de personagem" class="label_icon">
+                        <label for="input_cadastro_nome_desktop" class="input_label">Nome completo</label>
+                    </div>
+                    <input class="input_form_data" type="text" name="input_cadastro_nome_desktop" required placeholder="Nome">
+
+                    <div class="header_input">
+                        <img src="../img/login/icone_email.png" alt="icone de email" class="label_icon">
+                        <label for="input_cadastro_email_desktop" class="input_label">Email</label>
+                    </div>
+                    <input class="input_form_data" type="email" name="input_cadastro_email_desktop" placeholder="Email">
+
+                    <div class="header_input">
+                        <img src="../img/login/icone_cpf.png" alt="icone de cpf" class="label_icon">
+                        <label for="input_cadastro_cpf_desktop" class="input_label">CPF</label>
+                    </div>
+                    <input class="input_form_data" type="number" name="input_cadastro_cpf_desktop" placeholder="CPF">
+                </div>
+
+                <!-- Segunda informação -->
+                <div id="input-second-info">
+                    <div class="header_input">
+                        <img src="../img/login/icone_telefone.png" alt="icone de telefone" class="label_icon">
+                        <label for="input_cadastro_telefone_desktop" class="input_label">Telefone</label>
+                    </div>
+                    <input class="input_form_data" type="tel" name="input_cadastro_telefone_desktop" placeholder="Telefone">
+                    
+                    <div class="header_input">
+                        <img src="../img/login/icone_niversario.png" alt="icone de bolo (Aniversário)" class="label_icon">
+                        <label for="txt_nasc" class="input_label">Data de nascimento</label>
+                    </div>
+                    <input class="input_form_data" type="date" name="txt_nasc">
+                    
+                    <div class="header_input">
+                        <img src="../img/login/icone_gênero.png" alt="icone de gênero" class="label_icon">
+                        <label for="txt_genero" class="input_label">Gênero</label>
+                    </div>
+                    <select class="input_form_data" id="genero" name="txt_genero">
+                        <option disabled selected>Selecione seu gênero</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                    </select>
+                </div>
+
+                <!-- Terceira informação -->
+                <div id="input-three-info">
+                    <div class="header_input">
+                        <img src="../img/login/Login_senha_input_icon.png" alt="icone de cadeado" class="label_icon">
+                        <label for="txt_senha" class="input_label">Senha</label>
+                    </div>
+                    <input class="input_form_data" type="password" name="txt_senha" placeholder="Senha">
+                    
+                    <div class="header_input">
+                        <img src="../img/login/Login_senha_input_icon.png" alt="icone de cadeado" class="label_icon">
+                        <label for="txt_confirmar_senha" class="input_label">Confirmar senha</label>
+                    </div>
+                    <input class="input_form_data" type="password" name="txt_confirmar_senha" placeholder="Confirmar Senha">
+                </div>
+                
+                <!--Ações do usuário-->
+                <div class="div_btn_form_actions">
+                    <button class="btn_form_actions" type="button" name="btn_cadastro_proximo_desktop" id="btn-form-next">Próximo</button>
+                    <button class="btn_form_actions" type="submit" name="btn_cadastro_enviar_desktop" id="btn-form-send">Enviar</button>
+                    <button class="btn_form_actions" type="button" name="btn_cadastro_voltar_desktop" id="btn-form-back">Voltar</button>
+                </div>
+            </form>
+        </div>
+     </div>
+<script src="../js/login.js"></script>
+</body>
+</html>
