@@ -13,7 +13,7 @@
     <!--Navbar-->
     <nav class="navbar navbar-dark">
             <div class="container-fluid">
-                <a href="javascript:history.back()"><img src="../img/login/bacl.svg" alt="seta de voltar branca" class="navbar_seta_voltar"></a>
+                <a href="javascript:history.back()"><img src="../img/login/seta_voltar.svg" alt="seta de voltar branca" class="navbar_seta_voltar"></a>
         
                 <div id="div-logo">
                     <h1>Odonto kids</h1>
@@ -34,13 +34,13 @@
             <!-- Formulário de login -->
             <form method="post" class="login_form">
                 <div class="header_input">
-                    <img src="../img/login/Login Email input icon.png" alt="icone de user" class="label_icon">
+                    <img src="../img/login/icone_email.png" alt="icone de user" class="label_icon">
                     <label for="txt_email" class="input_label">Email</label>
                 </div>
                 <input type="email" name="txt_email" id="txt_email" class="form_input" placeholder="Clique aqui para digitar">
                 
                 <div class="header_input">
-                    <img src="../img/login/Login senha input icon.png" alt="icone de cadeado" class="label_icon">
+                    <img src="../img/login/Login_senha_input_icon.png" alt="icone de cadeado" class="label_icon">
                     <label for="txt_senha" class="input_label">Senha</label>
                 </div>
                 <input type="password" name="txt_senha" id="txt_senha" class="form_input" placeholder="Clique aqui para digitar">
@@ -48,7 +48,7 @@
                 <!-- Botões e ações do usuário -->
                 <div class="user_actions">
                     <button type="submit" class="btn_entrar" name="btn_entrar">Entrar</button>
-                    <a href="./cadastro.html" class="link" name="btn_criar_conta">Criar uma conta</a>
+                    <a href="./cadastro.php" class="link" name="btn_criar_conta">Criar uma conta</a>
                     <a href="#" class="link" name="btn_recuperar_senha">Esqueceu a senha?</a>
                 </div>
                 
