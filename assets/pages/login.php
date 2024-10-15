@@ -49,7 +49,7 @@
                 <div class="user_actions">
                     <button type="submit" class="btn_entrar" name="btn_entrar">Entrar</button>
                     <a href="./cadastro.php" class="link" name="btn_criar_conta">Criar uma conta</a>
-                    <a href="#" class="link" name="btn_recuperar_senha">Esqueceu a senha?</a>
+                    <a href="./recuperar_senha_email.php" class="link" name="btn_recuperar_senha">Esqueceu a senha?</a>
                 </div>
                 
                 <!--Lógica de login-->

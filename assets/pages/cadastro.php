@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/login/cadastro.css">
+    <link rel="stylesheet" href="../css/cadastro/cadastro.css">
     <!--Logo na aba da google-->
     <link rel="icon" type="image/png" href="../img/geral/Logo.svg">
     <title>Cadastro</title>
@@ -13,7 +13,7 @@
     <!--Navbar-->
     <nav class="navbar navbar-dark">
         <div class="container-fluid">
-            <a href="javascript:history.back()"><img src="../img/login/seta_voltar.svg" alt="seta de voltar branca" class="navbar_seta_voltar"></a>
+            <a href="javascript:history.back()"><img src="../img/cadastro/seta_voltar.svg" alt="seta de voltar branca" class="navbar_seta_voltar"></a>
     
             <div id="div-logo">
                 <h1>Odonto kids</h1>
@@ -84,19 +84,19 @@
                 <!-- Primeira informação -->
                 <div id="input-first-info">
                     <div class="header_input">
-                        <img src="../img/login/Login_nome_input_icon.png" alt="icone de personagem" class="label_icon">
+                        <img src="../img/cadastro/cadastro_nome_input_icon.png" alt="icone de personagem" class="label_icon">
                         <label for="input_cadastro_nome_desktop" class="input_label">Nome completo</label>
                     </div>
                     <input class="input_form_data" type="text" name="input_cadastro_nome_desktop" required placeholder="Nome" value="<?php echo htmlspecialchars($nome); ?>">
 
                     <div class="header_input">
-                        <img src="../img/login/icone_email.png" alt="icone de email" class="label_icon">
+                        <img src="../img/cadastro/icone_email.png" alt="icone de email" class="label_icon">
                         <label for="input_cadastro_email_desktop" class="input_label">Email</label>
                     </div>
                     <input class="input_form_data" type="email" name="input_cadastro_email_desktop" placeholder="Email" value="<?php echo htmlspecialchars($email); ?>">
 
                     <div class="header_input">
-                        <img src="../img/login/icone_cpf.png" alt="icone de cpf" class="label_icon">
+                        <img src="../img/cadastro/icone_cpf.png" alt="icone de cpf" class="label_icon">
                         <label for="input_cadastro_cpf_desktop" class="input_label">CPF</label>
                     </div>
                     <input class="input_form_data" type="number" name="input_cadastro_cpf_desktop" placeholder="CPF" value="<?php echo htmlspecialchars($cpf); ?>"> 
@@ -105,19 +105,19 @@
                 <!-- Segunda informação -->
                 <div id="input-second-info">
                     <div class="header_input">
-                        <img src="../img/login/icone_telefone.png" alt="icone de telefone" class="label_icon">
+                        <img src="../img/cadastro/icone_telefone.png" alt="icone de telefone" class="label_icon">
                         <label for="input_cadastro_telefone_desktop" class="input_label">Telefone</label>
                     </div>
                     <input class="input_form_data" type="tel" name="input_cadastro_telefone_desktop" placeholder="Telefone" value="<?php echo htmlspecialchars($telefone); ?>">
                     
                     <div class="header_input">
-                        <img src="../img/login/icone_niversario.png" alt="icone de bolo (Aniversário)" class="label_icon">
+                        <img src="../img/cadastro/icone_niversario.png" alt="icone de bolo (Aniversário)" class="label_icon">
                         <label for="input_cadastro_data_nascimento_desktop" class="input_label">Data de nascimento</label>
                     </div>
                     <input class="input_form_data" type="date" name="input_cadastro_data_nascimento_desktop"  value="<?php echo htmlspecialchars($nasc); ?>">
                     
                     <div class="header_input">
-                        <img src="../img/login/icone_gênero.png" alt="icone de gênero" class="label_icon">
+                        <img src="../img/cadastro/icone_gênero.png" alt="icone de gênero" class="label_icon">
                         <label for="select_cadastro_genero_desktop" class="input_label">Gênero</label>
                     </div>
                     <select class="input_form_data" id="genero" name="select_cadastro_genero_desktop">
@@ -130,13 +130,13 @@
                 <!-- Terceira informação -->
                 <div id="input-three-info">
                     <div class="header_input">
-                        <img src="../img/login/Login_senha_input_icon.png" alt="icone de cadeado" class="label_icon">
+                        <img src="../img/cadastro/cadastro_senha_input_icon.png" alt="icone de cadeado" class="label_icon">
                         <label for="input_cadastro_senha_desktop" class="input_label">Senha</label>
                     </div>
                     <input class="input_form_data" type="password" name="input_cadastro_senha_desktop" placeholder="Senha">
                     
                     <div class="header_input">
-                        <img src="../img/login/Login_senha_input_icon.png" alt="icone de cadeado" class="label_icon">
+                        <img src="../img/cadastro/cadastro_senha_input_icon.png" alt="icone de cadeado" class="label_icon">
                         <label for="input_cadastro_confirmar_senha_desktop" class="input_label">Confirmar senha</label>
                     </div>
                     <input class="input_form_data" type="password" name="input_cadastro_confirmar_senha_desktop" placeholder="Confirmar Senha">
@@ -156,6 +156,6 @@
             </form>
         </div>
      </div>
-<script src="../js/login.js"></script>
+<script src="../js/cadastro.js"></script>
 </body>
 </html>
