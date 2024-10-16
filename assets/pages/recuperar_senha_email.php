@@ -34,10 +34,10 @@
         <!-- Formulário de recuperar senha -->
         <form method="post" class="recuperar_senha_form">
             <div class="header_input">
-                <img src="../img/recuperar_senha/icone_email.png" alt="icone de user" class="label_icon">
+                <img src="../img/recuperar_senha/icone_email.png" alt="icone de email" class="label_icon">
                 <label for="txt_email" class="input_label">Email</label>
             </div>
-            <input type="email" name="txt_email" id="txt_email" class="form_input" required placeholder="Clique aqui para digitar" >
+            <input type="email" name="txt_email" id="txt_email" class="form_input" required placeholder="Clique aqui para digitar">
 
             <!-- Botões e ações do usuário -->
             <div class="user_actions">
@@ -45,36 +45,46 @@
             </div>
 
             <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                if (isset($_POST['btn_continuar'])) {
-                    // Extraindo elementos do método POST 
-                    extract($_POST, EXTR_OVERWRITE);
+                $message = "";
 
-                    // Iniciando sessão (isso é importante pra saber para lidar com a verificação em "recuperar_senha_code.php")
-                    session_start();
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if (isset($_POST['btn_continuar'])) {
+                        // Extraindo elementos do método POST 
+                        extract($_POST, EXTR_OVERWRITE);
 
-                    /* Nesse código são criadas duas variaveis de sessao, uma pra armazenar o email que vai ser exibido na próxima página
-                    (recuperar_senha_code.php), e uma pra armazenar o código de verificação enviado por email, 
-                    que vai ser usado para fazer a verificação na próxima página (recuperar_senha_code.php) */ 
+                        // Iniciando sessão (isso é importante pra saber para lidar com a verificação em "recuperar_senha_code.php")
+                        session_start();
+
+                        /* Nesse código são criadas duas variaveis de sessao, uma pra armazenar o email que vai ser exibido na próxima página
+                        (recuperar_senha_code.php), e uma pra armazenar o código de verificação enviado por email, 
+                        que vai ser usado para fazer a verificação na próxima página (recuperar_senha_code.php) */ 
+
+                        $_SESSION["txt_email"] = $txt_email;
                         
-                    $_SESSION["txt_email"] = $txt_email;
-                    
-                    // Importação de métodos auxiliares
-                    include_once '../php/metodos_principais.php'; 
-                    include_once '../php/enviar_cod_email.php';
-                    $metodos_principais = new metodos_principais();
+                        // Importação de métodos auxiliares
+                        include_once '../php/metodos_principais.php'; 
+                        include_once '../php/enviar_cod_email.php';
+                        $metodos_principais = new metodos_principais();
 
-                    // Verifica se o email existe no banco de dados
-                    $resposta_email_existe = $metodos_principais->email_existe($_SESSION["txt_email"]);
-                    
-                    // Se o email existir, envia o código de recuperação
-                    if($resposta_email_existe != false) {
-                        $_SESSION["codigo"] = sendEmailWithCode($_SESSION["txt_email"]);
-                        header("Location:./recuperar_senha_code.php");
-                        exit();
+                        // Verifica se o email existe no banco de dados
+                        $resposta_email_existe = $metodos_principais->email_existe($_SESSION["txt_email"]);
+                        
+                        // Se o email existir, envia o código de recuperação
+                        if($resposta_email_existe != false) {
+                            $_SESSION["codigo"] = sendEmailWithCode($_SESSION["txt_email"]);
+                            header("Location:./recuperar_senha_code.php");
+                            exit();
+                        } else {
+                            $message = "Esse email não esta cadastrado";
+                            ?>
+
+                            <br>
+                            
+                            <?php
+                            echo "<center> <p style='color:red'>" . $message . "</p> </center>";
+                        }
                     }
                 }
-            }
             ?>
         </form>
    </div>

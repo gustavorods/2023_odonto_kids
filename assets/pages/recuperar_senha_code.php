@@ -53,7 +53,7 @@
             <form method="post" class="recuperar_senha_form">
                 <!-- Label e input para o código -->
                 <div class="header_input">
-                    <img src="../img/recuperar_senha/icone_cpf.png" alt="icone de user" class="label_icon">
+                    <img src="../img/recuperar_senha/icone_cpf.png" alt="icone de código" class="label_icon">
                     <label for="txt_codigo" class="input_label">Código</label>
                 </div>
                 <input type="text" name="txt_codigo_user" class="form_input" placeholder="Clique aqui para digitar">
@@ -65,6 +65,8 @@
 
                 <!-- lógica para fazer a verificação dos dois códigos -->
                 <?php
+                    $message = "";
+
                      if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if (isset($_POST['btn_enviar_codigo'])) {
                             // Extrai os dados enviados via POST
@@ -75,9 +77,16 @@
                             
                             // Verifica se o código digitado é correto
                             if($codigo_input == $_SESSION["codigo"]) {
-                                // levar pra páginad de trocar de senha (TALVEZ encerrar a sessão)
+                                header("Location:./recuperar_senha_trocar.php");
+                                exit();
                             } else {
-                                // Mensagem de erro
+                                $message = "Código incorreto";
+                                ?>
+    
+                                <br>
+                                
+                                <?php
+                                echo "<center> <p style='color:red'>" . $message . "</p> </center>";
                             }
                         }
                     }

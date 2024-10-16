@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
+@import '../geral/header_seta_voltar.css';
+
+/* Geral */
+body {
+    background-color: #F8F8FF;
+    margin: 0;
+    padding: o;
+    display: flex;
+    flex-direction: column;
+}
+
+/*Card de login*/
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container .card {
+    background-color:#FFFFFF;
+    width: 450px;
+    height: 380px;
+    padding: 30px;
+    margin-top: 50px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    -webkit-box-shadow: -1px 10px 18px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 10px 18px -7px rgba(0,0,0,0.75);
+    box-shadow: -1px 10px 18px -7px rgba(0,0,0,0.75);
+}
+
+.container .card h1 {
+    font-size: 33px;
+    font-family: 'inter', sans-serif;
+}
+
+.container .card span {
+    font-size: 18px;
+    font-family: 'inter', sans-serif;
+    font-weight: lighter;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.container .card .nova_senha_form .header_input {
+    margin-left: 5px;
+}
+
+.container .card .nova_senha_form .header_input .label_icon {
+    height: 18px;
+}
+
+.container .card .nova_senha_form .header_input .input_label {
+    color: #686868;
+}
+
+.container .card .nova_senha_form .form_input {
+    background-color: #D9D9D9;
+    margin-bottom: 30px;
+    padding: 12px;
+    width: 270px;
+    border-radius: 10px;
+}
+
+.container .card .nova_senha_form .user_actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.container .card .nova_senha_form .user_actions .btn_continuar {
+    height: 33px;
+    width: 150px;
+    border-radius: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #0681F3;
+}

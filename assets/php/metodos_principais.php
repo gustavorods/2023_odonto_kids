@@ -117,5 +117,48 @@ class metodos_principais
             return false;
         }
     }
+
+    public function verificar_email_tabela_e_id($email) {
+        try {
+            $this->conn = new Conectar();
+    
+            // Verifica o email na tabela de responsáveis
+            $sql = $this->conn->prepare("SELECT id FROM responsavel WHERE email = ?");
+            $sql->bindParam(1, $email, PDO::PARAM_STR);
+            $sql->execute();
+    
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
+    
+            // Se o email for encontrado na tabela de responsáveis, retorna o id e a tabela
+            if ($result) {
+                return [
+                    'tabela' => 'responsavel',
+                    'id' => $result['id']
+                ];
+            }
+    
+            // Verifica o email na tabela de médicos, se não encontrado em responsáveis
+            $sql = $this->conn->prepare("SELECT id FROM medico WHERE email = ?");
+            $sql->bindParam(1, $email, PDO::PARAM_STR);
+            $sql->execute();
+    
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
+    
+            // Se o email for encontrado na tabela de médicos, retorna o id e a tabela
+            if ($result) {
+                return [
+                    'tabela' => 'medico',
+                    'id' => $result['id']
+                ];
+            }
+    
+            // Se não encontrou em nenhuma tabela, retorna false
+            return false;
+    
+        } catch (PDOException $exc) {
+            echo "Erro ao consultar. " . $exc->getMessage();
+            return false;
+        }
+    }    
 }
 ?>

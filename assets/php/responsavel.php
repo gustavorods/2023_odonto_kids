@@ -195,5 +195,23 @@ class responsavel
             echo "Erro ao listar usuários: " . $exc->getMessage();
         }
     }
+
+    function alterar_senha() {
+        try
+        {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("UPDATE responsavel SET senha = ? WHERE id = ?");
+            @$sql->bindParam(1, $this->getSenha(), PDO::PARAM_STR);
+            @$sql->bindParam(2, $this->getId(), PDO::PARAM_INT);
+            if ($sql->execute()) {
+                return "Registro alterado com sucesso!";
+            }
+            $this->conn = null;
+        }
+        catch (PDOException $exc)
+        {
+            echo "Erro ao salvar o registro. " . $exc->getMessage();
+        }
+    }
 }
 ?>
