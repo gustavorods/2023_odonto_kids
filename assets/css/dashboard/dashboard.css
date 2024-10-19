@@ -136,6 +136,26 @@
     background-color: #FBD2FF;
 }
 
+.corpo-card-horizontal{
+    margin-left: 10px;
+}
+
+.line-boy{
+    background: #0681F3;
+    width: 3px;
+    height: 168px;
+    position: absolute;
+    transform: translate(-8px, -10px);
+}
+
+.line-girl{
+    background: #E336DC;
+    width: 3px;
+    height: 168px;
+    position: absolute;
+    transform: translate(-8px, -10px);
+}
+
 .data-status{
     display: flex;
     justify-content: space-between;
