@@ -12,6 +12,7 @@ class responsavel
     private $nasc;
     private $genero;
     private $senha;
+    private $foto;
     private $conn;
 
     // Getters e Setters
@@ -79,6 +80,14 @@ class responsavel
         $this->senha = $senha;
     }
 
+    public function getFoto() {
+        return $this->foto;
+    }
+
+    public function setFoto($foto) {
+        $this->foto = $foto;
+    }
+
     // Métodos
 
     function salvar()
@@ -86,7 +95,7 @@ class responsavel
         try
         {
             $this->conn = new Conectar();
-            $sql = $this->conn->prepare("INSERT INTO responsavel VALUES (null, ?, ?, ?, ?, ?, ?, ?)");
+            $sql = $this->conn->prepare("INSERT INTO responsavel VALUES (null, ?, ?, ?, ?, ?, ?, ?, null)");
             @$sql->bindParam(1, $this->getNome(), PDO::PARAM_STR);
             @$sql->bindParam(2, $this->getEmail(), PDO::PARAM_STR);
             @$sql->bindParam(3, $this->getCpf(), PDO::PARAM_STR);
@@ -136,6 +145,7 @@ class responsavel
             @$sql->bindParam(6, $this->getGenero(), PDO::PARAM_STR);
             @$sql->bindParam(7, $this->getSenha(), PDO::PARAM_STR);
             @$sql->bindParam(8, $this->getId(), PDO::PARAM_INT);
+            @$sql->bindParam(9, $this->getFoto(), PDO::PARAM_INT);
             if ($sql->execute()) {
                 return "Registro alterado com sucesso!";
             }

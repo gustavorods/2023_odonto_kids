@@ -72,7 +72,7 @@ function sendEmailWithCode($recipientEmail) {
     try {
         // Configurações do servidor SMTP
         $mail->isSMTP();
-        $mail->Host       = $_ENV['SMTP_HOST']; // Exemplo: smtp.gmail.com
+        $mail->Host       = $_ENV['SMTP_HOST']; 
         $mail->SMTPAuth   = $_ENV['SMTP_AUTH'];
         $mail->Username   = $_ENV['SMTP_USER'];
         $mail->Password   = $_ENV['SMTP_PASSWORD'];

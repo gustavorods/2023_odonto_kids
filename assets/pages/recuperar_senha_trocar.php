@@ -83,7 +83,9 @@
                                 // Executando a função para alterar
                                 $responsavel->alterar_senha();
 
-                                //Redirecionar para a dashboard do responsavel
+                                //Exibindo mensagem de sucesso
+                                $message = "Sua senha foi alterada";
+                                echo "<center> <p style='color:green'>" . $message . "</p> </center>";
                             } 
                             else if($informacao_usuario['tabela'] == "medico") {
                                 // Definindo os dados do responsavel
@@ -93,7 +95,9 @@
                                 // Executando a função para alterar
                                 $medico->alterar_senha();
 
-                                //Redirecionar para a dashboard do médico
+                                //Exibindo mensagem de sucesso
+                                $message = "Sua senha foi alterada";
+                                echo "<center> <p style='color:green'>" . $message . "</p> </center>";
                             } 
                             else {
                                 /* Esse else provavelmente nunca será acionado, pois ele só executa se a 
