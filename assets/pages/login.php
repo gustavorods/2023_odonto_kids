@@ -72,7 +72,7 @@
                             $result = $metodos_principais->login();
 
                             if ($result == "responsavel") {
-                                header("Location:dashboard.html"); // Altere para o caminho desejado
+                                header("Location:dashboard/dashboard.html"); // Altere para o caminho desejado
                                 exit(); // Importante para parar a execução do script
                             } else if ($result == "medico") {
                                 // Código pra ir pra dashboard do médico
