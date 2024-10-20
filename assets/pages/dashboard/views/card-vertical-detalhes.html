@@ -1,0 +1,225 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
+
+    *{
+        font-family: 'Inter';
+    }
+
+    .card-vertical-detalhes-container{
+        background-color: white;
+        width: 400px;
+        max-width: 90%;
+        border-radius: 12px;
+        padding: 10px 30px;
+    }
+
+    .header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #000000;
+    }
+
+    .header img{
+        height: 25px;
+        cursor: pointer;
+    }
+
+    #dateHolder{
+        font-size: 12pt;
+        font-weight: normal;
+    }
+
+    .calendario{
+        margin-bottom: 30px;
+    }
+
+    .perfil-imagem img{
+        height: 40px;
+        width: 40px;
+        object-fit: cover;
+        border-radius: 100px;    
+        border: 2px solid;
+        margin-right: 4px;
+        border-color: #0681F3;
+    }
+
+    #calWrapper { 
+        width: 300px;
+        border: 1px solid #ccc;
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    .dayCell { 
+        height: 30px;
+        text-align: center;
+        background-color: #daedff;
+    }
+
+    .dayHeader { 
+        height: 20px;
+        background-color: 43A0F6;
+        color: white;
+    }
+
+    .today { 
+        border: 2px solid blue;
+    }
+
+    .bottom{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .left-bottom{
+        display: flex;
+        align-items: center;
+    }
+
+    .right-bottom{
+        max-width: 140px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .paciente{
+        margin-left: 4px;
+        max-width: 160px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .nome-paciente, .titulo-tratamento{
+        font-size: 11pt;
+    }
+
+    .tratamento{
+        font-size: 14pt;
+        font-weight: bolder;
+    }
+
+    .aviso-relatorio{
+        text-align: center;
+        color: #7b7b7b;
+        font-weight: 600;
+        font-size: 10pt;
+        padding: 20px 60px;
+    }
+</style>
+<html>
+    <div class="card-vertical-detalhes-container">
+        <div class="header">
+            <h1>Consulta</h1>
+            <img src="/2023_odonto_kids/assets/img/dashboard/x-fechar-detalhes.png" alt="">
+        </div>
+
+        <div class="calendario">
+            <h3><span id="dateHolder"></h3>
+            
+            <table id="calWrapper">
+            </table>
+        </div>
+
+        <div class="bottom">
+            <div class="left-bottom">
+                <div class="perfil-imagem">
+                    <img src="/2023_odonto_kids/assets/img/home/erick.jpeg" alt="">
+                </div>
+        
+                <div class="paciente">
+                    <div class="nome-paciente">
+                        Paciente:
+                    </div>
+                    <div class="nome-perfil">
+                        Lourenço Alvite
+                    </div>
+                </div>
+            </div>
+            <div class="right-bottom">
+                <div class="titulo-tratamento">
+                    Tratamento
+                </div>
+                <div class="tratamento">
+                    Canal dentário
+                </div>
+            </div>
+        </div>
+
+        <div class="aviso-relatorio">
+            Relatórios podem ser disponibilizados pelo médico após a consulta
+        </div>
+    </div>
+</html>
+
+<script type="text/javascript">
+    (function(){
+        var today = new Date();
+        var month,day,year,firstDay;
+        month = today.getMonth();
+        day = 11-1;
+        year = today.getFullYear();
+        
+        firstDay = new Date(year,month,1);
+        
+        var months = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+        var months_extenso = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+        var days = ["Dom","Seg","Ter","Qua","Qui","Sex","Sab"];
+        var days_extenso = ["Domingo","Segunda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sábado"];
+        
+        function displayDate() {
+            var holder = document.getElementById("dateHolder");
+            var day_new = day+1
+            var horas = "14:15"
+            holder.innerText = days_extenso[1] + ', ' + day_new + ' de ' +months_extenso[month] + ' as ' + horas;
+        }
+        
+        function createDayHeaders() {
+            var wrapper = document.getElementById("calWrapper");
+            var row = document.createElement("tr");
+            for(var i = 0; i<days.length; i++) {
+                var el = document.createElement("th");
+                el.setAttribute("class","dayHeader");
+                el.innerText = days[i];
+                row.appendChild(el);
+            }
+            wrapper.appendChild(row);
+        }
+        
+        function createDayCells() {
+            var dayOne = firstDay.getDay();
+            var iDay = 0;
+            
+            var wrapper = document.getElementById("calWrapper");
+            var lastDay = new Date(year,month+1,0).getDate();
+            
+            while(iDay < lastDay) {
+                var row = document.createElement("tr");
+                for(var i = 0; i<days.length; i++) {
+                    var el = document.createElement("td");
+
+                    if(dayOne === i || iDay > 0) {
+                        if(day === iDay)
+                            el.setAttribute("class", "dayCell today");
+                        else
+                            el.setAttribute("class", "dayCell");
+                            
+                        if(iDay < lastDay)
+                            iDay++;
+                        else
+                            break;
+                        el.innerText = iDay;
+                    }
+                    row.appendChild(el);
+                }
+                wrapper.appendChild(row);
+            }
+        }
+        
+        displayDate(today);
+        createDayHeaders();
+        createDayCells();
+    })();
+</script>
