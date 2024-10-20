@@ -18,12 +18,18 @@
         session_start();
 
         $responsavel_id = $_SESSION['responsavel_id'];
+
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/2023_odonto_kids/assets/php/metodos_dashboard.php';
+
+        $metodos_dashboard = new metodos_dashboard();
+
+        $metodos_dashboard->setResponsavelId($responsavel_id);
         
     ?>
 
     <script>
         // Passando a variável PHP para o JavaScript
-        var responsavelId = <?php echo json_encode($responsavel_id); ?>;
+        var responsavelId = <?php echo json_encode($result); ?>;
         
         // Mostrando o ID no console
         console.log("ID do responsável:", responsavelId);
