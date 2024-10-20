@@ -15,40 +15,29 @@
 <body>
 
     <?php
-        // Inicia a sessão. Isso é necessário para acessar ou armazenar dados na variável $_SESSION
         session_start();
 
-        // Armazena o valor da variável de sessão 'responsavel_id' na variável $session_responsavel_id
-        $session_responsavel_id = $_SESSION['responsavel_id'];
+        $session_responsavel_id = $_SESSION['responsavel_id'] ?? null;
+        $cookie_responsavel_id = $_COOKIE['responsavel_id'] ?? null;
 
-        // Armazena o valor do cookie 'responsavel_id' na variável $cookie_responsavel_id
-        $cookie_responsavel_id = $_COOKIE['responsavel_id'];
-
-        // Verifica se o cookie 'responsavel_id' ou a sessão 'responsavel_id' estão definidos
-        if (isset($cookie_responsavel_id) || isset($session_responsavel_id)) {
-            // Se pelo menos um dos dois (cookie ou sessão) estiver definido, o código segue normalmente
-        } else {
-            // Se nenhum dos dois estiver definido, redireciona o usuário para a página de login
+        if (empty($cookie_responsavel_id) && empty($session_responsavel_id)) {
             header("Location: /2023_odonto_kids/assets/pages/login.php");
+            exit;
         }
 
-        // Inclui um arquivo PHP externo contendo os métodos para o dashboard (com base no caminho do servidor)
         include_once $_SERVER['DOCUMENT_ROOT'] . '/2023_odonto_kids/assets/php/metodos_dashboard.php';
-
         $metodos_dashboard = new metodos_dashboard();
 
-        // Define o 'responsavel_id' no objeto 'metodos_dashboard', usando o valor armazenado no cookie
-        $metodos_dashboard->setResponsavelId($cookie_responsavel_id);
+        $responsavel_id = !empty($cookie_responsavel_id) ? $cookie_responsavel_id : $session_responsavel_id;
+
+        if (!is_numeric($responsavel_id) || $responsavel_id <= 0) {
+            header("Location: /2023_odonto_kids/assets/pages/login.php");
+            exit;
+        }
+
+        $metodos_dashboard->setResponsavelId($responsavel_id);
+        $consultasOrganizadas = $metodos_dashboard->listar_proximas_consultas();
     ?>
-
-
-    <script>
-        // Passando a variável PHP para o JavaScript
-        var responsavelId = <?php echo json_encode($responsavel_id); ?>;
-        
-        // Mostrando o ID no console
-        console.log("ID do responsável:", responsavelId);
-    </script>
 
     <!-- Navbar -->
     <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
@@ -108,7 +97,7 @@
                 PRÓXIMAS CONSULTAS:
             </h1>   
 
-            <div class="cards-proximasconsultas">
+            <div class="cards-proximasconsultas" id="cards_proximasconsultas">
                 <!-- Card -->
                 <a class="marcar-consulta-href" href="">
                     <div class="card-marcar-consulta">
@@ -118,27 +107,11 @@
                         </div>
                     </div>
                 </a>
-                
-                <div class="card-consulta-vertical">
-                    <div class="cabecalho">
-                        <h1 class="mes">OUTUBRO</h1>
-                    </div>
-                    <div class="corpo">
-                        <h3 class="dia-semana">
-                            SEGUNDA-FEIRA
-                        </h3>
-                        <h1 class="dia-mes">
-                            21
-                        </h1>
-                        <h2 class="paciente">
-                            Lourenço Alvite
-                        </h2>
-                        <a href="">
-                            <button class="detalhes">
-                                Detalhes
-                            </button>
-                        </a>
-                </div>
+
+                <?php
+                    include_once './views/cards-proxima-consulta.php'
+                ?>
+
             </div>
 
             </div>
