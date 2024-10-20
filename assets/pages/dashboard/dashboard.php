@@ -14,6 +14,21 @@
 </head>
 <body>
 
+    <?php
+        session_start();
+
+        $responsavel_id = $_SESSION['responsavel_id'];
+        
+    ?>
+
+    <script>
+        // Passando a variável PHP para o JavaScript
+        var responsavelId = <?php echo json_encode($responsavel_id); ?>;
+        
+        // Mostrando o ID no console
+        console.log("ID do responsável:", responsavelId);
+    </script>
+
     <!-- Navbar -->
     <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
             <div class="bg-primary p-4 itens-nav">

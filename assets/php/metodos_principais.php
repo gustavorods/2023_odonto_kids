@@ -7,6 +7,7 @@ class metodos_principais
     private $senha_user;
     private $email_medico;
     private $senha_medico;
+    private $conn;
 
     // Getters e Setters para email e senha do usuário
     public function get_email_user() {
@@ -78,6 +79,28 @@ class metodos_principais
 
             return false; // Se não encontrou nada, retorna false
 
+        } catch (PDOException $exc) {
+            echo "Erro ao consultar. " . $exc->getMessage();
+            return false;
+        }
+    }
+
+    public function selectId($nome_tabela_enviada)
+    {
+        try {
+            $this->conn = new Conectar();
+            
+            // Verificação na tabela de responsável
+            $sql = $this->conn->prepare("SELECT Id FROM $nome_tabela_enviada WHERE email = ?");
+            @$sql->bindParam(1, $this->get_email_user(), PDO::PARAM_STR);
+            $sql->execute();
+
+            $result = $sql->fetchColumn();
+
+            if ($result) {
+                $this->conn = null;
+                return $result; // Se encontrou um responsável, retorna "responsavel"
+            }
         } catch (PDOException $exc) {
             echo "Erro ao consultar. " . $exc->getMessage();
             return false;

@@ -58,6 +58,8 @@
                         if (isset($_POST['btn_entrar'])) {
                             include_once '../php/metodos_principais.php';
                             $metodos_principais = new metodos_principais();
+                            
+                            session_start();
 
                             // Armazena os valores em variáveis
                             $email = $_POST['txt_email'];
@@ -72,7 +74,11 @@
                             $result = $metodos_principais->login();
 
                             if ($result == "responsavel") {
-                                header("Location:dashboard/dashboard.html"); // Altere para o caminho desejado
+                                $id = $metodos_principais->selectId($result);
+                                
+                                $_SESSION['responsavel_id'] = $id;
+
+                                header("Location:dashboard/dashboard.php"); // Altere para o caminho desejado
                                 exit(); // Importante para parar a execução do script
                             } else if ($result == "medico") {
                                 // Código pra ir pra dashboard do médico
