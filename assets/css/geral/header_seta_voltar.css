@@ -1,0 +1,298 @@
+/* Desktop */
+:root{
+    --primary:#1f2e88;
+    --secondary:#2f66d4;
+    --hover: #a2d9f5;
+    --black:#333;
+    --white:#fff;
+    --light-color:#393939;
+    --light-bg:#eee;
+    --border:.2rem solid rgba(0,0,0,.1);
+    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+*{
+    font-family: 'Inter', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    transition: .2s linear;
+}
+
+html{
+    overflow-x: hidden;
+    scroll-padding-top: 9rem;
+    scroll-behavior: smooth;
+}
+    /* barra de navegação */
+html::-webkit-scrollbar{
+    width: .8rem;
+}
+
+html::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+    background: var(--primary);
+    border-radius: 5rem;
+}
+
+/*----------------------------------------------------------------------------------------------------------*/
+/* navbar */
+.navbar {
+    background-color: #418CFC !important;
+    height: 65px;
+}
+
+div.container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.navbar_seta_voltar {
+    width: 35px;
+}
+
+/* Logo */
+#div-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#div-logo h1 {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 3px;
+    font-size: 34px;
+    color: #FBFBFB;
+    font-weight: 900;
+}
+
+#div-logo img {
+    height: 30px;
+    width: 30px;
+    margin-left: 8px;
+    margin-top: 5px;
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+
+/* Responsividade: Aparelho muito Pequeno */
+@media (max-width: 576px) { 
+    .navbar-toggler-icon {
+        width: 2rem !important;
+        height: 1rem !important;
+    } 
+
+    .navbar {
+        height: 50px;
+    }
+    
+    /* Menu Open */
+    button.navbar-toggler {
+        margin-left: 5px;
+        height: 1px;
+        width: 1px;        
+    } 
+
+
+    .nav .nav-item a{
+        font-size: 1.1rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .linha {
+        width: 60%;
+        color: white;
+        border: 2px solid white;
+    }
+
+    /* Logo */
+    #div-logo h1 {
+    font-size: 23px;
+    }
+
+    #div-logo img {
+        height: 23px;
+        width: 23px;
+    }
+
+    /*  Botão */
+    #criar-conta {
+        margin-right: 10px;
+    }
+
+    #botao-entrar-header {
+        height: 38px;
+        width: 80px;
+        font-size: 12px;
+    }
+}
+
+/* Responsividade: Aparelho pequeno */
+@media (min-width: 577px) {
+    /* Menu */
+    .navbar {
+        height: 55px;
+    }
+
+    .navbar-toggler.collapsed {
+        margin-left: 10px;
+        height: 3.5rem;
+        width: 4rem;
+        padding: 0%;
+    }
+
+    .navbar-toggler-icon {
+        width: 2.5rem !important;
+        height: 3rem !important;
+    } 
+
+    /* Menu Open */
+    button.navbar-toggler {
+        margin-left: 10px;
+    } 
+
+    /* Logo */
+    #div-logo h1 {
+    font-size: 30px;
+    }
+
+    #div-logo img {
+        height: 28px;
+        width: 28px;
+    }
+
+    /*  Botão */
+    #criar-conta {
+        margin-right: 10px;
+    }
+
+    #botao-entrar-header {
+        height: 38px;
+        width: 130px;
+        font-size: 13px;
+    }
+}
+
+/* Responsividade: Aparelho médio */
+@media (min-width: 768px) {
+    /* Menu */
+    .navbar-toggler.collapsed {
+        margin-left: 20px;
+        height: 3.5rem;
+        width: 5rem;
+    }
+
+    .navbar-toggler-icon {
+        width: 3rem !important;
+        height: 2rem !important;
+    } 
+
+    /* Menu Open */
+    button.navbar-toggler {
+        margin-left: 20px;
+        height: 3.5rem;
+        width: 5rem;
+    } 
+
+    /*  Botão */
+    #criar-conta {
+        margin-right: 20px;
+    }
+
+    #botao-entrar-header {
+        height: 38px;
+        width: 170px;
+        font-size: 16px;
+    }
+}
+
+/* Responsividade: Aparelho grande */
+@media (min-width: 992px) {
+    /* Menu */
+    .navbar {
+        height: 60px;
+    }
+
+    .navbar-toggler.collapsed {
+        margin-left: 25px;
+        height: 4rem;
+        width: 6rem;
+        padding: 0%;
+    }
+
+    .navbar-toggler-icon {
+        width: 3.5rem !important;
+        height: 3rem !important;
+    } 
+
+    /* Menu Open */
+    button.navbar-toggler {
+        margin-left: 25px;
+        height: 4rem;
+        width: 6rem;
+    } 
+
+    /* Logo */
+    #div-logo h1 {
+        font-size: 32px;
+    }
+
+
+    #div-logo img {
+        height: 29px;
+        width: 29px;
+        margin: 9px;
+    }
+    
+    /*  Botão */
+    #criar-conta {
+        margin-right: 25px;
+    }
+
+    #botao-entrar-header {
+        width: 180px;
+        height: 40px;
+        font-size: 15px;
+    }
+
+    .linha{
+        display: none;
+    }
+}
+
+/* Responsividade: Aparelho muito grande */
+@media (min-width: 1500px) {
+    /* Menu */
+    .navbar {
+        height: 65px;
+    }
+
+    /* Logo */
+    #div-logo h1 {
+        font-size: 37px;
+    }
+    
+    
+    #div-logo img {
+        height: 33px;
+        width: 33px;
+    }
+
+    #botao-entrar-header {
+        width: 200px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+  
+
+}
