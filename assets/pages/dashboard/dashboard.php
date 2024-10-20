@@ -15,21 +15,36 @@
 <body>
 
     <?php
+        // Inicia a sessão. Isso é necessário para acessar ou armazenar dados na variável $_SESSION
         session_start();
 
-        $responsavel_id = $_SESSION['responsavel_id'];
+        // Armazena o valor da variável de sessão 'responsavel_id' na variável $session_responsavel_id
+        $session_responsavel_id = $_SESSION['responsavel_id'];
 
+        // Armazena o valor do cookie 'responsavel_id' na variável $cookie_responsavel_id
+        $cookie_responsavel_id = $_COOKIE['responsavel_id'];
+
+        // Verifica se o cookie 'responsavel_id' ou a sessão 'responsavel_id' estão definidos
+        if (isset($cookie_responsavel_id) || isset($session_responsavel_id)) {
+            // Se pelo menos um dos dois (cookie ou sessão) estiver definido, o código segue normalmente
+        } else {
+            // Se nenhum dos dois estiver definido, redireciona o usuário para a página de login
+            header("Location: /2023_odonto_kids/assets/pages/login.php");
+        }
+
+        // Inclui um arquivo PHP externo contendo os métodos para o dashboard (com base no caminho do servidor)
         include_once $_SERVER['DOCUMENT_ROOT'] . '/2023_odonto_kids/assets/php/metodos_dashboard.php';
 
         $metodos_dashboard = new metodos_dashboard();
 
-        $metodos_dashboard->setResponsavelId($responsavel_id);
-        
+        // Define o 'responsavel_id' no objeto 'metodos_dashboard', usando o valor armazenado no cookie
+        $metodos_dashboard->setResponsavelId($cookie_responsavel_id);
     ?>
+
 
     <script>
         // Passando a variável PHP para o JavaScript
-        var responsavelId = <?php echo json_encode($result); ?>;
+        var responsavelId = <?php echo json_encode($responsavel_id); ?>;
         
         // Mostrando o ID no console
         console.log("ID do responsável:", responsavelId);
