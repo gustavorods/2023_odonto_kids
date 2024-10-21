@@ -39,6 +39,11 @@
         $consultasOrganizadas = $metodos_dashboard->listar_proximas_consultas();
     ?>
 
+    <script>
+        // Passando a variável PHP para o JavaScript (debugar)
+        const responsavel_id = <?php echo json_encode($responsavel_id); ?>;
+    </script>
+
     <!-- Navbar -->
     <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
             <div class="bg-primary p-4 itens-nav">
@@ -87,7 +92,11 @@
     <!-- Corpo da página -->
     <div class="dashboard"> 
 
-        <!-- <div id="fade"></div> -->
+        <!-- <div id="fade"></div>
+         
+        <?php
+            include './views/card-vertical-detalhes.html'
+        ?> -->
 
         <!-- Visualização da esquerda -->
         <div class="proxima-consulta"> 

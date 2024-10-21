@@ -28,57 +28,6 @@
     margin: 20px 0px;
 }
 
-.card-consulta-vertical{
-    width: 230px;
-    min-width: 230px;
-    background-color: #F6F6F6;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.315);
-    border-radius: 15px;
-    text-align: center;
-    margin-right: 30px;
-}
-
-.cabecalho{
-    background-color: #0681F3;
-    padding: 10px;
-    text-align: center;
-    align-items: center;
-    border-radius: 15px 15px 0px 0px;
-
-}
-
-.mes{
-    font-size: 18pt;
-    color: white;
-    margin: 0px;
-}
-
-.corpo{
-    padding: 10px;
-}
-
-.dia-semana{
-    font-size: 12pt;
-}
-
-.dia-mes{
-    font-size: 60pt;
-    font-weight: bolder;
-}
-
-.paciente{
-    font-size: 12pt;
-}
-
-.detalhes{
-    margin: 7px 0px;
-    background-color: #0681F3;
-    color: white;
-    font-size: 10pt;
-    padding: 8px 29px;
-    border-radius: 12px;
-}
-
 .card-marcar-consulta{
     height: 285px;
     width: 231px;

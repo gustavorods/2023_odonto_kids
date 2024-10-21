@@ -1,3 +1,56 @@
+<style>
+    .card-consulta-vertical{
+        width: 230px;
+        min-width: 230px;
+        background-color: #F6F6F6;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.315);
+        border-radius: 15px;
+        text-align: center;
+        margin-right: 30px;
+    }
+
+    .card-consulta-vertical .cabecalho{
+        background-color: #0681F3;
+        padding: 10px;
+        text-align: center;
+        align-items: center;
+        border-radius: 15px 15px 0px 0px;
+
+    }
+
+    .card-consulta-vertical .mes{
+        font-size: 18pt;
+        color: white;
+        margin: 0px;
+    }
+
+    .card-consulta-vertical .corpo{
+        padding: 10px;
+    }
+
+    .card-consulta-vertical .dia-semana{
+        font-size: 12pt;
+    }
+
+    .card-consulta-vertical .dia-mes{
+        font-size: 60pt;
+        font-weight: bolder;
+    }
+
+    .card-consulta-vertical .paciente{
+        font-size: 12pt;
+    }
+
+    .card-consulta-vertical .detalhes{
+        margin: 7px 0px;
+        background-color: #0681F3;
+        color: white;
+        font-size: 10pt;
+        padding: 8px 29px;
+        border-radius: 12px;
+    }
+</style>
+
 <?php
     $consultasOrganizadas = $metodos_dashboard->listar_proximas_consultas();
 ?>
