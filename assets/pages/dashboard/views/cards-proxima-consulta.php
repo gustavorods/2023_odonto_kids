@@ -72,9 +72,8 @@
                 <h1 class="dia-mes">${dia_mes}</h1>
                 <h2 class="paciente">${paciente}</h2>
                 <a href="">
-                    <button class="detalhes">Detalhes</button>
+                    <button class="detalhes" data-id="${id_consulta}">Detalhes</button>
                 </a>
-                <div hidden id="id_consulta">${id_consulta}</div>
             </div>  
         `;
 
