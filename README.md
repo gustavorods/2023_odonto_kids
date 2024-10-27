@@ -1,4 +1,4 @@
-# Odonto Kids ![enter image description here](https://i.postimg.cc/ZYLstBh5/Component-2.png)
+# Odonto Kids ![Odonto Kids Logo](https://i.postimg.cc/ZYLstBh5/Component-2.png)
 
 ## Overview
 
