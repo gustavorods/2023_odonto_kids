@@ -7,7 +7,7 @@
         font-family: 'Inter';
     }
 
-    .card-vertical-detalhes-container{
+    .detalhes-proxima-consulta{
         background-color: white;
         width: 400px;
         max-width: 90%;
@@ -18,30 +18,31 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 10;
+        display: none;
     }
 
-    .card-vertical-detalhes-container .header{
+    .detalhes-proxima-consulta .header{
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 2px solid #000000;
     }
 
-    .card-vertical-detalhes-container .header span{
+    .detalhes-proxima-consulta .header span{
         font-size: 31pt;
         cursor: pointer;
     }
 
-    .card-vertical-detalhes-container #dateHolder{
+    .detalhes-proxima-consulta #dateHolder{
         font-size: 12pt;
         font-weight: normal;
     }
 
-    .card-vertical-detalhes-container .calendario{
+    .detalhes-proxima-consulta .calendario{
         margin: 14px 0px;
     }
 
-    .card-vertical-detalhes-container .perfil-imagem img{
+    .detalhes-proxima-consulta .perfil-imagem img{
         height: 40px;
         width: 40px;
         object-fit: cover;
@@ -51,43 +52,43 @@
         border-color: #0681F3;
     }
 
-    .card-vertical-detalhes-container td, th{
+    .detalhes-proxima-consulta td, th{
         text-align: center;
     }
 
-    .card-vertical-detalhes-container .bottom{
+    .detalhes-proxima-consulta .bottom{
         display: flex;
         justify-content: space-between;
     }
 
-    .card-vertical-detalhes-container .left-bottom{
+    .detalhes-proxima-consulta .left-bottom{
         display: flex;
         align-items: center;
     }
 
-    .card-vertical-detalhes-container .right-bottom{
+    .detalhes-proxima-consulta .right-bottom{
         max-width: 140px;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
-    .card-vertical-detalhes-container .paciente{
+    .detalhes-proxima-consulta .paciente{
         margin-left: 4px;
         max-width: 160px;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
-    .card-vertical-detalhes-container .nome-paciente, .titulo-tratamento{
+    .detalhes-proxima-consulta .nome-paciente, .titulo-tratamento{
         font-size: 11pt;
     }
 
-    .card-vertical-detalhes-container .tratamento{
+    .detalhes-proxima-consulta .tratamento{
         font-size: 14pt;
         font-weight: bolder;
     }
 
-    .card-vertical-detalhes-container .aviso-relatorio{
+    .detalhes-proxima-consulta .aviso-relatorio{
         text-align: center;
         color: #7b7b7b;
         font-weight: 600;
@@ -96,15 +97,15 @@
     }
 </style>
 <html>
-    <div class="card-vertical-detalhes-container">
+    <div class="detalhes-proxima-consulta" id="modal">
         <div class="header">
             <h1>Detalhes</h1>
-            <span>&times;</span>
+            <span class="fechar-detalhe-proxima-consulta">&times;</span>
         </div>
 
         <div class="calendario">
             <?php
-                include './Untitled-2.html';
+                include './views/calendario.php';
             ?>
         </div>
 

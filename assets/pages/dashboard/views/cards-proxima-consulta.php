@@ -41,7 +41,7 @@
         font-size: 12pt;
     }
 
-    .card-consulta-vertical .detalhes{
+    .card-consulta-vertical .botao-detalhes-proxima-consulta{
         margin: 7px 0px;
         background-color: #0681F3;
         color: white;
@@ -72,7 +72,7 @@
                 <h1 class="dia-mes">${dia_mes}</h1>
                 <h2 class="paciente">${paciente}</h2>
                 <a href="">
-                    <button class="detalhes" data-id="${id_consulta}" onclick="detalhesProximaConsulta('./views/detalhes-card-proxima-consulta.php','fade', event)">Detalhes</button>
+                    <button class="botao-detalhes-proxima-consulta" data-id="${id_consulta}">Detalhes</button>
                 </a>
             </div>  
         `;
@@ -93,27 +93,4 @@
         // Adiciona o card ao contêiner
         document.getElementById('cards_proximasconsultas').appendChild(card);
     });
-
-    function detalhesProximaConsulta(url,elementoId){
-        if (event) event.preventDefault();
-
-        fetch(url)
-        .then(response => {
-            if (!response.ok) throw new Error('Erro ao carregar a página');
-            return response.text();
-        })
-        .then(data => {
-            document.getElementById(elementoId).innerHTML = data;
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-        });
-
-        const elemento = document.getElementById("fade");
-        if (elemento) {
-            elemento.style.display = "block";
-            elemento.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-        }
-        document.body.style.overflow = 'hidden';
-    }
 </script>

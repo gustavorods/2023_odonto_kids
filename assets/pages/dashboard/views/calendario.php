@@ -35,6 +35,7 @@
         .marked {
             background-color: #43a0f6;
             color: white;
+            border: 3px solid #43a0f6;
         }
     </style>
 </head>
@@ -42,12 +43,14 @@
 
 <div id="calWrapper"></div>
 
+
+
 <script>
     function createCalendar(date, markedDay) {
-        const year = date.getFullYear();
-        const month = date.getMonth();
-        const firstDay = new Date(year, month, 1);
-        const lastDay = new Date(year, month + 1, 0).getDate();
+        const year = 2024;
+        const month = 9; 
+        const firstDay = new Date(2024, 9, 1);
+        const lastDay = new Date(2024, 9 + 1, 0).getDate();
         const dayOne = firstDay.getDay();
 
         const days = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
@@ -92,8 +95,6 @@
 
     // Exemplo: Criar um calendário para Novembro de 2024 com o dia 15 marcado
     const date = new Date(); // Meses são baseados em zero (0 = Janeiro, 1 = Fevereiro, etc.)
-    const markedDay = 31; // Dia que você quer marcar
-    createCalendar(date, markedDay);
 </script>
 
 </body>

@@ -94,7 +94,10 @@
 
         <div id="fade"></div>
 
-        <!-- Visualização da esquerda -->
+        <?php
+            include './views/detalhes-card-proxima-consulta.php'
+        ?>
+        
         <div class="proxima-consulta"> 
 
             <!-- Titulo -->
@@ -253,6 +256,7 @@
     </div>
     <div class="credit">Copyright © 2023 Odonto Kids LTDA</div>
     </section>
-</body>
 
+    <script src="/2023_odonto_kids/assets/js/dashboard.js"></script>
+</body>
 </html>
