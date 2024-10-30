@@ -92,11 +92,7 @@
     <!-- Corpo da página -->
     <div class="dashboard"> 
 
-        <!-- <div id="fade"></div>
-         
-        <?php
-            include './views/card-vertical-detalhes.html'
-        ?> -->
+        <div id="fade"></div>
 
         <!-- Visualização da esquerda -->
         <div class="proxima-consulta"> 
@@ -108,14 +104,12 @@
 
             <div class="cards-proximasconsultas" id="cards_proximasconsultas">
                 <!-- Card -->
-                <a class="marcar-consulta-href" href="">
-                    <div class="card-marcar-consulta">
-                        <div class="container">
-                            <div class="mais">+</div>
-                            <div class="texto">Marcar consulta</div>
-                        </div>
+                <div class="card-marcar-consulta">
+                    <div class="container">
+                        <div class="mais">+</div>
+                        <div class="texto">Marcar consulta</div>
                     </div>
-                </a>
+                </div>
 
                 <?php
                     include_once './views/cards-proxima-consulta.php'
@@ -261,5 +255,4 @@
     </section>
 </body>
 
-<script src="../js/servicos.js"></script>
 </html>
