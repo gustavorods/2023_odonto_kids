@@ -27,8 +27,8 @@
         border-bottom: 2px solid #000000;
     }
 
-    .card-vertical-detalhes-container .header img{
-        height: 25px;
+    .card-vertical-detalhes-container .header span{
+        font-size: 31pt;
         cursor: pointer;
     }
 
@@ -99,7 +99,7 @@
     <div class="card-vertical-detalhes-container">
         <div class="header">
             <h1>Detalhes</h1>
-            <img src="/2023_odonto_kids/assets/img/dashboard/x-fechar-detalhes.png" alt="" onclick="">
+            <span>&times;</span>
         </div>
 
         <div class="calendario">
