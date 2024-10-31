@@ -46,11 +46,12 @@
 
 
 <script>
-    function createCalendar(date, markedDay) {
-        const year = 2024;
-        const month = 9; 
-        const firstDay = new Date(2024, 9, 1);
-        const lastDay = new Date(2024, 9 + 1, 0).getDate();
+    function createCalendar(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        const markedDay = date.getDate(); // O dia da consulta será o dia marcado
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0).getDate();
         const dayOne = firstDay.getDay();
 
         const days = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
@@ -78,7 +79,7 @@
                 } else if (iDay < lastDay) {
                     cell.innerText = ++iDay;
                     if (iDay === markedDay && month === date.getMonth() && year === date.getFullYear()) {
-                        cell.className = "dayCell marked"; // Marca o dia específico
+                        cell.className = "dayCell marked"; // Marca o dia da consulta
                     } else if (iDay === new Date().getDate() && month === new Date().getMonth() && year === new Date().getFullYear()) {
                         cell.className = "dayCell today"; // Marca o dia atual
                     } else {
@@ -94,7 +95,6 @@
     }
 
     // Exemplo: Criar um calendário para Novembro de 2024 com o dia 15 marcado
-    const date = new Date(); // Meses são baseados em zero (0 = Janeiro, 1 = Fevereiro, etc.)
 </script>
 
 </body>

@@ -42,6 +42,10 @@
         margin: 14px 0px;
     }
 
+    .detalhes-proxima-consulta .dia-consulta{
+        margin-bottom: 5px;
+    }
+
     .detalhes-proxima-consulta .perfil-imagem img{
         height: 40px;
         width: 40px;
@@ -67,9 +71,9 @@
     }
 
     .detalhes-proxima-consulta .right-bottom{
-        max-width: 140px;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        max-width: max-content;
+        border-left: 1px solid;
+        padding-left: 5px;
     }
 
     .detalhes-proxima-consulta .paciente{
@@ -104,6 +108,7 @@
         </div>
 
         <div class="calendario">
+            <p class="dia-consulta"></p>
             <?php
                 include './views/calendario.php';
             ?>
@@ -120,7 +125,6 @@
                         Paciente:
                     </div>
                     <div class="nome-perfil">
-                        Lourenço Alvite
                     </div>
                 </div>
             </div>
@@ -129,7 +133,6 @@
                     Tratamento
                 </div>
                 <div class="tratamento">
-                    Canal dentário
                 </div>
             </div>
         </div>
