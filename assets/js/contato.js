@@ -38,6 +38,7 @@ botaoEnviar.addEventListener("click", function() {
 
     // Se houver campos vazios, exibe uma mensagem de alerta
     if (camposVazios.length > 0) {
+        event.preventDefault();
         var mensagem;
         if (camposVazios.length === 1) {
             mensagem = "Opa! Parece que você esqueceu de preencher o seguinte campo: " + camposVazios[0];
@@ -53,12 +54,6 @@ botaoEnviar.addEventListener("click", function() {
         botaoEnviar.style.backgroundColor = "#28a745";  // Muda a cor de fundo para verde
         botaoEnviar.style.pointerEvents = "none";  // Desabilita o botão de enviar
 
-        // Limpa os campos do formulário
-        campoNome.value = "";   
-        campoTelefone.value = "";
-        campoObjetivo.value = "";
-        campoMensagem.value = "";
-
         // Após 4 segundos, esconde o botão de enviar e redefine seu estado
         setTimeout(() => {
             botaoEnviar.style.display = "none"; 
@@ -66,6 +61,12 @@ botaoEnviar.addEventListener("click", function() {
             botaoEnviar.style.backgroundColor = "#007bff";
             botaoEnviar.style.pointerEvents = "auto";
         }, 4000); // 4000 milissegundos = 4 segundos
+
+        // Limpa os campos do formulário
+        campoNome.value = "";   
+        campoTelefone.value = "";
+        campoObjetivo.value = "";
+        campoMensagem.value = "";
     }
 });
 

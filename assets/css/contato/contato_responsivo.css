@@ -78,7 +78,10 @@
 
     .contato_section {
         margin-bottom: 100px;
+    }
 
+    .paragrafo{
+        width: 300px;
     }
 
 }

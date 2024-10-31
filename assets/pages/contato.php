@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
     <link rel="stylesheet" href="../css/contato/contato.css">
-    <!-- <link rel="stylesheet" href="../css/contato/contato_responsivo.css"> -->
+    <link rel="stylesheet" href="../css/contato/contato_responsivo.css"> 
     <link rel="icon" type="image/png" href="./assets/img/geral/Logo.svg">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -90,25 +90,25 @@
         <!-- Formulário de contato -->
         <div class="centralizar">
             <div class="formulario">
-                <div class="form">
+                <form class="form" method="post">
                     <p class="titulo_form">...ou nos mande uma mensagem </p>
                     <div class="uni">
                         <p class="complemento">Nome completo</p>
                     </div>
-                    <input type="text" class="input" data-campo="Nome">
+                    <input type="text" class="input" data-campo="Nome" placeholder="Clique aqui para digitar" name="nome">
                     
                     <div class="double">
                         <div>
                             <div class="uni">
-                                <p class="complemento">Telefone</p>
+                                <p class="complemento">Email</p>
                             </div>
-                            <input type="number" min="0" max="11" class="input-double" data-campo="Telefone" placeholder="(DDD) 99999-9999">
+                            <input type="text" class="input-double" data-campo="Telefone" placeholder="Clique aqui para digitar" name="email">
                         </div>
                         <div>
                             <div class="uni">
                                 <p class="complemento">Objetivo</p>
                             </div>
-                            <input type="text" class="input-double" data-campo="Objetivo" placeholder="O que você procura?">
+                            <input type="text" class="input-double" data-campo="Objetivo" placeholder="O que você procura?" name="objetivo">
                         </div>
                     </div>
                     
@@ -116,35 +116,28 @@
                         <p class="complemento" id="mensagem">Mensagem</p>
                     </div>
                     <textarea name="input-mensagem" id="" cols="30" rows="10" class="input-mensagem" placeholder="Diga-nos como podemos te ajudar. Fique à vontade para entrar em detalhes se quiser :)"></textarea>
-                </div>
-                <button id="botaoEnviar" class="botao-enviar">
-                    <img class="img-arrow" src="../img/contato/right arrow.png" alt="">
-                </button>
+
+                    <button id="botaoEnviar" class="botao-enviar" type="submit" name="btn_continuar">
+                        <img class="img-arrow" src="../img/contato/right arrow.png" alt="">
+                    </button>
+
+                    <?php
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_continuar'])) {
+                            include_once '../php/enviar_email_suporte.php';
+
+                            $nome = $_POST['nome'];
+                            $email = $_POST['email'];
+                            $objetivo = $_POST['objetivo'];
+                            $mensagem = $_POST['input-mensagem'];
+
+                            // Sua lógica aqui
+                            enviar_email_suporte($nome, $email, $objetivo, $mensagem);   
+                        }
+                    ?>
+                </form>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <section class="footer">
-        <div class="box-container">
-            <div class="box">
-                <h3>Endereço</h3>
-                <p>Endereço: 619 Albuquerque Travessa - Tucano, PI / 60960-761<br>CNPJ: n° 87.313.818/0001-42</p>
-            </div>
-            <div class="box">
-                <h3>E-mail</h3>
-                <a href="#" class="link">OdontoKids@gmail.com</a>
-                <a href="#" class="link">SuporteOdontoKids@hotmail.com</a>
-            </div>
-            <div class="box">
-                <h3>Ligue</h3>
-                <p>+55 0000-0000</p>
-                <p>+55 0000-0000</p>
-            </div>
-        </div>
-        <div class="credit">Copyright © 2023 Odonto Kids LTDA</div>
-    </section>
-
     <!-- JS -->
     <script src="../js/contato.js"></script>
 </body>
