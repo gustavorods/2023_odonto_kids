@@ -99,6 +99,10 @@
         font-size: 10pt;
         padding: 20px 30px;
     }
+
+    .detalhes-proxima-consulta .marked{
+        border: 3px solid #447caf;
+    }
 </style>
 <html>
     <div class="detalhes-proxima-consulta" id="modal">

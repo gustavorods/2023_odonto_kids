@@ -94,6 +94,7 @@
 
         <div id="fade"></div>
 
+        <!-- Detalhes proxima consulta card -->
         <?php
             include './views/detalhes-card-proxima-consulta.php'
         ?>
