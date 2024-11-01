@@ -61,12 +61,6 @@ botaoEnviar.addEventListener("click", function() {
             botaoEnviar.style.backgroundColor = "#007bff";
             botaoEnviar.style.pointerEvents = "auto";
         }, 4000); // 4000 milissegundos = 4 segundos
-
-        // Limpa os campos do formulário
-        campoNome.value = "";   
-        campoTelefone.value = "";
-        campoObjetivo.value = "";
-        campoMensagem.value = "";
     }
 });
 

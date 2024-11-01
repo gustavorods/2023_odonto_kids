@@ -1,21 +1,3 @@
-<?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_continuar'])) {
-        include_once '../php/enviar_email_suporte.php';
-
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
-        $objetivo = $_POST['objetivo'];
-        $mensagem = $_POST['input-mensagem'];
-
-        // Sua lógica aqui
-        enviar_email_suporte($nome, $email, $objetivo, $mensagem);   
-
-        // Redirecionamento para evitar reenvio do formulário
-        header("Location:./contato.php");
-        exit();
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +13,26 @@
     <title>Contato</title>
 </head>
 <body>
+
+<?php
+ob_start(); // Inicia o buffer de saída
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_continuar'])) {
+    include_once '../php/enviar_email_suporte.php';
+
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $objetivo = $_POST['objetivo'];
+    $mensagem = $_POST['input-mensagem'];
+
+    // Sua lógica aqui
+    enviar_email_suporte($nome, $email, $objetivo, $mensagem);   
+
+    // Redirecionamento para evitar reenvio do formulário
+    header("Location:./contato.php");
+    exit();
+}
+ob_end_flush(); // Libera o buffer de saída
+?>
 
     <!-- Navbar -->
     <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
@@ -85,7 +87,7 @@
                 Caso esteja perdido e precise de ajuda em algo, não hesite em nos chamar pelos meios de contato abaixo.
             </p>
             <p class="chamada">
-                Sua dúvida é sempre bem vinda!
+                Sua dúvida é sempre bem-vinda!
             </p>
             <div class="botoes">
                 <div class="buttom" data-link="linkDoWhatsapp">
