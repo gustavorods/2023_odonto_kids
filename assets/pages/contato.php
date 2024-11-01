@@ -1,3 +1,21 @@
+<?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_continuar'])) {
+        include_once '../php/enviar_email_suporte.php';
+
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        $objetivo = $_POST['objetivo'];
+        $mensagem = $_POST['input-mensagem'];
+
+        // Sua lógica aqui
+        enviar_email_suporte($nome, $email, $objetivo, $mensagem);   
+
+        // Redirecionamento para evitar reenvio do formulário
+        header("Location:./contato.php");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,20 +138,6 @@
                     <button id="botaoEnviar" class="botao-enviar" type="submit" name="btn_continuar">
                         <img class="img-arrow" src="../img/contato/right arrow.png" alt="">
                     </button>
-
-                    <?php
-                        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn_continuar'])) {
-                            include_once '../php/enviar_email_suporte.php';
-
-                            $nome = $_POST['nome'];
-                            $email = $_POST['email'];
-                            $objetivo = $_POST['objetivo'];
-                            $mensagem = $_POST['input-mensagem'];
-
-                            // Sua lógica aqui
-                            enviar_email_suporte($nome, $email, $objetivo, $mensagem);   
-                        }
-                    ?>
                 </form>
             </div>
         </div>
