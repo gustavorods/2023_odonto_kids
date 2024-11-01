@@ -101,7 +101,7 @@ ob_end_flush(); // Libera o buffer de saída
                     <img src="../img/contato/gmail_icon.webp" alt="">
                     <div>
                         <p>Gmail</p>
-                        <p>Undefield@gmail.com</p>
+                        <p>suporteodontokids@gmail.com</p>
                     </div>
                 </div>
             </div>
