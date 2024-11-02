@@ -1,82 +1,101 @@
--- Banco de dados: `odontokids`
 CREATE DATABASE `odontokids`;
 USE `odontokids`;
 
--- Estrutura da tabela `responsavel`
 CREATE TABLE `responsavel` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(80) NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `cpf` varchar(11) NOT NULL,
-  `telefone` varchar(11) NOT NULL,
-  `nasc` date NOT NULL,
-  `genero` varchar(30) NOT NULL,
-  `senha` varchar(80) NOT NULL,
-  `foto_perfil` BLOB NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+	`Id` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+	`nome` VARCHAR(80) NOT NULL,
+	`email` VARCHAR(150) NOT NULL,
+	`cpf` VARCHAR(11) NOT NULL,
+	`telefone` VARCHAR(11) NOT NULL,
+	`nasc` DATE NOT NULL,
+	`genero` VARCHAR(30) NOT NULL,
+	`senha` VARCHAR(80) NOT NULL,
+	PRIMARY KEY(`Id`)
+);
 
--- Estrutura da tabela `dependentes`
+
 CREATE TABLE `dependentes` (
-  `id_responsavel` int(11) NOT NULL,
-  `nome` varchar(80) NOT NULL,
-  `nasc` date NOT NULL,
-  `cpf` varchar(11) NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+	`id_responsavel` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+	`nome` VARCHAR(80) NOT NULL,
+	`nasc` DATE NOT NULL,
+	`cpf` VARCHAR(11) NOT NULL,
+	`id` INTEGER NOT NULL,
+	PRIMARY KEY(`id`)
+);
 
--- Estrutura da tabela `tratamento`
-CREATE TABLE `tratamento` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Tratamento` varchar(50) NOT NULL,
-  `Descricao` varchar(200) NOT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
--- Estrutura da tabela `especialidade`
-CREATE TABLE `especialidade` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `funcao` varchar(50) NOT NULL,
-  `descricao` varchar(200) NOT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Estrutura da tabela `medico`
-CREATE TABLE `medico` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(80) NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `cpf` varchar(11) NOT NULL,
-  `telefone` varchar(11) NOT NULL,
-  `nasc` date NOT NULL,
-  `genero` varchar(50) NOT NULL,
-  `senha` varchar(70) NOT NULL,
-  `CRM` varchar(6) NOT NULL,
-  `cod_especialidade` int(11) NOT NULL,
-  `foto_perfil` BLOB NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
--- Estrutura da tabela `consulta`
 CREATE TABLE `consulta` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `horario` time NOT NULL,
-  `data` date NOT NULL,
-  `id_dependente` int(11) NOT NULL,
-  `cod_tratamento` int(11) NOT NULL,
-  `relatorio` varchar(500) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+	`id` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+	`horario` TIME NOT NULL,
+	`data` DATE NOT NULL,
+	`id_dependente` INTEGER NOT NULL,
+	`cod_tratamento` INTEGER NOT NULL,
+	`relatorio` VARCHAR(500) NOT NULL,
+	PRIMARY KEY(`id`)
+);
 
--- Estrutura da tabela `medico_tratamento`
-CREATE TABLE `medico_tratamento` (
-  `Id_tratamento` int(11) NOT NULL,
-  `id_medico` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
--- Estrutura da tabela `prontuario`
 CREATE TABLE `prontuario` (
-  `id_consulta` int(11) NOT NULL,
-  `arquivo_prontuario` blob NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+	`id_consulta` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+	`arquivo_prontuario` BLOB
+);
+
+
+CREATE TABLE `tratamento` (
+	`Id` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+	`Tratamento` VARCHAR(50) NOT NULL,
+	`Descricao` VARCHAR(200) NOT NULL,
+	PRIMARY KEY(`Id`)
+);
+
+
+CREATE TABLE `medico_tratamento` (
+	`Id_tratamento` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+	`id_medico` INTEGER NOT NULL
+);
+
+
+CREATE TABLE `medico` (
+	`Id` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+	`nome` VARCHAR(80) NOT NULL,
+	`email` VARCHAR(150) NOT NULL,
+	`cpf` VARCHAR(11) NOT NULL,
+	`telefone` VARCHAR(11) NOT NULL,
+	`nasc` DATE NOT NULL,
+	`genero` VARCHAR(50) NOT NULL,
+	`senha` VARCHAR(70) NOT NULL,
+	`CRM` VARCHAR(6) NOT NULL,
+	`cod_especialidade` INTEGER NOT NULL,
+	PRIMARY KEY(`Id`)
+);
+
+
+CREATE TABLE `especialidade` (
+	`Id` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+	`funcao` VARCHAR(50) NOT NULL,
+	`descricao` VARCHAR(200) NOT NULL,
+	PRIMARY KEY(`Id`)
+);
+
+
+ALTER TABLE `responsavel`
+ADD FOREIGN KEY(`Id`) REFERENCES `dependentes`(`id_responsavel`)
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+ALTER TABLE `dependentes`
+ADD FOREIGN KEY(`id`) REFERENCES `consulta`(`id_dependente`)
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+ALTER TABLE `consulta`
+ADD FOREIGN KEY(`id`) REFERENCES `prontuario`(`id_consulta`)
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+ALTER TABLE `tratamento`
+ADD FOREIGN KEY(`Id`) REFERENCES `consulta`(`cod_tratamento`)
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+ALTER TABLE `tratamento`
+ADD FOREIGN KEY(`Id`) REFERENCES `medico_tratamento`(`Id_tratamento`)
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+ALTER TABLE `medico`
+ADD FOREIGN KEY(`Id`) REFERENCES `medico_tratamento`(`id_medico`)
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+ALTER TABLE `especialidade`
+ADD FOREIGN KEY(`Id`) REFERENCES `medico`(`cod_especialidade`)
+ON UPDATE NO ACTION ON DELETE NO ACTION;
