@@ -33,6 +33,7 @@ CREATE TABLE `consulta` (
 	`cod_tratamento` INTEGER NOT NULL,
 	`relatorio` VARCHAR(500) NOT NULL,
 	`id_medico` INTEGER NOT NULL,
+	`status` VARCHAR(20) NOT NULL,
 	PRIMARY KEY(`id`)
 );
 
