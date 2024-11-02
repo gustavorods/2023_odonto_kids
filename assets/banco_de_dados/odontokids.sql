@@ -15,11 +15,11 @@ CREATE TABLE `responsavel` (
 
 
 CREATE TABLE `dependentes` (
-	`id_responsavel` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+	`id_responsavel` INTEGER NOT NULL,
 	`nome` VARCHAR(80) NOT NULL,
 	`nasc` DATE NOT NULL,
 	`cpf` VARCHAR(11) NOT NULL,
-	`id` INTEGER NOT NULL,
+	`id` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
 	PRIMARY KEY(`id`)
 );
 
