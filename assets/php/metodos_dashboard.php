@@ -24,7 +24,9 @@
                 $sql->execute();
         
                 $dependentes = $sql->fetchAll(PDO::FETCH_ASSOC); // Obtém todos os dependentes
-        
+                // var_dump($dependentes);
+
+                
                 $consultasOrganizadas = []; // Array para armazenar as consultas organizadas
         
                 // Obtém a data atual como timestamp
@@ -60,12 +62,19 @@
                 foreach ($dependentes as $dependente) {
                     // Consulta a tabela de consultas usando o id do dependente
                     $idDependente = $dependente['id'];
+                    // var_dump($idDependente);
+
                     $consultaSql = $this->conn->prepare("SELECT * FROM consulta WHERE id_dependente = ?");
-                    @$consultaSql->bindParam(1, $idDependente, PDO::PARAM_STR);
+                    $consultaSql->bindParam(1, $idDependente, PDO::PARAM_STR);
+                    // if (!$consultaSql) {
+                    //     die('Erro na preparação da consulta: ' . implode(":", $this->conn->errorInfo()));
+                    // }
+                    
                     $consultaSql->execute();
         
                     // Obtém as datas das consultas
                     $consultas = $consultaSql->fetchAll(PDO::FETCH_ASSOC);
+                    // var_dump($consultas);
         
                     // Adiciona cada consulta ao array organizado
                     foreach ($consultas as $consulta) {
