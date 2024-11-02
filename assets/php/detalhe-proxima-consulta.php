@@ -7,7 +7,7 @@ class detalhesProximaConsulta {
     public function dadosConsulta() {
         $input = json_decode(file_get_contents('php://input'), true);
         $consultaId = isset($input['consulta_id']) ? intval($input['consulta_id']) : 0;
-        error_log("Consulta ID recebido: " . $consultaId);
+        // error_log("Consulta ID recebido: " . $consultaId); //para debug
 
         try {
             $this->conn = new Conectar();

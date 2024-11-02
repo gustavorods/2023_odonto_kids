@@ -22,7 +22,7 @@ botaoDetalhes.forEach(botao => {
             
         })
         .then(response => {
-            console.log("Dados enviados:", { consulta_id: consultaId })
+            // console.log("Dados enviados:", { consulta_id: consultaId }) // para debug
             if (!response.ok) {
                 throw new Error('Erro na requisição: ' + response.status);
             }
@@ -35,10 +35,10 @@ botaoDetalhes.forEach(botao => {
                     // Desestrutura o objeto para obter cada propriedade
                     const { data: dataConsulta, hora, nome, tratamento } = consulta;
 
-                    console.log("Data da consulta:", dataConsulta);
-                    console.log("Hora da consulta:", hora);
-                    console.log("Nome do paciente:", nome);
-                    console.log("Tratamento:", tratamento);
+                    // console.log("Data da consulta:", dataConsulta);
+                    // console.log("Hora da consulta:", hora);
+                    // console.log("Nome do paciente:", nome);
+                    // console.log("Tratamento:", tratamento);
 
                     nomeDependenteDetalhe.innerHTML = nome;
                     tratamentoDetalhe.innerHTML = tratamento;
