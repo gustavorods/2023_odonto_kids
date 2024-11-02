@@ -73,7 +73,8 @@
     .detalhes-proxima-consulta .right-bottom{
         max-width: max-content;
         border-left: 1px solid;
-        padding-left: 5px;
+        padding-left: 13px;
+        min-width: 151px;
     }
 
     .detalhes-proxima-consulta .paciente{
