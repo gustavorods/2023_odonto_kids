@@ -21,7 +21,7 @@
         background-color: #D2EAFF;
     }
 
-    .card{
+    .card-historico{
         margin: 20px 0px;
         border-radius: 15px;
         border: 0px;
@@ -29,7 +29,7 @@
         padding: 10px 40px;
     }
 
-    .corpo-card-horizontal{
+    .corpo-card-historico{
         margin-left: 10px;
     }
 
@@ -72,15 +72,11 @@
         align-items: baseline;
     }
 
-    .tipo-endereco{
-        margin-top: 3px;
-        line-height: 2px;
-    }
-
-
-    .tipo-endereco .tipo-consulta{
+    .tipo-consulta{
         font-weight: 1000;
         font-size: 15pt;
+        margin-top: 3px;
+        line-height: 2px;
     }
 
     .tipo-endereco .endereco{
@@ -132,61 +128,131 @@
         font-weight: bold;
         color: #636363;
     }
+    
+    .aviso-cancelada {
+        display: none;
+    }
+
+    .cancelada-ausente {
+        background-color: #ffd4d4;
+    }
+
+    .cancelada-ausente .status {
+        color: #8b0000;
+    }
+
+    .cancelada-ausente .line {
+        background: red;
+    }
+
+    .cancelada-ausente .aviso-cancelada .cancelada {
+        display: block;
+        line-height: 0px;
+        color: #9b0000;
+        font-size: 11pt;
+    }
+
+    .cancelada-ausente .detalhes-historico-consulta {
+        display: none;
+    }    
+
+    .aviso-ausente {
+        display: none;
+    }   
+
+    .botao-detalhes h1{
+        display: none;
+    }
+    
+    .cancelada-ausente .botao-detalhes h1 {
+        line-height: 0px;
+        color: #8b0000;
+        font-size: 11pt;
+        display: block;
+    }
 </style>
 
-<html>
-    <div class="historico-consulta">
+<script>
+    function criarCardsHistoricoConsulta(data, hora, tratamento, nomeDependente, sexoDependente, statusConsulta, idConsulta) {
+        const card = document.createElement('div');
+        card.classList.add('card-historico');
 
-    <h1>HISTÓRICO DE CONSULTAS:</h1>
+        // Variável para a mensagem de aviso
+        let avisoMessage = "";
 
-    <div class="cards-container">
-        
-        <div class="card girl">
+        switch (statusConsulta) {
+            case "Realizada":
+                if (sexoDependente === "Masculino") {
+                    card.classList.add('boy');
+                } else if (sexoDependente === "Feminino") {
+                    card.classList.add('girl');
+                }
+                break;
+            default:
+                card.classList.add('cancelada-ausente');
+                if(statusConsulta==="Cancelada"){
+                    avisoMessage = "Você cancelou essa consulta";
+                }
+                else{
+                    avisoMessage = "Você não compareceu a essa consulta";
+                }
+                break;
+        }
+
+        card.innerHTML = `
             <div class="line"></div>
 
-            <div class="corpo-card-horizontal">
+            <div class="corpo-card-historico">
                 <div class="data-status">
-
                     <div class="data">
-                        <p>26 de Setembro 14</p>
+                        <p>${data} às ${hora}</p>
                     </div>
                     
                     <div class="status">
-                        Realizado
+                        ${statusConsulta}
                     </div>
                 </div>
 
-                <div class="tipo-endereco">
-                    
-                    <div class="tipo-consulta">
-                        <p>Retirada de cárie</p>
+                <div class="tipo-consulta">
+                    <div>
+                        <p>${tratamento}</p>
                     </div>
-
                 </div>
 
                 <div class="perfil-detalhes">
-                    
                     <div class="left-container">
                         <div class="perfil-imagem">
                             <img src="/2023_odonto_kids/assets/img/home/carolina.jpg" alt="">
                         </div>
 
                         <div class="nome-perfil">
-                            <p>Valentina</p>
+                            <p>${nomeDependente}</p>
                         </div>
                     </div>
 
                     <div class="botao-detalhes">
-                        <a href="">
-                            <button class="detalhes-historico-consulta">
-                                Detalhes
-                            </button>
-                        </a>
+                        <h1 class="aviso">${avisoMessage}</h1> <!-- Mensagem de aviso aqui -->
+                        <button class="detalhes-historico-consulta" data-id="${idConsulta}">
+                            Detalhes
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        `;
 
-    </div>
-</html>
+        return card;
+    }
+
+    document.querySelector('.cards-container').appendChild(
+        criarCardsHistoricoConsulta(
+            "26 de Setembro", // data
+            "14:00",          // hora
+            "Retirada de cárie", // tratamento
+            "Valentina",      // nome do dependente
+            "Masculino",      // sexo do dependente
+            "Realizada",      // status da consulta   
+            1
+        )
+    );
+
+</script>

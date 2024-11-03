@@ -124,9 +124,16 @@
             </div>
         </div>
 
-        <?php
-            include './views/historico-consultas.php'
-        ?>
+
+        <div class="historico-consulta">
+            <h1>HISTÓRICO DE CONSULTAS:</h1>
+            <div class="cards-container">
+                <?php
+                    include './views/historico-consultas.php'
+                ?>
+            </div>
+        </div>        
+
     </div>
 
    <!-- Footer -->

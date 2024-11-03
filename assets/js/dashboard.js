@@ -9,8 +9,6 @@ const diaconsulta = document.querySelector('.dia-consulta');
 // Adiciona o evento de clique a cada elemento
 botaoDetalhes.forEach(botao => {
     botao.addEventListener('click', function(event) {
-        event.preventDefault();
-
         const consultaId = botao.getAttribute('data-id');
 
         fetch('/2023_odonto_kids/assets/php/detalhe-proxima-consulta.php', {

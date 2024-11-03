@@ -71,9 +71,7 @@
                 <h3 class="dia-semana">${dia_semana}</h3>
                 <h1 class="dia-mes">${dia_mes}</h1>
                 <h2 class="paciente">${paciente}</h2>
-                <a href="">
-                    <button class="botao-detalhes-proxima-consulta" data-id="${id_consulta}">Detalhes</button>
-                </a>
+                <button class="botao-detalhes-proxima-consulta" data-id="${id_consulta}">Detalhes</button>
             </div>  
         `;
 
