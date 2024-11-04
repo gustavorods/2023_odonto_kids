@@ -39,7 +39,7 @@
     cursor: pointer;
 }
 
-.cards-proximasconsultas{
+.cards-proximas-consultas{
     display: flex;
     overflow: auto;
     padding: 0px 0px 20px 0px;

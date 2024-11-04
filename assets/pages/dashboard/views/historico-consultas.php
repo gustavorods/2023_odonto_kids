@@ -9,7 +9,7 @@
         margin: 20px 0px;
     }
 
-    .cards-container{
+    .cards-historico-consulta{
         width: 700px;
     }
 
@@ -172,25 +172,35 @@
     }
 </style>
 
+<?php
+    $historicoConsultasOrganizadas = $metodos_dashboard->listar_historico_consultas();
+    // var_dump($historicoConsultasOrganizadas);
+?>
+
+
 <script>
-    function criarCardsHistoricoConsulta(data, hora, tratamento, nomeDependente, sexoDependente, statusConsulta, idConsulta) {
+    // Passando a variável PHP para o JavaScript
+    const historicoConsultas = <?php echo json_encode($historicoConsultasOrganizadas); ?>;
+    // console.log(historicoConsultas);
+
+    function criarCardsHistoricoConsulta(dia, mes, horario, status, tratamento, dependente, sexo, id) {
         const card = document.createElement('div');
         card.classList.add('card-historico');
 
         // Variável para a mensagem de aviso
         let avisoMessage = "";
 
-        switch (statusConsulta) {
+        switch (status) {
             case "Realizada":
-                if (sexoDependente === "Masculino") {
+                if (sexo === "Masculino") {
                     card.classList.add('boy');
-                } else if (sexoDependente === "Feminino") {
+                } else if (sexo === "Feminino") {
                     card.classList.add('girl');
                 }
                 break;
             default:
                 card.classList.add('cancelada-ausente');
-                if(statusConsulta==="Cancelada"){
+                if(status==="Cancelada"){
                     avisoMessage = "Você cancelou essa consulta";
                 }
                 else{
@@ -205,11 +215,11 @@
             <div class="corpo-card-historico">
                 <div class="data-status">
                     <div class="data">
-                        <p>${data} às ${hora}</p>
+                        <p>${dia} de ${mes} às ${horario}</p>
                     </div>
                     
                     <div class="status">
-                        ${statusConsulta}
+                        ${status}
                     </div>
                 </div>
 
@@ -226,13 +236,13 @@
                         </div>
 
                         <div class="nome-perfil">
-                            <p>${nomeDependente}</p>
+                            <p>${dependente}</p>
                         </div>
                     </div>
 
                     <div class="botao-detalhes">
                         <h1 class="aviso">${avisoMessage}</h1> <!-- Mensagem de aviso aqui -->
-                        <button class="detalhes-historico-consulta" data-id="${idConsulta}">
+                        <button class="detalhes-historico-consulta" data-id="${id}">
                             Detalhes
                         </button>
                     </div>
@@ -243,16 +253,34 @@
         return card;
     }
 
-    document.querySelector('.cards-container').appendChild(
-        criarCardsHistoricoConsulta(
-            "26 de Setembro", // data
-            "14:00",          // hora
-            "Retirada de cárie", // tratamento
-            "Valentina",      // nome do dependente
-            "Masculino",      // sexo do dependente
-            "Realizada",      // status da consulta   
-            1
-        )
-    );
+    // Iterar sobre as consultasOrganizadas e criar os cartões
+    historicoConsultas.forEach(historicoConsulta => {
+        // console.log('Depurando historicoConsulta:', historicoConsulta);
+        const card = criarCardsHistoricoConsulta(
+            historicoConsulta.dia,
+            historicoConsulta.mes,
+            historicoConsulta.horario,
+            historicoConsulta.status,
+            historicoConsulta.tratamento,
+            historicoConsulta.dependente,
+            historicoConsulta.sexo,
+            historicoConsulta.id
+        );
+
+        // Adiciona o card ao contêiner
+        document.querySelector('.cards-historico-consulta').appendChild(card);
+    });    
+
+    // document.querySelector('.cards-container').appendChild(
+    //     criarCardsHistoricoConsulta(
+    //         "26 de Setembro", // data
+    //         "14:00",          // hora
+    //         "Retirada de cárie", // tratamento
+    //         "Valentina",      // nome do dependente
+    //         "Masculino",      // sexo do dependente
+    //         "Realizada",      // status da consulta   
+    //         1
+    //     )
+    // )
 
 </script>

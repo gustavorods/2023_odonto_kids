@@ -20,7 +20,7 @@ CREATE TABLE `dependentes` (
 	`nasc` DATE NOT NULL,
 	`cpf` VARCHAR(11) NOT NULL,
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
-	`sexo` VARCHAR(20) NOT NULL,
+	`id_sexo` INTEGER NOT NULL,
 	PRIMARY KEY(`id`)
 );
 
@@ -33,7 +33,7 @@ CREATE TABLE `consulta` (
 	`cod_tratamento` INTEGER NOT NULL,
 	`relatorio` VARCHAR(500) NOT NULL,
 	`id_medico` INTEGER NOT NULL,
-	`status` VARCHAR(20) NOT NULL,
+	`id_status` INTEGER NOT NULL,
 	PRIMARY KEY(`id`)
 );
 
@@ -81,6 +81,20 @@ CREATE TABLE `especialidade` (
 );
 
 
+CREATE TABLE `status` (
+	`id_status` INTEGER NOT NULL AUTO_INCREMENT,
+	`status` VARCHAR(255) NOT NULL,
+	PRIMARY KEY(`id_status`)
+);
+
+
+CREATE TABLE `sexo` (
+	`id_sexo` INTEGER NOT NULL AUTO_INCREMENT,
+	`sexo` VARCHAR(255) NOT NULL,
+	PRIMARY KEY(`id_sexo`)
+);
+
+
 ALTER TABLE `dependentes`
 ADD FOREIGN KEY(`id_responsavel`) REFERENCES `responsavel`(`Id`)
 ON UPDATE NO ACTION ON DELETE NO ACTION;
@@ -104,4 +118,10 @@ ADD FOREIGN KEY(`cod_especialidade`) REFERENCES `especialidade`(`Id`)
 ON UPDATE NO ACTION ON DELETE NO ACTION;
 ALTER TABLE `consulta`
 ADD FOREIGN KEY(`id_medico`) REFERENCES `medico`(`Id`)
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+ALTER TABLE `consulta`
+ADD FOREIGN KEY(`id_status`) REFERENCES `status`(`id_status`)
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+ALTER TABLE `dependentes`
+ADD FOREIGN KEY(`id_sexo`) REFERENCES `sexo`(`id_sexo`)
 ON UPDATE NO ACTION ON DELETE NO ACTION;

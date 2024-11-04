@@ -106,7 +106,7 @@
                 PRÓXIMAS CONSULTAS:
             </h1>   
 
-            <div class="cards-proximasconsultas" id="cards_proximasconsultas">
+            <div class="cards-proximas-consultas">
                 <!-- Card -->
                 <div class="card-marcar-consulta">
                     <div class="container">
@@ -127,7 +127,7 @@
 
         <div class="historico-consulta">
             <h1>HISTÓRICO DE CONSULTAS:</h1>
-            <div class="cards-container">
+            <div class="cards-historico-consulta">
                 <?php
                     include './views/historico-consultas.php'
                 ?>

@@ -52,12 +52,12 @@
 </style>
 
 <?php
-    $consultasOrganizadas = $metodos_dashboard->listar_proximas_consultas();
+    $proximasConsultasOrganizadas = $metodos_dashboard->listar_proximas_consultas();
 ?>
 
 <script>
     // Passando a variável PHP para o JavaScript
-    const consultas = <?php echo json_encode($consultasOrganizadas); ?>;
+    const proximasConsultas = <?php echo json_encode($proximasConsultasOrganizadas); ?>;
 
     function criarCardsProximaConsulta(mes, dia_semana, dia_mes, paciente, id_consulta) {
         const card = document.createElement('div');
@@ -79,16 +79,16 @@
     }
 
     // Iterar sobre as consultasOrganizadas e criar os cartões
-    consultas.forEach(consulta => {
+    proximasConsultas.forEach(proximaConsulta => {
         const card = criarCardsProximaConsulta(
-            consulta.mes,
-            consulta.dia_da_semana,
-            consulta.dia_do_mes,
-            consulta.nome_dependente,
-            consulta.id_consulta
+            proximaConsulta.mes,
+            proximaConsulta.dia_da_semana,
+            proximaConsulta.dia_do_mes,
+            proximaConsulta.nome_dependente,
+            proximaConsulta.id_consulta
         );
 
         // Adiciona o card ao contêiner
-        document.getElementById('cards_proximasconsultas').appendChild(card);
+        document.querySelector('.cards-proximas-consultas').appendChild(card);
     });
 </script>
