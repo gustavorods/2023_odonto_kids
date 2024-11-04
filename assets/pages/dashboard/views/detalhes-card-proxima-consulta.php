@@ -122,7 +122,7 @@
         <div class="bottom">
             <div class="left-bottom">
                 <div class="perfil-imagem">
-                    <img src="/2023_odonto_kids/assets/img/home/erick.jpeg" alt="">
+                    <img src="" alt="">
                 </div>
         
                 <div class="paciente">
