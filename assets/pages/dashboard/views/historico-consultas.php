@@ -222,7 +222,7 @@
                 <div class="perfil-detalhes">
                     <div class="left-container">
                         <div class="perfil-imagem">
-                            <img src="/2023_odonto_kids/assets/img/home/carolina.jpg" alt="">
+                            <img src="" alt="">
                         </div>
 
                         <div class="nome-perfil">
