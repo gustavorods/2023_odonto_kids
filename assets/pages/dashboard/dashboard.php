@@ -108,7 +108,7 @@
 
             <div class="cards-proximas-consultas">
                 <!-- Card -->
-                <div class="card-marcar-consulta" onclick="window.location.href='../marcar_consulta_flow/escolha_dependente.php'">
+                <div class="card-marcar-consulta" onclick="window.location.href='../marcar_consulta_flow/escolha_dependente/escolha_dependente.php'">
                     <div class="container">
                         <div class="mais">+</div>
                         <div class="texto">Marcar consulta</div>

@@ -23,11 +23,22 @@
     }
 
     // Obter os dados dos dependentes
-    const dependentes = <?php echo json_encode($dependentes); ?>
+    const dependentes = <?php echo json_encode($dependentes); ?>;
+    console.log(dependentes);
+    
+    const cardsContainer = document.querySelector('.cards');
 
-    // Laço que percorre os dependentes e cria os cards
-    dependentes.forEach(dep => {
-        const cardPaciente = criarCardsPaciente(dep.nome, dep.idade, dep.cpf, dep.foto, dep.id);
-        document.querySelector('.cards').appendChild(cardPaciente);
-    });
+    if (dependentes.length === 0) {
+        // Se não houver dependentes, adiciona um aviso dentro do contêiner de cards
+        const aviso = document.createElement('div');
+        aviso.classList.add('aviso');
+        aviso.innerHTML = "Você ainda não tem nenhum dependente cadastrado";
+        cardsContainer.appendChild(aviso);
+    } else {
+        // Se houver dependentes, cria os cards para cada dependente
+        dependentes.forEach(dep => {
+            const cardPaciente = criarCardsPaciente(dep.nome, dep.idade, dep.cpf, dep.foto, dep.id);
+            cardsContainer.appendChild(cardPaciente);
+        });
+    }
 </script>
