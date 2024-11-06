@@ -21,6 +21,8 @@ CREATE TABLE `dependentes` (
 	`cpf` VARCHAR(11) NOT NULL,
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`id_sexo` INTEGER NOT NULL,
+	`tel_emergencia` VARCHAR(11) NOT NULL,
+	`endereco` VARCHAR(255) NOT NULL,
 	PRIMARY KEY(`id`)
 );
 

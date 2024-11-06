@@ -1,11 +1,42 @@
+<?php
+    session_start();
+
+    $session_responsavel_id = $_SESSION['responsavel_id'] ?? null;
+    $cookie_responsavel_id = $_COOKIE['responsavel_id'] ?? null;
+
+    if (empty($cookie_responsavel_id) && empty($session_responsavel_id)) {
+        header("Location: /2023_odonto_kids/assets/pages/login.php");
+        exit;
+    }
+
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/2023_odonto_kids/assets/php/metodos_dashboard.php';
+    $metodos_dashboard = new metodos_dashboard();
+
+    $responsavel_id = !empty($cookie_responsavel_id) ? $cookie_responsavel_id : $session_responsavel_id;
+
+    if (!is_numeric($responsavel_id) || $responsavel_id <= 0) {
+        header("Location: /2023_odonto_kids/assets/pages/login.php");
+        exit;
+    }
+
+    $metodos_dashboard->setResponsavelId($responsavel_id);
+    $consultasOrganizadas = $metodos_dashboard->listar_proximas_consultas();
+
+    // echo "<script>
+    //     console.log('Session Responsavel ID: " . json_encode($session_responsavel_id) . "');
+    //     console.log('Cookie Responsavel ID: " . json_encode($cookie_responsavel_id) . "');
+    //     console.log('Responsavel ID: " . json_encode($responsavel_id) . "');
+    // </script>";
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento</title>
-    <link rel="stylesheet" href="../../css/escolha_dependente/escolha_dependente.css">
-    <link rel="stylesheet" href="CSS/pagina.css">
+    <link rel="stylesheet" href="../../../css/escolha_dependente/escolha_dependente.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -46,13 +77,13 @@
   
         <div id="div-logo">
             <h1>Odonto kids</h1>
-            <img src="../../img/geral/Logo.svg" alt="Odonto Kids logo">
+            <img src="../../../img/geral/Logo.svg" alt="Odonto Kids logo">
         </div>
   
   
         <!-- Botão para abrir o pop-up -->
         <button id="openPopup">
-          <img src="../../img/geral/foto_perfil_teste.png" alt="perfil_img" height="32px" width="32px">
+          <img src="../../../img/geral/foto_perfil_teste.png" alt="perfil_img" height="32px" width="32px">
       </button>
   
       <!-- O pop-up lateral -->
@@ -112,27 +143,9 @@
 
     <div class="caixa">
         <div class="cards">
-            <!-- Card 1 -->
-            <div class="card" data-paciente-id="1">
-                <img src="IMG/crianca1.jpg" alt="Foto de Pedro">
-                <p class="nome"><span>Nome:</span> Pedro Vasconcelos</p>
-                <p class="idade"><span>Idade:</span> 11 anos</p>
-                <p class="cpf"><span>CPF:</span> ***.092.***-**</p>
-            </div>
-            <!-- Card 2 -->
-            <div class="card" data-paciente-id="2">
-                <img src="IMG/crianca2.jpg" alt="Foto de Maria">
-                <p class="nome"><span>Nome:</span> Carolina Vasconcelos</p>
-                <p class="idade"><span>Idade:</span> 9 anos</p>
-                <p class="cpf"><span>CPF:</span> ***.467.***-**</p>
-            </div>
-            <!-- Card 3 -->
-            <div class="card" data-paciente-id="3">
-                <img src="IMG/crianca3.jpg" alt="Foto de Julio">
-                <p class="nome"><span>Nome:</span> Julio Vasconcelos</p>
-                <p class="idade"><span>Idade:</span> 8 anos</p>
-                <p class="cpf"><span>CPF:</span> ***.443.***-**</p>
-            </div>
+            <?php
+                include './views/cards-dependentes.php'
+            ?>
         </div>
     </div>
     
@@ -140,26 +153,51 @@
     <div id="form-container" class="modal">    
         <div class="modal-content">
             <span class="close-btn">&times;</span>
-            <form action="" method="post">
-            <h1 class="titulo">Cadastrar Dependente</h1>
-            <img src="../../img/escolha_dependente/form.png" alt="Formulario" style="display: block; margin: 0 auto; width: 80px; height: 80px;">
-            <p>Nome Completo: <input id="nome" name="nome" type="text" size="50" required onkeypress="return apenasLetras(event)" placeholder="Digite seu nome completo"></p>
-            <p>Data de Nascimento: <input id="data" name="data" type="date" required onkeypress="return blockletras(event)"></p>
-            <p>CPF: <input id="cpf" name="cpf" type="text" size="50" maxlength="14" placeholder="000.000.000-00" required></p>
-            <p>Sexo: 
-            <select name="genero" required>
-                <option name="pick" value="" disabled selected>Selecione</option>
-                <option name="masc" value="Masculino">Masculino</option>
-                <option name="femi" value="Feminino">Feminino</option>
-            </select>
-            </p>
-            <p>Telefone de Emergência: <input id="telEmerg" name="telEmerg" type="text" size="30" maxlength="15" required placeholder="(00) 00000-0000"></p>
-            <p>Endereço: <input name="endereco" type="text" size="30" placeholder="Digite seu endereço completo"></p>
-        </form>
+            <?php
+            include_once '../../../php/dependente.php';
 
-            <div class="btn-modal">
-              <input id="btncadastrar" name="btncadastrar" type="submit" value="Cadastrar">
-            </div>
+            // Verifica se o formulário foi enviado
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                // Recebe os dados do formulário
+                $responsavel_id = $_POST['responsavel_id'];  // Assume que este valor vem oculto no formulário
+                $nome = $_POST['nome'];
+                $nasc = $_POST['data'];
+                $cpf = $_POST['cpf'];
+                $id_sexo = ($_POST['genero'] === 'Masculino') ? 1 : 2;  // Supondo que 1 é Masculino e 2 é Feminino
+                $tel_emergencia = $_POST['telEmerg'];
+                $endereco = $_POST['endereco'];
+
+                // Limpa os campos de CPF e telefone para remover caracteres não numéricos
+                $cpf = preg_replace('/\D/', '', $cpf);  // Remove tudo que não for número
+                $tel_emergencia = preg_replace('/\D/', '', $tel_emergencia);  // Remove tudo que não for número
+
+                // Cria uma instância da classe Dependente
+                $dependente = new Dependente($responsavel_id, $nome, $nasc, $cpf, $id_sexo, $tel_emergencia, $endereco);
+
+                // Chama o método para logar os dados
+                $dependente->logDependente();
+            }
+            ?>          
+            <form action="" method="post">
+                <h1 class="titulo">Cadastrar Dependente</h1>
+                <input type="text" hidden name="responsavel_id" value="<?php echo $responsavel_id; ?>">
+                <img src="../../../img/escolha_dependente/form.png" alt="Formulario" style="display: block; margin: 0 auto; width: 80px; height: 80px;">
+                <p>Nome Completo: <input id="nome" name="nome" type="text" size="50" required onkeypress="return apenasLetras(event)" placeholder="Digite seu nome completo"></p>
+                <p>Data de Nascimento: <input id="data" name="data" type="date" required onkeypress="return blockletras(event)"></p>
+                <p>CPF: <input id="cpf" name="cpf" type="text" size="50" maxlength="14" placeholder="000.000.000-00" required></p>
+                <p>Sexo: 
+                    <select name="genero" required>
+                        <option name="pick" value="" disabled selected>Selecione</option>
+                        <option name="masc" value="Masculino">Masculino</option>
+                        <option name="femi" value="Feminino">Feminino</option>
+                    </select>
+                </p>
+                <p>Telefone de Emergência: <input id="telEmerg" name="telEmerg" type="text" size="30" maxlength="15" required placeholder="(00) 00000-0000"></p>
+                <p>Endereço: <input name="endereco" type="text" size="30" placeholder="Digite seu endereço completo"></p>
+                <div class="btn-modal">
+                    <p><input class="btn-modal" type="submit" value="Cadastrar Dependente"></p>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -185,6 +223,6 @@
 </section>
 
 
-<script src="../../js/escolha_dependente.js"></script>
+<script src="../../../js/escolha_dependente.js"></script>
 </body>
 </html>

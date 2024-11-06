@@ -1,3 +1,28 @@
+<?php
+    session_start();
+
+    $session_responsavel_id = $_SESSION['responsavel_id'] ?? null;
+    $cookie_responsavel_id = $_COOKIE['responsavel_id'] ?? null;
+
+    if (empty($cookie_responsavel_id) && empty($session_responsavel_id)) {
+        header("Location: /2023_odonto_kids/assets/pages/login.php");
+        exit;
+    }
+
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/2023_odonto_kids/assets/php/metodos_dashboard.php';
+    $metodos_dashboard = new metodos_dashboard();
+
+    $responsavel_id = !empty($cookie_responsavel_id) ? $cookie_responsavel_id : $session_responsavel_id;
+
+    if (!is_numeric($responsavel_id) || $responsavel_id <= 0) {
+        header("Location: /2023_odonto_kids/assets/pages/login.php");
+        exit;
+    }
+
+    $metodos_dashboard->setResponsavelId($responsavel_id);
+    $consultasOrganizadas = $metodos_dashboard->listar_proximas_consultas();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,31 +38,6 @@
     <title>Dashboard</title>
 </head>
 <body>
-
-    <?php
-        session_start();
-
-        $session_responsavel_id = $_SESSION['responsavel_id'] ?? null;
-        $cookie_responsavel_id = $_COOKIE['responsavel_id'] ?? null;
-
-        if (empty($cookie_responsavel_id) && empty($session_responsavel_id)) {
-            header("Location: /2023_odonto_kids/assets/pages/login.php");
-            exit;
-        }
-
-        include_once $_SERVER['DOCUMENT_ROOT'] . '/2023_odonto_kids/assets/php/metodos_dashboard.php';
-        $metodos_dashboard = new metodos_dashboard();
-
-        $responsavel_id = !empty($cookie_responsavel_id) ? $cookie_responsavel_id : $session_responsavel_id;
-
-        if (!is_numeric($responsavel_id) || $responsavel_id <= 0) {
-            header("Location: /2023_odonto_kids/assets/pages/login.php");
-            exit;
-        }
-
-        $metodos_dashboard->setResponsavelId($responsavel_id);
-        $consultasOrganizadas = $metodos_dashboard->listar_proximas_consultas();
-    ?>
 
     <script>
         // Passando a variável PHP para o JavaScript (debugar)
@@ -108,7 +108,7 @@
 
             <div class="cards-proximas-consultas">
                 <!-- Card -->
-                <div class="card-marcar-consulta">
+                <div class="card-marcar-consulta" onclick="window.location.href='../marcar_consulta_flow/escolha_dependente.php'">
                     <div class="container">
                         <div class="mais">+</div>
                         <div class="texto">Marcar consulta</div>
