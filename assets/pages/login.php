@@ -54,6 +54,9 @@
                 
                 <!--Lógica de login-->
                 <?php
+                session_start();
+
+                
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if (isset($_POST['btn_entrar'])) {
                             include_once '../php/metodos_principais.php';
@@ -74,7 +77,9 @@
                             if ($result == "responsavel") {
                                 header("Location:dashboard.html"); // Altere para o caminho desejado
                                 exit(); // Importante para parar a execução do script
-                            } else if ($result == "medico") {
+                            } else if ($result == "medico") {     
+                                  header("Location: perfil-medico.php");
+                                     exit();
                                 // Código pra ir pra dashboard do médico
                             } else {
                                 echo "<p style='color:red'>Email ou Senha inválidos</p>";
