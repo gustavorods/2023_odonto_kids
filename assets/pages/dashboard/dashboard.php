@@ -129,7 +129,7 @@
             <h1>HISTÓRICO DE CONSULTAS:</h1>
             <div class="cards-historico-consulta">
                 <?php
-                    include './views/historico-consultas.php'
+                    include './views/cards-historico-consultas.php'
                 ?>
             </div>
         </div>        
