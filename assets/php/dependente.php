@@ -11,8 +11,10 @@ class Dependente {
     private $tel_emergencia;
     private $endereco;
 
+    private $conn;
+
     // Construtor
-    public function __construct($id_responsavel, $nome, $nasc, $cpf, $id_sexo, $tel_emergencia, $endereco, $id = null) {
+    public function __construct($id_responsavel = null, $nome = null, $nasc = null, $cpf = null, $id_sexo = null, $tel_emergencia = null, $endereco = null, $id = null) {
         $this->id_responsavel = $id_responsavel;
         $this->nome = $nome;
         $this->nasc = $nasc;
@@ -86,6 +88,66 @@ class Dependente {
     public function setEndereco($endereco) {
         $this->endereco = $endereco;
     }
+
+    public function cadastrarDependente() {
+        // Cria uma nova conexão com o banco de dados
+        $this->conn = new Conectar();
+    
+        // Prepara a consulta SQL de INSERT
+        $sql = $this->conn->prepare("INSERT INTO dependentes (id_responsavel, nome, nasc, cpf, id_sexo, tel_emergencia, endereco) 
+                                    VALUES (?, ?, ?, ?, ?, ?, ?)");
+    
+        // Bind dos parâmetros para o INSERT
+        $sql->bindParam(1, $this->id_responsavel, PDO::PARAM_INT);
+        $sql->bindParam(2, $this->nome, PDO::PARAM_STR);
+        $sql->bindParam(3, $this->nasc, PDO::PARAM_STR); // A data já deve estar no formato YYYY-MM-DD
+        $sql->bindParam(4, $this->cpf, PDO::PARAM_STR);
+        $sql->bindParam(5, $this->id_sexo, PDO::PARAM_INT);
+        $sql->bindParam(6, $this->tel_emergencia, PDO::PARAM_STR);
+        $sql->bindParam(7, $this->endereco, PDO::PARAM_STR);
+    
+        // Executa o comando
+        $sql->execute();
+    }
+
+    public function listarDependentes() {
+        // Cria uma nova conexão com o banco de dados
+        $this->conn = new Conectar();
+    
+        // Prepara a consulta SQL de SELECT
+        $sql = $this->conn->prepare("SELECT id, nome, cpf, nasc FROM dependentes");
+    
+        // Executa a consulta
+        $sql->execute();
+    
+        // Array para armazenar os dados dos dependentes
+        $dependentes = [];
+    
+        // Busca os resultados
+        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+            // Calcula a idade com base na data de nascimento
+            $nasc = new DateTime($row['nasc']);
+            $hoje = new DateTime();
+            $idade = $hoje->diff($nasc)->y;
+    
+            // Cria o array para o dependente com os dados solicitados
+            $dependente = [
+                'id' => $row['id'],
+                'nome' => $row['nome'],
+                'cpf' => $row['cpf'], // Aplicando a máscara no CPF
+                'idade' => $idade,
+                'foto' => 'IMG/placeholder.jpg' // Placeholder para imagem por enquanto
+            ];
+    
+            // Adiciona o dependente ao array de dependentes
+            $dependentes[] = $dependente;
+        }
+    
+        // Retorna o array de dependentes
+        return $dependentes;
+    }
+    
+    
 
     // Método para logar os dados
     public function logDependente() {

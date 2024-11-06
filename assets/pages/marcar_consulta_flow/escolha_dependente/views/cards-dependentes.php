@@ -1,3 +1,7 @@
+<?php
+    $dependentes = $dependente->listarDependentes();
+?>
+
 <script>
     function criarCardsPaciente(nome, idade, cpf, fotoUrl, id_paciente) {
         const card = document.createElement('div');
@@ -13,15 +17,17 @@
         return card;
     }
 
-    // Função para mascarar o CPF
+    // Função para mascarar o CPF, deixando os primeiros 3 e os dois últimos dígitos com asteriscos
     function mascaraCpf(cpf) {
-        return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+        return cpf.replace(/(\d{3})\d{3}(\d{3})(\d{2})/, '***.$2.$3-**');
     }
 
-    // Exemplo de uso
-    const cardPaciente = criarCardsPaciente('Julio Vasconcelos', 11, '12345678901', 'IMG/crianca3.jpg', 3);
+    // Obter os dados dos dependentes
+    const dependentes = <?php echo json_encode($dependentes); ?>
 
-    // Supondo que você queira adicionar o card ao container
-    document.querySelector('.cards').appendChild(cardPaciente);
-    
+    // Laço que percorre os dependentes e cria os cards
+    dependentes.forEach(dep => {
+        const cardPaciente = criarCardsPaciente(dep.nome, dep.idade, dep.cpf, dep.foto, dep.id);
+        document.querySelector('.cards').appendChild(cardPaciente);
+    });
 </script>

@@ -1,4 +1,7 @@
 <?php
+    include_once '../../../php/dependente.php';
+    $dependente = new Dependente();
+
     session_start();
 
     $session_responsavel_id = $_SESSION['responsavel_id'] ?? null;
@@ -9,18 +12,12 @@
         exit;
     }
 
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/2023_odonto_kids/assets/php/metodos_dashboard.php';
-    $metodos_dashboard = new metodos_dashboard();
-
     $responsavel_id = !empty($cookie_responsavel_id) ? $cookie_responsavel_id : $session_responsavel_id;
 
     if (!is_numeric($responsavel_id) || $responsavel_id <= 0) {
         header("Location: /2023_odonto_kids/assets/pages/login.php");
         exit;
     }
-
-    $metodos_dashboard->setResponsavelId($responsavel_id);
-    $consultasOrganizadas = $metodos_dashboard->listar_proximas_consultas();
 
     // echo "<script>
     //     console.log('Session Responsavel ID: " . json_encode($session_responsavel_id) . "');
@@ -154,8 +151,6 @@
         <div class="modal-content">
             <span class="close-btn">&times;</span>
             <?php
-            include_once '../../../php/dependente.php';
-
             // Verifica se o formulário foi enviado
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Recebe os dados do formulário
@@ -175,7 +170,7 @@
                 $dependente = new Dependente($responsavel_id, $nome, $nasc, $cpf, $id_sexo, $tel_emergencia, $endereco);
 
                 // Chama o método para logar os dados
-                $dependente->logDependente();
+                $dependente->cadastrarDependente();
             }
             ?>          
             <form action="" method="post">
