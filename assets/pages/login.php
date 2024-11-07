@@ -56,37 +56,45 @@
                 <?php
                 session_start();
 
-                
-                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        if (isset($_POST['btn_entrar'])) {
-                            include_once '../php/metodos_principais.php';
-                            $metodos_principais = new metodos_principais();
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if (isset($_POST['btn_entrar'])) {
+                        // Importando e inicializando a classe com os metodos necessarios
+                        include_once '../php/metodos_principais.php';
+                        $metodos_principais = new metodos_principais();
 
-                            // Armazena os valores em variáveis
-                            $email = $_POST['txt_email'];
-                            $senha = $_POST['txt_senha'];
+                        // Armazena os valores em variáveis
+                        $email = $_POST['txt_email'];
+                        $senha = $_POST['txt_senha'];
 
-                            // Passa as variáveis
-                            $metodos_principais->set_email_user($email);
-                            $metodos_principais->set_senha_user($senha);
-                            $metodos_principais->set_email_medico($email);
-                            $metodos_principais->set_senha_medico($senha);
+                        // Passa as variáveis
+                        $metodos_principais->set_email_user($email);
+                        $metodos_principais->set_senha_user($senha);
+                        $metodos_principais->set_email_medico($email);
+                        $metodos_principais->set_senha_medico($senha);
+                        
+                        // Verifica se o login existe (vai me retornar a tabela caso exista)
+                        $result = $metodos_principais->login();
+
+                        // Verificando se retornou alguma das tabelas validas
+                        if($result == "responsavel" || $result == "medico") {
+                            // Pegando os dados do usuario  
+                            $user = $metodos_principais->verificar_email_tabela_e_id($email);
+                            $_SESSION['dados_user'] = $metodos_principais->obter_dados_do_user($user['tabela'], $user['id']);
                             
-                            $result = $metodos_principais->login();
-
+                            // Levando cada usuario  para sua dashboard
                             if ($result == "responsavel") {
-                                header("Location:dashboard.html"); // Altere para o caminho desejado
-                                exit(); // Importante para parar a execução do script
+                                header("Location:dashboard.html"); 
+                                exit(); 
                             } else if ($result == "medico") {     
-                                  header("Location: perfil-medico.php");
-                                     exit();
-                                // Código pra ir pra dashboard do médico
-                            } else {
-                                echo "<p style='color:red'>Email ou Senha inválidos</p>";
-                                echo $result;
-                            }
+                                header("Location:perfil-medico.php"); // Alterar dps
+                                exit();
+                        }
+                        } else {
+                            echo "<p style='color:red'>Email ou Senha inválidos</p>";
+                            echo $result;
                         }
                     }
+                }
                 ?>
             </form>
        </div>
