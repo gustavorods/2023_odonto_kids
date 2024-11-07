@@ -1,11 +1,11 @@
 <?php
 session_start();
+/*
 require '../php/conectar.php';
 require '../php/medico.php';
 
 
 $user_id = $_SESSION['user_id'];
-$medico = Medico::buscarPorId($user_id);
 
 // Função para atualizar as informações do usuário
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['alterar'])) {
@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['alterar'])) {
     $medico->setCodEspecialidade($_POST['cod_especialidade']);
     $mensagem = $medico->alterar2();
 }
+*/
 ?>
 
 <!DOCTYPE html>
@@ -94,10 +95,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['alterar'])) {
         <div class="col-xl-4">
             <!-- Card de perfil -->
             <div class="card mb-4 mb-xl-0">
-                <div class="card-header">Olá, <?php echo htmlspecialchars($medico->getNome()); ?></div>
+                <div class="card-header">Olá, <?php?></div>
                 <div class="card-body text-center">
                     <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Imagem de Perfil">
-                    <div class="small font-italic text-muted mb-4"><?php echo htmlspecialchars($medico->getNome()); ?></div>
+                    <div class="small font-italic text-muted mb-4"><?php?></div>
                     <button class="btn btn-primary" type="button">Upload nova imagem</button>
                 </div>
             </div>
@@ -113,35 +114,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['alterar'])) {
                     <form>
                         <div class="mb-3">
                             <label class="small mb-1">Nome Completo:</label>
-                            <input class="form-control" type="text" value="<?php echo htmlspecialchars($medico->getNome()); ?>" readonly>
+                            <input class="form-control" type="text" value="<?php echo $_SESSION['dados_user']['nome']; ?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">CPF:</label>
-                            <input class="form-control" type="text" value="<?php echo htmlspecialchars($medico->getCpf()); ?>" readonly>
+                            <input class="form-control" type="text" value="<?php ?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">Email:</label>
-                            <input class="form-control" type="text" value="<?php echo htmlspecialchars($medico->getEmail()); ?>" readonly>
+                            <input class="form-control" type="text" value="<?php?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">Telefone:</label>
-                            <input class="form-control" type="text" value="<?php echo htmlspecialchars($medico->getTelefone()); ?>" readonly>
+                            <input class="form-control" type="text" value="<?php ?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">Data de Nascimento:</label>
-                            <input class="form-control" type="text" value="<?php echo htmlspecialchars($medico->getNasc()); ?>" readonly>
+                            <input class="form-control" type="text" value="<?php?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">Gênero:</label>
-                            <input class="form-control" type="text" value="<?php echo htmlspecialchars($medico->getGenero()); ?>" readonly>
+                            <input class="form-control" type="text" value="<?php?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">CRM:</label>
-                            <input class="form-control" type="text" value="<?php echo htmlspecialchars($medico->getCrm()); ?>" readonly>
+                            <input class="form-control" type="text" value="<?php?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">Código da Especialidade:</label>
-                            <input class="form-control" type="text" value="<?php echo htmlspecialchars($medico->getCodEspecialidade()); ?>" readonly>
+                            <input class="form-control" type="text" value="<?php?>" readonly>
                         </div>
                     </form>
                 </div>
@@ -164,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['alterar'])) {
                     <!-- Campos atualizados de acordo com os dados do objeto $medico -->
                     <div class="mb-3">
                         <label for="inputEditNome" class="form-label">Nome Completo</label>
-                        <input type="text" class="form-control" id="inputEditNome" name="nome" value="<?php echo htmlspecialchars($medico->getNome()); ?>">
+                        <input type="text" class="form-control" id="inputEditNome" name="nome" value="<?php?>">
                     </div>
                     <!-- Repetir os outros campos de edição como CPF, email, etc. -->
                     <button type="submit" name="alterar" class="btn btn-primary">Salvar Alterações</button>
