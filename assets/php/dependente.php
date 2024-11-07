@@ -149,7 +149,6 @@ class Dependente {
     
     
 
-    // Método para logar os dados
     public function logDependente() {
         // Cria uma string com os valores das variáveis
         $log_message = "ID: " . $this->getId() . "\n";

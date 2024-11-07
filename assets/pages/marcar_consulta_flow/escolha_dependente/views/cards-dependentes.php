@@ -9,8 +9,12 @@
 
         // Adiciona uma função de clique ao card
         card.addEventListener('click', function() {
-            alert('Card clicado!');
-        })        
+            // Armazena o id_paciente na sessão
+            sessionStorage.setItem('id_paciente', id_paciente);
+
+            // Redireciona para a página escolha_tratamento.html
+            window.location.href = '../escolha_tratamento/escolha_tratamento.html';
+        }); 
 
         card.innerHTML = `
             <img src="${fotoUrl}" alt="Foto de ${nome}">
