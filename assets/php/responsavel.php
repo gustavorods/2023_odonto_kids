@@ -95,17 +95,35 @@ class responsavel
         try
         {
             $this->conn = new Conectar();
-            $sql = $this->conn->prepare("INSERT INTO responsavel VALUES (null, ?, ?, ?, ?, ?, ?, ?, null)");
-            @$sql->bindParam(1, $this->getNome(), PDO::PARAM_STR);
-            @$sql->bindParam(2, $this->getEmail(), PDO::PARAM_STR);
-            @$sql->bindParam(3, $this->getCpf(), PDO::PARAM_STR);
-            @$sql->bindParam(4, $this->getTelefone(), PDO::PARAM_STR);
-            @$sql->bindParam(5, $this->getNasc(), PDO::PARAM_STR);
-            @$sql->bindParam(6, $this->getGenero(), PDO::PARAM_STR);
-            @$sql->bindParam(7, $this->getSenha(), PDO::PARAM_STR);
-            if ($sql->execute()) {
-                return "Registro salvo com sucesso!";
+            // Atribua os valores a variáveis
+            $nome = $this->getNome();
+            $email = $this->getEmail();
+            $cpf = $this->getCpf();
+            $telefone = $this->getTelefone();
+            $nasc = $this->getNasc();
+            $genero = $this->getGenero();
+            $senha = $this->getSenha();
+
+            // Prepare a consulta
+            $sql = $this->conn->prepare("INSERT INTO responsavel (nome, email, cpf, telefone, nasc, genero, senha) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+            // Faça o bind das variáveis aos parâmetros
+            $sql->bindParam(1, $nome, PDO::PARAM_STR);
+            $sql->bindParam(2, $email, PDO::PARAM_STR);
+            $sql->bindParam(3, $cpf, PDO::PARAM_STR);
+            $sql->bindParam(4, $telefone, PDO::PARAM_STR);
+            $sql->bindParam(5, $nasc, PDO::PARAM_STR);
+            $sql->bindParam(6, $genero, PDO::PARAM_STR);
+            $sql->bindParam(7, $senha, PDO::PARAM_STR);
+
+            // Execute a consulta dentro de um try-catch para captura de erros
+            try {
+                $sql->execute();
+                echo "Dados inseridos com sucesso.";
+            } catch (PDOException $e) {
+                echo "Erro: " . $e->getMessage();
             }
+
             $this->conn = null;
         }
         catch (PDOException $exc)
