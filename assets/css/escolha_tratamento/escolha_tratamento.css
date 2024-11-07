@@ -80,19 +80,7 @@
     border-radius: 0px 0px 15px 15px; /* Somente o último li terá border-radius */
 }
 
-/* Define a largura da barra de rolagem */
-::-webkit-scrollbar {
-    width: 8px;  /* Pode ajustar a largura ou altura conforme necessário */
-}
-
-/* Define o estilo do "polegar" da barra de rolagem */
-::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #AA9D9D;
-}
-
-/* Opcional: Estiliza a parte "de fundo" da barra de rolagem */
-::-webkit-scrollbar-track {
-    background-color: #f0f0f0;
-    border-radius: 10px;
+.titulo{
+    text-align: center;
+    margin-top: 36px;s
 }

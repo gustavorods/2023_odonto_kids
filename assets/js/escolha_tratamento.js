@@ -1,13 +1,18 @@
-let resultados = [
-    'Selante dentário para prevenção de cáries',
-    'Fluoretação para fortalecimento do esmalte',
-    'Restauração dentária em dentes de leite',
-    'Tratamento de canal em dentes decíduos',
-    'Extração de dentes de leite quando necessário',
-    'Correção ortodôntica para alinhamento dos dentes',
-    'Cuidados com traumas dentários em crianças',
-    'Orientação para uma boa higiene bucal desde cedo',
-];
+let resultados = [];  // Inicializa o array vazio
+
+// Carregar os tratamentos inicialmente
+window.onload = function() {
+    // Fazer a requisição AJAX para buscar os tratamentos
+    fetch('/2023_odonto_kids/assets/php/buscarTratamentos.php')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);  // Verifica o que foi retornado pelo PHP
+            resultados = data; // Preenche o array 'resultados' com os dados do PHP
+        })
+        .catch(error => {
+            console.error('Erro ao carregar tratamentos:', error);
+        });
+};
 
 const caixaDeTexto = document.getElementById('input-box');
 const resultadosBox = document.querySelector('.resultados-pesquisa');
@@ -35,11 +40,10 @@ caixaDeTexto.onkeyup = function() {
             // Exibe a caixa de resultados
             resultadosBox.style.display = 'block';            
         }
-        
-
     }
 }
 
+// Função para exibir os resultados no DOM
 function mostrarResultados(result) {
     // Converte o array de resultados em uma lista de itens HTML
     const conteudo = result.map((lista) => {
@@ -50,6 +54,7 @@ function mostrarResultados(result) {
     resultadosBox.innerHTML = "<ul>" + conteudo + "</ul>";
 }
 
+// Função para pegar o item clicado
 function pegarTratamento(lista) {
     // Atribui o valor do item clicado ao campo de texto
     caixaDeTexto.value = lista.innerHTML;
@@ -57,3 +62,27 @@ function pegarTratamento(lista) {
     // Esconde a caixa de resultados após a seleção
     resultadosBox.style.display = 'none';
 }
+
+// Adiciona o evento de pressionamento da tecla 'Enter'
+caixaDeTexto.addEventListener('keydown', function(event) {
+    // Verifica se a tecla pressionada é 'Enter' (código 13)
+    if (event.key === 'Enter') {
+        // Verifica se há resultados
+        let resultado = resultados.filter((keyword) => {
+            return keyword.toLowerCase().includes(caixaDeTexto.value.toLowerCase());
+        });
+
+        // Se houver resultados, preenche o campo de texto com o primeiro resultado
+        if (resultado.length > 0) {
+            caixaDeTexto.value = resultado[0];  // Atribui o primeiro resultado
+            resultadosBox.style.display = 'none';  // Esconde a caixa de resultados
+        }
+    }
+});
+
+caixaDeTexto.addEventListener('keyup', function(event) {
+    // Só esconde a caixa de resultados quando a tecla for liberada
+    if (event.key === 'Enter') {
+        resultadosBox.style.display = 'none';  // Esconde a caixa de resultados
+    }
+});
