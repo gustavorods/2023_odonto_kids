@@ -86,3 +86,23 @@ caixaDeTexto.addEventListener('keyup', function(event) {
         resultadosBox.style.display = 'none';  // Esconde a caixa de resultados
     }
 });
+
+// Evento de foco no campo de entrada (quando o usuário clica no campo)
+caixaDeTexto.addEventListener('focus', function() {
+    // Verifica se o campo de entrada está vazio
+    if (caixaDeTexto.value === '') {
+        // Se o campo estiver vazio, exibe todos os tratamentos
+        mostrarResultados(resultados);
+        resultadosBox.style.display = 'block';  // Exibe a caixa de resultados
+    }
+});
+
+// Evento 'blur' para esconder a caixa de resultados quando o campo perder o foco
+caixaDeTexto.addEventListener('blur', function() {
+    // Verifica se o clique foi fora da caixa de resultados ou no campo de texto
+    setTimeout(() => {
+        if (!resultadosBox.contains(document.activeElement)) {
+            resultadosBox.style.display = 'none';  // Esconde a caixa de resultados
+        }
+    }, 100);
+});
