@@ -7,6 +7,11 @@
         const card = document.createElement('div');
         card.classList.add('card');
 
+        // Adiciona uma função de clique ao card
+        card.addEventListener('click', function() {
+            alert('Card clicado!');
+        })        
+
         card.innerHTML = `
             <img src="${fotoUrl}" alt="Foto de ${nome}">
             <p class="nome"><span>Nome:</span> ${nome}</p>
@@ -32,7 +37,7 @@
         // Se não houver dependentes, adiciona um aviso dentro do contêiner de cards
         const aviso = document.createElement('div');
         aviso.classList.add('aviso');
-        aviso.innerHTML = "Você ainda não tem nenhum dependente cadastrado";
+        aviso.innerHTML = "Você ainda não possui nenhum dependente cadastrado";
         cardsContainer.appendChild(aviso);
     } else {
         // Se houver dependentes, cria os cards para cada dependente
