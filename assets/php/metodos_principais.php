@@ -160,5 +160,34 @@ class metodos_principais
             return false;
         }
     }    
+
+    public function obter_dados_do_user($tabela, $id) {
+        try {
+            $this->conn = new Conectar();
+            
+            // Verifica se a tabela é "medico" ou "responsavel"
+            if ($tabela === 'medico' || $tabela === 'responsavel') {
+                // Define a consulta com base na tabela fornecida
+                $sql = $this->conn->prepare("SELECT * FROM $tabela WHERE id = ?");
+                $sql->bindParam(1, $id, PDO::PARAM_INT);
+                $sql->execute();
+    
+                // Retorna os dados se encontrados
+                $dados = $sql->fetch(PDO::FETCH_ASSOC);
+                $this->conn = null;
+    
+                if ($dados) {
+                    return $dados;
+                }
+            }
+    
+            return false; // Retorna false se a tabela não for "medico" ou "responsavel" ou se não encontrar dados
+    
+        } catch (PDOException $exc) {
+            echo "Erro ao consultar. " . $exc->getMessage();
+            return false;
+        }
+    }
+    
 }
 ?>

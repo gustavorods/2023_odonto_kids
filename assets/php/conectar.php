@@ -25,13 +25,11 @@ class conectar extends PDO
         }
         return self::$instancia;
     }
-    public function sql($query)
+    public function sql($query, $params = [])
     {
-        $this->getInstance();
-        $this->query = $query;
-        $pdo = null; // Não é totalmente necessário, visto que tem maneiras mais otimizadas. 
-        $stmt = $pdo->prepare($this->query);
-        $stmt->execute();
+        $stmt = self::$instancia->prepare($query);
+        $stmt->execute($params);
+        return $stmt;
     }
 }
 ?>
