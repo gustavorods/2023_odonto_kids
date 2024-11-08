@@ -76,7 +76,6 @@
                         <option value="">Selecione</option>
                         <option value="masculino">Masculino</option>
                         <option value="feminino">Feminino</option>
-                        <option value="outro">Outro</option>
                     </select>
 
                     <!-- CRM -->
@@ -92,8 +91,27 @@
                         <label for="txt_especialidade" class="input_label">Especialidade</label>
                     </div>
                     <select name="txt_especialidade" id="txt_especialidade" class="form_input">
-                        <option value="">Selecione</option> <!-- Tirar isso, para que não atrapalhar na verificação -->
-                        <!-- Lógica php para puxar as opções que estão no banco -->                       
+                        <?php
+                            
+                            // Importando e inicializando a classe com os metodos necessarios
+                            include_once '../php/especialidades.php';
+                            $especialidades_instancia = new Especialidade();
+
+                            // Pegando as especialidades do banco de dados
+                            $result = $especialidades_instancia->getAllEspecialidades();
+
+                            // Como são varias, eu primeiro verifico se tem uma especialidade, caso tenha dou um foreach para mostrar todas 
+                            if(!empty($result)) {
+                                foreach ($result as $especialidade) {
+                                    ?>
+                                        <option 
+                                        value="<?php $especialidade['funcao']?>">
+                                        <?php echo $especialidade['funcao']?>
+                                        </option>
+                                    <?php
+                                }   
+                            }
+                        ?>   
                     </select>
                 </div>
              </form>
