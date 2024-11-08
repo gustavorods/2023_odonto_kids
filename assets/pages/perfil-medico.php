@@ -1,25 +1,29 @@
 <?php
 session_start();
+
+// Importando e inicializando a classe com os metodos necessarios
+include_once '../php/metodos_principais.php';
+include_once '../php/especialidades.php';
+$metodos_principais = new metodos_principais();
+$especialidades = new Especialidade();
+
+// Pegando todos os dados do medico 
+$dados_user = $metodos_principais->obter_dados_do_user($_SESSION['user']['tabela'], $_SESSION['user']['id']);
 /*
-require '../php/conectar.php';
-require '../php/medico.php';
+Exemplo de como puxar os dados:
+    $dados_user['NOME_DO_CAMPO']
+*/
 
 
-$user_id = $_SESSION['user_id'];
+// pegando o nome da especialidade do médico 
+$dados_user_especialidades = $especialidades->getEspecialidadeById($dados_user['cod_especialidade']); 
+/*
+Exemplo de como puxar os dados:
+puxando a função:
+    $dados_user_especialidades['funcao'];
 
-// Função para atualizar as informações do usuário
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['alterar'])) {
-    $medico->setNome($_POST['nome']);
-    $medico->setCpf($_POST['cpf']);
-    $medico->setEmail($_POST['email']);
-    $medico->setTelefone($_POST['telefone']);
-    $medico->setNasc($_POST['nasc']);
-    $medico->setGenero($_POST['genero']);
-    $medico->setSenha($_POST['senha']); // Senha em texto claro
-    $medico->setCrm($_POST['crm']);
-    $medico->setCodEspecialidade($_POST['cod_especialidade']);
-    $mensagem = $medico->alterar2();
-}
+puxando a descricao:
+    $dados_user_especialidades['descricao'];
 */
 ?>
 
@@ -95,9 +99,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['alterar'])) {
         <div class="col-xl-4">
             <!-- Card de perfil -->
             <div class="card mb-4 mb-xl-0">
-                <div class="card-header">Olá, <?php?></div>
+                <div class="card-header">Olá, <?php echo $dados_user['nome'];?></div>
                 <div class="card-body text-center">
-                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Imagem de Perfil">
+                    <?php
+                        if($dados_user['foto'] == null) {
+                            ?>
+                            <img class="img-account-profile rounded-circle mb-2" src="../img/perfil_medico/perfil_anonimo_icon.png" alt="Imagem de Perfil">
+                            <?php
+                        } else {
+                            // Lógica pra puxar a imagem real do user
+                        }
+                    ?>
                     <div class="small font-italic text-muted mb-4"><?php?></div>
                     <button class="btn btn-primary" type="button">Upload nova imagem</button>
                 </div>
@@ -114,35 +126,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['alterar'])) {
                     <form>
                         <div class="mb-3">
                             <label class="small mb-1">Nome Completo:</label>
-                            <input class="form-control" type="text" value="<?php echo $_SESSION['dados_user']['nome']; ?>" readonly>
+                            <input class="form-control" type="text" value="<?php echo $dados_user['nome'];?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">CPF:</label>
-                            <input class="form-control" type="text" value="<?php ?>" readonly>
+                            <input class="form-control" type="text" value="<?php echo $dados_user['cpf'];?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">Email:</label>
-                            <input class="form-control" type="text" value="<?php?>" readonly>
+                            <input class="form-control" type="text" value="<?php echo $dados_user['email'];?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">Telefone:</label>
-                            <input class="form-control" type="text" value="<?php ?>" readonly>
+                            <input class="form-control" type="text" value="<?php echo $dados_user['telefone'];?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">Data de Nascimento:</label>
-                            <input class="form-control" type="text" value="<?php?>" readonly>
+                            <input class="form-control" type="text" value="<?php echo $dados_user['nasc'];?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">Gênero:</label>
-                            <input class="form-control" type="text" value="<?php?>" readonly>
+                            <input class="form-control" type="text" value="<?php echo $dados_user['genero'];?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">CRM:</label>
-                            <input class="form-control" type="text" value="<?php?>" readonly>
+                            <input class="form-control" type="text" value="<?php echo $dados_user['CRM'];?>" readonly>
                         </div>
                         <div class="mb-3">
-                            <label class="small mb-1">Código da Especialidade:</label>
-                            <input class="form-control" type="text" value="<?php?>" readonly>
+                            <label class="small mb-1">Especialidade:</label>
+                            <input class="form-control" type="text" value="<?php echo $dados_user_especialidades['funcao'];?>" readonly>
                         </div>
                     </form>
                 </div>

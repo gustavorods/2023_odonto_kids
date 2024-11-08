@@ -78,8 +78,7 @@
                         // Verificando se retornou alguma das tabelas validas
                         if($result == "responsavel" || $result == "medico") {
                             // Pegando os dados do usuario  
-                            $user = $metodos_principais->verificar_email_tabela_e_id($email);
-                            $_SESSION['dados_user'] = $metodos_principais->obter_dados_do_user($user['tabela'], $user['id']);
+                            $_SESSION['user'] = $metodos_principais->verificar_email_tabela_e_id($email);
                             
                             // Levando cada usuario  para sua dashboard
                             if ($result == "responsavel") {
