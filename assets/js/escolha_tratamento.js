@@ -21,25 +21,20 @@ caixaDeTexto.onkeyup = function() {
     let resultado = [];
     let input = caixaDeTexto.value;
 
-    // Se a entrada estiver vazia, esconder a caixa de resultados
-    if(input.length === 0) {
+    // Filtra os resultados
+    resultado = resultados.filter((keyword) => {
+        return keyword.toLowerCase().includes(input.toLowerCase());
+    });
+
+    // Chama a função para mostrar os resultados filtrados
+    mostrarResultados(resultado);
+
+    if(!resultado.length){
         resultadosBox.style.display = 'none';
-    } else {
-        // Filtra os resultados
-        resultado = resultados.filter((keyword) => {
-            return keyword.toLowerCase().includes(input.toLowerCase());
-        });
-
-        // Chama a função para mostrar os resultados filtrados
-        mostrarResultados(resultado);
-
-        if(!resultado.length){
-            resultadosBox.style.display = 'none';
-        }
-        else{
-            // Exibe a caixa de resultados
-            resultadosBox.style.display = 'block';            
-        }
+    }
+    else{
+        // Exibe a caixa de resultados
+        resultadosBox.style.display = 'block';            
     }
 }
 
@@ -64,7 +59,7 @@ function pegarTratamento(lista) {
 }
 
 // Adiciona o evento de pressionamento da tecla 'Enter'
-caixaDeTexto.addEventListener('keydown', function(event) {
+caixaDeTexto.addEventListener('keyup', function(event) {
     // Verifica se a tecla pressionada é 'Enter' (código 13)
     if (event.key === 'Enter') {
         // Verifica se há resultados
@@ -77,13 +72,6 @@ caixaDeTexto.addEventListener('keydown', function(event) {
             caixaDeTexto.value = resultado[0];  // Atribui o primeiro resultado
             resultadosBox.style.display = 'none';  // Esconde a caixa de resultados
         }
-    }
-});
-
-caixaDeTexto.addEventListener('keyup', function(event) {
-    // Só esconde a caixa de resultados quando a tecla for liberada
-    if (event.key === 'Enter') {
-        resultadosBox.style.display = 'none';  // Esconde a caixa de resultados
     }
 });
 
