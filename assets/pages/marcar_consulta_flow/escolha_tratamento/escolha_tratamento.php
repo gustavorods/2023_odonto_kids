@@ -1,6 +1,6 @@
-<!-- <?php
-    include_once '../../../php/dependente.php';
-    $dependente = new Dependente();
+<?php
+    // include_once '../../../php/dependente.php';
+    // $dependente = new Dependente();
 
     session_start();
 
@@ -13,45 +13,14 @@
     }
 
     $responsavel_id = !empty($cookie_responsavel_id) ? $cookie_responsavel_id : $session_responsavel_id;
-
-    if (!is_numeric($responsavel_id) || $responsavel_id <= 0) {
-        header("Location: /2023_odonto_kids/assets/pages/login.php");
-        exit;
-    }
-
-    // Verificar se o formulário foi enviado
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Recebe os dados do formulário
-        $responsavel_id = $_POST['responsavel_id'];  // Assume que este valor vem oculto no formulário
-        $nome = $_POST['nome'];
-        $nasc = $_POST['data'];
-        $cpf = $_POST['cpf'];
-        $id_sexo = ($_POST['genero'] === 'Masculino') ? 1 : 2;  // Supondo que 1 é Masculino e 2 é Feminino
-        $tel_emergencia = $_POST['telEmerg'];
-        $endereco = $_POST['endereco'];
-
-        // Limpa os campos de CPF e telefone para remover caracteres não numéricos
-        $cpf = preg_replace('/\D/', '', $cpf);  // Remove tudo que não for número
-        $tel_emergencia = preg_replace('/\D/', '', $tel_emergencia);  // Remove tudo que não for número
-
-        // Cria uma instância da classe Dependente
-        $dependente = new Dependente($responsavel_id, $nome, $nasc, $cpf, $id_sexo, $tel_emergencia, $endereco);
-
-        // Chama o método para cadastrar o dependente
-        $dependente->cadastrarDependente();
-
-        // Redireciona para a mesma página para evitar reenvio ao recarregar
-        header('Location: ' . $_SERVER['PHP_SELF']);
-        exit; // Garantir que o código não continue executando após o redirecionamento
-    }
     
-    //debug
-    // echo "<script>
-    //     console.log('Session Responsavel ID: " . json_encode($session_responsavel_id) . "');
-    //     console.log('Cookie Responsavel ID: " . json_encode($cookie_responsavel_id) . "');
-    //     console.log('Responsavel ID: " . json_encode($responsavel_id) . "');
-    // </script>";    
-?> -->
+    // debug
+    echo "<script>
+        console.log('Session Responsavel ID: " . json_encode($session_responsavel_id) . "');
+        console.log('Cookie Responsavel ID: " . json_encode($cookie_responsavel_id) . "');
+        console.log('Responsavel ID: " . json_encode($responsavel_id) . "');
+    </script>";    
+?>
 
 
 <!DOCTYPE html>
@@ -59,7 +28,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamento</title>
+    <title>Escolha Tratamento | Odontokids</title>
     <link rel="stylesheet" href="../../../css/geral/default.css">
     <link rel="stylesheet" href="../../../css/escolha_tratamento/escolha_tratamento.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -148,7 +117,7 @@
         <div class="pesquisa">
             <div class="caixa_pesquisa">
                 <input type="text" id="input-box" autocomplete="off" placeholder="Escreva o tratamento desejado">
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button id="botao-pesquisar"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
             <div class="resultados-pesquisa">
             </div>

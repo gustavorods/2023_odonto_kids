@@ -94,3 +94,12 @@ caixaDeTexto.addEventListener('blur', function() {
         }
     }, 100);
 });
+
+document.getElementById('botao-pesquisar').addEventListener("click", function(){
+    if(caixaDeTexto.value == ""){
+        alert("Escreva o tratamento desejado.")
+    }
+    else{
+        
+    }
+});

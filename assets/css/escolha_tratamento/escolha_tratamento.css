@@ -35,11 +35,12 @@
     border-left: 1px solid #AA9D9D; /* Borda para separar o botão */
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    transition: 0.1ms;
 }
 
-.tratamento_container button:hover {
+.tratamento_container button:active {
     background-color: #f0f0f0; /* Fundo levemente cinza ao passar o mouse */
-}
+}   
 
 .tratamento_container button .fa-solid {
     font-size: 15pt;
