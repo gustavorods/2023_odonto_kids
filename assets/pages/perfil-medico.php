@@ -4,11 +4,14 @@ session_start();
 // Importando e inicializando a classe com os metodos necessarios
 include_once '../php/metodos_principais.php';
 include_once '../php/especialidades.php';
+include_once '../php/medico.php';
 $metodos_principais = new metodos_principais();
 $especialidades = new Especialidade();
-
+$usuario = new Medico();
 // Pegando todos os dados do medico 
 $dados_user = $metodos_principais->obter_dados_do_user($_SESSION['user']['tabela'], $_SESSION['user']['id']);
+
+
 /*
 Exemplo de como puxar os dados:
     $dados_user['NOME_DO_CAMPO']
@@ -25,7 +28,16 @@ puxando a função:
 puxando a descricao:
     $dados_user_especialidades['descricao'];
 */
+
+// Função para atualizar as informações do médico
+
+if (isset($_SESSION['mensagem'])) {
+    echo "<p>{$_SESSION['mensagem']}</p>";
+    unset($_SESSION['mensagem']);
+}
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -70,18 +82,50 @@ puxando a descricao:
         .float-end {
             float: right;
         }
+
+        /* Estilos para a div que envolve o botão */
+.logout-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilos para o botão de logout */
+.logout-btn {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Efeito de hover para o botão */
+.logout-btn:hover {
+    background-color: darkred;
+    transform: scale(1.05);
+}
+
     </style>
     <script>
-        function togglePasswordVisibility() {
-            const passwordInput = document.getElementById("inputEditSenha");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                event.target.textContent = "Ocultar";
-            } else {
-                passwordInput.type = "password";
-                event.target.textContent = "Mostrar";
-            }
-        }
+      function toggleSenha() {
+    const senhaInput = document.getElementById("senha");
+    const senhaIcone = document.getElementById("senhaIcone");
+
+    if (senhaInput.type === "password") {
+        senhaInput.type = "text";
+        senhaIcone.classList.remove("bi-eye");
+        senhaIcone.classList.add("bi-eye-slash");
+    } else {
+        senhaInput.type = "password";
+        senhaIcone.classList.remove("bi-eye-slash");
+        senhaIcone.classList.add("bi-eye");
+    }
+}
+
     </script>
 </head>
 <body>
@@ -114,7 +158,9 @@ puxando a descricao:
                     <button class="btn btn-primary" type="button">Upload nova imagem</button>
                 </div>
             </div>
+            
         </div>
+        
         
         <div class="col-xl-8">
             <!-- Card de informações do médico -->
@@ -163,30 +209,94 @@ puxando a descricao:
     </div>
 </div>
 
-<!-- Modal para editar as informações -->
+
+
+<!-- Modal para alterar informações -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Editar Informações</h5>
+                <h5 class="modal-title" id="editModalLabel">Alterar Informações</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form method="post">
-                    <!-- Campos de edição das informações -->
-                    <!-- Campos atualizados de acordo com os dados do objeto $medico -->
+            <form action="atualizar_perfil.php" method="POST">
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="<?php echo $dados_user['Id']; ?>">
                     <div class="mb-3">
-                        <label for="inputEditNome" class="form-label">Nome Completo</label>
-                        <input type="text" class="form-control" id="inputEditNome" name="nome" value="<?php?>">
+                        <label class="small mb-1">Nome Completo:</label>
+                        <input class="form-control" type="text" name="nome" value="<?php echo $dados_user['nome']; ?>">
                     </div>
-                    <!-- Repetir os outros campos de edição como CPF, email, etc. -->
-                    <button type="submit" name="alterar" class="btn btn-primary">Salvar Alterações</button>
-                </form>
-            </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Email:</label>
+                        <input class="form-control" type="email" name="email" value="<?php echo $dados_user['email']; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Telefone:</label>
+                        <input class="form-control" type="text" name="telefone" value="<?php echo $dados_user['telefone']; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Data de Nascimento:</label>
+                        <input class="form-control" type="date" name="nasc" value="<?php echo $dados_user['nasc']; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Gênero:</label>
+                        <input class="form-control" type="text" name="genero" value="<?php echo $dados_user['genero']; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">CPF:</label>
+                        <input class="form-control" type="text" name="cpf" value="<?php echo $dados_user['cpf']; ?>">
+                    </div>
+                    <div class="mb-3">
+    <label class="small mb-1">Senha:</label>
+    <div class="input-group">
+        <input class="form-control" type="password" id="senha" name="senha" value="<?php echo $dados_user['senha']; ?>">
+        <button type="button" class="btn btn-outline-secondary" onclick="toggleSenha()">
+            Mostrar/Ocultar
+        </button>
+    </div>
+</div>
+                    <div class="mb-3">
+                        <label class="small mb-1">CRM:</label>
+                        <input class="form-control" type="text" name="crm" value="<?php echo $dados_user['CRM']; ?>">
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Intercepta o envio do formulário
+        $('form').submit(function(event) {
+            event.preventDefault(); // Impede o envio normal do formulário
+
+            // Envia o formulário via Ajax
+            $.ajax({
+                url: 'atualizar_perfil.php', // Arquivo de processamento
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    // Atualiza a mensagem de sucesso e fecha o modal
+                    alert("Informações atualizadas com sucesso!");
+                    location.reload(); // Recarrega a página para exibir os dados atualizados
+                },
+                error: function() {
+                    alert("Erro ao atualizar informações. Tente novamente.");
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
