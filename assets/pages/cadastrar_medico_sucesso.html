@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de médico</title>
+    <style>
+        /* Configurações básicas */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 128, 0.2);
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .sucesso_icon {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .titulo {
+            color: #1e90ff;
+            font-size: 1.8em;
+            margin: 0;
+        }
+
+        .mensagem {
+            color: #4682b4;
+            font-size: 1em;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        input[type="button"] {
+                height: 33px;
+                width: 150px;
+                border-radius: 10px;
+                font-size: 16px;
+                color: white;
+                background-color: #0681F3;
+                border: none;
+        }
+
+        input[type="button"]:hover {
+            background-color: #5297cf;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="../img/cadastro/sucesso_icone.png" alt="sucesso icon" class="sucesso_icon">
+        <h2 class="titulo">Médico cadastrado com sucesso</h2>
+        <span class="mensagem">Email e senha será enviado para o gmail do médico</span>
+        <a href="./../../index.html"><input type="button" value="Voltar home"></a>
+    </div>
+</body>
+</html>

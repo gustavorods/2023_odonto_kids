@@ -95,5 +95,5 @@ function enviar_email_suporte($nome, $email, $senha) {
 }
 
 // Exemplo de uso
-enviar_email_suporte('Gustavo Rodrigues', 'gustavo.rlsilva07@gmail.com', '123456');
+// enviar_email_suporte('', '', '');
 ?>

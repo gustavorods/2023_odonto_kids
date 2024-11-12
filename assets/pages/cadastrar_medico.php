@@ -6,6 +6,7 @@
     include_once '../php/sexo.php';
     include_once '../php/metodos_principais.php';
     include_once '../php/medico.php';
+    include_once '../php/enviar_email_medico.php';
     $especialidades_instancia = new Especialidade();
     $sexo_instancia = new sexo();
     $metodos_principais = new metodos_principais();
@@ -50,12 +51,10 @@
              <form method="post" class="cadastro_form">
                 <!--Lógica de cadastro php-->
                 <?php
-                    $_SESSION['log'] = "variavel criada"; // Log
                     $nome = $email = $cpf = $telefone = $nasc = $CRM = $sexo = $especialidade = '';
                     $mensagem = '';
                     
                     if ($_SERVER["REQUEST_METHOD"] == "POST") { 
-                        $_SESSION['log'] = "POST recebido"; // Log
                         if (isset($_POST['btn_cadastrar_medico'])) {
                             // Armazena os valores em variáveis e mantém os dados no formulário
                             $nome = $_POST['txt_nome'];
@@ -64,34 +63,31 @@
                             $telefone = $_POST['txt_telefone'];
                             $nasc = $_POST['txt_data_nascimento'];
                             $CRM = $_POST['txt_crm'];
+
+                            // Criando a senha e seu hash
                             $senha= gerarSenhaAleatoria();
+                            $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
                             
                             // Atribuindo valor no sexo
                             $sexo = $_POST['txt_sexo']; 
                             $sexo_instancia->setSexo($sexo);
                             $cod_sexo = $sexo_instancia->sexoToId(); // Vai ser essa variavel que vou usar no INSERT do medico
                             if($cod_sexo == null) {
-                                $_SESSION['log'] = "Erro ao pegar código do sexo"; 
+                                // espaço pra log
                             } 
                             else {
                                 // Atribuindo valor na especialidade
                                 $especialidade = $_POST['txt_especialidade']; 
                                 $cod_especialidade = $especialidades_instancia->getIdByFuncao($especialidade); // Vai ser essa variavel que vou usar no INSERT do medico
                                 if($cod_especialidade == null) {
-                                    $_SESSION['log'] = "Erro ao pegar código do especialidade"; 
+                                    // espaço pra log
                                 } 
                                 else {
-                                    $_SESSION['log'] = "Todos os campos tem um valor"; // Log
-
                                     // Verificando se esse Email já está cadastrado
                                     $result = $metodos_principais->email_existe($email);
-                                    $_SESSION['log'] = "Verificou o email"; // Log
                                     if ($result == true) {
                                         $mensagem = 'Esse email já está cadastrado!';
-                                        $_SESSION['log'] = "email existe"; // Log
-                                    } else {
-                                        $_SESSION['log'] = "email não existe"; // Log
-    
+                                    } else {    
                                         // Passa as variáveis
                                         $medico->setNome($nome);
                                         $medico->setEmail($email);
@@ -99,16 +95,18 @@
                                         $medico->setTelefone($telefone);
                                         $medico->setNasc($nasc);
                                         $medico->setId_sexo($cod_sexo);
-                                        $medico->setSenha($senha);
+                                        $medico->setSenha($senha_hash);
                                         $medico->setCrm($CRM);
                                         $medico->setCodEspecialidade($cod_especialidade);
                                         $medico->setFoto(null);
-    
-                                        $_SESSION['log'] = "setou as variaveis"; // Log
-    
-                                        $_SESSION['log'] = $medico->salvar();; // Log
-    
-                                        header("Location:dashboard.html"); 
+        
+                                        $medico->salvar();; // Log
+                                        
+                                        // Enviar email para o medico com seu acesso
+                                        enviar_email_suporte($nome, $email, $senha);
+
+                                        // Redirecionar 
+                                        header("Location:cadastrar_medico_sucesso.html"); 
                                         exit(); 
                                     }
                                 }
