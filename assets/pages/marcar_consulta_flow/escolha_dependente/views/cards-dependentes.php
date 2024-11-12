@@ -11,6 +11,9 @@
         card.addEventListener('click', function() {
             // Armazena o id_paciente na sessão
             sessionStorage.setItem('id_paciente', id_paciente);
+            sessionStorage.setItem('nome', nome);
+
+            allowUnload = true; // Define a variável para permitir o unload
 
             // Redireciona para a página escolha_tratamento.html
             window.location.href = '../escolha_tratamento/escolha_tratamento.php';

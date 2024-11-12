@@ -450,4 +450,28 @@ div.container-fluid {
     color: var(--secondary);
   }
 
+.botao-voltar .circulo{
+    background-color: #3b7ee2;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28pt;
+}
+
+.botao-voltar{
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    cursor: pointer;
+}
+
+.botao-voltar p{
+    line-height: 62px;
+    vertical-align: middle;
+}
+
  

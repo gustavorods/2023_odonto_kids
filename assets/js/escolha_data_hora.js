@@ -90,6 +90,15 @@ document.getElementById("submitBtn").addEventListener("click", function() {
         return;
     }
 
-    // Exibe a data e horário selecionados
-    alert("Consulta agendada para " + selectedDate.toLocaleDateString() + " às " + selectedTime);
+    
+    sessionStorage.setItem('data', dateInput);
+    sessionStorage.setItem('hora', selectedTime);
+    allowUnload = true; // Define a variável para permitir o unload
+    window.location.href = '../confirmar/confirmar.php';
+});
+
+// configurando botão voltar
+document.querySelector('.botao-voltar').addEventListener("click", function(){
+    allowUnload = true; // Define a variável para permitir o unload
+    window.location.href = '../escolha_tratamento/escolha_tratamento.php';
 });

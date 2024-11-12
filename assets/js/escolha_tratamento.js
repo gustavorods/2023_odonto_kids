@@ -100,6 +100,27 @@ document.getElementById('botao-pesquisar').addEventListener("click", function(){
         alert("Escreva o tratamento desejado.")
     }
     else{
-        
+        verificado = verificarTratamento();
+        if(verificado){
+            allowUnload = true; // Define a variável para permitir o unload
+            window.location.href = '../escolha_data_hora/escolha_data_hora.php';
+            sessionStorage.setItem('tratamento', caixaDeTexto.value);
+        }
+        else{
+            alert("Informe um tratamento válido.")
+        }
     }
+});
+
+function verificarTratamento() {
+    const valor = caixaDeTexto.value.toLowerCase(); // Converte o valor para minúsculas
+    const resultadosLowerCase = resultados.map(item => item.toLowerCase()); // Converte todos os itens de 'resultados' para minúsculas
+
+    return resultadosLowerCase.includes(valor); // Verifica se o valor está na array e retorna true ou false
+}
+
+// configurando botão voltar
+document.querySelector('.botao-voltar').addEventListener("click", function(){
+    allowUnload = true; // Define a variável para permitir o unload
+    window.location.href = '../escolha_dependente/escolha_dependente.php';
 });

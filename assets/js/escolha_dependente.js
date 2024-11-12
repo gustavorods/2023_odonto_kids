@@ -148,4 +148,8 @@ document.getElementById('telEmerg').addEventListener('input', function (e) {
     e.target.value = value;
 });
 
-
+// configurando botão voltar
+document.querySelector('.botao-voltar').addEventListener("click", function(){
+    allowUnload = true; // Define a variável para permitir o unload
+    window.location.href = '../../dashboard/dashboard.php';
+});

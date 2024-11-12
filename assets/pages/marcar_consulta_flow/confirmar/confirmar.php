@@ -28,9 +28,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tratamento | Odontokids</title>
+    <title>Confirmar Consulta | Odontokids</title>
     <link rel="stylesheet" href="../../../css/geral/default.css">
-    <link rel="stylesheet" href="../../../css/escolha_tratamento/escolha_tratamento.css">
+    <link rel="stylesheet" href="../../../css/confirmar/confirmar.css">
     <link rel="icon" type="image/png" href="/2023_odonto_kids/assets/img/geral/Logo.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -113,17 +113,29 @@
     </div>
 </nav>
   
-<h1 class="titulo">Escolha o tratamento que será realizado</h1> <br>
-    <div class="tratamento_container">
-        <div class="pesquisa">
-            <div class="caixa_pesquisa">
-                <input type="text" id="input-box" autocomplete="off" placeholder="Escreva o tratamento desejado">
-                <button id="botao-pesquisar"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
-            <div class="resultados-pesquisa">
-            </div>
-        </div>
+<div class="container">
+    <div class="card">
+        <h1>Confira as informações abaixo antes de confirmar a consulta</h1>
+        <span>Nome do dependente: </span>
+        <input type="text" id="nome" readonly>
+        <span>Tratamento: </span>
+        <input type="text" id="tratamento" readonly>
+        <span>Data: </span>
+        <input type="date" id="data" readonly>
+        <span>Hora: </span>
+        <input type="time" id="hora" readonly>
+        <button style="margin-top: 28px;" id="btn-confirmar">Confirmar Consulta</button>
     </div>
+</div>
+
+<script>
+// Recuperar dados do sessionStorage e preencher os inputs
+document.getElementById('nome').value = sessionStorage.getItem('nome');
+document.getElementById('tratamento').value = sessionStorage.getItem('tratamento');
+document.getElementById('data').value = sessionStorage.getItem('data');
+document.getElementById('hora').value = sessionStorage.getItem('hora');
+</script>
+
 
 <div class="botao-voltar">
     <div class="circulo">
@@ -133,7 +145,7 @@
     </div>
 </div>
 
-<script src="../../../js/escolha_tratamento.js"></script>
+<script src="../../../js/confirmar.js"></script>
 <script src="../../../js/comum/bloquearUnload.js"></script>
 </body>
 </html>

@@ -15,11 +15,10 @@
     font-size: 20px;
 }
 
-p{
+.card p{
     font-size: 17px;
     line-height: 20px;
     letter-spacing: 0.3px;
-    margin: 20px 0;
 }
 button[type="submit"] {
     background-color: #fff;
