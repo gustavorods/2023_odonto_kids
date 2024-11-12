@@ -1,5 +1,5 @@
 <?php
-    include_once 'Conectar.php';
+    include_once '../../php/conectar.php';
 
     class metodos_dashboard{
         private $responsavel_id;

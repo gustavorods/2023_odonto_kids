@@ -9,7 +9,7 @@
         exit;
     }
 
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/2023_odonto_kids/assets/php/metodos_dashboard.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/2023_odonto_kids/assets/php/handlers/dashboard/listar-cards.php';
     $metodos_dashboard = new metodos_dashboard();
 
     $responsavel_id = !empty($cookie_responsavel_id) ? $cookie_responsavel_id : $session_responsavel_id;

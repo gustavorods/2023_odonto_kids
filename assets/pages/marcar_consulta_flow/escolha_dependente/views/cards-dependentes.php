@@ -13,7 +13,7 @@
             sessionStorage.setItem('id_paciente', id_paciente);
 
             // Redireciona para a página escolha_tratamento.html
-            window.location.href = '../escolha_tratamento/escolha_tratamento.html';
+            window.location.href = '../escolha_tratamento/escolha_tratamento.php';
         }); 
 
         card.innerHTML = `

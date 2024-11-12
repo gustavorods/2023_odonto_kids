@@ -3,7 +3,7 @@ let resultados = [];  // Inicializa o array vazio
 // Carregar os tratamentos inicialmente
 window.onload = function() {
     // Fazer a requisição AJAX para buscar os tratamentos
-    fetch('/2023_odonto_kids/assets/php/buscarTratamentos.php')
+    fetch('/2023_odonto_kids/assets/php/handlers/escolha_tratamento/buscarTratamentos.php')
         .then(response => response.json())
         .then(data => {
             console.log(data);  // Verifica o que foi retornado pelo PHP

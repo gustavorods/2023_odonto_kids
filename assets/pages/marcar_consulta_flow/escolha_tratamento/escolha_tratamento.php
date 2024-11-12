@@ -15,11 +15,11 @@
     $responsavel_id = !empty($cookie_responsavel_id) ? $cookie_responsavel_id : $session_responsavel_id;
     
     // debug
-    echo "<script>
-        console.log('Session Responsavel ID: " . json_encode($session_responsavel_id) . "');
-        console.log('Cookie Responsavel ID: " . json_encode($cookie_responsavel_id) . "');
-        console.log('Responsavel ID: " . json_encode($responsavel_id) . "');
-    </script>";    
+    // echo "<script>
+    //     console.log('Session Responsavel ID: " . json_encode($session_responsavel_id) . "');
+    //     console.log('Cookie Responsavel ID: " . json_encode($cookie_responsavel_id) . "');
+    //     console.log('Responsavel ID: " . json_encode($responsavel_id) . "');
+    // </script>";    
 ?>
 
 

@@ -1,5 +1,5 @@
 <?php
-include_once 'Conectar.php';
+include_once '../../conectar.php';
 
 class buscarTratamentos {
     private $conn;

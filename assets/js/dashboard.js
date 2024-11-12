@@ -11,7 +11,7 @@ botaoDetalhes.forEach(botao => {
     botao.addEventListener('click', function(event) {
         const consultaId = botao.getAttribute('data-id');
 
-        fetch('/2023_odonto_kids/assets/php/detalhe-proxima-consulta.php', {
+        fetch('/2023_odonto_kids/assets/php/handlers/dashboard/detalhe-proxima-consulta.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
