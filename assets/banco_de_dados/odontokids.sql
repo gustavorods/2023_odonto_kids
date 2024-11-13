@@ -279,7 +279,7 @@ ALTER TABLE `medico`
 -- Indexes for table `medico_tratamento`
 --
 ALTER TABLE `medico_tratamento`
-  ADD UNIQUE KEY `Id_tratamento` (`Id_tratamento`),
+  ADD KEY `Id_tratamento` (`Id_tratamento`),
   ADD KEY `id_medico` (`id_medico`);
 
 --
@@ -340,12 +340,6 @@ ALTER TABLE `especialidade`
 --
 ALTER TABLE `medico`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `medico_tratamento`
---
-ALTER TABLE `medico_tratamento`
-  MODIFY `Id_tratamento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `prontuario`

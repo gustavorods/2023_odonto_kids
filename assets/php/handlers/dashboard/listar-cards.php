@@ -52,8 +52,10 @@
                     ];
                 }
         
+                $this->conn = null;
                 return $proximas_consultas_organizadas; // Retorna o array organizado
             } catch (PDOException $exp) {
+                $this->conn = null;
                 echo "Erro ao listar próximas consultas. " . $exp->getMessage();
                 return false;
             }

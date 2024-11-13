@@ -45,9 +45,11 @@ class detalhesProximaConsulta {
 
             header('Content-Type: application/json');
             echo json_encode($consultaOrganizada);
+            $this->conn = null;
         } catch (PDOException $exc) {
             header('Content-Type: application/json');
             echo json_encode(['error' => $exc->getMessage()]);
+            $this->conn = null;
         }
     }
 }

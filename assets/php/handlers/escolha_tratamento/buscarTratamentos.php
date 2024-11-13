@@ -13,7 +13,8 @@ class buscarTratamentos {
         
         // Fetch todos os tratamentos
         $tratamentos = $sql->fetchAll(PDO::FETCH_COLUMN);
-
+        
+        $this->conn = null;
         // Retornar os tratamentos como JSON
         echo json_encode($tratamentos);
     }

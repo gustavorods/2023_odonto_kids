@@ -5,15 +5,42 @@ document.querySelector('.botao-voltar').addEventListener("click", function(){
 });
 
 document.getElementById('btn-confirmar').addEventListener("click", function(){
-    // Fazer a requisição AJAX para buscar os tratamentos
-    fetch('/2023_odonto_kids/assets/php/handlers/escolha_tratamento/buscarTratamentos.php')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);  // Verifica o que foi retornado pelo PHP
-            resultados = data; // Preenche o array 'resultados' com os dados do PHP
-        })
-        .catch(error => {
-            console.error('Erro ao carregar tratamentos:', error);
-        });    
-    window.location.href = '../../dashboard/dashboard.php';
+    const hora = sessionStorage.getItem('hora');
+    const data = sessionStorage.getItem('data');
+    const dependente = sessionStorage.getItem('id_paciente');
+    const tratamento = sessionStorage.getItem('tratamento');
+
+    // Criar um objeto com os dados
+    const dados = {
+        hora: hora,
+        data: data,
+        dependente: dependente,
+        tratamento: tratamento
+    };
+
+    fetch('/2023_odonto_kids/assets/php/handlers/confirmar_consulta/confirmar_consulta.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados) // Envia o objeto como JSON
+    })
+    .then(response => response.json()) // ou response.text(), dependendo da resposta
+    .then(data => {
+        // Verifica se o status é sucesso
+        if (data.status === "sucesso") {
+            allowUnload = true; // Define a variável para permitir o unload
+
+            // Redireciona para o dashboard
+            window.location.href = '../../dashboard/dashboard.php';
+        } else {
+            // Exibe um alerta caso haja falha
+            alert('Falha ao agendar a consulta: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Erro ao comunicar com o servidor');
+    });
+    
 })

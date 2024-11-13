@@ -90,34 +90,35 @@ document.getElementById("submitBtn").addEventListener("click", function() {
         return;
     }
 
-    const tratamento = sessionStorage.getItem('tratamento')
-    // Realiza o envio com a função fetch
-    fetch('/2023_odonto_kids/assets/php/handlers/escolha_data_hora/consultasMarcadas.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ tratamento_nome: tratamento})
-    })
-    .then(response => {
-        // console.log("Dados enviados:", { tratamento_nome: tratamento }) // debug
-        if (!response.ok) {
-            throw new Error('Erro na requisição: ' + response.status);
-        }
-        // console.log(response) // debug
-        return response.json();
-    })// Espera a resposta como JSON
-    .then(data => {
-        // console.log(data) // debug
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-    });
+    // Lógica de limitar certas datas, não finalizada ***não descomentar
+    // const tratamento = sessionStorage.getItem('tratamento')
+    // // Realiza o envio com a função fetch
+    // fetch('/2023_odonto_kids/assets/php/handlers/escolha_data_hora/consultasMarcadas.php', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({ tratamento_nome: tratamento})
+    // })
+    // .then(response => {
+    //     // console.log("Dados enviados:", { tratamento_nome: tratamento }) // debug
+    //     if (!response.ok) {
+    //         throw new Error('Erro na requisição: ' + response.status);
+    //     }
+    //     // console.log(response) // debug
+    //     return response.json();
+    // })// Espera a resposta como JSON
+    // .then(data => {
+    //     // console.log(data) // debug
+    // })
+    // .catch(error => {
+    //     console.error('Erro:', error);
+    // });
     
-    // sessionStorage.setItem('data', dateInput);
-    // sessionStorage.setItem('hora', selectedTime);
-    // allowUnload = true; // Define a variável para permitir o unload
-    // window.location.href = '../confirmar/confirmar.php';
+    sessionStorage.setItem('data', dateInput);
+    sessionStorage.setItem('hora', selectedTime);
+    allowUnload = true; // Define a variável para permitir o unload
+    window.location.href = '../confirmar/confirmar.php';
 });
 
 // configurando botão voltar

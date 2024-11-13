@@ -39,9 +39,11 @@ class consultasMarcadas {
             $sql->bindParam(':tratamento_nome', $tratamento_nome, PDO::PARAM_STR);            
             $sql->execute();
             $datas_horas = $sql->fetchAll(PDO::FETCH_ASSOC);
+            $this->conn = null;
             echo json_encode($datas_horas);
         }
         catch(PDOException $exp){
+            $this->conn = null;
             header('Content-Type: application/json');
             echo json_encode(['error' => $exp->getMessage()]);
         }

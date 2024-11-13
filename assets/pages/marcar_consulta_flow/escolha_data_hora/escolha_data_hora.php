@@ -1,7 +1,4 @@
 <?php
-    // include_once '../../../php/dependente.php';
-    // $dependente = new Dependente();
-
     session_start();
 
     $session_responsavel_id = $_SESSION['responsavel_id'] ?? null;
@@ -124,7 +121,7 @@
             </div>
         </div>
         
-        <button id="submitBtn">Marcar Consulta</button>
+        <button id="submitBtn">Confirmar Data e Hora</button>
     </div>
 </div>
 
