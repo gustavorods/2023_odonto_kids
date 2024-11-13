@@ -1,3 +1,24 @@
+<?php
+    session_start();
+
+    // Importando e inicializando a classe com os metodos necessarios
+    include_once '../php/especialidades.php';
+    include_once '../php/sexo.php';
+    include_once '../php/metodos_principais.php';
+    include_once '../php/responsavel.php';
+    include_once '../php/enviar_email_medico.php';
+    $especialidades_instancia = new Especialidade();
+    $sexo_instancia = new sexo();
+    $metodos_principais = new metodos_principais();
+    $responsavel = new responsavel();
+
+    // Pegando as especialidades do banco de dados
+    $result_espec = $especialidades_instancia->getAllEspecialidades();
+
+    // Pegando os sexos do banco de dados
+    $result_sexo = $sexo_instancia->getAllSexo();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,20 +60,19 @@
 
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if (isset($_POST['btn_cadastro_enviar_desktop'])) {
-                        include_once '../php/responsavel.php';
-                        include_once '../php/metodos_principais.php';
-                        $responsavel = new responsavel();
-                        $metodos_principais = new metodos_principais();
-
                         // Armazena os valores em variáveis e mantém os dados no formulário
                         $nome = $_POST['input_cadastro_nome_desktop'];
                         $email = $_POST['input_cadastro_email_desktop'];
                         $cpf = $_POST['input_cadastro_cpf_desktop'];
                         $telefone = $_POST['input_cadastro_telefone_desktop'];
                         $nasc = $_POST['input_cadastro_data_nascimento_desktop'];
-                        $genero = $_POST['select_cadastro_genero_desktop'];
                         $senha_confirmar1 = $_POST['input_cadastro_senha_desktop'];
                         $senha_confirmar2 = $_POST['input_cadastro_confirmar_senha_desktop'];
+
+                        // Atribuindo valor no sexo
+                        $sexo = $_POST['select_cadastro_genero_desktop']; 
+                        $sexo_instancia->setSexo($sexo);
+                        $cod_sexo = $sexo_instancia->sexoToId();
 
                         // Verificando se as senhas são iguais
                         if ($senha_confirmar1 != $senha_confirmar2) {
@@ -63,14 +83,16 @@
                             if ($result == true) {
                                 $mensagem = 'Esse email já está cadastrado!';
                             } else {
+                                $senha_hash = password_hash($senha_confirmar1, PASSWORD_DEFAULT);
+
                                 // Passa as variáveis
                                 $responsavel->setNome($nome);
                                 $responsavel->setEmail($email);
                                 $responsavel->setCpf($cpf);
                                 $responsavel->setTelefone($telefone);
                                 $responsavel->setNasc($nasc);
-                                $responsavel->setGenero($genero);
-                                $responsavel->setSenha($senha_confirmar1);
+                                $responsavel->setGenero($cod_sexo);
+                                $responsavel->setSenha($senha_hash);
 
                                 $responsavel->salvar();
                                 header("Location:dashboard.html"); // Altere para o caminho desejado
@@ -117,13 +139,18 @@
                     <input class="input_form_data" type="date" name="input_cadastro_data_nascimento_desktop"  value="<?php echo htmlspecialchars($nasc); ?>">
                     
                     <div class="header_input">
-                        <img src="../img/cadastro/icone_gênero.png" alt="icone de gênero" class="label_icon">
-                        <label for="select_cadastro_genero_desktop" class="input_label">Gênero</label>
+                        <img src="../img/cadastro/icone_sexo.png" alt="icone de sexo" class="label_icon">
+                        <label for="select_cadastro_genero_desktop" class="input_label">Sexo</label>
                     </div>
                     <select class="input_form_data" id="genero" name="select_cadastro_genero_desktop">
-                        <option disabled selected>Selecione seu gênero</option>
-                        <option value="masculino" <?php if ($genero == "masculino") echo 'selected'; ?> >Masculino</option>
-                        <option value="feminino" <?php if ($genero == "feminino") echo 'selected'; ?> >Feminino</option>
+                        <?php
+                            if(!empty($result_sexo)) {
+                                foreach ($result_sexo as $sexo_item) {
+                                    $selected = ($sexo_item['sexo'] == $sexo) ? 'selected' : '';
+                                    echo "<option value='{$sexo_item['sexo']}' $selected>{$sexo_item['sexo']}</option>";
+                                }   
+                            }
+                        ?> 
                     </select>
                 </div>
 

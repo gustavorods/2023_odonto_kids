@@ -43,47 +43,51 @@ class metodos_principais
     }
 
     // Método de login
+    // Função de login para verificar o email nas duas tabelas
     public function login()
     {
         try {
             $this->conn = new Conectar();
             
             // Verificação na tabela de responsável
-            $sql = $this->conn->prepare("SELECT * FROM responsavel WHERE email = ? AND senha = ?");
+            $sql = $this->conn->prepare("SELECT senha FROM responsavel WHERE email = ?");
             @$sql->bindParam(1, $this->get_email_user(), PDO::PARAM_STR);
-            @$sql->bindParam(2, $this->get_senha_user(), PDO::PARAM_STR);
             $sql->execute();
 
-            $result = $sql->fetch();
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
 
             if ($result) {
                 $this->conn = null;
-                return "responsavel"; // Se encontrou um responsável, retorna "responsavel"
+                return [
+                    'tabela' => 'responsavel',
+                    'senha' => $result['senha']
+                ];
             }
 
+            // Verificação na tabela de médico
             $this->conn = new Conectar();
-
-            // Caso não seja encontrado, verifica na tabela de médico
-            $sql = $this->conn->prepare("SELECT * FROM medico WHERE email = ? AND senha = ?");
+            $sql = $this->conn->prepare("SELECT senha FROM medico WHERE email = ?");
             @$sql->bindParam(1, $this->get_email_medico(), PDO::PARAM_STR);
-            @$sql->bindParam(2, $this->get_senha_medico(), PDO::PARAM_STR);
             $sql->execute();
 
-            $result = $sql->fetch();
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
             $this->conn = null;
 
             if ($result) {
-                return "medico"; // Se encontrou um médico, retorna "medico"
+                return [
+                    'tabela' => 'medico',
+                    'senha' => $result['senha']
+                ];
             }
 
-            return false; // Se não encontrou nada, retorna false
+            // Se não encontrou o email em nenhuma das tabelas, retorna false
+            return false;
 
         } catch (PDOException $exc) {
             echo "Erro ao consultar. " . $exc->getMessage();
             return false;
         }
     }
-
     
     public function email_existe($email) {
         try {
