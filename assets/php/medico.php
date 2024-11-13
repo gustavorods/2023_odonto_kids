@@ -142,23 +142,6 @@ class Medico
         try
         {
             $this->conn = new Conectar();
-            $sql = $this->conn->prepare("SELECT * FROM medico WHERE id = ?");
-            @$sql->bindParam(1, $this->getId(), PDO::PARAM_INT);
-            $sql->execute();
-            return $sql->fetchAll();
-            $this->conn = null;
-        }
-        catch (PDOException $exc)
-        {
-            echo "Erro ao alterar. " . $exc->getMessage();
-        }
-    }
-
-    function alterar2()
-    {
-        try
-        {
-            $this->conn = new Conectar();
             $sql = $this->conn->prepare("UPDATE medico SET nome = ?, email = ?, cpf = ?, telefone = ?, nasc = ?, id_sexo = ?, senha = ?, crm = ?, cod_especialidade = ? WHERE id = ?");
             @$sql->bindParam(1, $this->getNome(), PDO::PARAM_STR);
             @$sql->bindParam(2, $this->getEmail(), PDO::PARAM_STR);
@@ -177,7 +160,7 @@ class Medico
         }
         catch (PDOException $exc)
         {
-            echo "Erro ao salvar o registro. " . $exc->getMessage();
+            return "Erro ao salvar o registro. " . $exc->getMessage();
         }
     }
 
@@ -248,69 +231,32 @@ class Medico
         }
     }
 
-        // Método para atualizar os dados do usuário
-        function alterar2() {
-            try {
-                // Corrigido para usar "=" em vez de "like"
-                $sql = $this->conn->prepare("UPDATE medico SET nome = ?, cpf = ?, email = ?, telefone = ?, nasc = ?, genero = ?, senha = ?, CRM = ?, cod_especialidade = ? WHERE Id = ?");
-        
-                $nome = $this->getNome();
-                $cpf = $this->getCpf();
-                $email = $this->getEmail();
-                $telefone = $this->getTelefone();
-                $nasc = $this->getNasc();
-                $genero = $this->getGenero();
-                $senha = $this->getSenha();  // Considere que a senha está em texto claro, sem hash
-                $CRM = $this->getCRM();
-                $codEspecialidade = $this->getCodEspecialidade();
-                $Id = $this->getId();
-        
-                // Binding de parâmetros
-                $sql->bindParam(1, $nome, PDO::PARAM_STR);
-                $sql->bindParam(2, $cpf, PDO::PARAM_STR);
-                $sql->bindParam(3, $email, PDO::PARAM_STR);
-                $sql->bindParam(4, $telefone, PDO::PARAM_STR);
-                $sql->bindParam(5, $nasc, PDO::PARAM_STR);
-                $sql->bindParam(6, $genero, PDO::PARAM_STR);
-                $sql->bindParam(7, $senha, PDO::PARAM_STR);
-                $sql->bindParam(8, $CRM, PDO::PARAM_STR);
-                $sql->bindParam(9, $codEspecialidade, PDO::PARAM_INT);
-                $sql->bindParam(10, $Id, PDO::PARAM_INT);
-        
-                if ($sql->execute()) {
-                    return "Usuário alterado com sucesso!";
+    public function obter_dados_do_user($tabela, $id) {
+        try {
+            $this->conn = new Conectar();
+            
+            // Verifica se a tabela é "medico" ou "responsavel"
+            if ($tabela === 'medico' || $tabela === 'responsavel') {
+                // Define a consulta com base na tabela fornecida
+                $sql = $this->conn->prepare("SELECT * FROM $tabela WHERE id = ?");
+                $sql->bindParam(1, $id, PDO::PARAM_INT);
+                $sql->execute();
+    
+                // Retorna os dados se encontrados
+                $dados = $sql->fetch(PDO::FETCH_ASSOC);
+                $this->conn = null;
+    
+                if ($dados) {
+                    return $dados;
                 }
-            } catch (PDOException $exc) {
-                echo "Erro ao alterar usuário: " . $exc->getMessage();
             }
+    
+            return false; // Retorna false se a tabela não for "medico" ou "responsavel" ou se não encontrar dados
+    
+        } catch (PDOException $exc) {
+            echo "Erro ao consultar. " . $exc->getMessage();
+            return false;
         }
-
-        public function obter_dados_do_user($tabela, $id) {
-            try {
-                $this->conn = new Conectar();
-                
-                // Verifica se a tabela é "medico" ou "responsavel"
-                if ($tabela === 'medico' || $tabela === 'responsavel') {
-                    // Define a consulta com base na tabela fornecida
-                    $sql = $this->conn->prepare("SELECT * FROM $tabela WHERE id = ?");
-                    $sql->bindParam(1, $id, PDO::PARAM_INT);
-                    $sql->execute();
-        
-                    // Retorna os dados se encontrados
-                    $dados = $sql->fetch(PDO::FETCH_ASSOC);
-                    $this->conn = null;
-        
-                    if ($dados) {
-                        return $dados;
-                    }
-                }
-        
-                return false; // Retorna false se a tabela não for "medico" ou "responsavel" ou se não encontrar dados
-        
-            } catch (PDOException $exc) {
-                echo "Erro ao consultar. " . $exc->getMessage();
-                return false;
-            }
-        }
+    }
 }
 ?>
