@@ -10,10 +10,11 @@ class Medico
     private $cpf;
     private $telefone;
     private $nasc;
-    private $genero;
+    private $id_sexo;
     private $senha;
     private $CRM;
     private $cod_especialidade;
+    private $foto;
     private $conn;
 
     // Getters e Setters
@@ -65,12 +66,12 @@ class Medico
         $this->nasc = $nasc;
     }
 
-    public function getGenero() {
-        return $this->genero;
+    public function getId_sexo() {
+        return $this->id_sexo;
     }
 
-    public function setGenero($genero) {
-        $this->genero = $genero;
+    public function setId_sexo($id_sexo) {
+        $this->id_sexo = $id_sexo;
     }
 
     public function getSenha() {
@@ -97,6 +98,14 @@ class Medico
         $this->cod_especialidade = $cod_especialidade;
     }
 
+    public function getFoto() {
+        return $this->foto;
+    }
+
+    public function setFoto($foto) {
+        $this->foto = $foto;
+    }
+
     // Métodos
 
     function salvar()
@@ -104,18 +113,65 @@ class Medico
         try
         {
             $this->conn = new Conectar();
-            $sql = $this->conn->prepare("INSERT INTO medico VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $sql = $this->conn->prepare("INSERT INTO medico VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             @$sql->bindParam(1, $this->getNome(), PDO::PARAM_STR);
             @$sql->bindParam(2, $this->getEmail(), PDO::PARAM_STR);
             @$sql->bindParam(3, $this->getCpf(), PDO::PARAM_STR);
             @$sql->bindParam(4, $this->getTelefone(), PDO::PARAM_STR);
             @$sql->bindParam(5, $this->getNasc(), PDO::PARAM_STR);
-            @$sql->bindParam(6, $this->getGenero(), PDO::PARAM_STR);
+            @$sql->bindParam(6, $this->getId_sexo(), PDO::PARAM_STR);
             @$sql->bindParam(7, $this->getSenha(), PDO::PARAM_STR);
             @$sql->bindParam(8, $this->getCrm(), PDO::PARAM_STR);
             @$sql->bindParam(9, $this->getCodEspecialidade(), PDO::PARAM_INT);
+            @$sql->bindParam(10,$this->getFoto(), PDO::PARAM_INT);
             if ($sql->execute()) {
                 return "Registro salvo com sucesso!";
+            } else {
+                return "Erro ao salvar!";
+            }
+            $this->conn = null;
+        }
+        catch (PDOException $exc)
+        {
+            return "Erro ao salvar o registro. " . $exc->getMessage();
+        }
+    }
+
+    function alterar()
+    {
+        try
+        {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("SELECT * FROM medico WHERE id = ?");
+            @$sql->bindParam(1, $this->getId(), PDO::PARAM_INT);
+            $sql->execute();
+            return $sql->fetchAll();
+            $this->conn = null;
+        }
+        catch (PDOException $exc)
+        {
+            echo "Erro ao alterar. " . $exc->getMessage();
+        }
+    }
+
+    function alterar2()
+    {
+        try
+        {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("UPDATE medico SET nome = ?, email = ?, cpf = ?, telefone = ?, nasc = ?, id_sexo = ?, senha = ?, crm = ?, cod_especialidade = ? WHERE id = ?");
+            @$sql->bindParam(1, $this->getNome(), PDO::PARAM_STR);
+            @$sql->bindParam(2, $this->getEmail(), PDO::PARAM_STR);
+            @$sql->bindParam(3, $this->getCpf(), PDO::PARAM_STR);
+            @$sql->bindParam(4, $this->getTelefone(), PDO::PARAM_STR);
+            @$sql->bindParam(5, $this->getNasc(), PDO::PARAM_STR);
+            @$sql->bindParam(6, $this->getId_sexo(), PDO::PARAM_STR);
+            @$sql->bindParam(7, $this->getSenha(), PDO::PARAM_STR);
+            @$sql->bindParam(8, $this->getCrm(), PDO::PARAM_STR);
+            @$sql->bindParam(9, $this->getCodEspecialidade(), PDO::PARAM_INT);
+            @$sql->bindParam(10, $this->getId(), PDO::PARAM_INT);
+            if ($sql->execute()) {
+                return "Registro alterado com sucesso!";
             }
             $this->conn = null;
         }
@@ -125,38 +181,6 @@ class Medico
         }
     }
 
-    function alterar()
-{
-    try
-    {
-        $this->conn = new Conectar();
-        // Preparação da consulta SQL para atualizar os dados do médico com base no ID
-        $sql = $this->conn->prepare("UPDATE medico SET nome = ?, email = ?, cpf = ?, telefone = ?, nasc = ?, genero = ?, senha = ?, CRM = ?, cod_especialidade = ? WHERE Id = ?");
-        
-        // Binding dos parâmetros com os valores dos atributos da classe
-        @$sql->bindParam(1, $this->getNome(), PDO::PARAM_STR);
-        @$sql->bindParam(2, $this->getEmail(), PDO::PARAM_STR);
-        @$sql->bindParam(3, $this->getCpf(), PDO::PARAM_STR);
-        @$sql->bindParam(4, $this->getTelefone(), PDO::PARAM_STR);
-        @$sql->bindParam(5, $this->getNasc(), PDO::PARAM_STR);
-        @$sql->bindParam(6, $this->getGenero(), PDO::PARAM_STR);
-        @$sql->bindParam(7, $this->getSenha(), PDO::PARAM_STR);
-        @$sql->bindParam(8, $this->getCRM(), PDO::PARAM_STR);
-        @$sql->bindParam(9, $this->getCodEspecialidade(), PDO::PARAM_INT);
-        @$sql->bindParam(10, $this->getId(), PDO::PARAM_INT);
-
-        // Execução do comando SQL
-        if ($sql->execute()) {
-            return "Registro alterado com sucesso!";
-        }
-        
-        $this->conn = null; // Fecha a conexão
-    }
-    catch (PDOException $exc)
-    {
-        echo "Erro ao alterar o registro: " . $exc->getMessage();
-    }
-}
     function consultar()
     {
         try

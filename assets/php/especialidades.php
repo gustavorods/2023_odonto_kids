@@ -71,5 +71,26 @@ class Especialidade
             return null;
         }
     }
+
+    // Função para buscar o ID pela função (nome)
+    public function getIdByFuncao($funcao)
+    {
+        try {
+            $sql = $this->conn->prepare("SELECT id FROM especialidade WHERE funcao = ?");
+            $sql->bindParam(1, $funcao, PDO::PARAM_STR);
+            $sql->execute();
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
+
+            // Verifica se encontrou a especialidade e retorna o ID
+            if ($result) {
+                return $result['id'];
+            } else {
+                return null;  // Retorna null caso não encontre a função
+            }
+        } catch (PDOException $exc) {
+            echo "Erro ao buscar especialidade por função: " . $exc->getMessage();
+            return null;
+        }
+    }
 }
 ?>
