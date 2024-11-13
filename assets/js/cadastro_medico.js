@@ -85,7 +85,7 @@ form.addEventListener('submit', (event) => {
 
     // Validação do CRM
     if (!validarCRM(crmInserido)) {
-        alert("O CRM deve ser preenchido com 5 números, um hífen, 1 número e 2 letras (Exemplo: 12345-6 AB).");
+        alert("O CRM deve ser preenchido com 5 números, um hífen, 1 número e 2 letras (Exemplo: 12345-6AB).");
         event.preventDefault();
         return;
     }
