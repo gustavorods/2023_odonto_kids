@@ -156,7 +156,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #69707a;
         }
         .img-account-profile {
-            height: 10rem;
+            height: 11rem;
+            width: 11rem;
+            object-fit: cover;
         }
         .rounded-circle {
             border-radius: 50% !important;
