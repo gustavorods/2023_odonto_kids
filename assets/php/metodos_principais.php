@@ -192,6 +192,54 @@ class metodos_principais
             return false;
         }
     }
+    public function alterarDadosMedico($id, $novosDados) {
+        try {
+            $this->conn = new Conectar();
+    
+            $sql = $this->conn->prepare("UPDATE medico SET nome = ?, email = ?, telefone = ?, nasc = ?, genero = ?, cpf = ?, senha = ?, crm = ? WHERE id = ?");
+            $sql->bindParam(1, $novosDados['nome'], PDO::PARAM_STR);
+            $sql->bindParam(2, $novosDados['email'], PDO::PARAM_STR);
+            $sql->bindParam(3, $novosDados['telefone'], PDO::PARAM_STR);
+            $sql->bindParam(4, $novosDados['nasc'], PDO::PARAM_STR);
+            $sql->bindParam(5, $novosDados['genero'], PDO::PARAM_STR);
+            $sql->bindParam(6, $novosDados['cpf'], PDO::PARAM_STR);
+            $sql->bindParam(7, $novosDados['senha'], PDO::PARAM_STR);
+            $sql->bindParam(8, $novosDados['crm'], PDO::PARAM_STR);
+            $sql->bindParam(9, $id, PDO::PARAM_INT);
+            
+    
+            if ($sql->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+    
+        } catch (PDOException $exc) {
+            echo "Erro ao atualizar dados: " . $exc->getMessage();
+            return false;
+        }
+    }
+
+    public function atualizarFoto($id, $foto) {
+        try {
+            $this->conn = new Conectar();
+            
+            // Atualiza o campo foto na tabela do médico
+            $sql = $this->conn->prepare("UPDATE medico SET foto = ? WHERE id = ?");
+            $sql->bindParam(1, $foto, PDO::PARAM_STR);
+            $sql->bindParam(2, $id, PDO::PARAM_INT);
+            
+            if ($sql->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo "Erro ao atualizar foto: " . $exc->getMessage();
+            return false;
+        }
+    }
+    
     
 }
 ?>
