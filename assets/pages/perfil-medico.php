@@ -363,9 +363,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label class="small mb-1">Senha:</label>
                         <div class="input-group">
                             <input class="form-control" type="password" id="senha" name="senha_atual">
-                            <button type="button" class="btn btn-outline-secondary" onclick="toggleSenha()">
-                                Mostrar/Ocultar
-                            </button>
                         </div>
                     </div>
                 </div>
