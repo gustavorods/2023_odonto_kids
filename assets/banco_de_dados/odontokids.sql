@@ -55,7 +55,7 @@ CREATE TABLE `tratamento` (
 
 
 CREATE TABLE `medico_tratamento` (
-	`Id_tratamento` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+	`Id_tratamento` INTEGER NOT NULL,
 	`id_medico` INTEGER NOT NULL
 );
 

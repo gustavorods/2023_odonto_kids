@@ -17,7 +17,6 @@ botaoDetalhes.forEach(botao => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ consulta_id: consultaId})
-            
         })
         .then(response => {
             // console.log("Dados enviados:", { consulta_id: consultaId }) // para debug
