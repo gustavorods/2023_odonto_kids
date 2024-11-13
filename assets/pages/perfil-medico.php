@@ -26,9 +26,9 @@ $dados_user_sexo = $sexo->getSexoById($dados_user['id_sexo']);
 $all_sexo = $sexo->getAllSexo();
 $all_especialidades = $especialidades->getAllEspecialidades();
 
+// Lógica para alterar informações
 $mensagem;
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
-    var_dump($_POST);
     if (isset($_POST['btn_salvar_alteracoes'])) {
         // Armazena os valores em variáveis e mantém os dados no formulário
         $nome = $_POST['nome'];
@@ -115,6 +115,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }     
         }
     }            
+}
+
+// Lógica para alterar foto de perfil
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+    if (isset($_POST['btn_update_imagem'])) {
+        $medico->setId($_SESSION['user']['id']);
+        
+        // Verifique se a imagem foi carregada corretamente
+        if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
+            // Converta a imagem para binário
+            $imagem = file_get_contents($_FILES['foto_perfil']['tmp_name']);
+            
+            // Chame o método de alteração da foto, passando a imagem em binário
+            $mensagem = $medico->alterarFoto($imagem);
+        } else {
+            $mensagem = "Erro ao carregar a imagem.";
+        }
+
+        header("Location:perfil-medico.php"); 
+        exit(); 
+    }
 }
 ?>
 
@@ -225,19 +246,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <!-- Card de perfil -->
             <div class="card mb-4 mb-xl-0">
                 <div class="card-header">Olá, <?php echo $dados_user['nome'];?></div>
-                <div class="card-body text-center">
+                <form method="POST" class="card-body text-center" enctype="multipart/form-data">
                     <?php
                         if($dados_user['foto'] == null) {
                             ?>
                             <img class="img-account-profile rounded-circle mb-2" src="../img/perfil_medico/perfil_anonimo_icon.png" alt="Imagem de Perfil">
                             <?php
                         } else {
-                            // Lógica pra puxar a imagem real do user
+                            ?>
+                            <img class="img-account-profile rounded-circle mb-2" 
+                            src="data:image/jpeg;base64,<?php echo base64_encode($dados_user['foto']); ?>" 
+                            alt="Imagem de Perfil">
+                            <?php
                         }
                     ?>
                     <div class="small font-italic text-muted mb-4"><?php?></div>
-                    <button class="btn btn-primary" type="button">Upload nova imagem</button>
-                </div>
+                    <input type="file" name="foto_perfil" class="btn btn-primary">
+                    <br>
+                    <br>
+                    <button class="btn btn-primary" name="btn_update_imagem" type="subtmit">Upload nova imagem</button>
+                </form>
             </div>
             
         </div>

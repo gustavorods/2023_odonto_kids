@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2024 at 04:40 AM
+-- Generation Time: Nov 13, 2024 at 08:35 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 
 --
 -- Database: `odontokids`
-CREATE DATABASE `odontokids`;
-USE `odontokids`;
 --
 
 -- --------------------------------------------------------
@@ -66,7 +64,7 @@ CREATE TABLE `dependentes` (
   `id_sexo` int(11) NOT NULL,
   `tel_emergencia` varchar(11) NOT NULL,
   `endereco` varchar(255) NOT NULL,
-  `foto` varchar(250) DEFAULT NULL
+  `foto` blob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -117,7 +115,7 @@ CREATE TABLE `medico` (
   `senha` varchar(250) NOT NULL,
   `CRM` varchar(10) NOT NULL,
   `cod_especialidade` int(11) NOT NULL,
-  `foto` varchar(250) DEFAULT NULL
+  `foto` blob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -166,7 +164,7 @@ CREATE TABLE `responsavel` (
   `nasc` date NOT NULL,
   `id_sexo` int(11) NOT NULL,
   `senha` varchar(250) NOT NULL,
-  `foto` varchar(250) DEFAULT NULL
+  `foto` blob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -279,7 +277,7 @@ ALTER TABLE `medico`
 -- Indexes for table `medico_tratamento`
 --
 ALTER TABLE `medico_tratamento`
-  ADD UNIQUE KEY `Id_tratamento` (`Id_tratamento`),
+  ADD KEY `Id_tratamento` (`Id_tratamento`),
   ADD KEY `id_medico` (`id_medico`);
 
 --
@@ -340,12 +338,6 @@ ALTER TABLE `especialidade`
 --
 ALTER TABLE `medico`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `medico_tratamento`
---
-ALTER TABLE `medico_tratamento`
-  MODIFY `Id_tratamento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `prontuario`
