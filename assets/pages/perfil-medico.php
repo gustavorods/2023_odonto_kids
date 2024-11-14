@@ -29,6 +29,8 @@ $all_especialidades = $especialidades->getAllEspecialidades();
 // Lógica para alterar informações
 $mensagem;
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+    var_dump($_POST['senha_nova']);
+    var_dump($_POST['senha_atual']);
     if (isset($_POST['btn_salvar_alteracoes'])) {
         // Armazena os valores em variáveis e mantém os dados no formulário
         $nome = $_POST['nome'];
@@ -44,9 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!password_verify($senha_atual, $dados_user['senha'])) {
             $mensagem = "Senha atual incorreta";
         } else {
-            if($senha_nova == '') {
+            if(empty($senha_nova)) {
                 $senha_hash = $dados_user['senha'];
-            } {
+            } else {
                 $senha_hash = password_hash($senha_nova, PASSWORD_DEFAULT);
             }
             
@@ -84,8 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         // Chamando o método para alterar os dados
                         $medico->alterar();
                         $mensagem = "Informações do médico atualizadas com sucesso!";
-                        header("Location:perfil-medico.php"); 
-                        exit();
+                        header("Location:perfil-medico.php");  
+                        exit(); 
                     } else {
                         // Verificando se esse Email já está cadastrado
                         $result = $metodos_principais->email_existe($email);
