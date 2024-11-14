@@ -87,6 +87,8 @@
                                 //Exibindo mensagem de sucesso
                                 $message = "Sua senha foi alterada";
                                 echo "<center> <p style='color:green'>" . $message . "</p> </center>";
+                                header("Location:login.php"); 
+                                exit();
                             } 
                             else if($informacao_usuario['tabela'] == "medico") {
                                 // Definindo os dados do responsavel
@@ -99,6 +101,8 @@
                                 //Exibindo mensagem de sucesso
                                 $message = "Sua senha foi alterada";
                                 echo "<center> <p style='color:green'>" . $message . "</p> </center>";
+                                header("Location:login.php"); 
+                                exit();
                             } 
                             else {
                                 /* Esse else provavelmente nunca será acionado, pois ele só executa se a 
