@@ -421,3 +421,11 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+INSERT INTO `medico_tratamento` (`id_tratamento`, `id_medico`) VALUES
+(1, 1), -- Dr. João Silva (id_medico = 1) com Limpeza (id_tratamento = 1)
+(2, 1), -- Dr. João Silva (id_medico = 1) com Clareamento (id_tratamento = 2)
+(3, 2), -- Dra. Maria Oliveira (id_medico = 2) com Canal (id_tratamento = 3)
+(4, 2), -- Dra. Maria Oliveira (id_medico = 2) com Extração (id_tratamento = 4)
+(1, 8), -- Gustavo Rodrigues Leite da Silva (id_medico = 8) com Limpeza (id_tratamento = 1)
+(5, 8); -- Gustavo Rodrigues Leite da Silva (id_medico = 8) com Restauração (id_tratamento = 5)
