@@ -49,22 +49,22 @@
             <div class="bg-primary p-4 itens-nav">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="../../index.html">Home</a>
+                        <a class="nav-link active" href="/2023_odonto_kids/index.html">Home</a>
                     </li>
                     <hr class="linha">
     
                     <li class="nav-item">
-                        <a class="nav-link active" href="./servicos.html">Serviços</a>
+                        <a class="nav-link active" href="/2023_odonto_kids/servicos.html">Serviços</a>
                     </li>
                     <hr class="linha">
     
                     <li class="nav-item">
-                        <a class="nav-link active" href="./time-line.html">Sobre nós</a>
+                        <a class="nav-link active" href="/2023_odonto_kids/time-line.html">Sobre nós</a>
                     </li>
                     <hr class="linha">
     
                     <li class="nav-item">
-                        <a class="nav-link active" href="./contato.html">Contato</a>
+                        <a class="nav-link active" href="/2023_odonto_kids/contato.html">Contato</a>
                     </li>
                 </ul>
             </div>
