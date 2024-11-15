@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
+@import '../../../geral/header_seta_voltar.css';
+
 
 /* Configurações gerais */
 * {
@@ -7,75 +9,31 @@
 }
 body{
     font-family: 'Inter', sans-serif;
-    background-color: black;
+    background-color: #F8F8FF;
+    height: 100vh;
 }
 
 /* bot no seu estado fechado */
 .bot_content{
     display: flex;
-    position: relative;
-    gap: 20px;
-    background-color: #367fec;
-    width: 500px;
+    background-color: #F8F8FF;
+    width: 100%;
+    height: 85%;
+    margin-top: 30px;
+    justify-content: flex-end;
 }
-
-.bot_content .bot_fechado{
-   display: flex;
-   justify-content: flex-end;
-   align-items: flex-end;
-}
-
-.bot_content .bot_fechado .bot{
-    display: flex; 
-    height: 60px;
-    width: 60px;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(211, 196, 196);
-    padding: 10px;
-    border-radius: 1000%;
-}
-
-.bot_content .bot_fechado .bot .bot_fechado_imagem{
-    width: 100px;
-}
-
 
 /* bot no seu estado aberto */
-.bot_content .bot_aberto{
-    width: 400px;
-    height: 500px;
-    background-color:  rgb(255, 255, 255);
-    border-radius: 20px;
+.bot{
+    width: 100%;
+    height: 99%;
+    background-color:  #F8F8FF;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.bot_content .bot_aberto .div_titulo_and_subtitulo {
-    background-color: #418CFC;
-    height: 13%;
-    width: 100%;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-}
-
-.bot_content .bot_aberto .div_titulo_and_subtitulo .titulo {
-    margin: 0;
-    font-size: 23px;
-    color: white;
-}
-
-.bot_content .bot_aberto .div_titulo_and_subtitulo .subtitulo {
-    color: white;
-}
-
-.bot_content .bot_aberto .area_mensagem{
+.bot_content .area_mensagem{
     display: flex;
     flex-direction: column;
     height: auto;
@@ -84,13 +42,13 @@ body{
     overflow: auto;
 }
 
-.bot_content .bot_aberto .area_mensagem .content_resposta{
+.bot_content .area_mensagem .content_resposta{
     width: 100%;
     display: flex;
     justify-content: flex-start;
 }
 
-.bot_content .bot_aberto .area_mensagem .content_resposta .resposta{
+.bot_content .area_mensagem .content_resposta .resposta{
     background-color: #367fec;
     padding: 10px;
     margin: 5px;
@@ -98,19 +56,19 @@ body{
     border-radius: 20px;
 }
 
-.bot_content .bot_aberto .area_mensagem .content_resposta .resposta span{
+.bot_content .area_mensagem .content_resposta .resposta span{
     color: white;
 }
 
 /* -- */
 
-.bot_content .bot_aberto .area_mensagem .content_pergunta{
+.bot_content .area_mensagem .content_pergunta{
     width: 100%;
     display: flex;
     justify-content: flex-end;
 }
 
-.bot_content .bot_aberto .area_mensagem .content_pergunta .pergunta{
+.bot_content .area_mensagem .content_pergunta .pergunta{
     background-color: #1955ad;
     padding: 10px;
     margin: 5px;
@@ -118,33 +76,36 @@ body{
     max-width: 70%;
 }
 
-.bot_content .bot_aberto .area_mensagem .content_pergunta .pergunta span{
+.bot_content .area_mensagem .content_pergunta .pergunta span{
     color: white;
 }
 
-.bot_content .bot_aberto .interacao_usuario_content{
+.bot_content .interacao_usuario_content{
     display: flex;
     width: 100%;
     gap: 5px;
     margin: 5px;
 }
 
-.bot_content .bot_aberto .interacao_usuario_content .input_prompt {
+.bot_content .interacao_usuario_content .input_prompt {
     resize: none;
-    width: 85%;
-    border-radius: 5px;
+    width: 93%;
+    border-radius: 10px;
+    height: 50px;
+    background-color: #C9C9C9;
+    padding: 10px;
 }
 
-.bot_content .bot_aberto .interacao_usuario_content .enviar_prompt{
+.bot_content .interacao_usuario_content .enviar_prompt{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
+    width: 50px;
     background-color: #418CFC;
     border: none;
     border-radius: 5px;
 }
 
-.bot_content .bot_aberto .interacao_usuario_content .enviar_prompt .enviar_prompt_icone{
-    width: 10px;
+.bot_content .interacao_usuario_content .enviar_prompt .enviar_prompt_icone{
+    width: 40px;
 }

@@ -2,8 +2,6 @@ const baseUrl = window.location.origin;
 const sendDataInput = document.querySelector(".input_prompt")
 const sendDataBtn = document.querySelector(".enviar_prompt");
 const messageArea = document.querySelector(".area_mensagem")
-const botOpen = document.querySelector(".bot_aberto");
-const botClose = document.querySelector(".bot_fechado");
 
 // Send Data
 async function SendData() {
@@ -21,6 +19,7 @@ async function SendData() {
     console.log(response);  
 
     creat_user_message(sendDataInput.value)
+    sendDataInput.value = '';
 
     VerifedDataReady(); 
 }; 
@@ -93,10 +92,3 @@ function creat_user_message(message) {
     messageArea.appendChild(content_question);
 }
 
-botClose.addEventListener("click", () => {
-    if(botOpen.style.display == "none") {
-        botOpen.style.display = "flex";
-    } else {
-        botOpen.style.display = "none";
-    }
-});
