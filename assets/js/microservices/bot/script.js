@@ -58,6 +58,7 @@ async function VerifedDataReady() {
 
 // create bot message area 
 function creat_bot_message(message) {
+    message = markdownToHtml(message);
     const content_resposta = document.createElement('div');
     content_resposta.className = 'content_resposta';
 
@@ -92,3 +93,16 @@ function creat_user_message(message) {
     messageArea.appendChild(content_question);
 }
 
+// Transform markdown to html
+function markdownToHtml(markdown) {
+    // Converter negrito (**texto**)
+    let html = markdown.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+    
+    // Converter itálico (*texto*)
+    html = html.replace(/\*(.*?)\*/g, '<i>$1</i>');
+    
+    // Converter texto riscado (~~texto~~)
+    html = html.replace(/~~(.*?)~~/g, '<s>$1</s>');
+    
+    return html;
+}
