@@ -1,29 +1,20 @@
 <?php
     session_start();
 
-    $session_responsavel_id = $_SESSION['responsavel_id'] ?? null;
-    $cookie_responsavel_id = $_COOKIE['responsavel_id'] ?? null;
+    $session_medico_id = $_SESSION['medico_id'] ?? null;
+    $cookie_medico_id = $_COOKIE['medico_id'] ?? null;
 
-    if (empty($cookie_responsavel_id) && empty($session_responsavel_id)) {
+    if (empty($cookie_medico_id) && empty($session_medico_id)) {
         header("Location: /2023_odonto_kids/assets/pages/login.php");
         exit;
     }
 
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/2023_odonto_kids/assets/php/handlers/dashboard/listar-cards.php';
-    $metodos_dashboard = new metodos_dashboard();
+    $medico_id = !empty($cookie_medico_id) ? $cookie_medico_id : $session_medico_id;
 
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/2023_odonto_kids/assets/php/consultas.php';
-    $consultas = new Consulta();
-
-    $responsavel_id = !empty($cookie_responsavel_id) ? $cookie_responsavel_id : $session_responsavel_id;
-
-    if (!is_numeric($responsavel_id) || $responsavel_id <= 0) {
+    if (!is_numeric($medico_id) || $medico_id <= 0) {
         header("Location: /2023_odonto_kids/assets/pages/login.php");
         exit;
     }
-
-    $metodos_dashboard->setResponsavelId($responsavel_id);
-    $consultasOrganizadas = $metodos_dashboard->listar_proximas_consultas();
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +23,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
-    <link rel="stylesheet" href="/2023_odonto_kids/assets/css/dashboard/dashboard.css">
+    <link rel="stylesheet" href="/2023_odonto_kids/assets/css/dashboard_medico/dashboard_medico.css">
     <!-- <link rel="stylesheet" href="../css/servicos/servicos_responsivo.css"> -->
     <link rel="icon" type="image/png" href="/2023_odonto_kids/assets/img/geral/Logo.svg">
     <!-- Bootstrap -->
@@ -41,6 +32,7 @@
     <title>Dashboard</title>
 </head>
 <body>
+
     <!-- Navbar -->
     <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
             <div class="bg-primary p-4 itens-nav">
@@ -87,56 +79,8 @@
             </div>
     </nav>
     <!-- Corpo da página -->
-    <div class="dashboard"> 
+    <div class="dashboard_medico"> 
 
-        <div id="fade"></div>
-
-        <!-- Detalhes proxima consulta card -->
-        <?php
-            include './views/detalhes-card-proxima-consulta.php'
-        ?>
-        
-        <div class="proxima-consulta"> 
-
-            <!-- Titulo -->
-            <h1 class="titulo-proxima-consulta"> 
-                PRÓXIMAS CONSULTAS:
-            </h1>   
-
-            <div class="cards-proximas-consultas">
-                <!-- Card -->
-                <div class="card-marcar-consulta" onclick="window.location.href='../marcar_consulta_flow/escolha_dependente/escolha_dependente.php'">
-                    <div class="container">
-                        <div class="mais">+</div>
-                        <div class="texto">Marcar consulta</div>
-                    </div>
-                </div>
-
-                <?php
-                    include_once './views/cards-proxima-consulta.php'
-                ?>
-
-            </div>
-
-            </div>
-        </div>
-
-
-        <div class="historico-consulta">
-            <div class="cards-historico-consulta">
-                <?php
-                    $consultas->setResponsavelId($responsavel_id);
-                    if($consultas->listarPorIdResponsavel()){
-                        ?><h1>HISTÓRICO DE CONSULTAS:</h1><?php
-                        include './views/cards-historico-consultas.php';
-                    }
-                    else{
-                        ?><h1 class="dicas-titulo">DICAS PARA O CUIDADO BUCAL:</h1><?php
-                        include './views/cards-informativos.php';
-                    }
-                ?>
-            </div>
-        </div>        
 
     </div>
 
@@ -161,6 +105,5 @@
     <div class="credit">Copyright © 2023 Odonto Kids LTDA</div>
     </section>
 
-    <script src="/2023_odonto_kids/assets/js/dashboard.js"></script>
 </body>
 </html>

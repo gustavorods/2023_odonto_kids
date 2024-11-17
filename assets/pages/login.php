@@ -90,10 +90,10 @@
                                     exit(); 
                                 } else if ($result['tabela'] == "medico") {   
                                     $id = $metodos_principais->selectId($result['tabela']);
-                                    $_SESSION['responsavel_id'] = $id;
-                                    setcookie("responsavel_id", $id, time() + (30 * 24 * 60 * 60),"/");
+                                    $_SESSION['medico_id'] = $id;
+                                    setcookie("medico_id", $id, time() + (30 * 24 * 60 * 60),"/");
                                     
-                                    header("Location:perfil-medico.php");
+                                    header("Location:dashboard_medico/dashboard_medico.php");
                                     exit();
                                 }
                             } else {
