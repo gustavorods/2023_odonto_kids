@@ -15,7 +15,7 @@
 
     .card-informativo {
         background-color: #43A0F6;
-        width: 300px;
+        width: 400px;
         color: white;
         padding: 25px;
         text-align: center;
@@ -25,6 +25,7 @@
     .card-informativo .titulo{
         font-size: 20pt;
         font-weight: 600;
+        height: 60px;
     }
 
     .card-informativo .imagem img{
@@ -71,7 +72,7 @@
     ))
 
     cardsContainer.appendChild(criarCard(
-        "Usar fio dental diariamente",
+        "Usar fio dental diariamente e adequadamente",
         "/2023_odonto_kids/assets/img/dashboard/fiodental-card.png",
         "O fio dental remove restos de alimentos e placa bacteriana que a escova não alcança, prevenindo cáries e doenças gengivais."
     ))
