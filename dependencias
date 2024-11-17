@@ -2,8 +2,8 @@ O que baixar para o projeto rodar
 
 - Composer (ler obs)
 - Entra no diretorio do projeto e da um "composer install" (ler obs)
-- instalar phpmailer (ler obs)
-- instalar .env para php (ler obs) 
+- instalar phpmailer (ler obs) (cmd: composer require phpmailer/phpmailer)
+- instalar .env para php (ler obs) (cmd: composer require vlucas/phpdotenv)
 - criar o arquivo .env e adicionar na raiz do projeto (dados no trello)
 
 Obs: se estiver usando Windowns, o composer tem que ser baixado usando o terminado windowns (n usa o terminal do vscode, da erro)

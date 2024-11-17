@@ -1,8 +1,8 @@
 <?php
+    session_start();
+
     include_once '../../../php/dependente.php';
     $dependente = new Dependente();
-
-    session_start();
 
     $session_responsavel_id = $_SESSION['responsavel_id'] ?? null;
     $cookie_responsavel_id = $_COOKIE['responsavel_id'] ?? null;
@@ -38,6 +38,7 @@
         $dependente = new Dependente($responsavel_id, $nome, $nasc, $cpf, $id_sexo, $tel_emergencia, $endereco);
 
         // Chama o método para cadastrar o dependente
+        echo '<script>allowUnload = true;</script>';
         $dependente->cadastrarDependente();
 
         // Redireciona para a mesma página para evitar reenvio ao recarregar

@@ -114,9 +114,11 @@ class Dependente {
         // Cria uma nova conexão com o banco de dados
         $this->conn = new Conectar();
     
+        $id_responsavel = $this->getIdResponsavel();
+
         // Prepara a consulta SQL de SELECT
-        $sql = $this->conn->prepare("SELECT id, nome, cpf, nasc FROM dependentes");
-    
+        $sql = $this->conn->prepare("SELECT id, nome, cpf, nasc FROM dependentes WHERE id_responsavel = ?");
+        $sql->bindParam(1, $id_responsavel, PDO::PARAM_INT);
         // Executa a consulta
         $sql->execute();
     

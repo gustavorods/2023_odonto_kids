@@ -1,4 +1,7 @@
 <?php
+    $id_responsavel = $_SESSION['responsavel_id'];
+    // echo "<script>console.log('Responsável ID: $id_responsavel');</script>";
+    $dependente->setIdResponsavel($id_responsavel);
     $dependentes = $dependente->listarDependentes();
 ?>
 
@@ -36,7 +39,7 @@
 
     // Obter os dados dos dependentes
     const dependentes = <?php echo json_encode($dependentes); ?>;
-    console.log(dependentes);
+    // console.log(dependentes);
     
     const cardsContainer = document.querySelector('.cards');
 
