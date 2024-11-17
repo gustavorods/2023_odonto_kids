@@ -24,6 +24,7 @@
                     JOIN dependentes ON consulta.id_dependente = dependentes.id 
                     WHERE dependentes.id_responsavel = ? 
                     AND consulta.data > CURDATE()  -- Filtra para consultas acima da data de hoje
+                    AND consulta.id_status = 1
                     ORDER BY consulta.data ASC, consulta.horario ASC
                 ");
                 $idResponsavel = $this->getResponsavelId();
@@ -88,6 +89,8 @@
                     WHERE 
                         dependentes.id_responsavel = ? 
                         AND consulta.data < CURDATE()
+                        AND consulta.id_status != 1
+
                 ");
 
                 $historico_consultas_sql->bindParam(1, $idResponsavel, PDO::PARAM_INT);

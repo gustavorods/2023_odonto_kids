@@ -12,6 +12,9 @@
     include_once $_SERVER['DOCUMENT_ROOT'] . '/2023_odonto_kids/assets/php/handlers/dashboard/listar-cards.php';
     $metodos_dashboard = new metodos_dashboard();
 
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/2023_odonto_kids/assets/php/consultas.php';
+    $consultas = new Consulta();
+
     $responsavel_id = !empty($cookie_responsavel_id) ? $cookie_responsavel_id : $session_responsavel_id;
 
     if (!is_numeric($responsavel_id) || $responsavel_id <= 0) {
@@ -126,10 +129,17 @@
 
 
         <div class="historico-consulta">
-            <h1>HISTÓRICO DE CONSULTAS:</h1>
             <div class="cards-historico-consulta">
                 <?php
-                    include './views/cards-historico-consultas.php'
+                    $consultas->setResponsavelId($responsavel_id);
+                    if($consultas->listarPorIdResponsavel()){
+                        ?><h1>HISTÓRICO DE CONSULTAS:</h1><?php
+                        include './views/cards-historico-consultas.php';
+                    }
+                    else{
+                        ?><h1 class="dicas-titulo">DICAS PARA O CUIDADO BUCAL:</h1><?php
+                        include './views/cards-informativos.php';
+                    }
                 ?>
             </div>
         </div>        
