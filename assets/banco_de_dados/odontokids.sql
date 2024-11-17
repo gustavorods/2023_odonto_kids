@@ -10,7 +10,7 @@ CREATE TABLE `responsavel` (
 	`nasc` DATE NOT NULL,
 	`id_sexo` INTEGER NOT NULL,
 	`senha` VARCHAR(80) NOT NULL,
-	`foto` BLOB NOT NULL,
+	`foto` BLOB,
 	PRIMARY KEY(`Id`)
 );
 
@@ -24,7 +24,7 @@ CREATE TABLE `dependentes` (
 	`id_sexo` INTEGER NOT NULL,
 	`tel_emergencia` VARCHAR(11) NOT NULL,
 	`endereco` VARCHAR(255) NOT NULL,
-	`foto` BLOB NOT NULL,
+	`foto` BLOB,
 	PRIMARY KEY(`id`)
 );
 
@@ -73,7 +73,7 @@ CREATE TABLE `medico` (
 	`senha` VARCHAR(70) NOT NULL,
 	`CRM` VARCHAR(10) NOT NULL,
 	`cod_especialidade` INTEGER NOT NULL,
-	`foto` BLOB NOT NULL,
+	`foto` BLOB,
 	PRIMARY KEY(`Id`)
 );
 
