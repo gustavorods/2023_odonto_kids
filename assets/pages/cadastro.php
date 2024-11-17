@@ -95,6 +95,10 @@
                                 $responsavel->setSenha($senha_hash);
 
                                 $responsavel->salvar();
+
+                                $id = $metodos_principais->selectId($result['tabela']);
+                                $_SESSION['responsavel_id'] = $id;
+                                setcookie("responsavel_id", $id, time() + (30 * 24 * 60 * 60),"/");
                                 header("Location:./dashboard/dashboard.php"); // Altere para o caminho desejado
                                 exit(); // Importante para parar a execução do script
                             }
