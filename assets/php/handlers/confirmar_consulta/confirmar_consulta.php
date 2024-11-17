@@ -60,7 +60,7 @@ class confirmar_consulta {
                         //error_log("Médico disponível para a consulta. Realizando insert.");
                         
                         // 4. Realizar o insert na tabela consulta
-                        $queryInsertConsulta = "INSERT INTO consulta (horario, data, id_dependente, cod_tratamento, relatorio, id_medico, id_status) 
+                        $queryInsertConsulta = "INSERT INTO consulta (horario, data, id_dependente, cod_tratamento, relatorio, id_medico, status_consulta) 
                                                 VALUES (:hora, :dataConsulta, :dependente, :tratamentoId, '', :idMedico, 1)";
                         $stmtInsertConsulta = $this->conn->prepare($queryInsertConsulta);
         

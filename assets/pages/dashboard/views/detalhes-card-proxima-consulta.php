@@ -89,7 +89,7 @@
     }
 
     .detalhes-proxima-consulta .tratamento{
-        font-size: 14pt;
+        font-size: 11pt;
         font-weight: bolder;
     }
 

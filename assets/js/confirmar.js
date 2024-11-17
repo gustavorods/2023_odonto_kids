@@ -27,6 +27,9 @@ document.getElementById('btn-confirmar').addEventListener("click", function(){
     })
     .then(response => response.json()) // ou response.text(), dependendo da resposta
     .then(data => {
+        console.log(dados);  // Verifica o que foi enviado para o PHP
+        // console.log(data);  // Verifica o que foi retornado pelo PHP
+
         // Verifica se o status é sucesso
         if (data.status === "sucesso") {
             allowUnload = true; // Define a variável para permitir o unload

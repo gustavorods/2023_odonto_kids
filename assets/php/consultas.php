@@ -91,7 +91,7 @@ class Consulta {
                 FROM consulta 
                 JOIN dependentes ON consulta.id_dependente = dependentes.id
                 WHERE dependentes.id_responsavel = ? 
-                AND consulta.id_status != 1;
+                AND consulta.status_consulta != 1;
             ");
             $sql->bindParam(1, $responsavel_id, PDO::PARAM_INT);
 

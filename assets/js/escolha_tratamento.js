@@ -6,7 +6,7 @@ window.onload = function() {
     fetch('/2023_odonto_kids/assets/php/handlers/escolha_tratamento/buscarTratamentos.php')
         .then(response => response.json())
         .then(data => {
-            console.log(data);  // Verifica o que foi retornado pelo PHP
+            // console.log(data);  // Verifica o que foi retornado pelo PHP
             resultados = data; // Preenche o array 'resultados' com os dados do PHP
         })
         .catch(error => {

@@ -1,7 +1,5 @@
 <?php
-    $id_responsavel = $_SESSION['responsavel_id'];
-    // echo "<script>console.log('Responsável ID: $id_responsavel');</script>";
-    $dependente->setIdResponsavel($id_responsavel);
+    $dependente->setIdResponsavel($responsavel_id);
     $dependentes = $dependente->listarDependentes();
 ?>
 

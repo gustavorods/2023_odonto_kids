@@ -24,7 +24,7 @@
                     JOIN dependentes ON consulta.id_dependente = dependentes.id 
                     WHERE dependentes.id_responsavel = ? 
                     AND consulta.data > CURDATE()  -- Filtra para consultas acima da data de hoje
-                    AND consulta.id_status = 1
+                    AND consulta.status_consulta = 1
                     ORDER BY consulta.data ASC, consulta.horario ASC
                 ");
                 $idResponsavel = $this->getResponsavelId();
@@ -72,14 +72,14 @@
                         consulta.id, 
                         consulta.horario, 
                         consulta.data, 
-                        status.status AS id_status, 
+                        status_consulta.status_consulta AS status_consulta, 
                         tratamento.Tratamento AS cod_tratamento, 
                         dependentes.nome AS id_dependente,
                         sexo.sexo AS sexo  -- Adicionando o campo sexo
                     FROM 
                         consulta 
                     JOIN 
-                        status ON consulta.id_status = status.id_status 
+                        status_consulta ON consulta.status_consulta = status_consulta.id_status_consulta  
                     JOIN 
                         tratamento ON consulta.cod_tratamento = tratamento.Id 
                     JOIN 
@@ -89,7 +89,7 @@
                     WHERE 
                         dependentes.id_responsavel = ? 
                         AND consulta.data < CURDATE()
-                        AND consulta.id_status != 1
+                        AND consulta.status_consulta != 1;
 
                 ");
 
