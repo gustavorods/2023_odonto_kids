@@ -8,87 +8,41 @@
     font-family: 'Inter';
 }
 
-.proxima-consulta{
-    margin: 30px 50px;
+#fade{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.0);
+    z-index: 5;
+    display: none;
 }
 
 .titulo-proxima-consulta{
     font-weight: 1000;
     font-size: 16pt;
-    margin: 20px 0px;
-}
-
-
-
-.card-consulta-vertical{
-    width: 230px;
-    background-color: #F6F6F6;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.315);
-    border-radius: 15px;
-    text-align: center;
-    margin-right: 30px;
-}
-
-.cabecalho{
-    background-color: #0681F3;
-    padding: 10px;
-    text-align: center;
-    align-items: center;
-    border-radius: 15px 15px 0px 0px;
-
-}
-
-.mes{
-    font-size: 18pt;
-    color: white;
-}
-
-.corpo{
-    padding: 10px;
-}
-
-.dia-semana{
-    font-size: 12pt;
-}
-
-.dia-mes{
-    font-size: 60pt;
-    font-weight: bolder;
-}
-
-.paciente{
-    font-size: 12pt;
-}
-
-.detalhes{
-    margin: 7px 0px;
-    background-color: #0681F3;
-    color: white;
-    font-size: 10pt;
-    padding: 8px 29px;
-    border-radius: 12px;
+    margin: 20px 0px 20px 50px;
 }
 
 .card-marcar-consulta{
     height: 285px;
+    min-width: 231px;
     width: 231px;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.315);
     border-radius: 15px;
     background-color: #43A0F6;
-}
-
-.cards{
-    display: flex;
-}
-
-.marcar-consulta-href{
-    text-decoration: none;
-}
-
-.card-marcar-consulta{
+    margin: 0px 30px 0px 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+.cards-proximas-consultas{
+    display: flex;
+    overflow: auto;
+    padding: 0px 0px 20px 0px;
 }
 
 .card-marcar-consulta .mais{
@@ -104,109 +58,4 @@
     font-weight: bold;
     margin-top: -30px;
     text-align: center;
-}
-
-.historico-consulta{
-    margin: 30px 50px;
-}
-
-.historico-consulta h1{
-    font-weight: 1000;
-    font-size: 16pt;
-    margin: 20px 0px;
-}
-
-.cards-container{
-    width: 700px;
-}
-
-.card-boy{
-    margin: 20px 0px;
-    border-radius: 15px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.315);
-    padding: 10px 40px;
-    background-color: #D2EAFF;
-}
-
-.card-girl{
-    margin: 20px 0px;
-    border-radius: 15px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.315);
-    padding: 10px 40px;
-    background-color: #FBD2FF;
-}
-
-.data-status{
-    display: flex;
-    justify-content: space-between;
-    font-weight: 1000;
-    font-size: 13pt;
-}
-
-.data-status .data{
-    color: #636363;
-}
-
-.card-boy .data-status .status{
-    color: #2E81C9;
-}
-
-.card-girl .data-status .status{
-    color: #FF55F8;
-}
-
-.left-container{
-    display: flex;
-    align-items: baseline;
-}
-
-.tipo-endereco{
-    margin-top: 3px;
-    line-height: 2px;
-}
-
-
-.tipo-endereco .tipo-consulta{
-    font-weight: 1000;
-    font-size: 15pt;
-}
-
-.tipo-endereco .endereco{
-    font-size: 12pt;
-    font-weight: bold;
-    color: #636363;
-}
-
-.perfil-detalhes{
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.perfil-detalhes .perfil-imagem img{
-    height: 40px;
-    width: 40px;
-    object-fit: cover;
-    border-radius: 100px;    
-    border: 2px solid;
-    margin-right: 4px;
-}
-
-.card-girl .perfil-detalhes .botao-detalhes .detalhes{
-    background-color: #FF55F8;
-}
-
-.card-boy .perfil-detalhes .perfil-imagem img{
-    border-color: #0681F3;
-}
-
-.card-girl .perfil-detalhes .perfil-imagem img{
-    border-color: #E336DC;
-}
-
-
-.perfil-detalhes .nome-perfil{
-    font-size: 12pt;
-    font-weight: bold;
-    color: #636363;
 }

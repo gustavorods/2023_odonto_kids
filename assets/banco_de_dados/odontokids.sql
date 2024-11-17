@@ -1,5 +1,6 @@
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
@@ -25,6 +26,7 @@ SET time_zone = "+00:00";
 
 --
 -- Table structure for table `consulta`
+-- Table structure for table `consulta`
 --
 
 CREATE TABLE `consulta` (
@@ -48,10 +50,26 @@ INSERT INTO `consulta` (`id`, `horario`, `data`, `id_dependente`, `cod_tratament
 (3, '11:20:00', '2024-12-10', 3, 3, '', 1, 1),
 (4, '14:00:00', '2024-12-12', 4, 4, '', 2, 1),
 (5, '15:30:00', '2024-12-15', 5, 5, '', 1, 1);
+  `relatorio` varchar(500) NOT NULL,
+  `id_medico` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `consulta`
+--
+
+INSERT INTO `consulta` (`id`, `horario`, `data`, `id_dependente`, `cod_tratamento`, `relatorio`, `id_medico`, `id_status`) VALUES
+(1, '09:15:00', '2024-12-05', 1, 1, '', 1, 1),
+(2, '10:45:00', '2024-12-08', 2, 2, '', 2, 1),
+(3, '11:20:00', '2024-12-10', 3, 3, '', 1, 1),
+(4, '14:00:00', '2024-12-12', 4, 4, '', 2, 1),
+(5, '15:30:00', '2024-12-15', 5, 5, '', 1, 1);
 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dependentes`
 -- Table structure for table `dependentes`
 --
 
@@ -82,6 +100,7 @@ INSERT INTO `dependentes` (`id_responsavel`, `nome`, `nasc`, `cpf`, `id`, `id_se
 
 --
 -- Table structure for table `especialidade`
+-- Table structure for table `especialidade`
 --
 
 CREATE TABLE `especialidade` (
@@ -97,10 +116,20 @@ CREATE TABLE `especialidade` (
 INSERT INTO `especialidade` (`Id`, `funcao`, `descricao`) VALUES
 (1, 'Dentista', 'Especialista em odontologia geral'),
 (2, 'Ortodontista', 'Especialista em aparelhos dentários');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `especialidade`
+--
+
+INSERT INTO `especialidade` (`Id`, `funcao`, `descricao`) VALUES
+(1, 'Dentista', 'Especialista em odontologia geral'),
+(2, 'Ortodontista', 'Especialista em aparelhos dentários');
 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `medico`
 -- Table structure for table `medico`
 --
 
@@ -131,16 +160,19 @@ INSERT INTO `medico` (`Id`, `nome`, `email`, `cpf`, `telefone`, `nasc`, `id_sexo
 
 --
 -- Table structure for table `medico_tratamento`
+-- Table structure for table `medico_tratamento`
 --
 
 CREATE TABLE `medico_tratamento` (
   `Id_tratamento` int(11) NOT NULL,
   `id_medico` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `prontuario`
 -- Table structure for table `prontuario`
 --
 
@@ -148,10 +180,13 @@ CREATE TABLE `prontuario` (
   `id_consulta` int(11) NOT NULL,
   `arquivo_prontuario` blob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `arquivo_prontuario` blob DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `responsavel`
 -- Table structure for table `responsavel`
 --
 
@@ -218,6 +253,7 @@ INSERT INTO `status` (`id_status`, `status`) VALUES
 
 --
 -- Table structure for table `tratamento`
+-- Table structure for table `tratamento`
 --
 
 CREATE TABLE `tratamento` (
@@ -225,8 +261,21 @@ CREATE TABLE `tratamento` (
   `Tratamento` varchar(50) NOT NULL,
   `Descricao` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `tratamento`
+--
+
+INSERT INTO `tratamento` (`Id`, `Tratamento`, `Descricao`) VALUES
+(1, 'Limpeza', 'Procedimento de limpeza dental'),
+(2, 'Clareamento', 'Tratamento de clareamento dental'),
+(3, 'Canal', 'Tratamento de canal dentário'),
+(4, 'Extração', 'Extração de dente'),
+(5, 'Restauração', 'Restauração de dente com material específico');
+
+--
+-- Indexes for dumped tables
 -- Dumping data for table `tratamento`
 --
 
@@ -243,8 +292,14 @@ INSERT INTO `tratamento` (`Id`, `Tratamento`, `Descricao`) VALUES
 
 --
 -- Indexes for table `consulta`
+-- Indexes for table `consulta`
 --
 ALTER TABLE `consulta`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_dependente` (`id_dependente`),
+  ADD KEY `cod_tratamento` (`cod_tratamento`),
+  ADD KEY `id_medico` (`id_medico`),
+  ADD KEY `id_status` (`id_status`);
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_dependente` (`id_dependente`),
   ADD KEY `cod_tratamento` (`cod_tratamento`),
@@ -253,13 +308,18 @@ ALTER TABLE `consulta`
 
 --
 -- Indexes for table `dependentes`
+-- Indexes for table `dependentes`
 --
 ALTER TABLE `dependentes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_responsavel` (`id_responsavel`),
   ADD KEY `id_sexo` (`id_sexo`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_responsavel` (`id_responsavel`),
+  ADD KEY `id_sexo` (`id_sexo`);
 
 --
+-- Indexes for table `especialidade`
 -- Indexes for table `especialidade`
 --
 ALTER TABLE `especialidade`
@@ -267,8 +327,12 @@ ALTER TABLE `especialidade`
 
 --
 -- Indexes for table `medico`
+-- Indexes for table `medico`
 --
 ALTER TABLE `medico`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `id_sexo` (`id_sexo`),
+  ADD KEY `cod_especialidade` (`cod_especialidade`);
   ADD PRIMARY KEY (`Id`),
   ADD KEY `id_sexo` (`id_sexo`),
   ADD KEY `cod_especialidade` (`cod_especialidade`);
@@ -288,12 +352,41 @@ ALTER TABLE `prontuario`
 
 --
 -- Indexes for table `responsavel`
+-- Indexes for table `medico_tratamento`
+--
+ALTER TABLE `medico_tratamento`
+  ADD KEY `Id_tratamento` (`Id_tratamento`),
+  ADD KEY `id_medico` (`id_medico`);
+
+--
+-- Indexes for table `prontuario`
+--
+ALTER TABLE `prontuario`
+  ADD UNIQUE KEY `id_consulta` (`id_consulta`);
+
+--
+-- Indexes for table `responsavel`
 --
 ALTER TABLE `responsavel`
   ADD PRIMARY KEY (`Id`),
   ADD KEY `id_sexo` (`id_sexo`);
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `id_sexo` (`id_sexo`);
 
 --
+-- Indexes for table `sexo`
+--
+ALTER TABLE `sexo`
+  ADD PRIMARY KEY (`id_sexo`);
+
+--
+-- Indexes for table `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`id_status`);
+
+--
+-- Indexes for table `tratamento`
 -- Indexes for table `sexo`
 --
 ALTER TABLE `sexo`
@@ -313,30 +406,39 @@ ALTER TABLE `tratamento`
 
 --
 -- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
 -- AUTO_INCREMENT for table `consulta`
+-- AUTO_INCREMENT for table `consulta`
 --
 ALTER TABLE `consulta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `dependentes`
+-- AUTO_INCREMENT for table `dependentes`
 --
 ALTER TABLE `dependentes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `especialidade`
+-- AUTO_INCREMENT for table `especialidade`
 --
 ALTER TABLE `especialidade`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `medico`
+-- AUTO_INCREMENT for table `medico`
 --
 ALTER TABLE `medico`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
@@ -347,8 +449,16 @@ ALTER TABLE `prontuario`
 
 --
 -- AUTO_INCREMENT for table `responsavel`
+-- AUTO_INCREMENT for table `prontuario`
+--
+ALTER TABLE `prontuario`
+  MODIFY `id_consulta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `responsavel`
 --
 ALTER TABLE `responsavel`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -365,8 +475,68 @@ ALTER TABLE `status`
 
 --
 -- AUTO_INCREMENT for table `tratamento`
+-- AUTO_INCREMENT for table `sexo`
+--
+ALTER TABLE `sexo`
+  MODIFY `id_sexo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `status`
+--
+ALTER TABLE `status`
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tratamento`
 --
 ALTER TABLE `tratamento`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `consulta`
+--
+ALTER TABLE `consulta`
+  ADD CONSTRAINT `consulta_ibfk_1` FOREIGN KEY (`id_dependente`) REFERENCES `dependentes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `consulta_ibfk_2` FOREIGN KEY (`cod_tratamento`) REFERENCES `tratamento` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `consulta_ibfk_3` FOREIGN KEY (`id_medico`) REFERENCES `medico` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `consulta_ibfk_4` FOREIGN KEY (`id_status`) REFERENCES `status` (`id_status`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `dependentes`
+--
+ALTER TABLE `dependentes`
+  ADD CONSTRAINT `dependentes_ibfk_1` FOREIGN KEY (`id_responsavel`) REFERENCES `responsavel` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `dependentes_ibfk_2` FOREIGN KEY (`id_sexo`) REFERENCES `sexo` (`id_sexo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `medico`
+--
+ALTER TABLE `medico`
+  ADD CONSTRAINT `medico_ibfk_1` FOREIGN KEY (`id_sexo`) REFERENCES `sexo` (`id_sexo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `medico_ibfk_2` FOREIGN KEY (`cod_especialidade`) REFERENCES `especialidade` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `medico_tratamento`
+--
+ALTER TABLE `medico_tratamento`
+  ADD CONSTRAINT `medico_tratamento_ibfk_1` FOREIGN KEY (`Id_tratamento`) REFERENCES `tratamento` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `medico_tratamento_ibfk_2` FOREIGN KEY (`id_medico`) REFERENCES `medico` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `prontuario`
+--
+ALTER TABLE `prontuario`
+  ADD CONSTRAINT `prontuario_ibfk_1` FOREIGN KEY (`id_consulta`) REFERENCES `consulta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `responsavel`
+--
+ALTER TABLE `responsavel`
+  ADD CONSTRAINT `responsavel_ibfk_1` FOREIGN KEY (`id_sexo`) REFERENCES `sexo` (`id_sexo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --

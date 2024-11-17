@@ -95,7 +95,7 @@
                                 $responsavel->setSenha($senha_hash);
 
                                 $responsavel->salvar();
-                                header("Location:dashboard.html"); // Altere para o caminho desejado
+                                header("Location:./dashboard/dashboard.php"); // Altere para o caminho desejado
                                 exit(); // Importante para parar a execução do script
                             }
                         }
