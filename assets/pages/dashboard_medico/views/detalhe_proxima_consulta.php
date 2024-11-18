@@ -135,7 +135,7 @@
                 <button class="action" id="relatorio">
                     <span>Relatório</span>
                 </button>
-                <button class="action">
+                <button class="action" id="prontuario">
                     <span>Prontuário</span>
                 </button>
             </div>

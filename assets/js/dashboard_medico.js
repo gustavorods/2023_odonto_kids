@@ -13,22 +13,26 @@ botao_detalhes_proxima_consulta.forEach(botao => {
     botao.addEventListener('click', function(event) {
         const consultaId = botao.getAttribute('data_id');
         // console.log(consultaId)
-        document.getElementById('relatorio').addEventListener("click", function(){
-            $.ajax({
-                url: '/2023_odonto_kids/assets/php/handlers/dashboard_medico/consulta_id.php',  // O arquivo PHP que processará os dados
-                type: 'POST',
-                data: { id_consulta: consultaId },  // Passa o valor de id_consulta
-                success: function(response) {
-                    // console.log('Resposta do servidor:', response);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Erro na requisição AJAX:', error);
-                }
-            });    
+        $.ajax({
+            url: '/2023_odonto_kids/assets/php/handlers/dashboard_medico/consulta_id.php',  // O arquivo PHP que processará os dados
+            type: 'POST',
+            data: { id_consulta: consultaId },  // Passa o valor de id_consulta
+            success: function(response) {
+                // console.log('Resposta do servidor:', response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Erro na requisição AJAX:', error);
+            }
+        });    
 
+        document.getElementById('relatorio').addEventListener("click", function(){
             window.location.href = '/2023_odonto_kids/assets/pages/dashboard_medico/views/relatorio.php';
         })
 
+        document.getElementById('prontuario').addEventListener("click", function(){
+            window.location.href = '/2023_odonto_kids/assets/pages/dashboard_medico/views/prontuarios.php';
+        })
+        
         fetch('/2023_odonto_kids/assets/php/handlers/dashboard_medico/detalhes_proxima_consulta.php', {
             method: 'POST',
             headers: {

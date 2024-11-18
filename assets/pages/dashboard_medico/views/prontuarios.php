@@ -159,6 +159,17 @@
         .modal button.cancel:hover {
             background-color: #aaa;
         }
+
+        .voltar{
+            position: fixed;
+            top:10px;
+            left:10px;
+            cursor: pointer;
+        }
+
+        .voltar img{
+            height: 27px;
+        }
     </style>
 </head>
 <body>
@@ -194,6 +205,10 @@
                 <button id="cancel-delete" class="cancel">Não</button>
             </div>
         </div>
+    </div>
+
+    <div class="voltar" onclick="window.location.href='../dashboard_medico.php'">
+        <img src="/2023_odonto_kids/assets/img/login/seta_voltar.svg" alt="">
     </div>
 
     <script>
