@@ -89,9 +89,7 @@
                                     header("Location:dashboard/dashboard.php"); // Altere para o caminho desejado
                                     exit(); 
                                 } else if ($result['tabela'] == "medico") {   
-                                    $id = $metodos_principais->selectId($result['tabela']);
-                                    $_SESSION['responsavel_id'] = $id;
-                                    setcookie("responsavel_id", $id, time() + (30 * 24 * 60 * 60),"/");
+                                    // Cookies para médico
                                     
                                     header("Location:perfil-medico.php");
                                     exit();

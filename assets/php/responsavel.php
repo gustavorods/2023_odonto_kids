@@ -241,5 +241,22 @@ class responsavel
             echo "Erro ao salvar o registro. " . $exc->getMessage();
         }
     }
+
+    public function alterarFoto($novaFoto) {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("UPDATE responsavel SET foto = ? WHERE id = ?");
+            $sql->bindParam(1, $novaFoto, PDO::PARAM_STR); // `novaFoto` representa o caminho ou nome do arquivo
+            $sql->bindParam(2, $this->getId(), PDO::PARAM_INT); // `id` do médico
+            if ($sql->execute()) {
+                return "Foto alterada com sucesso!";
+            } else {
+                return "Erro ao alterar a foto.";
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            return "Erro ao alterar a foto: " . $exc->getMessage();
+        }
+    }
 }
 ?>
