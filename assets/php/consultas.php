@@ -28,6 +28,40 @@ class Consulta {
     public function setRelatorio($relatorio) { $this->relatorio = $relatorio; }
     public function setIdMedico($id_medico) { $this->id_medico = $id_medico; }
 
+    // Método para listar todas as consultas por ID responsavel
+    function listarPorIdResponsavel() {
+        try {
+            $this->conn = new Conectar();
+
+            $sql = $this->conn->prepare("
+                SELECT * 
+                FROM consulta 
+                JOIN dependentes ON consulta.id_dependente = dependentes.id
+                WHERE dependentes.id_responsavel = ? 
+                AND consulta.status_consulta != 1;
+            ");
+            $sql->bindParam(1, $this->responsavel_id, PDO::PARAM_INT);
+
+            $sql->execute();
+
+            $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+            // var_dump($resultado);
+            // Verificar se algum dado foi retornado
+            if (count($resultado) > 0) {
+                $result_cont = true;
+            }
+            else{
+                $result_cont = false;
+            }
+
+            $this->conn = null;
+            
+            return $result_cont;
+        } catch (PDOException $exp) {
+            echo "Erro ao puxar consultas. " . $exp->getMessage();
+        }
+    }    
+
     public function recuperar_relatorio() {
         try {
             $sql = $this->conn->prepare("SELECT relatorio FROM consulta WHERE id = ?");
