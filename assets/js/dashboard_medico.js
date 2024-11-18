@@ -28,10 +28,6 @@ botao_detalhes_proxima_consulta.forEach(botao => {
         document.getElementById('relatorio').addEventListener("click", function(){
             window.location.href = '/2023_odonto_kids/assets/pages/dashboard_medico/views/relatorio.php';
         })
-
-        document.getElementById('prontuario').addEventListener("click", function(){
-            window.location.href = '/2023_odonto_kids/assets/pages/dashboard_medico/views/prontuarios.php';
-        })
         
         fetch('/2023_odonto_kids/assets/php/handlers/dashboard_medico/detalhes_proxima_consulta.php', {
             method: 'POST',
@@ -53,8 +49,12 @@ botao_detalhes_proxima_consulta.forEach(botao => {
                 const consulta = data[0]     
                 // console.log(consulta)
                 const dateString = consulta.data
-                const dateObject = new Date(dateString + 'T00:00:00')
-                const diaconsultaFormatado = `${formatDateToString(dateObject)} às ${formatTime(consulta.horario)}`
+                const dateObject = new Date(consulta.data);
+                // Ajuste manual para UTC (caso necessário)
+const year = dateObject.getUTCFullYear();
+const month = dateObject.getUTCMonth();  // Note que o mês é zero-indexed
+const day = dateObject.getUTCDate();
+const diaconsultaFormatado = `${formatDateToString(new Date(Date.UTC(year, month, day)))} às ${formatTime(consulta.horario)}`;
                 
                 dataConsulta.innerHTML = diaconsultaFormatado
                 status_nome.innerHTML = consulta.status_consulta

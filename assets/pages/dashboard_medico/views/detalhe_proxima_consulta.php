@@ -135,9 +135,6 @@
                 <button class="action" id="relatorio">
                     <span>Relatório</span>
                 </button>
-                <button class="action" id="prontuario">
-                    <span>Prontuário</span>
-                </button>
             </div>
 
             <p class="status"><strong>Status: </strong><texto class="status-nome"></texto></p>
