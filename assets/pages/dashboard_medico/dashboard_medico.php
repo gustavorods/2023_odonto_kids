@@ -17,6 +17,11 @@
         header("Location: /2023_odonto_kids/assets/pages/login.php");
         exit;
     }
+
+    include '../../php/handlers/dashboard_medico/listar_consultas.php';
+    $listar_consulta = new listar_consultas();
+
+    $listar_consulta->setMedicoId($medico_id);
 ?>
 
 <!DOCTYPE html>
@@ -86,20 +91,34 @@
 
         <div id="fade"></div>
 
-        <?php
-            include './views/detalhe_proxima_consulta.php';
-        ?>
+        <div class="proximas-consultas">
+            <?php
+                include './views/detalhe_proxima_consulta.php';
+            ?>
 
-        <h1 class="proximas-consultas">
-            PRÓXIMAS CONSULTAS:
-        </h1>
+            <h1>
+                PRÓXIMAS CONSULTAS:
+            </h1>
 
-        <?php
-            include './views/cards_proximas_consultas.php';
-        ?>
+            <?php
+                include './views/cards_proximas_consultas.php';
+            ?>
+        </div>
+
+        <div class="historico-consulta">
+            <h1>
+                HISTÓRICO DE CONSULTAS:
+            </h1>
+            <div class="cards-historico-consulta">
+                <?php
+                    include './views/cards-historico-consultas.php';
+                ?>
+            </div>
+        </div>
 
     </div>
-
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../../js/dashboard_medico.js"></script>
 </body>
 </html>

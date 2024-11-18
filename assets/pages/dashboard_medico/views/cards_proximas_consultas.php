@@ -53,11 +53,6 @@
 </style>
 
 <?php 
-    include '../../php/handlers/dashboard_medico/listar_consultas.php';
-    $listar_consulta = new listar_consultas();
-
-    $listar_consulta->setMedicoId($medico_id);
-
     $proximas_consulta = $listar_consulta->listarProximasConsultas();
 ?>
 

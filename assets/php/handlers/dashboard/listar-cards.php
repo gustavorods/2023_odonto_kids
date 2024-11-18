@@ -106,7 +106,7 @@
                     $dia_consulta = date('j', $data_consulta_time_stamp);
                     $mes_consulta = $this->mes_semana("mes",date('F', $data_consulta_time_stamp));
                     $horario_formatado = date('H:i', strtotime(datetime: $historico_consulta['horario']));
-                    $status = $historico_consulta['id_status'];
+                    $status = $historico_consulta['status_consulta'];
                     $tratamento = $historico_consulta['cod_tratamento'];
                     $dependente = $historico_consulta['id_dependente'];
                     $sexo = $historico_consulta['sexo'];

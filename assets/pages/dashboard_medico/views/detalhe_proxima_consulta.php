@@ -49,9 +49,6 @@
     }
 
     .modal_detalhes_proxima_consulta .action {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         padding: 3px 10px;
         background: #e8f4ff;
         border: 1px solid #007bff;
@@ -135,13 +132,11 @@
             <p class="data-consulta"></p>
 
             <div class="action-buttons">
-                <button class="action">
-                    <span>Adicionar Relatório</span>
-                    <i class="icon"><img src="../../img/dashboard_medico/olho.png" alt=""></i>
+                <button class="action" id="relatorio">
+                    <span>Relatório</span>
                 </button>
                 <button class="action">
-                    <span>Adicionar Prontuário</span>
-                    <i class="icon"><img src="../../img/dashboard_medico/olho.png" alt=""></i>
+                    <span>Prontuário</span>
                 </button>
             </div>
 
@@ -156,7 +151,7 @@
             <div class="info">
                 <img src="user-avatar.png" alt="Foto do paciente" class="avatar">
                 <div class="info-text">
-                    <p><strong id="nome-dependente"></strong> <a href="#" data_id="" id="ver-mais">Ver Mais</a></p>
+                    <p><strong id="nome-dependente"></strong> <a href="#" consulta_id="" id="ver-mais">Ver Mais</a></p>
                     <p><strong>Tratamento: </strong><texto class="tratamento"></texto></p>
                 </div>
             </div>

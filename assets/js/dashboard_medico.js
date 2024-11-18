@@ -2,17 +2,32 @@ const modal_detalhes_proxima_consulta = document.querySelector('.modal_detalhes_
 const botao_detalhes_proxima_consulta = document.querySelectorAll('.detalhes_proxima_consulta');
 const fade = document.getElementById('fade');
 
+
 //elementos card detalhe proxima consulta
 const dataConsulta = document.querySelector('.data-consulta');
 const status_nome = document.querySelector('.status-nome');
 const nome_dependente = document.getElementById('nome-dependente');
 const ver_mais = document.getElementById('ver-mais');
 const tratamento = document.querySelector('.tratamento');
-
-
 botao_detalhes_proxima_consulta.forEach(botao => {
     botao.addEventListener('click', function(event) {
         const consultaId = botao.getAttribute('data_id');
+        // console.log(consultaId)
+        document.getElementById('relatorio').addEventListener("click", function(){
+            $.ajax({
+                url: '/2023_odonto_kids/assets/php/handlers/dashboard_medico/consulta_id.php',  // O arquivo PHP que processará os dados
+                type: 'POST',
+                data: { id_consulta: consultaId },  // Passa o valor de id_consulta
+                success: function(response) {
+                    // console.log('Resposta do servidor:', response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro na requisição AJAX:', error);
+                }
+            });    
+
+            window.location.href = '/2023_odonto_kids/assets/pages/dashboard_medico/views/relatorio.php';
+        })
 
         fetch('/2023_odonto_kids/assets/php/handlers/dashboard_medico/detalhes_proxima_consulta.php', {
             method: 'POST',
@@ -32,7 +47,7 @@ botao_detalhes_proxima_consulta.forEach(botao => {
             // Verifica se data não é vazio e tem pelo menos um item
             if (data && data.length > 0) {
                 const consulta = data[0]     
-                console.log(consulta)
+                // console.log(consulta)
                 const dateString = consulta.data
                 const dateObject = new Date(dateString + 'T00:00:00')
                 const diaconsultaFormatado = `${formatDateToString(dateObject)} às ${formatTime(consulta.horario)}`
@@ -40,7 +55,7 @@ botao_detalhes_proxima_consulta.forEach(botao => {
                 dataConsulta.innerHTML = diaconsultaFormatado
                 status_nome.innerHTML = consulta.status_consulta
                 nome_dependente.innerHTML = consulta.nome_dependente
-                ver_mais.setAttribute('data_id', consulta.id_dependente)
+                ver_mais.setAttribute('consulta_id', consulta.id_dependente)
                 tratamento.innerHTML = consulta.Tratamento
                 
             } else {
@@ -91,3 +106,4 @@ fade.addEventListener('click', function(event) {
         fecharModal();
     }
 });
+
