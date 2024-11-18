@@ -53,6 +53,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit(); 
     }
 }
+
+// Lógica para ir pra página de dependentes
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+    if (isset($_POST['visualizar_perfil_dependente'])) {
+        $nome_dependente_input_hidden = $_POST['txt_nome_dependente_hidden'];
+        
+        $_SESSION['id_dependente'] = $dependente->nameToId($nome_dependente_input_hidden);
+        
+        header("Location:./perfil_dependente.php"); 
+        exit(); 
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -144,8 +156,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </ul>
                 </div>
             </div>
-    </div>
- </nav>
+        </div>
+    </nav>
 
  <!--CONTEUDO-->
  <div class="container">
@@ -305,29 +317,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <br>
             <!-- Listar todos os dependentes do responsavel-->
+            <form method="post">
             <?php
             if ($all_dependentes) {
-                foreach ($all_dependentes as $dep) {
-                    echo '<div class="content-item">
+                foreach ($all_dependentes as $dep) { ?>
+                        <div class="content-item">
                             <div class="content-item-icon">
                                 <img 
-                                    src="data:image/jpeg;base64,' . base64_encode($dep['foto']) . '"  
+                                    src="data:image/jpeg;base64,<?php echo base64_encode($dep['foto']); ?>"  
                                     alt="Foto-dependente" 
                                     class="logo-icon">
                             </div>
                             <div class="content-item-details">
-                                ' . htmlspecialchars($dep['nome']) . '
+                                <?php echo htmlspecialchars($dep['nome'])?>
                                 <br>
                             </div>
-                            <a href="perfil.php?id_dependente=' . $dep['id'] . '">
-                                <button class="info" type="button">Visualizar perfil</button>
-                            </a>
-                        </div>';
+                            <button class="info visualizar_perfil_dependente" name="visualizar_perfil_dependente" type="submit">Visualizar perfil</button>
+                        </div>
+                    <?php
                 }
             } else {
                 echo "Nenhum dependente cadastrado";
             }
-            ?>      
+            ?>    
+             <!-- Campo oculto para armazenar o nome dependente -->
+             <input type="hidden" name="txt_nome_dependente_hidden" class="txt_nome_dependente_hidden">
+            </form>  
     </div>
 
 
@@ -358,5 +373,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <script src="../js/perfilAbas.js"></script>
 <script src="../js/popupPerfil.js"></script>
+<script>
+    // Seleciona todos os botões de módulo
+    let btn_visualizar_perfil_dependente = document.querySelectorAll(".visualizar_perfil_dependente");
+        let input_hidden_nome_dependente = document.querySelector('.txt_nome_dependente_hidden');
+
+        // Itera sobre cada botão e adiciona um evento de clique
+        btn_visualizar_perfil_dependente.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                // Localiza o título do curso no mesmo cartão do botão clicado
+                let nome_dependente = btn.closest('.content-item').querySelector('.content-item-details').textContent.trim();
+                
+                // Define o valor do nome do dependente no input oculto
+                input_hidden_nome_dependente.value = nome_dependente;
+                
+                // Envia o formulário
+                btn.closest('form').submit();
+                console.log(input_hidden_nome_dependente.value);
+                console.log(nome_dependente);
+            });
+        });
+</script>
 </body>
 </html>

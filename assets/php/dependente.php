@@ -162,5 +162,33 @@ class Dependente {
         // Envia para o log de erros do PHP
         error_log($log_message);
     }
+    
+    public function nameToId($nome) {
+        $this->conn = new Conectar();
+
+        try {
+            $sql = $this->conn->prepare("SELECT id FROM dependentes WHERE nome LIKE ?");
+            $sql->bindParam(1, $nome, PDO::PARAM_STR);
+            $sql->execute();
+            return $sql->fetch(PDO::FETCH_ASSOC)['id'] ?? null;
+        } catch (PDOException $e) {
+            echo "Erro ao buscar ID pelo nome: " . $e->getMessage();
+            return null;
+        }
+    }
+
+    public function infoById($id) {
+        $this->conn = new Conectar();
+
+        try {
+            $sql = $this->conn->prepare("SELECT * FROM dependentes WHERE id = ?");
+            $sql->bindParam(1, $id, PDO::PARAM_STR);
+            $sql->execute();
+            return $sql->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Erro ao buscar dados do dependente: " . $e->getMessage();
+            return null;
+        }
+    }
 }
 ?>
