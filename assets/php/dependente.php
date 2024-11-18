@@ -110,46 +110,31 @@ class Dependente {
         $sql->execute();
     }
 
-    public function listarDependentes() {
+    public function listarDependentesById() {
         // Cria uma nova conexão com o banco de dados
         $this->conn = new Conectar();
-    
+        
+        // Obtém o ID do responsável
         $id_responsavel = $this->getIdResponsavel();
-
-        // Prepara a consulta SQL de SELECT
-        $sql = $this->conn->prepare("SELECT id, nome, cpf, nasc FROM dependentes WHERE id_responsavel = ?");
-        $sql->bindParam(1, $id_responsavel, PDO::PARAM_INT);
-        // Executa a consulta
-        $sql->execute();
+        
+        try {
+            // Prepara a consulta SQL de SELECT
+            $sql = $this->conn->prepare("SELECT * FROM dependentes WHERE id_responsavel = ?");
+            $sql->bindParam(1, $id_responsavel, PDO::PARAM_INT);
     
-        // Array para armazenar os dados dos dependentes
-        $dependentes = [];
+            // Executa a consulta
+            $sql->execute();
     
-        // Busca os resultados
-        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
-            // Calcula a idade com base na data de nascimento
-            $nasc = new DateTime($row['nasc']);
-            $hoje = new DateTime();
-            $idade = $hoje->diff($nasc)->y;
+            // Retorna os resultados como um array associativo
+            $dependentes = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $dependentes;
     
-            // Cria o array para o dependente com os dados solicitados
-            $dependente = [
-                'id' => $row['id'],
-                'nome' => $row['nome'],
-                'cpf' => $row['cpf'], // Aplicando a máscara no CPF
-                'idade' => $idade,
-                'foto' => 'IMG/placeholder.jpg' // Placeholder para imagem por enquanto
-            ];
-    
-            // Adiciona o dependente ao array de dependentes
-            $dependentes[] = $dependente;
+        } catch (PDOException $e) {
+            // Tratamento de erro
+            echo "Erro ao listar dependentes: " . $e->getMessage();
+            return [];
         }
-    
-        // Retorna o array de dependentes
-        return $dependentes;
-    }
-    
-    
+    }    
 
     public function logDependente() {
         // Cria uma string com os valores das variáveis

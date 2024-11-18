@@ -4,16 +4,22 @@ session_start();
 // Importando e inicializando as classes necessárias
 include_once '../php/metodos_principais.php';
 include_once '../php/sexo.php';
+include_once '../php/dependente.php';
 include_once '../php/responsavel.php';
 
 // Inicializando as instâncias das classes
 $metodos_principais = new metodos_principais();
 $sexo = new sexo();
 $responsavel = new responsavel();
+$dependente = new Dependente();
 
 // Pegando todos os dados do médico
 $_SESSION['dados_user_responsavel'] = $metodos_principais->obter_dados_do_user($_SESSION['user']['tabela'], $_SESSION['user']['id']);
 $_SESSION['dados_user_sexo'] = $sexo->getSexoById($_SESSION['dados_user_responsavel']['id_sexo']);
+
+// Pegando todos os dependentes
+$dependente->setIdResponsavel($_SESSION['dados_user_responsavel']['Id']);
+$all_dependentes = $dependente->listarDependentesById();
 
 // Lógica para alterar foto de perfil
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
@@ -299,6 +305,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <br>
             <!-- Listar todos os dependentes do responsavel-->
+            <?php
+            if ($all_dependentes) {
+                foreach ($all_dependentes as $dep) {
+                    echo '<div class="content-item">
+                            <div class="content-item-icon">
+                                <img 
+                                    src="data:image/jpeg;base64,' . base64_encode($dep['foto']) . '"  
+                                    alt="Foto-dependente" 
+                                    class="logo-icon">
+                            </div>
+                            <div class="content-item-details">
+                                ' . htmlspecialchars($dep['nome']) . '
+                                <br>
+                            </div>
+                            <a href="perfil.php?id_dependente=' . $dep['id'] . '">
+                                <button class="info" type="button">Visualizar perfil</button>
+                            </a>
+                        </div>';
+                }
+            } else {
+                echo "Nenhum dependente cadastrado";
+            }
+            ?>      
     </div>
 
 
