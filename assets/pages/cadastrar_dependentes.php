@@ -4,13 +4,49 @@
     // Importando e inicializando a classe com os metodos necessarios
     include_once '../php/sexo.php';
     include_once '../php/dependente.php';
-    $sexo_instancia = new sexo();
+    $sexo = new sexo();
     $dep_instancia = new Dependente();
 
     // Pegando os sexos do banco de dados
-    $result_sexo = $sexo_instancia->getAllSexo();
+    $result_sexo = $sexo->getAllSexo();
 
     // Lógica de cadastro
+    // Inicializa as variáveis
+    $nome = $cpf = $telefone = $nasc = $genero = $enndereco = '';
+    $mensagem = '';
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['btnEnv'])) {
+            // Recebendo os dados
+            $nome = $_POST['txt_nome'];
+            $cpf = $_POST['txt_cpf'];
+            $nasc = $_POST['txt_date'];
+            $endereco = $_POST['txt_endeco'];
+            $telefone = $_POST['txt_telEmer'];
+
+            // Atribuindo valor no sexo
+            $sexo_value = $_POST['txt_sexo']; // Recebe o valor do sexo
+            $sexo_instancia = new sexo(); // Instanciando o objeto para manipulação
+            $sexo_instancia->setSexo($sexo_value);
+            $cod_sexo = $sexo_instancia->sexoToId();
+
+            if ($cod_sexo == null) {
+            // Se o sexo não for encontrado, podemos adicionar um log ou mensagem de erro aqui
+            } else {
+                $dep_instancia->setIdResponsavel($_SESSION['dados_user_responsavel']['Id']);
+                $dep_instancia->setNome($nome);
+                $dep_instancia->setNasc($nasc);
+                $dep_instancia->setIdSexo($cod_sexo);
+                $dep_instancia->setCpf($cpf);
+                $dep_instancia->setTelEmergencia($telefone);
+                $dep_instancia->setEndereco($endereco);
+
+                $dep_instancia->cadastrarDependente();
+                header("Location:./perfil_responsavel.php");  
+                exit(); 
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -347,7 +383,7 @@ select {
                     <input type="date" name="txt_date" id="txt_date" class="form_input" placeholder="Clique aqui para digitar" required value="">
 
                     <div class="input_form">
-                        <!-- Responsável -->
+                        <!-- Telefone -->
                         <label for="txt_resp" class="input_label">Telefone de Emergencia</label>
                     </div>
                     <input type="number" name="txt_telEmer" id="txt_telEmer" class="form_input" placeholder="Clique aqui para digitar" required value="">

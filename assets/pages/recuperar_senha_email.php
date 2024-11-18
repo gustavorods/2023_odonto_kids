@@ -14,7 +14,7 @@
     <nav class="navbar navbar-dark">
         <div class="container-fluid">
             <a href="javascript:history.back()"><img src="../img/recuperar_senha/seta_voltar.svg" alt="seta de voltar branca" class="navbar_seta_voltar"></a>
-    
+
             <div id="div-logo">
                 <h1>Odonto kids</h1>
                 <img src="../img/geral/Logo.svg" alt="Odonto Kids logo">
@@ -23,7 +23,7 @@
             <!--Apenas uma div sem nada, para que os elementos centralizem melhor na tela-->
             <div></div>
         </div>
-</nav>
+    </nav>
                 
 <!--recuperar senha Card-->
 <div class="container">

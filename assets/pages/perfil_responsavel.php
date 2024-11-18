@@ -12,7 +12,8 @@ $sexo = new sexo();
 $responsavel = new responsavel();
 
 // Pegando todos os dados do médico
-$dados_user = $metodos_principais->obter_dados_do_user($_SESSION['user']['tabela'], $_SESSION['user']['id']);
+$_SESSION['dados_user_responsavel'] = $metodos_principais->obter_dados_do_user($_SESSION['user']['tabela'], $_SESSION['user']['id']);
+$_SESSION['dados_user_sexo'] = $sexo->getSexoById($_SESSION['dados_user_responsavel']['id_sexo']);
 
 // Lógica para alterar foto de perfil
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
@@ -29,6 +30,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Erro ao carregar a imagem.";
         }
+
+        header("Location:perfil_responsavel.php"); 
+        exit(); 
+    }
+}
+
+// Lógica para remover foto de perfil
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+    if (isset($_POST['btnRemoverFoto'])) {
+        $responsavel->setId($_SESSION['user']['id']);
+        
+        $responsavel->ExcluirFotoPerfil();
 
         header("Location:perfil_responsavel.php"); 
         exit(); 
@@ -88,14 +101,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
              <!-- Botão para abrir o pop-up -->
              <button id="openPopup">
              <?php
-                if($dados_user['foto'] == null) {
+                if($_SESSION['dados_user_responsavel']['foto'] == null) {
                     ?>
                     <img src="../img/perfil_medico/perfil_anonimo_icon.png" alt="Imagem de Perfil" height="32px" width="32px" style="border-radius: 50%; border: 1px solid white">
                     <?php
                 } else {
                     ?>
                     <img 
-                    src="data:image/jpeg;base64,<?php echo base64_encode($dados_user['foto']); ?>" 
+                    src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['dados_user_responsavel']['foto']); ?>" 
                     alt="Imagem de Perfil" 
                     height="32px" 
                     width="32px" 
@@ -110,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="popup-header">
                     <div class="popup-title">
                      <?php
-                     echo $dados_user['nome']
+                     echo $_SESSION['dados_user_responsavel']['nome']
                      ?>
                     </div>
                     <button id="closePopup" class="popup-close">✕</button>
@@ -130,18 +143,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
  <!--CONTEUDO-->
  <div class="container">
-        <h3 class="titulo"><?php echo $dados_user['nome'] ?></h3> 
+        <h3 class="titulo"><?php echo $_SESSION['dados_user_responsavel']['nome'] ?></h3> 
         <header>
             <form id="foto-perfil" method="post" enctype="multipart/form-data">
                 <?php
-                    if($dados_user['foto'] == null) {
+                    if($_SESSION['dados_user_responsavel']['foto'] == null) {
                         ?>
                         <img src="../img/perfil_medico/perfil_anonimo_icon.png" alt="Imagem de Perfil" style="width: 150px; height: 150px; border-radius: 50%; border: 1px solid gray">
                         <?php
                     } else {
                         ?>
                         <img 
-                        src="data:image/jpeg;base64,<?php echo base64_encode($dados_user['foto']); ?>" 
+                        src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['dados_user_responsavel']['foto']); ?>" 
                         alt="Imagem de Perfil" 
                         height="32px" 
                         width="32px" 
@@ -182,7 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <!-- informações sobre privacidade -->
                     <p>Informações pessoais que você salvou na conta, como seu aniversário ou endereço de e-mail, e opções para gerenciá-las. Esses dados são particulares, não serão publicados!
                     A sua privacidade e a segurança dos seus dados são extremamente importantes para nós. No nosso sistema de agendamento, coletamos e armazenamos apenas as informações necessárias para garantir um atendimento eficiente e seguro. Isso inclui dados como nome, informações de contato, dados de agendamento e, quando aplicável, informações sobre dependentes.
-<br><br>
+                    <br><br>
                     Como usamos seus dados:
                     <ul>
                     <li>Agendamentos e Atendimento: Utilizamos as informações fornecidas para processar os agendamentos, confirmar consultas, e garantir que o atendimento seja realizado conforme solicitado.</li>
@@ -193,7 +206,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     Em caso de dúvidas nos contate por meio de nosso canais de atendimento!
                     </p>
 
-                    <p>Entendemos a importância da segurança da sua conta. Se você deseja alterar sua senha, basta clicar em 'Alterar senha'. A troca de senha é uma maneira simples e eficaz de proteger o acesso à sua conta e garantir que suas informações pessoais permaneçam seguras. <a href="alterarS.php">Alterar Senha</a>
+                    <p>Entendemos a importância da segurança da sua conta. Se você deseja alterar sua senha, basta clicar em 'Alterar senha'. A troca de senha é uma maneira simples e eficaz de proteger o acesso à sua conta e garantir que suas informações pessoais permaneçam seguras. <a href="./alterar_senha_responsavel.php">Alterar Senha</a>
                     </p>
                 </div>
             </div>
@@ -211,25 +224,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h2 class="titulo">Sobre</h2>
                 
                     <label for="nome">Nome completo:</label>
-                    <input type="text" class="input" name="nome" id="nome" disabled value=""><br><br>
+                    <input type="text" class="input" name="nome" id="nome" disabled value="<?php echo $_SESSION['dados_user_responsavel']['nome']?>"><br><br>
                 
                     <label for="email">Email:</label> 
-                    <input type="text" class="input" name="email" id="email" disabled value=""><br><br>
+                    <input type="text" class="input" name="email" id="email" disabled value="<?php echo $_SESSION['dados_user_responsavel']['email']?>"><br><br>
 
                     
                     <label for="cpf">CPF:</label>
-                    <input type="text" class="input" name="cpf" id="cpf" disabled value=""><br><br>
+                    <input type="text" class="input" name="cpf" id="cpf" disabled value="<?php echo $_SESSION['dados_user_responsavel']['cpf']?>"><br><br>
             
                     <label for="tel">Telefone:</label>
-                    <input type="text" class="input" name="tel" id="tel" disabled value=""><br><br>
+                    <input type="text" class="input" name="tel" id="tel" disabled value="<?php echo $_SESSION['dados_user_responsavel']['telefone']?>"><br><br>
                     
                 
                     <label for="nasc">Data de nascimento:</label>
-                    <input type="text" class="input" disabled value=""><br><br>
+                    <input type="text" class="input" disabled value="<?php echo $_SESSION['dados_user_responsavel']['nasc']?>"><br><br>
                 
 
                     <label for="sexo">Sexo:</label>
-                    <input type="text" class="input" name="sexo" id="sexo" disabled value="">
+                    <input type="text" class="input" name="sexo" id="sexo" disabled value="<?php echo $_SESSION['dados_user_sexo'] ?>">
                 </div>
         
 <br><br>
@@ -237,7 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h2 class="titulo">Alterar informações de contato</h2>
             <p>Os dados como nome, endereço e outros detalhes pessoais são fundamentais para a correta identificação e registro dentro do sistema, e qualquer alteração nesses dados pode afetar o relacionamento e a correspondência com os registros da plataforma. Já o e-mail e o telefone são informações de contato direto, que podem ser atualizadas sem comprometer a estrutura básica do perfil, desde que o novo e-mail ou telefone esteja válido para garantir que as notificações e comunicações sejam corretamente enviadas. Caso queira alterar algum dado clique em 'Alterar informações'.</p>
 <br>
-                <button type="button" class="btn3">Alterar Informações</button>
+            <a href="./alterar_dados_responsavel.php" class="btn3">Alterar Informações</a>
 <br><br><br>
             <!-- Pop-up para alterar informações -->
             <div class="editar-tela" style="display: none;">
@@ -276,7 +289,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <li>Acesso a Documentos Médicos: Facilita o acesso a documentos médicos importantes, como prescrições, laudos de exames e relatórios médicos, que podem ser necessários em diferentes situações, como viagens, mudanças de escola ou acompanhamento por especialistas.</li>
                     </ul>
                 </p>
-                <button type="submit" class="btn3">Cadastrar</button>
+                <a href="./cadastrar_dependentes.php" class="btn3">Cadastrar</a>
         </div>
 
         <!-- ABA DE dependentes -->
