@@ -11,6 +11,8 @@
 
     $medico_id = !empty($cookie_medico_id) ? $cookie_medico_id : $session_medico_id;
 
+    echo '<script>console.log('.$medico_id.')</script>';
+
     if (!is_numeric($medico_id) || $medico_id <= 0) {
         header("Location: /2023_odonto_kids/assets/pages/login.php");
         exit;
@@ -79,31 +81,25 @@
             </div>
     </nav>
     <!-- Corpo da página -->
+     
     <div class="dashboard_medico"> 
 
+        <div id="fade"></div>
+
+        <?php
+            include './views/detalhe_proxima_consulta.php';
+        ?>
+
+        <h1 class="proximas-consultas">
+            PRÓXIMAS CONSULTAS:
+        </h1>
+
+        <?php
+            include './views/cards_proximas_consultas.php';
+        ?>
 
     </div>
 
-   <!-- Footer -->
-   <section class="footer">
-    <div class="box-container">
-        <div class="box">
-            <h3>Endereço</h3>
-            <p>Endereço: 619 Albuquerque Travessa - Tucano, PI / 60960-761<br>CNPJ: n° 87.313.818/0001-42</p>
-        </div>
-        <div class="box">
-            <h3>E-mail</h3>
-            <a href="#" class="link">OdontoKids@gmail.com</a>
-            <a href="#" class="link">SuporteOdontoKids@hotmail.com</a>
-        </div>
-        <div class="box">
-            <h3>Ligue</h3>
-            <p>+55 0000-0000</p>
-            <p>+55 0000-0000</p>
-        </div>
-    </div>
-    <div class="credit">Copyright © 2023 Odonto Kids LTDA</div>
-    </section>
-
+    <script src="../../js/dashboard_medico.js"></script>
 </body>
 </html>

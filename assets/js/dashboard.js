@@ -26,36 +26,27 @@ botaoDetalhes.forEach(botao => {
             return response.json();
         })
         .then(data => {
-            // Verifica se data não é vazio
-            if (data && Array.isArray(data)) {
-                data.forEach(consulta => {
-                    // Desestrutura o objeto para obter cada propriedade
-                    const { data: dataConsulta, hora, nome, tratamento } = consulta;
-
-                    // console.log("Data da consulta:", dataConsulta);
-                    // console.log("Hora da consulta:", hora);
-                    // console.log("Nome do paciente:", nome);
-                    // console.log("Tratamento:", tratamento);
-
-                    nomeDependenteDetalhe.innerHTML = nome;
-                    tratamentoDetalhe.innerHTML = tratamento;
-                    
-                    const dateString = dataConsulta;
-                    const dateObject = new Date(dateString + 'T00:00:00');
-
-                    const diaconsultaFormatado = `${formatDateToString(dateObject)} às ${formatTime(hora)}`;
-                    diaconsulta.innerHTML = diaconsultaFormatado
-
-                    createCalendar(dateObject)
-                });
+            // Verifica se data não é vazio e tem pelo menos um item
+            if (data && data.length > 0) {
+                const consulta = data[0];
+                const { data: dataConsulta, hora, nome, tratamento } = consulta;
+        
+                nomeDependenteDetalhe.innerHTML = nome;
+                tratamentoDetalhe.innerHTML = tratamento;
+        
+                const dateString = dataConsulta;
+                const dateObject = new Date(dateString + 'T00:00:00');
+                const diaconsultaFormatado = `${formatDateToString(dateObject)} às ${formatTime(hora)}`;
+                diaconsulta.innerHTML = diaconsultaFormatado;
+        
+                createCalendar(dateObject);
             } else {
                 console.warn('Nenhuma consulta encontrada');
             }
-        })
+        })        
         .catch(error => {
             console.error('Erro ao acessar o banco de dados:', error);
         });
-
 
         abrirModal()
     });
@@ -79,13 +70,11 @@ fade.addEventListener('click', function(event) {
 function fecharModal() {
     detalhesProximaConsulta.style.display = "none";
     fade.style.display = "none";
-    fade.style.backgroundColor = "rgba(0, 0, 0, 0.0)";
 }
 
 function abrirModal(){
     detalhesProximaConsulta.style.display = "block"
     fade.style.display = "block"
-    fade.style.backgroundColor = "rgba(0, 0, 0, 0.6)"
 }
 
 function formatDateToString(date) {
