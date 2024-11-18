@@ -60,6 +60,17 @@
         .formulario{
             margin: 20px;
         }
+
+        .voltar{
+            position: fixed;
+            top: 18px;
+            left: 10px;
+            cursor: pointer;
+        }
+
+        .voltar img{
+            height: 31px;
+        }
     </style>
 </head>
 
@@ -119,6 +130,10 @@
                 }
             ?>
         </form>
+
+        <div class="voltar" onclick="window.location.href='../dashboard_medico.php'">
+            <img src="/2023_odonto_kids/assets/img/login/seta_voltar.svg" alt="">
+        </div>
 
     </div>
 <script>

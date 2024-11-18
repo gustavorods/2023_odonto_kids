@@ -21,7 +21,7 @@
         }); 
 
         card.innerHTML = `
-            <img src="${fotoUrl}" alt="Foto de ${nome}">
+            <img src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="Foto de ${nome}">
             <p class="nome"><span>Nome:</span> ${nome}</p>
             <p class="idade"><span>Idade:</span> ${idade}</p>
             <p class="cpf"><span>CPF:</span> ${mascaraCpf(cpf)}</p>

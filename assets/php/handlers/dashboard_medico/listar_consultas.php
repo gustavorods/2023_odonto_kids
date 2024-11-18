@@ -75,7 +75,6 @@
                         sexo sex ON d.id_sexo = sex.id_sexo
                     WHERE 
                         c.id_medico = ?
-                        AND c.data < CURDATE()
                         AND c.status_consulta != 1;
                 ");
 

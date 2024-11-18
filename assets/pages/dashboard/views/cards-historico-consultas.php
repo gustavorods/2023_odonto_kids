@@ -232,7 +232,7 @@
                 <div class="perfil-detalhes">
                     <div class="left-container">
                         <div class="perfil-imagem">
-                            <img src="" alt="">
+                            <img src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="">
                         </div>
 
                         <div class="nome-perfil">

@@ -204,7 +204,7 @@
                     avisoMessage = "Você cancelou essa consulta";
                 }
                 else{
-                    avisoMessage = "Você não compareceu a essa consulta";
+                    avisoMessage = "Paciente não compareceu à consulta";
                 }
                 break;
         }
@@ -242,7 +242,7 @@
 
                     <div class="botao-detalhes">
                         <h1 class="aviso">${avisoMessage}</h1> <!-- Mensagem de aviso aqui -->
-                        <button class="detalhes-historico-consulta" data-id="${id}">
+                        <button class="detalhes-historico-consulta " data_id="${id}">
                             Detalhes
                         </button>
                     </div>
