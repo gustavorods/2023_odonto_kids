@@ -23,6 +23,30 @@
             $nasc = $_POST['txt_date'];
             $endereco = $_POST['txt_endeco'];
             $telefone = $_POST['txt_telEmer'];
+            $foto = null;
+
+            // Verificando se há um upload de imagem
+            if (isset($_FILES['Foto']) && $_FILES['Foto']['error'] === UPLOAD_ERR_OK) {
+                // Validando o tamanho do arquivo (exemplo: 2MB máximo)
+                if ($_FILES['Foto']['size'] > 2 * 1024 * 1024) {
+                    echo "A imagem é muito grande. Tamanho máximo permitido: 2MB.";
+                    exit;
+                }
+            
+                // Validando o tipo MIME (exemplo: apenas imagens JPEG ou PNG)
+                $allowedMimeTypes = ['image/jpeg', 'image/png'];
+                $fileMimeType = mime_content_type($_FILES['Foto']['tmp_name']);
+                if (!in_array($fileMimeType, $allowedMimeTypes)) {
+                    $mensagem = "Formato de arquivo inválido. Apenas JPEG e PNG são permitidos.";
+                    exit;
+                }
+            
+                // Convertendo a imagem para binário
+                $foto = file_get_contents($_FILES['Foto']['tmp_name']);
+            } else {
+                // Usando a imagem padrão caso nenhuma imagem tenha sido enviada
+                $foto = file_get_contents('../img/perfil_dependente/perfil_anonimo_icon.png');
+            }
 
             // Atribuindo valor no sexo
             $sexo_value = $_POST['txt_sexo']; // Recebe o valor do sexo
@@ -40,6 +64,7 @@
                 $dep_instancia->setCpf($cpf);
                 $dep_instancia->setTelEmergencia($telefone);
                 $dep_instancia->setEndereco($endereco);
+                $dep_instancia->setFoto($foto);
 
                 $dep_instancia->cadastrarDependente();
                 header("Location:./perfil_responsavel.php");  

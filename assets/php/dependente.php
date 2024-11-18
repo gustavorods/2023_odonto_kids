@@ -10,11 +10,12 @@ class Dependente {
     private $id_sexo;
     private $tel_emergencia;
     private $endereco;
+    private $foto; // Novo campo para armazenar a foto
 
     private $conn;
 
     // Construtor
-    public function __construct($id_responsavel = null, $nome = null, $nasc = null, $cpf = null, $id_sexo = null, $tel_emergencia = null, $endereco = null, $id = null) {
+    public function __construct($id_responsavel = null, $nome = null, $nasc = null, $cpf = null, $id_sexo = null, $tel_emergencia = null, $endereco = null, $foto = null, $id = null) {
         $this->id_responsavel = $id_responsavel;
         $this->nome = $nome;
         $this->nasc = $nasc;
@@ -22,6 +23,7 @@ class Dependente {
         $this->id_sexo = $id_sexo;
         $this->tel_emergencia = $tel_emergencia;
         $this->endereco = $endereco;
+        $this->foto = $foto;
         if ($id !== null) {
             $this->id = $id;
         }
@@ -60,6 +62,10 @@ class Dependente {
         return $this->endereco;
     }
 
+    public function getFoto() {
+        return $this->foto;
+    }
+
     // Métodos Setters
     public function setIdResponsavel($id_responsavel) {
         $this->id_responsavel = $id_responsavel;
@@ -89,13 +95,18 @@ class Dependente {
         $this->endereco = $endereco;
     }
 
+    public function setFoto($foto) {
+        $this->foto = $foto;
+    }
+
+
     public function cadastrarDependente() {
         // Cria uma nova conexão com o banco de dados
         $this->conn = new Conectar();
     
         // Prepara a consulta SQL de INSERT
-        $sql = $this->conn->prepare("INSERT INTO dependentes (id_responsavel, nome, nasc, cpf, id_sexo, tel_emergencia, endereco) 
-                                    VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $sql = $this->conn->prepare("INSERT INTO dependentes (id_responsavel, nome, nasc, cpf, id_sexo, tel_emergencia, endereco, foto) 
+                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     
         // Bind dos parâmetros para o INSERT
         $sql->bindParam(1, $this->id_responsavel, PDO::PARAM_INT);
@@ -105,6 +116,7 @@ class Dependente {
         $sql->bindParam(5, $this->id_sexo, PDO::PARAM_INT);
         $sql->bindParam(6, $this->tel_emergencia, PDO::PARAM_STR);
         $sql->bindParam(7, $this->endereco, PDO::PARAM_STR);
+        $sql->bindParam(8, $this->foto, PDO::PARAM_STR);
     
         // Executa o comando
         $sql->execute();
