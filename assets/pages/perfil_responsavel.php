@@ -323,10 +323,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 foreach ($all_dependentes as $dep) { ?>
                         <div class="content-item">
                             <div class="content-item-icon">
-                                <img 
-                                    src="data:image/jpeg;base64,<?php echo base64_encode($dep['foto']); ?>"  
-                                    alt="Foto-dependente" 
-                                    class="logo-icon">
+                                <?php
+                                    if($dep['foto'] == null) {
+                                        ?>
+                                        <img 
+                                        src="../img/perfil_medico/perfil_anonimo_icon.png"  
+                                        alt="Foto-dependente" 
+                                        class="logo-icon">
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <img 
+                                        src="data:image/jpeg;base64,<?php echo base64_encode($dep['foto']); ?>"  
+                                        alt="Foto-dependente" 
+                                        class="logo-icon">
+                                        <?php
+                                    }
+                                ?>
                             </div>
                             <div class="content-item-details">
                                 <?php echo htmlspecialchars($dep['nome'])?>

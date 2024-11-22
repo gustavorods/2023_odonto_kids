@@ -67,6 +67,10 @@ class Dependente {
     }
 
     // Métodos Setters
+    public function setId($id) {
+        $this->id = $id;
+    }
+    
     public function setIdResponsavel($id_responsavel) {
         $this->id_responsavel = $id_responsavel;
     }
@@ -188,6 +192,77 @@ class Dependente {
         } catch (PDOException $e) {
             echo "Erro ao buscar dados do dependente: " . $e->getMessage();
             return null;
+        }
+    }
+
+    public function alterarFoto($novaFoto) {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("UPDATE dependentes SET foto = ? WHERE id = ?");
+            $sql->bindParam(1, $novaFoto, PDO::PARAM_STR); 
+            $sql->bindParam(2, $this->getId(), PDO::PARAM_INT); 
+            if ($sql->execute()) {
+                return "Foto alterada com sucesso!";
+            } else {
+                return "Erro ao alterar a foto.";
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            return "Erro ao alterar a foto: " . $exc->getMessage();
+        }
+    }
+
+    public function alterar() {
+        try {
+            $this->conn = new Conectar();
+    
+            // Prepara a consulta SQL de UPDATE
+            $sql = $this->conn->prepare("UPDATE dependentes SET 
+                nome = ?, 
+                nasc = ?, 
+                cpf = ?, 
+                id_sexo = ?, 
+                tel_emergencia = ?, 
+                endereco = ?
+                WHERE id = ?");
+    
+            // Bind dos parâmetros para o UPDATE
+            $sql->bindParam(1, $this->nome, PDO::PARAM_STR);
+            $sql->bindParam(2, $this->nasc, PDO::PARAM_STR); // A data já deve estar no formato YYYY-MM-DD
+            $sql->bindParam(3, $this->cpf, PDO::PARAM_STR);
+            $sql->bindParam(4, $this->id_sexo, PDO::PARAM_INT);
+            $sql->bindParam(5, $this->tel_emergencia, PDO::PARAM_STR);
+            $sql->bindParam(6, $this->endereco, PDO::PARAM_STR);
+            $sql->bindParam(7, $this->id, PDO::PARAM_INT);
+    
+            // Executa a consulta
+            if ($sql->execute()) {
+                return "Dependente atualizado com sucesso!";
+            } else {
+                return "Erro ao atualizar o dependente.";
+            }
+        } catch (PDOException $e) {
+            // Tratamento de erro
+            return "Erro ao atualizar o dependente: " . $e->getMessage();
+        } finally {
+            // Fecha a conexão com o banco de dados
+            $this->conn = null;
+        }
+    }    
+
+    public function ExcluirFotoPerfil() {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("UPDATE dependentes SET foto = null WHERE id = ?");
+            $sql->bindParam(1, $this->getId(), PDO::PARAM_INT); 
+            if ($sql->execute()) {
+                return "Foto alterada com sucesso!";
+            } else {
+                return "Erro ao alterar a foto.";
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            return "Erro ao alterar a foto: " . $exc->getMessage();
         }
     }
 }

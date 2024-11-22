@@ -4,12 +4,47 @@ session_start();
 // Importando e inicializando as classes necessárias
 include_once '../php/dependente.php';
 $dependente = new Dependente();
+include_once '../php/sexo.php';
+$sexo = new sexo();
+
 
 // Puxando os dados do dependente
 $_SESSION['dados_dependente'] = $dependente->infoById($_SESSION['id_dependente']);
+$_SESSION['dados_dependente_sexo'] = $sexo->getSexoById($_SESSION['dados_dependente']['id_sexo']);
 
-var_dump($_SESSION['dados_dependente']);
-var_dump($_SESSION['id_dependente']);
+
+// Lógica para alterar foto de perfil
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+  if (isset($_POST['btnAtualizarFoto'])) {
+      $dependente->setId($_SESSION['dados_dependente']['id']);
+      
+      // Verifique se a imagem foi carregada corretamente
+      if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
+          // Converta a imagem para binário
+          $imagem = file_get_contents($_FILES['foto_perfil']['tmp_name']);
+          
+          // Chame o método de alteração da foto, passando a imagem em binário
+          $dependente->alterarFoto($imagem);
+      } else {
+          echo "Erro ao carregar a imagem.";
+      }
+
+      header("Location:./perfil_dependente.php"); 
+      exit(); 
+  }
+}
+
+// Lógica para remover foto de perfil
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+  if (isset($_POST['btnRemoverFoto'])) {
+      $dependente->setId($_SESSION['dados_dependente']['id']);
+      
+      $dependente->ExcluirFotoPerfil();
+
+      header("Location:perfil_dependente.php"); 
+      exit(); 
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -131,9 +166,10 @@ var_dump($_SESSION['id_dependente']);
               <br>
                 <button type="submit" class="btn3" name="btnAtualizarFoto">
                     <i class="fas fa-upload"></i> Atualizar Foto
+                    <input type="file" name="foto_perfil">
                 </button>
                 <button type="submit" class="btn2" name="btnRemoverFoto">
-                    <i class="fas fa-trash-alt"></i> Remover Foto
+                    <i class="fas fa-trash-alt"></i> Remover foto
                 </button>
             </form>
           </div>
@@ -153,32 +189,32 @@ var_dump($_SESSION['id_dependente']);
             <div class="content-list">
               <div class="content-item-details">
               <label for="nome">Nome completo:</label>
-                      <input type="text" id="nomeDP" name="nomeDP" class="input" disabled value="" required>
-                      <br><br>
-
-                      <label for="email">Email do responsável:</label>
-                      <input type="text" id="email" name="email" class="input" disabled value="" required>
+                      <input type="text" id="nomeDP" name="nomeDP" class="input" disabled value="<?php echo $_SESSION['dados_dependente']['nome']?>" required>
                       <br><br>
 
                       <label for="Telefone">Telefone de Emergência:</label>
-                      <input type="text" id="Telefone" name="Telefone" class="input" disabled value="" required>
+                      <input type="text" id="Telefone" name="Telefone" class="input" disabled value="<?php echo $_SESSION['dados_dependente']['tel_emergencia']?>" required>
                       <br><br>
 
                       <label for="Telefone">Endereço:</label>
-                      <input type="text" id="endereco" name="endereco" class="input" disabled value="" required>
+                      <input type="text" id="endereco" name="endereco" class="input" disabled value="<?php echo $_SESSION['dados_dependente']['endereco']?>" required>
                       <br><br>
 
                       <label for="nasc">Data de Nascimento:</label>
-                      <input type="text" id="nasc" name="nasc" class="input" disabled value="" required>
+                      <input type="text" id="nasc" name="nasc" class="input" disabled value="<?php echo $_SESSION['dados_dependente']['nasc']?>" required>
+                      <br><br>
+
+                      <label for="cpf">CPF:</label>
+                      <input type="number" id="cpf" name="cpf" class="input" disabled value="<?php echo $_SESSION['dados_dependente']['cpf']?>" required>
                       <br><br>
 
                       <label for="nasc">Sexo:</label>
-                      <input type="text" id="sexo" name="sexo" class="input" disabled value="" required>
+                      <input type="text" id="sexo" name="sexo" class="input" disabled value="<?php echo $_SESSION['dados_dependente_sexo']?>" required>
               </div>
             </div>
             <br><br>
-            <button type="button" class="btn3">Alterar Informações</button>
-          </div>
+            <a href="./alterar_dados_dependente.php" class="btn3">Alterar Informações</a>
+            </div>
           <hr>
           <!-- Pop-up para alterar informações -->
           <div class="editar-tela"  style="display: none;">
