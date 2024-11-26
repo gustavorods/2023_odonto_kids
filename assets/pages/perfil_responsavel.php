@@ -80,84 +80,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/perfil_responsavel/perfilR.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
-        <div class="bg-primary p-4 itens-nav">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="odontokids/home">Home</a>
-                </li>
-                <hr class="linha">
-
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Serviços</a>
-                </li>
-                <hr class="linha">
-
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Sobre nós</a>
-                </li>
-                <hr class="linha">
-
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Contato</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <nav class="navbar navbar-dark">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
-                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div id="div-logo">
-                <h1>Odonto kids</h1>
-                <img src="../img/geral/Logo.svg" alt="Odonto Kids logo">
-            </div>
-             <!-- Botão para abrir o pop-up -->
-             <button id="openPopup">
-             <?php
-                if($_SESSION['dados_user_responsavel']['foto'] == null) {
-                    ?>
-                    <img src="../img/perfil_medico/perfil_anonimo_icon.png" alt="Imagem de Perfil" height="32px" width="32px" style="border-radius: 50%; border: 1px solid white">
-                    <?php
-                } else {
-                    ?>
-                    <img 
-                    src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['dados_user_responsavel']['foto']); ?>" 
-                    alt="Imagem de Perfil" 
-                    height="32px" 
-                    width="32px" 
-                    style="border-radius: 50%; border: 1px solid white">
-                    <?php
-                }
-             ?>
-            </button>
-            
-             <!-- O pop-up lateral -->
-            <div id="popup" class="popup">
-                <div class="popup-header">
-                    <div class="popup-title">
-                     <?php
-                     echo $_SESSION['dados_user_responsavel']['nome']
-                     ?>
-                    </div>
-                    <button id="closePopup" class="popup-close">✕</button>
-                </div>
-                    <div class="popup-content">
-                    <ul>
-                        <li><a href="#"><span>Agendamentos</span></a></li>
-                        <li><a href="#"><span>Prontuários</span></a></li>
-                        <li><a href="perfilR.php"><span>Minha Conta</span></a></li>
-                        <hr>
-                        <li><a href="#"><span>Sair</span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php
+    include_once '../header/header_com_perfil_user.php';
+    ?>
 
  <!--CONTEUDO-->
  <div class="container">
