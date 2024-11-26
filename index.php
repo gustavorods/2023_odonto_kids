@@ -14,50 +14,7 @@
 </head>
 <body>
     <!-- Navbar -->
-    <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
-        <div class="bg-primary p-4 itens-nav">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="./index.html">Home</a>
-                </li>
-                <hr class="linha">
 
-                <li class="nav-item">
-                    <a class="nav-link active" href="./assets/pages/servicos.html">Serviços</a>
-                </li>
-                <hr class="linha">
-
-                <li class="nav-item">
-                    <a class="nav-link active" href="./assets/pages/time-line.html">Sobre nós</a>
-                </li>
-                <hr class="linha">
-
-                <li class="nav-item">
-                    <a class="nav-link active" href="./assets/pages/contato.php">Contato</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-     
-    <nav class="navbar navbar-dark">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
-                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div id="div-logo">
-                <h1>Odonto kids</h1>
-                <img src="./assets/img/geral/Logo.svg" alt="Odonto Kids logo">
-            </div>
-    
-            <div id="criar-conta">
-                <a href="./assets/pages/login.php">
-                    <button id="botao-entrar-header">Entrar / Cadastrar</button>
-                </a>
-            </div>
-        </div>
-    </nav>
 
     <!-- Principal  -->
     <section class="home" id="home">

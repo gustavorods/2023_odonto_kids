@@ -32,19 +32,9 @@
 </head>
 <body>
     <!--Navbar-->
-    <nav class="navbar navbar-dark">
-        <div class="container-fluid">
-            <a href="javascript:history.back()"><img src="../img/cadastro/seta_voltar.svg" alt="seta de voltar branca" class="navbar_seta_voltar"></a>
-    
-            <div id="div-logo">
-                <h1>Odonto kids</h1>
-                <img src="../img/geral/Logo.svg" alt="Odonto Kids logo">
-            </div>
-
-            <!--Apenas uma div sem nada, para que os elementos centralizem melhor na tela-->
-            <div></div>
-        </div>
-    </nav>
+    <?php
+    include_once '../header/header_seta_voltar.html';
+    ?>
 
     <div class="container">
         <div class="card">
