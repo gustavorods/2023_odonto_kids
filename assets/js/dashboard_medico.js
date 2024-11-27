@@ -101,6 +101,11 @@ botao_detalhes_proxima_consulta.forEach(botao => {
             window.location.href = '/2023_odonto_kids/assets/pages/dashboard_medico/views/relatorio.php';
         })
 
+        
+        document.getElementById('prontuario').addEventListener("click", function(){
+            window.location.href = '/2023_odonto_kids/assets/pages/dashboard_medico/views/prontuario.php';
+        })
+
         fetch('/2023_odonto_kids/assets/php/handlers/dashboard_medico/detalhes_proxima_consulta.php', {
             method: 'POST',
             headers: {
