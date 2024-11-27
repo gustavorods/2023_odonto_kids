@@ -120,7 +120,7 @@
         text-decoration: none;
         font-size: 12px;
     }
-    
+
 </style>
 <html>
     <div class="modal_detalhes_proxima_consulta">
@@ -131,6 +131,11 @@
         <div class="modal_detalhes_proxima_consulta-body">
             <p class="data-consulta"></p>
 
+            <div class="action-buttons">
+                <button class="action" id="prontuario">
+                    <span>Prontuário</span>
+                </button>
+            </div>
             <div class="action-buttons">
                 <button class="action" id="relatorio">
                     <span>Relatório</span>
@@ -146,7 +151,7 @@
             </div>
 
             <div class="info">
-                <img src="user-avatar.png" alt="Foto do paciente" class="avatar">
+                <img src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="Foto do paciente" class="avatar">
                 <div class="info-text">
                     <p><strong id="nome-dependente"></strong> <a href="#" consulta_id="" id="ver-mais">Ver Mais</a></p>
                     <p><strong>Tratamento: </strong><texto class="tratamento"></texto></p>

@@ -65,19 +65,29 @@
         // Passando o array PHP para o JavaScript
         const proximasConsultas = <?php echo json_encode($proximas_consulta); ?>;
 
-        // Função para formatar a data no padrão "21 DE OUTUBRO"
         function formatarData(data) {
             const meses = [
                 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 
                 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
             ];
 
-            const dataObj = new Date(data); // Converte a string de data para um objeto Date
+            // Converte a string de data para um objeto Date
+            const dataObj = new Date(data);
+
+            // Garante que a hora seja configurada para meia-noite (00:00:00)
+            dataObj.setHours(0, 0, 0, 0);
+
+            // Adiciona 1 dia à data
+            dataObj.setDate(dataObj.getDate() + 1);
+
+            // Obtém o dia e o mês
             const dia = dataObj.getDate(); // Obtém o dia
             const mes = meses[dataObj.getMonth()]; // Obtém o mês (no array de meses)
 
-            return `${dia} DE ${mes.toUpperCase()}`; // Retorna a data no formato "21 DE OUTUBRO"
-        }    
+            // Retorna a data no formato "22 DE OUTUBRO" (se o dia original era 21, por exemplo)
+            return `${dia} DE ${mes.toUpperCase()}`;
+        }
+
 
         // Função para criar o card dinamicamente
         function criarCard(dia, nome, tratamento, consulta_id) {

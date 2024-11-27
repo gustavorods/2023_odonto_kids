@@ -17,7 +17,7 @@ class conectar extends PDO
             try {
                 self::$instancia = new conectar();
                 echo 'Conectado com sucesso!!!';
-            } 
+            }
             catch(Exception $e){
                 echo 'Erro ao conectar';
                 exit();

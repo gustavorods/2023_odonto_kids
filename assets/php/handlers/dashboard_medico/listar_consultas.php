@@ -34,7 +34,7 @@
                         tratamento t ON c.cod_tratamento = t.Id
                     WHERE 
                         c.id_medico = ?
-                        AND c.data > CURDATE()
+                        AND c.data >= CURDATE()
                         AND c.status_consulta = 1;    
                 ");
                 $sql->bindParam(1,$medico_id,PDO::PARAM_INT);
@@ -60,7 +60,7 @@
                         c.horario,
                         s.status_consulta,
                         t.Tratamento,
-                        d.id,
+                        c.id,
                         d.nome AS nome_dependente,
                         sex.sexo
                     FROM 
@@ -81,7 +81,9 @@
                 $historico_consultas_sql->bindParam(1, $medico_id, PDO::PARAM_INT);
                 $historico_consultas_sql->execute();
                 $historico_consultas = $historico_consultas_sql->fetchAll(PDO::FETCH_ASSOC);
-                // var_dump($historico_consultas);
+
+                $historico_consultasStr = print_r($historico_consultas, true); // Converta o array para uma string legível
+                error_log($historico_consultasStr); // Registra no log de erros 
                 
                 $historico_consultas_organizadas = [];
 

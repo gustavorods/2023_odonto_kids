@@ -54,6 +54,7 @@ botao_detalhes_proxima_consulta.forEach(botao => {
                 .then(data => console.log('Sucesso:', data))
                 .catch((error) => console.error('Erro:', error));
                 location.reload();
+                location.reload();
             } else {
                 // Se o usuário clicar em "Cancelar", a ação é cancelada
                 // console.log("Ação cancelada.");
@@ -75,6 +76,7 @@ botao_detalhes_proxima_consulta.forEach(botao => {
                 .then(response => response.json())  // Se a resposta for JSON
                 .then(data => console.log('Sucesso:', data))
                 .catch((error) => console.error('Erro:', error));
+                location.reload();
                 location.reload();
             } else {
                 // Se o usuário clicar em "Cancelar", a ação é cancelada
@@ -98,7 +100,7 @@ botao_detalhes_proxima_consulta.forEach(botao => {
         document.getElementById('relatorio').addEventListener("click", function(){
             window.location.href = '/2023_odonto_kids/assets/pages/dashboard_medico/views/relatorio.php';
         })
-        
+
         fetch('/2023_odonto_kids/assets/php/handlers/dashboard_medico/detalhes_proxima_consulta.php', {
             method: 'POST',
             headers: {
@@ -107,7 +109,7 @@ botao_detalhes_proxima_consulta.forEach(botao => {
             body: JSON.stringify({ consulta_id: consultaId})
         })
         .then(response => {
-            // console.log("Dados enviados:", { consulta_id: consultaId }) // para debug
+            console.log("Dados enviados:", { consulta_id: consultaId }) // para debug
             if (!response.ok) {
                 throw new Error('Erro na requisição: ' + response.status);
             }
@@ -116,22 +118,28 @@ botao_detalhes_proxima_consulta.forEach(botao => {
         .then(data => {
             // Verifica se data não é vazio e tem pelo menos um item
             if (data && data.length > 0) {
-                const consulta = data[0]     
-                // console.log(consulta)
-                const dateString = consulta.data
-                const dateObject = new Date(consulta.data);
+                const consulta = data[0];
+                const dateString = consulta.data;
+                const dateObject = new Date(dateString);
 
+                // Adiciona 1 dia
+                dateObject.setUTCDate(dateObject.getUTCDate() + 1);
+
+                // Obtém o ano, mês e dia após o acréscimo de 1 dia
                 const year = dateObject.getUTCFullYear();
                 const month = dateObject.getUTCMonth();
                 const day = dateObject.getUTCDate();
+
+                // Formata a data com a hora corretamente ajustada
                 const diaconsultaFormatado = `${formatDateToString(new Date(Date.UTC(year, month, day)))} às ${formatTime(consulta.horario)}`;
-                
+
+
                 dataConsulta.innerHTML = diaconsultaFormatado
                 status_nome.innerHTML = consulta.status_consulta
                 nome_dependente.innerHTML = consulta.nome_dependente
                 ver_mais.setAttribute('consulta_id', consulta.id_dependente)
                 tratamento.innerHTML = consulta.Tratamento
-                
+
             } else {
                 console.warn('Nenhuma consulta encontrada');
             }
@@ -160,14 +168,14 @@ detalhes_historico_consulta.forEach(botao => {
                 // console.log('Resposta do servidor:', response);
             },
             error: function(xhr, status, error) {
-                console.error('Erro na requisição AJAX:', error);
+                console.error('Erro na requisição AJAX SESSION:', error);
             }
-        });    
+        });
 
         document.getElementById('relatorio').addEventListener("click", function(){
             window.location.href = '/2023_odonto_kids/assets/pages/dashboard_medico/views/relatorio.php';
         })
-        
+
         fetch('/2023_odonto_kids/assets/php/handlers/dashboard_medico/detalhes_proxima_consulta.php', {
             method: 'POST',
             headers: {
@@ -176,7 +184,7 @@ detalhes_historico_consulta.forEach(botao => {
             body: JSON.stringify({ consulta_id: consultaId})
         })
         .then(response => {
-            // console.log("Dados enviados:", { consulta_id: consultaId }) // para debug
+            console.log("Dados enviados:", { consulta_id: consultaId }) // para debug
             if (!response.ok) {
                 throw new Error('Erro na requisição: ' + response.status);
             }
@@ -185,22 +193,29 @@ detalhes_historico_consulta.forEach(botao => {
         .then(data => {
             // Verifica se data não é vazio e tem pelo menos um item
             if (data && data.length > 0) {
-                const consulta = data[0]     
-                // console.log(consulta)
-                const dateString = consulta.data
-                const dateObject = new Date(consulta.data);
+                const consulta = data[0];
+                const dateString = consulta.data;
+                const dateObject = new Date(dateString);
 
+                // Adiciona 1 dia
+                dateObject.setUTCDate(dateObject.getUTCDate() + 1);
+
+                // Obtém o ano, mês e dia após o acréscimo de 1 dia
                 const year = dateObject.getUTCFullYear();
                 const month = dateObject.getUTCMonth();
                 const day = dateObject.getUTCDate();
+
+                // Formata a data com a hora corretamente ajustada
                 const diaconsultaFormatado = `${formatDateToString(new Date(Date.UTC(year, month, day)))} às ${formatTime(consulta.horario)}`;
-                
+
+
+
                 dataConsulta.innerHTML = diaconsultaFormatado
                 status_nome.innerHTML = consulta.status_consulta
                 nome_dependente.innerHTML = consulta.nome_dependente
                 ver_mais.setAttribute('consulta_id', consulta.id_dependente)
                 tratamento.innerHTML = consulta.Tratamento
-                
+
             } else {
                 console.warn('Nenhuma consulta encontrada');
             }

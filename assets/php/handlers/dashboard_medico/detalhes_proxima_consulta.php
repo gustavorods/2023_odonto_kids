@@ -11,33 +11,39 @@ class detalhesProximaConsulta {
 
         try {
             $this->conn = new Conectar();
-           
+
             $sql = $this->conn->prepare("
-                SELECT 
+                SELECT
                     c.data,
                     c.horario,
                     c.id_dependente,
                     d.nome AS nome_dependente,
                     s.status_consulta,
                     t.Tratamento
-                FROM 
+                FROM
                     consulta c
-                JOIN 
+                JOIN
                     status_consulta s ON c.status_consulta = s.id_status_consulta
-                JOIN 
+                JOIN
                     dependentes d ON c.id_dependente = d.id
-                JOIN 
+                JOIN
                     tratamento t ON c.cod_tratamento = t.id
-                WHERE 
+                WHERE
                     c.id = ?
             ");
             $sql->bindParam(1,$consultaId,PDO::PARAM_INT);
             $sql->execute();
             $detalhes = $sql->fetchAll(PDO::FETCH_ASSOC);
 
+            
+            // $detalhesStr = print_r($detalhes, true); // Converta o array para uma string legível
+            // error_log($detalhesStr); // Registra no log de erros
+
+
             // Verifica se dados foram encontrados
             if (empty($detalhes)) {
                 echo json_encode(['error' => 'Consulta não encontrada']);
+                // error_log("Consulta não encontrada");
                 exit;
             }
 
