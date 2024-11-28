@@ -280,3 +280,39 @@ p {
     display: flex !important;
     justify-content: center !important;
 }
+
+.container-fluid {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo */
+}
+
+.voltar {
+    position: absolute;
+    left: 20px; /* Define a distância do botão de voltar para a esquerda */
+    cursor: pointer;
+}
+
+.filtros .filho.ativo {
+    background-color: #408cfc; /* Cor azul quando o botão está ativo */
+}
+
+.placeholder{
+    font-size: 20pt;
+}
+
+.place_holder {
+    text-align: center;
+    padding: 20px;
+    color: #fff;  /* Cor do texto (branco para contraste) */
+    background-color: #808080;  /* Cor de fundo cinza */
+    border-radius: 10px;  /* Bordas arredondadas, como no card */
+    font-size: 18px;  /* Tamanho da fonte */
+    font-weight: bold;  /* Texto em negrito */
+    margin-top: 20px;  /* Espaçamento superior */
+    margin-bottom: 20px;  /* Espaçamento inferior */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  /* Sombrinha leve */
+    max-width: 80%;  /* Limitar a largura */
+    margin-left: auto;  /* Centralizar horizontalmente */
+    margin-right: auto;  /* Centralizar horizontalmente */
+    border: 1px solid #6e6e6e;  /* Borda cinza suave */
+}
