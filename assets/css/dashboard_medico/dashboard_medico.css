@@ -8,10 +8,6 @@
     font-family: 'Inter';
 }
 
-a[href="#"]{
-    display: none;
-}
-
 .dashboard_medico .proximas-consultas h1{
     font-weight: 1000;
     font-size: 16pt;

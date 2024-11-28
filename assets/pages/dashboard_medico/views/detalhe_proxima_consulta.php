@@ -153,7 +153,15 @@
             <div class="info">
                 <img src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="Foto do paciente" class="avatar">
                 <div class="info-text">
-                    <p><strong id="nome-dependente"></strong> <a href="#" consulta_id="" id="ver-mais">Ver Mais</a></p>
+                    <p><strong id="nome-dependente"></strong> <a href="#" consulta_id="" id="ver-mais">
+                        Ver Mais
+                        
+                    <!-- Formulário oculto para enviar o consulta_id via POST -->
+                    <form id="form-detalhes-paciente" action="/2023_odonto_kids/assets/pages/dashboard_medico/views/detalhes_paciente.php" method="POST" style="display: none;">
+                        <input type="hidden" name="consulta_id" id="consulta_id_form" value="">
+                    </form>   
+
+                    </a></p>
                     <p><strong>Tratamento: </strong><texto class="tratamento"></texto></p>
                 </div>
             </div>

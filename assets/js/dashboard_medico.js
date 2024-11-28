@@ -277,3 +277,16 @@ fade.addEventListener('click', function(event) {
     }
 });
 
+// Quando o link "Ver Mais" for clicado
+document.getElementById('ver-mais').addEventListener('click', function(event) {
+    event.preventDefault(); // Evita que o link redirecione imediatamente
+
+    // Obtém o valor do consulta_id do atributo data-consulta-id do link
+    var consultaId = this.getAttribute('consulta_id');
+
+    // Define o valor do input hidden consulta_id no formulário oculto
+    document.getElementById('consulta_id_form').value = consultaId;
+
+    // Envia o formulário via POST
+    document.getElementById('form-detalhes-paciente').submit();
+});
