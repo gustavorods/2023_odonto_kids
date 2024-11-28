@@ -1,0 +1,228 @@
+.container-top{
+    margin: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-foto-nome-idade{
+    display: flex;
+    gap: 10px;
+}
+
+.foto-perfil{
+    border-radius: 100%;
+    height: 134px;
+}
+
+.nome-idade{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nome-idade .nome{
+    color: gray;
+    font-size: 20pt;
+    font-weight: 700;
+}
+
+.nome-idade .idade{
+    font-size: 15pt;
+    color: black;
+    font-weight: 700;
+}
+
+.nome-idade p{
+    line-height: 33px;
+}
+
+span, p {
+    white-space: nowrap;  /* Impede a quebra de linha */
+    display: inline;      /* Garante que os elementos fiquem na mesma linha */
+}
+
+span {
+    font-weight: bold;   /* Deixa os spans em negrito */
+}
+
+p {
+    display: inline-block; /* Faz com que o <p> se comporte como um bloco, mas sem quebrar linha */
+    margin: 0;            /* Remove a margem padrão do <p> */
+    padding-left: 5px;    /* Espaço entre o <span> e o <p> */
+}
+
+.container-dados-responsavel{
+    border: 1px solid rgba(0, 0, 0, 0.349);
+    height: fit-content;
+    padding: 5px;
+}
+
+.container-dados-responsavel p{
+    line-height: 0px;
+}
+
+.corpo-pagina{
+    margin: 64px 40px 0px;
+    display: flex;
+    gap: 35px;
+    justify-content: space-between;
+}
+
+.historico h1{
+    font-size: 18pt;
+    font-weight: 800;
+}
+
+.tratamentos h1{
+    font-size: 18pt;
+    font-weight: 800;
+    width: 70%;
+
+}
+
+.card-historico {
+    margin: 20px 0;
+    border-radius: 15px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.315);
+    padding: 10px 40px;
+    display: flex;
+    background-color: #d2eaff;
+    flex-direction: column;
+}
+
+.line {
+    width: 3px;
+    height: 147px;
+    margin-top: -11px;
+    position: absolute;
+    background: #0681F3;
+}
+
+.corpo-card-historico {
+    margin-left: 10px;
+}
+
+.data-status {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 1000;
+    font-size: 13pt;
+}
+
+.data-status .data {
+    color: #636363;
+}
+
+.data-status .status {
+    color: #2E81C9; /* Ou #FF55F8 para feminino */
+}
+
+.tipo-consulta {
+    font-weight: 1000;
+    font-size: 15pt;
+}
+
+.perfil-detalhes {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.perfil-imagem img {
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    border: 2px solid #0681F3;
+}
+
+.nome-perfil {
+    font-size: 12pt;
+    font-weight: bold;
+    color: #636363;
+}
+
+.botao-detalhes .detalhes-historico-consulta {
+    background-color: #0681F3;
+    padding: 8px 20px;
+    border-radius: 8px;
+    color: white;
+}
+
+.tratamentos {
+    width: 70%;
+    border: 1px solid rgba(0, 0, 0, 0.384);
+    padding: 16px 20px;
+    border-radius: 8px;
+}
+
+.historico{
+    width: 100%;
+}
+
+.left-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filtros .filho{
+    background-color: #a7a7a7;
+    color: white;
+    width: fit-content;
+    padding: 3px 10px;
+    border-radius: 11px;
+    cursor: pointer;
+}
+
+.filtros{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Estilo do card de tratamento */
+.card-tratamento {
+    width: 100%;
+    max-width: 600px;
+    background-color: #4a90e2;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cards {
+    margin: 19px 0 0;
+}
+
+/* Cabeçalho do card */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card-header .status {
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #327bc8;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Corpo do card */
+.card-body p {
+    margin: 5px 0;
+    font-size: 16px;
+    line-height: 0px;
+}
+
+
