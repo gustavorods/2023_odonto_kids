@@ -12,9 +12,18 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-$id_dependente = 5; 
+// Verificar se o consulta_id foi enviado via POST
+if (isset($_POST['consulta_id'])) {
+    $id_dependente = intval($_POST['consulta_id']);
+    // var_dump($id_dependente);
+} else {
+    echo "ID da consulta não fornecido!";
+}    
 
-$sql_paciente_consultas = "
+
+
+// Query para obter dados do paciente e responsável (sem o histórico de consultas)
+$sql_paciente_responsavel = "
 SELECT 
     d.foto AS foto_paciente,
     d.nome AS nome_paciente,
@@ -22,22 +31,13 @@ SELECT
     r.nome AS nome_responsavel,
     r.email AS email_responsavel,
     r.telefone AS telefone_responsavel,
-    d.tel_emergencia AS telefone_emergencia,
-    c.data AS consulta_dia,
-    c.horario AS consulta_horario,
-    t.Tratamento AS tratamento_nome,
-    s.status_consulta AS status_consulta,
-    c.id AS consulta_id,
-    d.nome AS nome_dependente
+    d.tel_emergencia AS telefone_emergencia
 FROM dependentes d
 JOIN responsavel r ON d.id_responsavel = r.Id
-JOIN consulta c ON c.id_dependente = d.id
-JOIN tratamento t ON c.cod_tratamento = t.Id
-JOIN status_consulta s ON c.status_consulta = s.id_status_consulta
 WHERE d.id = ?;
 ";
 
-$stmt = $conn->prepare($sql_paciente_consultas);
+$stmt = $conn->prepare($sql_paciente_responsavel);
 $stmt->bind_param("i", $id_dependente);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -45,6 +45,55 @@ $result = $stmt->get_result();
 // Arrays para armazenar os dados
 $dados_paciente = [];
 $dados_responsavel = [];
+
+// Processar os resultados do paciente e responsável
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        // Armazenar dados do paciente
+        $dados_paciente = [
+            'foto' => $row['foto_paciente'],
+            'nome' => $row['nome_paciente'],
+            'idade' => $row['idade_paciente']
+        ];
+
+        // Armazenar dados do responsável
+        $dados_responsavel = [
+            'nome' => $row['nome_responsavel'],
+            'email' => $row['email_responsavel'],
+            'telefone' => $row['telefone_responsavel'],
+            'telefone_emergencia' => $row['telefone_emergencia']
+        ];
+    }
+} else {
+    // echo "Nenhum resultado encontrado para o paciente!";
+}
+
+$stmt->close();
+
+// -------------------------
+// Consulta para histórico de consultas
+
+$sql_historico_consultas = "
+SELECT 
+    c.data AS consulta_dia,
+    c.horario AS consulta_horario,
+    t.Tratamento AS tratamento_nome,
+    s.status_consulta AS status_consulta,
+    c.id AS consulta_id,
+    d.nome AS nome_dependente
+FROM dependentes d
+JOIN consulta c ON c.id_dependente = d.id
+JOIN tratamento t ON c.cod_tratamento = t.Id
+JOIN status_consulta s ON c.status_consulta = s.id_status_consulta
+WHERE d.id = ?;
+";
+
+$stmt = $conn->prepare($sql_historico_consultas);
+$stmt->bind_param("i", $id_dependente);
+$stmt->execute();
+$result_historico = $stmt->get_result();
+
+// Array para armazenar o histórico de consultas
 $historico_consultas = [];
 
 // Array associativo para traduzir meses de inglês para português
@@ -63,27 +112,11 @@ $meses_portugues = [
     'December' => 'Dezembro'
 ];
 
-// Processar os resultados de paciente e histórico de consultas
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        // Armazenar dados do paciente
-        $dados_paciente = [
-            'foto' => $row['foto_paciente'],
-            'nome' => $row['nome_paciente'],
-            'idade' => $row['idade_paciente']
-        ];
-
-        // Armazenar dados do responsável
-        $dados_responsavel = [
-            'nome' => $row['nome_responsavel'],
-            'email' => $row['email_responsavel'],
-            'telefone' => $row['telefone_responsavel'],
-            'telefone_emergencia' => $row['telefone_emergencia']
-        ];
-
+// Processar o histórico de consultas
+if ($result_historico->num_rows > 0) {
+    while ($row = $result_historico->fetch_assoc()) {
         // Formatando a data da consulta
         $data_formatada = new DateTime($row['consulta_dia']); // Cria objeto DateTime com a data da consulta
-        $consulta_dia_ingles = $data_formatada->format('d F'); // Exemplo: 20 October (em inglês)
 
         // Traduzir o mês para português
         $mes_ingles = $data_formatada->format('F'); // Pega o mês em inglês
@@ -105,12 +138,16 @@ if ($result->num_rows > 0) {
         ];
     }
 } else {
-    echo "Nenhum resultado encontrado para o paciente!";
+    // Caso não haja histórico de consultas, o array ficará vazio
+    $historico_consultas = [];
+    // echo "Nenhum histórico de consulta encontrado para o paciente!";
 }
 
 $stmt->close();
 
-// Query SQL para obter os tratamentos relacionados ao dependente
+// -------------------------
+// Consulta para tratamentos relacionados ao dependente
+
 $sql_tratamentos = "
 SELECT 
     dt.data_inicio AS tratamento_data_inicio,
@@ -147,12 +184,11 @@ if ($result_tratamentos->num_rows > 0) {
         ];
     }
 } else {
-    echo "Nenhum tratamento encontrado!";
+    // Caso não haja tratamentos, o array ficará vazio
+    $tratamentos = [];
 }
 
-
 $stmt->close();
-
 $conn->close();
 
 // Verifica se o campo 'foto' não está vazio ou nulo
@@ -167,7 +203,6 @@ if (!empty($dados_paciente['foto'])) {
     // Caso não tenha imagem
 }
 
-
 // Exibir os arrays
 // echo "<pre>";
 // print_r($dados_paciente);         // Exibir dados do paciente
@@ -176,6 +211,7 @@ if (!empty($dados_paciente['foto'])) {
 // print_r($tratamentos);           // Exibir tratamentos
 // echo "</pre>";
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -195,17 +231,19 @@ if (!empty($dados_paciente['foto'])) {
     <nav class="navbar navbar-dark">
             <div class="container-fluid">
 
-        
+                <div class="voltar" onclick="window.location.href='../dashboard_medico.php'">
+                    <img src="/2023_odonto_kids/assets/img/login/seta_voltar.svg" alt="">
+                </div>                
                 <div id="div-logo">
                     <h1>Odonto kids</h1>
                     <img src="/2023_odonto_kids/assets/img/geral/Logo.svg" alt="Odonto Kids logo">
                 </div>
         
-                <div id="div_perfil">
+                <!-- <div id="div_perfil">
                     <a href="#">
                         <img class="foto_de_perfil_responsavel" name="img_foto_perfil_responsavel"src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="foto de perfil">
                     </a>
-                </div>
+                </div> -->
             </div>
     </nav>
     <!-- Corpo da página -->
@@ -235,57 +273,61 @@ if (!empty($dados_paciente['foto'])) {
         <div class="historico">
             <h1>HISTÓRICO DE CONSULTAS:</h1>
             <div class="cards">
+                <?php
+                    if (empty($historico_consultas)) {
+                        // Se não houver consultas, exibe o placeholder
+                        echo '<div class="place_holder">Nenhuma consulta foi realizada.</div>';
+                    } else {
+                        // Se houver consultas, exibe as consultas
+                        foreach ($historico_consultas as $consulta) {
+                            extract($consulta);
 
+                            // Verifica se o status é "Cancelada"
+                            $status_cancelada = ($status == 'Cancelada' || $status == 'Ausente');
+                            // var_dump($status_cancelada);
 
-
-            <?php
-                foreach ($historico_consultas as $consulta) {
-                    ?>
-                    <?php extract($consulta) ?>
-                    <div class="card-historico">
-                        <div class="line"></div>
-                        <div class="corpo-card-historico">
-                            <div class="data-status">
-                                <div class="data">
-                                    <p><?php echo $dia ?> às <?php echo $horario ?></p>
+                            // Define classes específicas para o card e status
+                            $class_cancelada = $status_cancelada ? 'cancelada' : '';
+                            $botao_detalhes_display = $status_cancelada ? 'none' : 'block';
+                            ?>
+                            <div class="card-historico <?php echo $class_cancelada; ?>">
+                                <div class="line <?php echo $class_cancelada; ?>"></div>
+                                <div class="corpo-card-historico">
+                                    <div class="data-status">
+                                        <div class="data">
+                                            <p><?php echo $dia ?> às <?php echo $horario ?></p>
+                                        </div>
+                                        <div class="status <?php echo $class_cancelada; ?>"><?php echo $status; ?></div>
+                                    </div>
+                                    <div class="tratamento-detalhes">
+                                        <div class="tipo-consulta">
+                                            <p><?php echo $tratamento ?></p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="status"><?php echo $status ?></div>
                             </div>
-                            <div class="tratamento-detalhes">
-                                <div class="tipo-consulta">
-                                    <p><?php echo $tratamento ?></p>
-                                </div>
-                                <div class="botao-detalhes">
-                                    <button class="detalhes-historico-consulta" data_id="<?php echo $consulta_id ?>">Detalhes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    
-                    
-                    <?php
-                }
-            ?>
-
-
-
-
+                            <?php
+                        }
+                    }
+                ?>
             </div>
         </div>
 
         <div class="tratamentos">
             <h1>TRATAMENTOS:</h1>
             <div class="filtros">
-                <div class="em-andamento filho">Em andamento</div>
-                <div class="aguardando filho">Aguardando</div>
-                <div class="concluido filho">Concluido</div>
-                <div class="pendentefilho filho">Pendente</div>
+                <div class="em_andamento filho" onclick="filtrarPorStatus('Em andamento', this)">Em andamento</div> 
+                <div class="aguardando filho" onclick="filtrarPorStatus('Aguardando', this)">Aguardando</div>
+                <div class="concluido filho" onclick="filtrarPorStatus('Concluido', this)">Concluído</div>
+                <div class="pendente filho" onclick="filtrarPorStatus('Pendente', this)">Pendente</div>
+                <div class="todos filho ativo" onclick="filtrarPorStatus('Todos', this)">Todos</div>
             </div>
             <div class="cards">
-                <?php
-                    foreach ($tratamentos as $tratamento) {
-                        ?>
-                        
-                        <div class="card-tratamento">
+                <?php if (empty($tratamentos)) : ?>
+                    <div class="place_holder">Nenhum tratamento encontrado.</div>
+                <?php else : ?>
+                    <?php foreach ($tratamentos as $tratamento) : ?>
+                        <div class="card-tratamento" data-status="<?php echo $tratamento['status_tratamento']; ?>">
                             <div class="card-header">
                                 <h3><?php echo $tratamento['tratamento'] ?></h3>
                                 <span class="status"><?php echo $tratamento['status_tratamento'] ?></span>
@@ -294,13 +336,13 @@ if (!empty($dados_paciente['foto'])) {
                                 <p>Data de início: <?php echo $tratamento['data_inicio'] ?></p>
                                 <p>Previsão de término: <?php echo $tratamento['previsao_termino'] ?></p>
                             </div>
-                        </div>                           
-
-                        <?php
-                    }
-                ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
+
+
     </div>
 
     <script src="/2023_odonto_kids/assets/js/detalhes_paciente.js"></script>

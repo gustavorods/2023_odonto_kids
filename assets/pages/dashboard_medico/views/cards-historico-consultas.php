@@ -201,7 +201,7 @@
             default:
                 card.classList.add('cancelada-ausente');
                 if(status==="Cancelada"){
-                    avisoMessage = "Você cancelou essa consulta";
+                    avisoMessage = "";
                 }
                 else{
                     avisoMessage = "Paciente não compareceu à consulta";

@@ -92,6 +92,7 @@ p {
     display: flex;
     background-color: #d2eaff;
     flex-direction: column;
+    min-height: 114px;
 }
 
 .line {
@@ -315,4 +316,27 @@ p {
     margin-left: auto;  /* Centralizar horizontalmente */
     margin-right: auto;  /* Centralizar horizontalmente */
     border: 1px solid #6e6e6e;  /* Borda cinza suave */
+}
+
+/* Estilo para o card quando a consulta é cancelada */
+.card-historico.cancelada {
+    background-color: #ffd4d4; /* Cor de fundo */
+}
+
+/* Estilo para o card quando a consulta é cancelada */
+.line.cancelada {
+    background-color: #ff0000; /* Cor de fundo */
+}
+
+/* Estilo para o texto de status cancelado */
+.status.cancelada {
+    color: #8b0000; /* Cor vermelha escura para o texto de status */
+}
+
+/* Ocultar o botão de detalhes quando o status for 'Cancelada' */
+.botao-detalhes {
+    display: block; /* Padrão */
+}
+.botao-detalhes[style="display: none;"] {
+    display: none; /* Quando o status for 'Cancelada', o botão é ocultado */
 }
