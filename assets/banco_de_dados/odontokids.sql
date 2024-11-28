@@ -184,6 +184,12 @@ INSERT INTO tratamento (Id, Tratamento, Descricao) VALUES
 (19, 'Ajuste de Aparelho Ortodôntico', 'Ajustes periódicos no aparelho ortodôntico para garantir a movimentação correta dos dentes'),
 (20, 'Consultoria em Higiene Bucal', 'Sessões educativas para melhorar os hábitos de higiene bucal e prevenir doenças dentárias');
 
+INSERT INTO status_tratamento (status_tratamento) VALUES
+('Em andamento'),
+('Aguardando'),
+('Concluído'),
+('Pendente');
+
 INSERT INTO `status_consulta` (`id_status_consulta`, `status_consulta`) VALUES
 (1, 'Agendada'),
 (2, 'Realizada'),
