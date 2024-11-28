@@ -182,9 +182,7 @@ li {
 .file-actions {
     display: flex;
     gap: 10px;
-}
-
-.file-actions img{
+    margin-right: 15px;
 }
 
 .icon {
@@ -197,5 +195,6 @@ li {
     width: 360px;
     height: 250px;
     border: 1px rgba(0, 0, 0, 0.301) solid;
-    border-radius: 8px;
+    border-radius: 8px;    
+    overflow-x: hidden;
 }
