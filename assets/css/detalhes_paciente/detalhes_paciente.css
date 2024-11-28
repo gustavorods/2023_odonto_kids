@@ -159,6 +159,7 @@ p {
     border: 1px solid rgba(0, 0, 0, 0.384);
     padding: 16px 20px;
     border-radius: 8px;
+    min-height: 396px;
 }
 
 .historico{
@@ -178,6 +179,7 @@ p {
     padding: 3px 10px;
     border-radius: 11px;
     cursor: pointer;
+    transition: 0s;
 }
 
 .filtros{
@@ -239,13 +241,40 @@ p {
     align-items: center;
 }
 
-.tratamentos .cards{
+.tratamentos .cards {
     row-gap: 11px;
     flex-direction: column;
     display: flex;
     max-height: 300px;
     overflow-x: auto;
+    overflow-y: scroll;
+    min-height: 231px;
+    padding-right: 12px; /* Adiciona espaço à direita para afastar a barra de rolagem do conteúdo */
 }
+
+/* Estilo da barra de rolagem */
+.tratamentos .cards::-webkit-scrollbar {
+    width: 8px; /* Largura da barra de rolagem */
+    height: 8px; /* Altura da barra de rolagem horizontal (se necessário) */
+}
+
+/* Estilo do "track" (trilho) da barra de rolagem */
+.tratamentos .cards::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Cor de fundo do trilho */
+    border-radius: 10px; /* Borda arredondada do trilho */
+}
+
+/* Estilo da parte "thumb" (o bloco que se move) da barra de rolagem */
+.tratamentos .cards::-webkit-scrollbar-thumb {
+    background: #1f2e88; /* Cor da parte móvel da barra de rolagem */
+    border-radius: 10px; /* Bordas arredondadas do thumb */
+}
+
+/* Estilo da parte "thumb" da barra de rolagem quando está sendo ativada (em hover) */
+.tratamentos .cards::-webkit-scrollbar-thumb:hover {
+    background: #162279; /* Cor mais escura quando o usuário passa o mouse sobre a barra de rolagem */
+}
+
 
 .container-fluid{
     display: flex !important;
