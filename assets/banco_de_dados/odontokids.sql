@@ -100,8 +100,8 @@ CREATE TABLE `sexo` (
 );
 
 
-CREATE TABLE `depentente_tratamento` (
-	`id_dependete` INTEGER NOT NULL,
+CREATE TABLE `dependente_tratamento` (
+	`id_dependente` INTEGER NOT NULL,
 	`id_tratamento` INTEGER NOT NULL,
 	`data_inicio` DATE NOT NULL,
 	`previsao_termino` DATE NOT NULL,
