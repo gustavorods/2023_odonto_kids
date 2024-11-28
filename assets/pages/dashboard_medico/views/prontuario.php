@@ -62,20 +62,24 @@ try {
             </div>
 
             <!-- Lista de Arquivos -->
-            <ul id="file-list">
-                <?php
-                // Exibe os arquivos obtidos do banco de dados
-                foreach ($arquivos as $arquivo) {
-                    $nome_arquivo = htmlspecialchars($arquivo['nome_arquivo']);
-                    $id_arquivo = htmlspecialchars($arquivo['id_arquivo']);
-                    echo '<li>
-                            <span class="file-name">' . $nome_arquivo . '</span>
-                            <span class="download-btn" onclick="viewFile(\'' . $id_arquivo . '\')">⬇️</span>
-                            <span class="remove-btn" onclick="confirmDelete(\'' . $id_arquivo . '\')">🗑️</span>
-                          </li>';
-                }
-                ?>
-            </ul>
+            <div class="lista-de-arquivos">
+                <ul id="file-list">
+                    <?php
+                    // Exibe os arquivos obtidos do banco de dados
+                    foreach ($arquivos as $arquivo) {
+                        $nome_arquivo = htmlspecialchars($arquivo['nome_arquivo']);
+                        $id_arquivo = htmlspecialchars($arquivo['id_arquivo']);
+                        echo '<li class="file-item">
+                                <span class="file-name">' . $nome_arquivo . '</span>
+                                <div class="file-actions">
+                                    <img src="/2023_odonto_kids/assets/img/dashboard_medico/prontuario/abrir.png" alt="Visualizar" class="icon" onclick="viewFile(\'' . $id_arquivo . '\')">
+                                    <img src="/2023_odonto_kids/assets/img/dashboard_medico/prontuario/lixeira.png" alt="Excluir" class="icon" onclick="confirmDelete(\'' . $id_arquivo . '\')">
+                                </div>
+                            </li>';
+                    }
+                    ?>
+                </ul>
+            </div>
         </div>
 
         <!-- Modal de Confirmação de Exclusão -->
@@ -287,8 +291,10 @@ try {
                             const listItem = document.createElement('li');
                             listItem.innerHTML = `
                                 <span class="file-name">${arquivo.nome_arquivo}</span>
-                                <span class="download-btn" onclick="downloadFile('${arquivo.id_arquivo}')">⬇️</span>
-                                <span class="remove-btn" onclick="confirmDelete('${arquivo.id_arquivo}')">🗑️</span>
+                                <div class="file-actions">
+                                    <img src="/2023_odonto_kids/assets/img/dashboard_medico/prontuario/abrir.png" alt="Visualizar" class="icon" onclick="viewFile(${arquivo.id_arquivo})">
+                                    <img src="/2023_odonto_kids/assets/img/dashboard_medico/prontuario/lixeira.png" alt="Excluir" class="icon" onclick="confirmDelete(${arquivo.id_arquivo})">
+                                </div>
                             `;
                             fileList.appendChild(listItem);
                         });
