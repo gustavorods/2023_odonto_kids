@@ -1,3 +1,7 @@
+body{
+    padding: 0px 0px 48px;
+}
+
 .container-top{
     margin: 30px 40px;
     display: flex;
@@ -92,7 +96,7 @@ p {
 
 .line {
     width: 3px;
-    height: 147px;
+    height: 115px;
     margin-top: -11px;
     position: absolute;
     background: #0681F3;
@@ -107,6 +111,7 @@ p {
     justify-content: space-between;
     font-weight: 1000;
     font-size: 13pt;
+    margin-bottom: 28px;
 }
 
 .data-status .data {
@@ -150,6 +155,7 @@ p {
 
 .tratamentos {
     width: 70%;
+    height: fit-content;
     border: 1px solid rgba(0, 0, 0, 0.384);
     padding: 16px 20px;
     border-radius: 8px;
@@ -218,11 +224,30 @@ p {
     border-radius: 5px;
 }
 
-/* Corpo do card */
 .card-body p {
     margin: 5px 0;
     font-size: 16px;
-    line-height: 0px;
+    line-height: 18px;
+    display: flex;
+    flex-direction: column;
 }
 
+.tratamento-detalhes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+}
 
+.tratamentos .cards{
+    row-gap: 11px;
+    flex-direction: column;
+    display: flex;
+    max-height: 300px;
+    overflow-x: auto;
+}
+
+.container-fluid{
+    display: flex !important;
+    justify-content: center !important;
+}
