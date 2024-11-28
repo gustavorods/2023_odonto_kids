@@ -22,6 +22,35 @@
     $listar_consulta = new listar_consultas();
 
     $listar_consulta->setMedicoId($medico_id);
+
+    $conn = new mysqli("localhost", "root", "", "odontokids");
+
+    // Verifica se houve erro na conexão
+    if ($conn->connect_error) {
+        die("Conexão falhou: " . $conn->connect_error);
+    }
+
+
+    // Query para buscar a foto do médico
+    $sql = "SELECT foto FROM medico WHERE id = $medico_id";
+    $result = $conn->query($sql);
+
+    $foto_perfil = '/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png';
+
+
+    // Verifica se há resultados
+    if ($result->num_rows > 0) {
+        // Obtém o resultado da consulta
+        $row = $result->fetch_assoc();
+        
+        // Verifica se a foto existe e se ela está em formato binário
+        if ($row['foto']) {
+            // Converte o conteúdo binário para base64
+            $foto_perfil = base64_encode($row['foto']);
+            // Cria a URL base64
+            $foto_perfil = 'data:image/jpeg;base64,' . $foto_perfil; // Ajuste o tipo de imagem conforme necessário (jpg, png, etc.)
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -79,8 +108,9 @@
                 </div>
         
                 <div id="div_perfil">
-                    <a href="#">
-                        <img class="foto_de_perfil_responsavel" name="img_foto_perfil_responsavel"src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="foto de perfil">
+                    <a href="/2023_odonto_kids/assets/pages/perfil-medico.php">
+                        <img class="foto_de_perfil_responsavel" name="img_foto_perfil_responsavel" 
+                            src="<?php echo $foto_perfil; ?>" alt="foto de perfil">
                     </a>
                 </div>
             </div>
