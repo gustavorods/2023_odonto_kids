@@ -194,9 +194,8 @@ li {
 }
 
 .lista-de-arquivos{
-    max-width: 500px;
+    width: 360px;
     height: 250px;
     border: 1px rgba(0, 0, 0, 0.301) solid;
     border-radius: 8px;
-
 }
