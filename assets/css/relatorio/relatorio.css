@@ -1,0 +1,15 @@
+.container-fluid{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo */
+}
+
+.voltar {
+    position: absolute;
+    left: 20px; /* Define a distância do botão de voltar para a esquerda */
+    cursor: pointer;
+}

@@ -1,0 +1,87 @@
+.tratamento_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.tratamento_container .caixa_pesquisa {
+    display: flex;
+    align-items: center;
+    border: 1px solid #AA9D9D;  /* Borda cinza */
+    border-radius: 20px;        /* Bordas arredondadas */
+    background-color: #fff;     /* Fundo branco */
+    overflow: hidden;           /* Garante que o input e o botão fiquem contidos */
+    position: relative;
+    z-index: 1;
+}
+
+.tratamento_container #input-box {
+    width: 600px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background-color: transparent; /* Fundo transparente para herdar o fundo do container */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.tratamento_container button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    border-left: 1px solid #AA9D9D; /* Borda para separar o botão */
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: 0.1ms;
+}
+
+.tratamento_container button:active {
+    background-color: #f0f0f0; /* Fundo levemente cinza ao passar o mouse */
+}   
+
+.tratamento_container button .fa-solid {
+    font-size: 15pt;
+    color: #AA9D9D;
+}
+
+.resultados-pesquisa {
+    margin-top: -24px;
+    padding-top: 24px;
+    border-radius: 0px 0px 15px 15px;
+    border: 1px solid #AA9D9D;
+    display: none;
+}
+
+.resultados-pesquisa ul{
+    list-style-type: none; /* Remove os pontos */
+    padding: 0;            /* Remove o espaçamento padrão */
+    margin: 0;             /* Remove a margem padrão */
+}
+
+.resultados-pesquisa li{
+    line-height: 42px;
+    font-size: 13pt;
+    padding: 0px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #AA9D9D;
+}
+
+.resultados-pesquisa li:last-child {
+    border-bottom: 0px;
+}
+
+.resultados-pesquisa li:hover {
+    background-color: rgb(231, 231, 231);
+}
+
+.resultados-pesquisa li:last-child:hover {
+    border-radius: 0px 0px 15px 15px; /* Somente o último li terá border-radius */
+}
+
+.titulo{
+    text-align: center;
+    margin-top: 36px;
+}

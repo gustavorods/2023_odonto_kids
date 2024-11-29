@@ -105,7 +105,7 @@ class responsavel
             $senha = $this->getSenha();
 
             // Prepare a consulta
-            $sql = $this->conn->prepare("INSERT INTO responsavel (nome, email, cpf, telefone, nasc, genero, senha) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $sql = $this->conn->prepare("INSERT INTO responsavel (nome, email, cpf, telefone, nasc, id_sexo, senha) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
             // Faça o bind das variáveis aos parâmetros
             $sql->bindParam(1, $nome, PDO::PARAM_STR);

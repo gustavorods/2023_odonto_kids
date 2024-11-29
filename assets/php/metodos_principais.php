@@ -7,6 +7,7 @@ class metodos_principais
     private $senha_user;
     private $email_medico;
     private $senha_medico;
+    private $conn;
 
     // Getters e Setters para email e senha do usuário
     public function get_email_user() {
@@ -43,40 +44,45 @@ class metodos_principais
     }
 
     // Método de login
+    // Função de login para verificar o email nas duas tabelas
     public function login()
     {
         try {
             $this->conn = new Conectar();
             
             // Verificação na tabela de responsável
-            $sql = $this->conn->prepare("SELECT * FROM responsavel WHERE email = ? AND senha = ?");
+            $sql = $this->conn->prepare("SELECT senha FROM responsavel WHERE email = ?");
             @$sql->bindParam(1, $this->get_email_user(), PDO::PARAM_STR);
-            @$sql->bindParam(2, $this->get_senha_user(), PDO::PARAM_STR);
             $sql->execute();
 
-            $result = $sql->fetch();
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
 
             if ($result) {
                 $this->conn = null;
-                return "responsavel"; // Se encontrou um responsável, retorna "responsavel"
+                return [
+                    'tabela' => 'responsavel',
+                    'senha' => $result['senha']
+                ];
             }
 
+            // Verificação na tabela de médico
             $this->conn = new Conectar();
-
-            // Caso não seja encontrado, verifica na tabela de médico
-            $sql = $this->conn->prepare("SELECT * FROM medico WHERE email = ? AND senha = ?");
+            $sql = $this->conn->prepare("SELECT senha FROM medico WHERE email = ?");
             @$sql->bindParam(1, $this->get_email_medico(), PDO::PARAM_STR);
-            @$sql->bindParam(2, $this->get_senha_medico(), PDO::PARAM_STR);
             $sql->execute();
 
-            $result = $sql->fetch();
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
             $this->conn = null;
 
             if ($result) {
-                return "medico"; // Se encontrou um médico, retorna "medico"
+                return [
+                    'tabela' => 'medico',
+                    'senha' => $result['senha']
+                ];
             }
 
-            return false; // Se não encontrou nada, retorna false
+            // Se não encontrou o email em nenhuma das tabelas, retorna false
+            return false;
 
         } catch (PDOException $exc) {
             echo "Erro ao consultar. " . $exc->getMessage();
@@ -84,6 +90,27 @@ class metodos_principais
         }
     }
 
+    public function selectId($nome_tabela_enviada)
+    {
+        try {
+            $this->conn = new Conectar();
+            
+            // Verificação na tabela de responsável
+            $sql = $this->conn->prepare("SELECT Id FROM $nome_tabela_enviada WHERE email = ?");
+            @$sql->bindParam(1, $this->get_email_user(), PDO::PARAM_STR);
+            $sql->execute();
+
+            $result = $sql->fetchColumn();
+
+            if ($result) {
+                $this->conn = null;
+                return $result; // Se encontrou um responsável, retorna "responsavel"
+            }
+        } catch (PDOException $exc) {
+            echo "Erro ao consultar. " . $exc->getMessage();
+            return false;
+        }
+    }
     
     public function email_existe($email) {
         try {
@@ -188,6 +215,54 @@ class metodos_principais
             return false;
         }
     }
+    public function alterarDadosMedico($id, $novosDados) {
+        try {
+            $this->conn = new Conectar();
+    
+            $sql = $this->conn->prepare("UPDATE medico SET nome = ?, email = ?, telefone = ?, nasc = ?, genero = ?, cpf = ?, senha = ?, crm = ? WHERE id = ?");
+            $sql->bindParam(1, $novosDados['nome'], PDO::PARAM_STR);
+            $sql->bindParam(2, $novosDados['email'], PDO::PARAM_STR);
+            $sql->bindParam(3, $novosDados['telefone'], PDO::PARAM_STR);
+            $sql->bindParam(4, $novosDados['nasc'], PDO::PARAM_STR);
+            $sql->bindParam(5, $novosDados['genero'], PDO::PARAM_STR);
+            $sql->bindParam(6, $novosDados['cpf'], PDO::PARAM_STR);
+            $sql->bindParam(7, $novosDados['senha'], PDO::PARAM_STR);
+            $sql->bindParam(8, $novosDados['crm'], PDO::PARAM_STR);
+            $sql->bindParam(9, $id, PDO::PARAM_INT);
+            
+    
+            if ($sql->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+    
+        } catch (PDOException $exc) {
+            echo "Erro ao atualizar dados: " . $exc->getMessage();
+            return false;
+        }
+    }
+
+    public function atualizarFoto($id, $foto) {
+        try {
+            $this->conn = new Conectar();
+            
+            // Atualiza o campo foto na tabela do médico
+            $sql = $this->conn->prepare("UPDATE medico SET foto = ? WHERE id = ?");
+            $sql->bindParam(1, $foto, PDO::PARAM_STR);
+            $sql->bindParam(2, $id, PDO::PARAM_INT);
+            
+            if ($sql->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $exc) {
+            echo "Erro ao atualizar foto: " . $exc->getMessage();
+            return false;
+        }
+    }
+    
     
 }
 ?>

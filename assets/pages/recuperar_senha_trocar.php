@@ -71,6 +71,7 @@
                         $responsavel = new responsavel();
                         $metodos_principais = new metodos_principais();
                         
+                        $senha_hash = password_hash($txt_nova_senha, PASSWORD_DEFAULT);
                         if($txt_nova_senha == $txt_nova_senha_confirmar) {
                             // Verificando qual tabela o email que o usuario usou pertence
                             $informacao_usuario = $metodos_principais->verificar_email_tabela_e_id($_SESSION["txt_email"]);
@@ -78,7 +79,7 @@
                             if($informacao_usuario['tabela'] == "responsavel") {
                                 // Definindo os dados do responsavel
                                 $responsavel->setId($informacao_usuario['id']);
-                                $responsavel->setSenha($txt_nova_senha);
+                                $responsavel->setSenha($senha_hash);
 
                                 // Executando a função para alterar
                                 $responsavel->alterar_senha();
@@ -86,11 +87,13 @@
                                 //Exibindo mensagem de sucesso
                                 $message = "Sua senha foi alterada";
                                 echo "<center> <p style='color:green'>" . $message . "</p> </center>";
+                                header("Location:login.php"); 
+                                exit();
                             } 
                             else if($informacao_usuario['tabela'] == "medico") {
                                 // Definindo os dados do responsavel
                                 $medico->setId($informacao_usuario['id']);
-                                $medico->setSenha($txt_nova_senha);
+                                $medico->setSenha($senha_hash);
 
                                 // Executando a função para alterar
                                 $medico->alterar_senha();
@@ -98,6 +101,8 @@
                                 //Exibindo mensagem de sucesso
                                 $message = "Sua senha foi alterada";
                                 echo "<center> <p style='color:green'>" . $message . "</p> </center>";
+                                header("Location:login.php"); 
+                                exit();
                             } 
                             else {
                                 /* Esse else provavelmente nunca será acionado, pois ele só executa se a 

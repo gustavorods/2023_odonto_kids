@@ -1,0 +1,48 @@
+.container{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 55.8px);
+}
+
+.container .card{
+    width: 350px;
+    padding: 0px 24px 21px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.315);
+}
+
+.container h1{
+    font-size: 15pt;
+    font-weight: 700;
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.card span{
+    font-size: 14pt;
+}
+
+.card input{
+    font-size: 14pt;
+    background-color: #f0f0f0; /* Cor de fundo cinza claro */
+    color: #6c757d; /* Cor do texto cinza */
+    border: 1px solid #ccc; /* Cor da borda */
+    pointer-events: none; /* Impede qualquer ação no campo */
+    cursor: not-allowed; /* Mostra o cursor de "não permitido" */
+}
+
+.card button{
+    padding: 10px 20px;
+    background-color: #418cfc;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 12px;
+}
+
+.card button:hover {
+    background-color: #3b7ee2; /* Cor um pouco mais escura ao passar o mouse */
+}

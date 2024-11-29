@@ -52,13 +52,12 @@
                     <a href="./recuperar_senha_email.php" class="link" name="btn_recuperar_senha">Esqueceu a senha?</a>
                 </div>
                 
-                <!--Lógica de login-->
                 <?php
                 session_start();
 
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if (isset($_POST['btn_entrar'])) {
-                        // Importando e inicializando a classe com os metodos necessarios
+                        // Importando e inicializando a classe com os métodos necessários
                         include_once '../php/metodos_principais.php';
                         $metodos_principais = new metodos_principais();
 
@@ -72,28 +71,41 @@
                         $metodos_principais->set_email_medico($email);
                         $metodos_principais->set_senha_medico($senha);
                         
-                        // Verifica se o login existe (vai me retornar a tabela caso exista)
+                        // Verifica se o login existe (retorna a tabela se existir ou false caso contrário)
                         $result = $metodos_principais->login();
 
-                        // Verificando se retornou alguma das tabelas validas
-                        if($result == "responsavel" || $result == "medico") {
-                            // Pegando os dados do usuario  
-                            $_SESSION['user'] = $metodos_principais->verificar_email_tabela_e_id($email);
-                            
-                            // Levando cada usuario  para sua dashboard
-                            if ($result == "responsavel") {
-                                header("Location:dashboard.html"); 
-                                exit(); 
-                            } else if ($result == "medico") {     
-                                header("Location:perfil-medico.php"); // Alterar dps
-                                exit();
-                        }
+                        // Verifica se a consulta retornou uma tabela válida
+                        if ($result && ($result['tabela'] == "responsavel" || $result['tabela'] == "medico")) {
+                            if (password_verify($senha, $result['senha'])) {
+                                // Pegando os dados do usuário  
+                                $_SESSION['user'] = $metodos_principais->verificar_email_tabela_e_id($email);
+
+                                // Levando cada usuário para sua dashboard
+                                if ($result['tabela'] == "responsavel") {
+                                    $id = $metodos_principais->selectId($result['tabela']);
+                                    $_SESSION['responsavel_id'] = $id;
+                                    setcookie("responsavel_id", $id, time() + (30 * 24 * 60 * 60),"/");
+                                    
+                                    header("Location:dashboard/dashboard.php"); // Altere para o caminho desejado
+                                    exit(); 
+                                } else if ($result['tabela'] == "medico") {   
+                                    $id = $metodos_principais->selectId($result['tabela']);
+                                    $_SESSION['medico_id'] = $id;
+                                    setcookie("medico_id", $id, time() + (30 * 24 * 60 * 60),"/");
+                                    
+                                    header("Location:dashboard_medico/dashboard_medico.php");
+                                    exit();
+                                }
+                            } else {
+                                // Mensagem de senha inválida
+                                echo "<p style='color:red'>Senha inválida</p>";
+                            }
                         } else {
-                            echo "<p style='color:red'>Email ou Senha inválidos</p>";
-                            echo $result;
+                            // Mensagem de email inválido
+                            echo "<p style='color:red'>Email inválido</p>";
                         }
                     }
-                }
+                }                    
                 ?>
             </form>
        </div>

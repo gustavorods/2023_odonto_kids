@@ -4,7 +4,7 @@ include_once 'Conectar.php';
 // Atributos
 class Medico
 {
-    private $id;
+    private $Id;
     private $nome;
     private $email;
     private $cpf;
@@ -12,26 +12,26 @@ class Medico
     private $nasc;
     private $id_sexo;
     private $senha;
-    private $crm;
+    private $CRM;
     private $cod_especialidade;
     private $foto;
     private $conn;
 
     // Getters e Setters
     public function getId() {
-        return $this->id;
+        return $this->Id;
     }
 
-    public function setId($iid) {
-        $this->id = $iid;
+    public function setId($Id) {
+        $this->Id = $Id;
     }
 
     public function getNome() {
         return $this->nome;
     }
 
-    public function setNome($name) {
-        $this->nome = $name;
+    public function setNome($nome) {
+        $this->nome = $nome;
     }
 
     public function getEmail() {
@@ -82,12 +82,12 @@ class Medico
         $this->senha = $senha;
     }
 
-    public function getCrm() {
-        return $this->crm;
+    public function getCRM() {
+        return $this->CRM;
     }
 
-    public function setCrm($crm) {
-        $this->crm = $crm;
+    public function setCRM($CRM) {
+        $this->CRM = $CRM;
     }
 
     public function getCodEspecialidade() {
@@ -142,23 +142,6 @@ class Medico
         try
         {
             $this->conn = new Conectar();
-            $sql = $this->conn->prepare("SELECT * FROM medico WHERE id = ?");
-            @$sql->bindParam(1, $this->getId(), PDO::PARAM_INT);
-            $sql->execute();
-            return $sql->fetchAll();
-            $this->conn = null;
-        }
-        catch (PDOException $exc)
-        {
-            echo "Erro ao alterar. " . $exc->getMessage();
-        }
-    }
-
-    function alterar2()
-    {
-        try
-        {
-            $this->conn = new Conectar();
             $sql = $this->conn->prepare("UPDATE medico SET nome = ?, email = ?, cpf = ?, telefone = ?, nasc = ?, id_sexo = ?, senha = ?, crm = ?, cod_especialidade = ? WHERE id = ?");
             @$sql->bindParam(1, $this->getNome(), PDO::PARAM_STR);
             @$sql->bindParam(2, $this->getEmail(), PDO::PARAM_STR);
@@ -177,7 +160,24 @@ class Medico
         }
         catch (PDOException $exc)
         {
-            echo "Erro ao salvar o registro. " . $exc->getMessage();
+            return "Erro ao salvar o registro. " . $exc->getMessage();
+        }
+    }
+
+    public function alterarFoto($novaFoto) {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("UPDATE medico SET foto = ? WHERE id = ?");
+            $sql->bindParam(1, $novaFoto, PDO::PARAM_STR); // `novaFoto` representa o caminho ou nome do arquivo
+            $sql->bindParam(2, $this->getId(), PDO::PARAM_INT); // `id` do médico
+            if ($sql->execute()) {
+                return "Foto alterada com sucesso!";
+            } else {
+                return "Erro ao alterar a foto.";
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            return "Erro ao alterar a foto: " . $exc->getMessage();
         }
     }
 
@@ -245,6 +245,34 @@ class Medico
         catch (PDOException $exc)
         {
             echo "Erro ao salvar o registro. " . $exc->getMessage();
+        }
+    }
+
+    public function obter_dados_do_user($tabela, $id) {
+        try {
+            $this->conn = new Conectar();
+            
+            // Verifica se a tabela é "medico" ou "responsavel"
+            if ($tabela === 'medico' || $tabela === 'responsavel') {
+                // Define a consulta com base na tabela fornecida
+                $sql = $this->conn->prepare("SELECT * FROM $tabela WHERE id = ?");
+                $sql->bindParam(1, $id, PDO::PARAM_INT);
+                $sql->execute();
+    
+                // Retorna os dados se encontrados
+                $dados = $sql->fetch(PDO::FETCH_ASSOC);
+                $this->conn = null;
+    
+                if ($dados) {
+                    return $dados;
+                }
+            }
+    
+            return false; // Retorna false se a tabela não for "medico" ou "responsavel" ou se não encontrar dados
+    
+        } catch (PDOException $exc) {
+            echo "Erro ao consultar. " . $exc->getMessage();
+            return false;
         }
     }
 }

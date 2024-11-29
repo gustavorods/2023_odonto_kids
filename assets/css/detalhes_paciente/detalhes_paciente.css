@@ -1,0 +1,397 @@
+body{
+    padding: 0px 0px 48px;
+}
+
+.container-top{
+    margin: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-foto-nome-idade{
+    display: flex;
+    gap: 10px;
+}
+
+.foto-perfil{
+    border-radius: 100%;
+    height: 134px;
+}
+
+.nome-idade{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nome-idade .nome{
+    color: gray;
+    font-size: 20pt;
+    font-weight: 700;
+}
+
+.nome-idade .idade{
+    font-size: 15pt;
+    color: black;
+    font-weight: 700;
+}
+
+.nome-idade p{
+    line-height: 33px;
+}
+
+span, p {
+    white-space: nowrap;  /* Impede a quebra de linha */
+    display: inline;      /* Garante que os elementos fiquem na mesma linha */
+}
+
+span {
+    font-weight: bold;   /* Deixa os spans em negrito */
+}
+
+p {
+    display: inline-block; /* Faz com que o <p> se comporte como um bloco, mas sem quebrar linha */
+    margin: 0;            /* Remove a margem padrão do <p> */
+    padding-left: 5px;    /* Espaço entre o <span> e o <p> */
+}
+
+.container-dados-responsavel{
+    border: 1px solid rgba(0, 0, 0, 0.349);
+    height: fit-content;
+    padding: 5px;
+}
+
+.container-dados-responsavel p{
+    line-height: 0px;
+}
+
+.corpo-pagina{
+    margin: 64px 40px 0px;
+    display: flex;
+    gap: 35px;
+    justify-content: space-between;
+}
+
+.historico h1{
+    font-size: 18pt;
+    font-weight: 800;
+}
+
+.tratamentos h1{
+    font-size: 18pt;
+    font-weight: 800;
+    width: 70%;
+
+}
+
+/* Estilo básico para o cartão de histórico */
+.card-historico {
+    margin: 20px 0;
+    border-radius: 15px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.315);
+    padding: 10px 40px;
+    display: flex;
+    flex-direction: column;
+    min-height: 114px;
+}
+
+.card-historico .line {
+    width: 3px;
+    height: 115px;
+    margin-top: -11px;
+    position: absolute;
+}
+
+/* Estilo para o cartão de histórico do "boy" */
+.card-historico.boy {
+    background-color: #d2eaff; /* Cor de fundo do boy */
+}
+
+/* Estilo para o cartão de histórico do "girl" */
+.card-historico.girl {
+    background-color: #fbd2ff; /* Cor de fundo do girl */
+}
+
+/* Linha do cartão para o "boy" */
+.card-historico.boy .line {
+    background: #0681F3; /* Cor da linha para o boy */
+}
+
+/* Linha do cartão para o "girl" */
+.card-historico.girl .line {
+    background: #e336dc; /* Cor da linha para o girl */
+}
+
+/* Estilo do botão de detalhes para o "boy" */
+.card-historico.boy .detalhes-historico-consulta {
+    background-color: #0681F3; /* Cor do botão de detalhes para o boy */
+}
+
+/* Estilo do botão de detalhes para o "girl" */
+.card-historico.girl .detalhes-historico-consulta {
+    background-color: #ff55f8; /* Cor do botão de detalhes para o girl */
+}
+
+/* Estilo do status para o "boy" */
+.card-historico.boy .status {
+    color: #2e81c9; /* Cor do status para o boy */
+}
+
+/* Estilo do status para o "girl" */
+.card-historico.girl .status {
+    color: #ff55f8; /* Cor do status para o girl */
+}
+
+
+
+
+.corpo-card-historico {
+    margin-left: 10px;
+}
+
+.data-status {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 1000;
+    font-size: 13pt;
+    margin-bottom: 28px;
+}
+
+.data-status .data {
+    color: #636363;
+}
+
+.data-status .status {
+    color: #2E81C9; /* Ou #FF55F8 para feminino */
+}
+
+.tipo-consulta {
+    font-weight: 1000;
+    font-size: 15pt;
+}
+
+.perfil-detalhes {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.perfil-imagem img {
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    border: 2px solid #0681F3;
+}
+
+.nome-perfil {
+    font-size: 12pt;
+    font-weight: bold;
+    color: #636363;
+}
+
+.botao-detalhes .detalhes-historico-consulta {
+    background-color: #0681F3;
+    padding: 8px 20px;
+    border-radius: 8px;
+    color: white;
+}
+
+.tratamentos {
+    width: 70%;
+    height: fit-content;
+    border: 1px solid rgba(0, 0, 0, 0.384);
+    padding: 16px 20px;
+    border-radius: 8px;
+    min-height: 396px;
+}
+
+.historico{
+    width: 100%;
+}
+
+.left-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filtros .filho{
+    background-color: #a7a7a7;
+    color: white;
+    width: fit-content;
+    padding: 3px 10px;
+    border-radius: 11px;
+    cursor: pointer;
+    transition: 0s;
+}
+
+.filtros{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Estilo do card de tratamento */
+.card-tratamento {
+    width: 100%;
+    max-width: 600px;
+    background-color: #e4f1ff;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cards {
+    margin: 19px 0 0;
+}
+
+/* Cabeçalho do card */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card-header .status {
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #327bc8;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.card-body p {
+    margin: 5px 0;
+    font-size: 16px;
+    line-height: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tratamento-detalhes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.tratamentos .cards {
+    row-gap: 11px;
+    flex-direction: column;
+    display: flex;
+    max-height: 300px;
+    overflow-x: auto;
+    overflow-y: scroll;
+    min-height: 231px;
+    padding-right: 12px; /* Adiciona espaço à direita para afastar a barra de rolagem do conteúdo */
+}
+
+/* Estilo da barra de rolagem */
+.tratamentos .cards::-webkit-scrollbar {
+    width: 8px; /* Largura da barra de rolagem */
+    height: 8px; /* Altura da barra de rolagem horizontal (se necessário) */
+}
+
+/* Estilo do "track" (trilho) da barra de rolagem */
+.tratamentos .cards::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Cor de fundo do trilho */
+    border-radius: 10px; /* Borda arredondada do trilho */
+}
+
+/* Estilo da parte "thumb" (o bloco que se move) da barra de rolagem */
+.tratamentos .cards::-webkit-scrollbar-thumb {
+    background: #1f2e88; /* Cor da parte móvel da barra de rolagem */
+    border-radius: 10px; /* Bordas arredondadas do thumb */
+}
+
+/* Estilo da parte "thumb" da barra de rolagem quando está sendo ativada (em hover) */
+.tratamentos .cards::-webkit-scrollbar-thumb:hover {
+    background: #162279; /* Cor mais escura quando o usuário passa o mouse sobre a barra de rolagem */
+}
+
+
+.container-fluid{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo */
+}
+
+.voltar {
+    position: absolute;
+    left: 20px; /* Define a distância do botão de voltar para a esquerda */
+    cursor: pointer;
+}
+
+.filtros .filho.ativo {
+    background-color: #408cfc; /* Cor azul quando o botão está ativo */
+}
+
+.placeholder{
+    font-size: 20pt;
+}
+
+.place_holder {
+    text-align: center;
+    padding: 20px;
+    color: #fff;  /* Cor do texto (branco para contraste) */
+    background-color: #808080;  /* Cor de fundo cinza */
+    border-radius: 10px;  /* Bordas arredondadas, como no card */
+    font-size: 18px;  /* Tamanho da fonte */
+    font-weight: bold;  /* Texto em negrito */
+    margin-top: 20px;  /* Espaçamento superior */
+    margin-bottom: 20px;  /* Espaçamento inferior */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  /* Sombrinha leve */
+    max-width: 80%;  /* Limitar a largura */
+    margin-left: auto;  /* Centralizar horizontalmente */
+    margin-right: auto;  /* Centralizar horizontalmente */
+    border: 1px solid #6e6e6e;  /* Borda cinza suave */
+}
+
+/* Estilo para o card quando a consulta é cancelada */
+.card-historico.cancelada {
+    background-color: #ffd4d4; /* Cor de fundo */
+}
+
+/* Estilo para o card quando a consulta é cancelada */
+.line.cancelada {
+    background-color: #ff0000; /* Cor de fundo */
+}
+
+/* Estilo para o texto de status cancelado */
+.status.cancelada {
+    color: #8b0000; /* Cor vermelha escura para o texto de status */
+}
+
+/* Ocultar o botão de detalhes quando o status for 'Cancelada' */
+.botao-detalhes {
+    display: block; /* Padrão */
+}
+.botao-detalhes[style="display: none;"] {
+    display: none; /* Quando o status for 'Cancelada', o botão é ocultado */
+}
+
+.botoes-acao{
+    display: flex;
+    gap: 10px;
+}
+
+.botoes-acao *{
+    cursor: pointer;
+}
+
+.botoes-acao img{
+    height: 33px;
+}

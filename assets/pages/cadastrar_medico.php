@@ -66,6 +66,7 @@
 
                             // Criando a senha e seu hash
                             $senha= gerarSenhaAleatoria();
+                            error_log($senha);
                             $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
                             
                             // Atribuindo valor no sexo

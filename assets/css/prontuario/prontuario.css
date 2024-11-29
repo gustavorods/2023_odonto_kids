@@ -1,0 +1,212 @@
+.container-divs {
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 47px);
+    align-items: center;
+}
+
+.navbar {
+    background-color: #418CFC !important;
+    height: auto !important;
+}          
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1100px;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Área de Drop */
+.drop-area {
+    width: 100%;
+    max-width: 500px;
+    height: 250px;
+    border: 2px dashed #007bff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+    text-align: center;
+    color: #007bff;
+    background-color: #ffffff;
+    transition: background-color 0.3s, border 0.3s;
+    padding: 20px;
+}
+
+.drop-area.hover {
+    background-color: #f0f8ff;
+    border-color: #0056b3;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.drop-area p {
+    margin: 0;
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Lista de Arquivos */
+/* #file-list {
+    width: 100%;
+    max-width: 500px;
+    list-style: none;
+    padding: 0;
+    overflow-y: auto;
+    height: 250px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+} */
+
+li {
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    border-bottom: 1px rgba(0, 0, 0, 0.301) solid;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 359px;
+    font-family: Arial, sans-serif;
+}
+
+/* .file-name {
+    font-size: 16px;
+} */
+
+.remove-btn, .download-btn {
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 20px;
+    transition: color 0.3s;
+    margin-left: 10px;
+}
+
+.remove-btn:hover, .download-btn:hover {
+    color: #d10000;
+}
+
+/* Modal de Confirmação de Exclusão */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    text-align: center;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+}
+
+.modal button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.modal button:hover {
+    background-color: #0056b3;
+}
+
+.modal button.cancel {
+    background-color: #ccc;
+}
+
+.modal button.cancel:hover {
+    background-color: #aaa;
+}
+
+.container-fluid{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+
+
+#file-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.file-name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    max-width: 218px;
+    font-weight: 600;
+
+}
+
+.file-actions {
+    display: flex;
+    gap: 10px;
+    margin-right: 15px;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.lista-de-arquivos{
+    width: 360px;
+    height: 250px;
+    border: 1px rgba(0, 0, 0, 0.301) solid;
+    border-radius: 8px;    
+    overflow-x: hidden;
+}
+
+.container-fluid{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo */
+}
+
+.voltar {
+    position: absolute;
+    left: 20px; /* Define a distância do botão de voltar para a esquerda */
+    cursor: pointer;
+}

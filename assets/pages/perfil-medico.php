@@ -1,31 +1,147 @@
 <?php
 session_start();
 
-// Importando e inicializando a classe com os metodos necessarios
+// Importando e inicializando as classes necessárias
 include_once '../php/metodos_principais.php';
 include_once '../php/especialidades.php';
+include_once '../php/sexo.php';
+include_once '../php/medico.php';
+
+// Inicializando as instâncias das classes
 $metodos_principais = new metodos_principais();
 $especialidades = new Especialidade();
+$sexo = new sexo();
+$medico = new Medico(); // Instanciando o objeto Medico para poder chamar seus métodos
 
-// Pegando todos os dados do medico 
+// Pegando todos os dados do médico
 $dados_user = $metodos_principais->obter_dados_do_user($_SESSION['user']['tabela'], $_SESSION['user']['id']);
-/*
-Exemplo de como puxar os dados:
-    $dados_user['NOME_DO_CAMPO']
-*/
 
+// Pegando o nome da especialidade do médico
+$dados_user_especialidades = $especialidades->getEspecialidadeById($dados_user['cod_especialidade']);
 
-// pegando o nome da especialidade do médico 
-$dados_user_especialidades = $especialidades->getEspecialidadeById($dados_user['cod_especialidade']); 
-/*
-Exemplo de como puxar os dados:
-puxando a função:
-    $dados_user_especialidades['funcao'];
+// Pegando o nome do sexo do médico
+$dados_user_sexo = $sexo->getSexoById($dados_user['id_sexo']);
 
-puxando a descricao:
-    $dados_user_especialidades['descricao'];
-*/
+// Pegando todas as especialidades e todos os sexos
+$all_sexo = $sexo->getAllSexo();
+$all_especialidades = $especialidades->getAllEspecialidades();
+
+// Lógica para alterar informações
+$mensagem;
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+    var_dump($_POST['senha_nova']);
+    var_dump($_POST['senha_atual']);
+    if (isset($_POST['btn_salvar_alteracoes'])) {
+        // Armazena os valores em variáveis e mantém os dados no formulário
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        $cpf = $_POST['cpf'];
+        $telefone = $_POST['telefone'];
+        $nasc = $_POST['nasc'];
+        $CRM = $_POST['crm'];
+
+        // Criando a senha e seu hash
+        $senha_nova = $_POST['senha_nova'];
+        $senha_atual = $_POST['senha_atual'];
+        if (!password_verify($senha_atual, $dados_user['senha'])) {
+            $mensagem = "Senha atual incorreta";
+        } else {
+            if(empty($senha_nova)) {
+                $senha_hash = $dados_user['senha'];
+            } else {
+                $senha_hash = password_hash($senha_nova, PASSWORD_DEFAULT);
+            }
+            
+            // Atribuindo valor no sexo
+            $sexo_value = $_POST['txt_sexo']; // Recebe o valor do sexo
+            $sexo_instancia = new sexo(); // Instanciando o objeto para manipulação
+            $sexo_instancia->setSexo($sexo_value);
+            $_SESSION['log_medico'] = $cod_sexo = $sexo_instancia->sexoToId();
+
+            if ($cod_sexo == null) {
+                // Se o sexo não for encontrado, podemos adicionar um log ou mensagem de erro aqui
+            } else {
+                // Atribuindo valor na especialidade
+                $especialidade_value = $_POST['txt_especialidade']; // Recebe a especialidade
+                $especialidades_instancia = new Especialidade(); // Instanciando o objeto para manipulação
+                $cod_especialidade = $especialidades_instancia->getIdByFuncao($especialidade_value);
+
+                if ($cod_especialidade == null) {
+                    // Se a especialidade não for encontrada, podemos adicionar um log ou mensagem de erro aqui
+                    echo "Especialidade inválida!";
+                } else {
+                    if($email == $dados_user['email']) {
+                        // Atribuindo os valores para o médico
+                        $medico->setId($_SESSION['user']['id']);
+                        $medico->setNome($nome);
+                        $medico->setEmail($email);
+                        $medico->setCpf($cpf);
+                        $medico->setTelefone($telefone);
+                        $medico->setNasc($nasc);
+                        $medico->setId_sexo($cod_sexo);
+                        $medico->setSenha($senha_hash);
+                        $medico->setCrm($CRM);
+                        $medico->setCodEspecialidade($cod_especialidade);
+
+                        // Chamando o método para alterar os dados
+                        $medico->alterar();
+                        $mensagem = "Informações do médico atualizadas com sucesso!";
+                        header("Location:perfil-medico.php");  
+                        exit(); 
+                    } else {
+                        // Verificando se esse Email já está cadastrado
+                        $result = $metodos_principais->email_existe($email);
+                        if ($result == true) {
+                            $mensagem = 'Esse email já está cadastrado!';
+                        } else {
+                            // Atribuindo os valores para o médico
+                            $medico->setId($_SESSION['user']['id']);
+                            $medico->setNome($nome);
+                            $medico->setEmail($email);
+                            $medico->setCpf($cpf);
+                            $medico->setTelefone($telefone);
+                            $medico->setNasc($nasc);
+                            $medico->setId_sexo($cod_sexo);
+                            $medico->setSenha($senha_hash);
+                            $medico->setCrm($CRM);
+                            $medico->setCodEspecialidade($cod_especialidade);
+
+                            // Chamando o método para alterar os dados
+                            $medico->alterar();
+                            $mensagem = "Informações do médico atualizadas com sucesso!";
+                            header("Location:perfil-medico.php"); 
+                            exit(); 
+                        }
+                    }
+                }
+            }     
+        }
+    }            
+}
+
+// Lógica para alterar foto de perfil
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+    if (isset($_POST['btn_update_imagem'])) {
+        $medico->setId($_SESSION['user']['id']);
+        
+        // Verifique se a imagem foi carregada corretamente
+        if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
+            // Converta a imagem para binário
+            $imagem = file_get_contents($_FILES['foto_perfil']['tmp_name']);
+            
+            // Chame o método de alteração da foto, passando a imagem em binário
+            $mensagem = $medico->alterarFoto($imagem);
+        } else {
+            $mensagem = "Erro ao carregar a imagem.";
+        }
+
+        header("Location:perfil-medico.php"); 
+        exit(); 
+    }
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -42,7 +158,9 @@ puxando a descricao:
             color: #69707a;
         }
         .img-account-profile {
-            height: 10rem;
+            height: 11rem;
+            width: 11rem;
+            object-fit: cover;
         }
         .rounded-circle {
             border-radius: 50% !important;
@@ -70,18 +188,50 @@ puxando a descricao:
         .float-end {
             float: right;
         }
+
+        /* Estilos para a div que envolve o botão */
+.logout-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilos para o botão de logout */
+.logout-btn {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Efeito de hover para o botão */
+.logout-btn:hover {
+    background-color: darkred;
+    transform: scale(1.05);
+}
+
     </style>
     <script>
-        function togglePasswordVisibility() {
-            const passwordInput = document.getElementById("inputEditSenha");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                event.target.textContent = "Ocultar";
-            } else {
-                passwordInput.type = "password";
-                event.target.textContent = "Mostrar";
-            }
-        }
+      function toggleSenha() {
+    const senhaInput = document.getElementById("senha");
+    const senhaIcone = document.getElementById("senhaIcone");
+
+    if (senhaInput.type === "password") {
+        senhaInput.type = "text";
+        senhaIcone.classList.remove("bi-eye");
+        senhaIcone.classList.add("bi-eye-slash");
+    } else {
+        senhaInput.type = "password";
+        senhaIcone.classList.remove("bi-eye-slash");
+        senhaIcone.classList.add("bi-eye");
+    }
+}
+
     </script>
 </head>
 <body>
@@ -100,21 +250,30 @@ puxando a descricao:
             <!-- Card de perfil -->
             <div class="card mb-4 mb-xl-0">
                 <div class="card-header">Olá, <?php echo $dados_user['nome'];?></div>
-                <div class="card-body text-center">
+                <form method="POST" class="card-body text-center" enctype="multipart/form-data">
                     <?php
                         if($dados_user['foto'] == null) {
                             ?>
                             <img class="img-account-profile rounded-circle mb-2" src="../img/perfil_medico/perfil_anonimo_icon.png" alt="Imagem de Perfil">
                             <?php
                         } else {
-                            // Lógica pra puxar a imagem real do user
+                            ?>
+                            <img class="img-account-profile rounded-circle mb-2" 
+                            src="data:image/jpeg;base64,<?php echo base64_encode($dados_user['foto']); ?>" 
+                            alt="Imagem de Perfil">
+                            <?php
                         }
                     ?>
                     <div class="small font-italic text-muted mb-4"><?php?></div>
-                    <button class="btn btn-primary" type="button">Upload nova imagem</button>
-                </div>
+                    <input type="file" name="foto_perfil" class="btn btn-primary">
+                    <br>
+                    <br>
+                    <button class="btn btn-primary" name="btn_update_imagem" type="subtmit">Upload nova imagem</button>
+                </form>
             </div>
+            
         </div>
+        
         
         <div class="col-xl-8">
             <!-- Card de informações do médico -->
@@ -145,8 +304,8 @@ puxando a descricao:
                             <input class="form-control" type="text" value="<?php echo $dados_user['nasc'];?>" readonly>
                         </div>
                         <div class="mb-3">
-                            <label class="small mb-1">Gênero:</label>
-                            <input class="form-control" type="text" value="<?php echo $dados_user['genero'];?>" readonly>
+                            <label class="small mb-1">sexo:</label>
+                            <input class="form-control" type="text" value="<?php echo $dados_user_sexo;?>" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="small mb-1">CRM:</label>
@@ -162,31 +321,102 @@ puxando a descricao:
         </div>
     </div>
 </div>
-
-<!-- Modal para editar as informações -->
+<!-- Modal para alterar informações -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Editar Informações</h5>
+                <h5 class="modal-title" id="editModalLabel">Alterar Informações</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form method="post">
-                    <!-- Campos de edição das informações -->
-                    <!-- Campos atualizados de acordo com os dados do objeto $medico -->
+            <form method="POST" class="cadastro_form">
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="<?php echo $dados_user['Id']; ?>">
                     <div class="mb-3">
-                        <label for="inputEditNome" class="form-label">Nome Completo</label>
-                        <input type="text" class="form-control" id="inputEditNome" name="nome" value="<?php?>">
+                        <label class="small mb-1">Nome Completo:</label>
+                        <input class="form-control" type="text" name="nome" value="<?php echo $dados_user['nome']; ?>">
                     </div>
-                    <!-- Repetir os outros campos de edição como CPF, email, etc. -->
-                    <button type="submit" name="alterar" class="btn btn-primary">Salvar Alterações</button>
-                </form>
-            </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Email:</label>
+                        <input class="form-control" id="txt_email" type="email" name="email" value="<?php echo $dados_user['email']; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Telefone:</label>
+                        <input class="form-control" id="txt_telefone" type="text" name="telefone" value="<?php echo $dados_user['telefone']; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Data de Nascimento:</label>
+                        <input class="form-control" id="txt_data_nascimento" type="date" name="nasc" value="<?php echo $dados_user['nasc']; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Sexo:</label>
+                        <select name="txt_sexo" id="txt_sexo" class="form-control">
+                            <?php
+                                if(!empty($all_sexo)) {
+                                    foreach ($all_sexo as $sexo_item) {
+                                        $selected = ($sexo_item['sexo'] == $sexo) ? 'selected' : '';
+                                        echo "<option value='{$sexo_item['sexo']}' $selected>{$sexo_item['sexo']}</option>";
+                                    }   
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">CPF:</label>
+                        <input class="form-control" id="txt_cpf" type="text" name="cpf" value="<?php echo $dados_user['cpf']; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Senha nova:</label>
+                        <div class="input-group">
+                            <input class="form-control" type="password" id="senha" name="senha_nova">
+                            <button type="button" class="btn btn-outline-secondary" onclick="toggleSenha()">
+                                Mostrar/Ocultar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">CRM:</label>
+                        <input class="form-control" id="txt_crm" type="text" name="crm" value="<?php echo $dados_user['CRM']; ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Especialidade:</label>
+                        <select name="txt_especialidade" id="txt_especialidade" class="form-control" required>
+                            <?php
+                            if(!empty($all_especialidades)) {
+                                foreach ($all_especialidades as $especialidade_item) {
+                                    $selected = ($especialidade_item['funcao'] == $especialidade) ? 'selected' : '';
+                                    echo "<option value='{$especialidade_item['funcao']}' $selected>{$especialidade_item['funcao']}</option>";
+                                }   
+                            }
+                            ?>   
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Senha:</label>
+                        <div class="input-group">
+                            <input class="form-control" type="password" id="senha" name="senha_atual">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" name="btn_salvar_alteracoes">Salvar Alterações</button>
+                </div>
+
+                <!-- Mensagem de retorno -->
+                <?php if (!empty($mensagem)) { ?>
+                    <script>alert('<?php echo htmlspecialchars($mensagem); ?>');</script>
+                <?php } ?>
+            </form>
         </div>
     </div>
 </div>
 
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../js/config_perfil_medico.js"></script>
 </body>
 </html>
