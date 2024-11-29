@@ -154,7 +154,6 @@ class Dependente {
                 'nome' => $row['nome'],
                 'cpf' => $row['cpf'], // Aplicando a máscara no CPF
                 'idade' => $idade,
-                'foto' => 'IMG/placeholder.jpg' // Placeholder para imagem por enquanto
             ];
     
             // Adiciona o dependente ao array de dependentes

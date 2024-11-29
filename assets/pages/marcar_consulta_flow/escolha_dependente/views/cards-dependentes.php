@@ -1,57 +1,61 @@
 <?php
+    // Dados para conexão com o banco de dados
+    $host = "localhost";
+    $user = "root"; 
+    $password = ""; 
+    $database = "odontokids"; 
+
+    // Criando a conexão
+    $conn = new mysqli($host, $user, $password, $database);
+
+    // Verificando se houve erros na conexão
+    if ($conn->connect_error) {
+        die("Falha na conexão: " . $conn->connect_error);
+    }
+
     $dependente->setIdResponsavel($responsavel_id);
     $dependentes = $dependente->listarDependentes();
 ?>
+<div class="cards">
+    <?php if (empty($dependentes)): ?>
+        <div class="aviso">
+            Você ainda não possui nenhum dependente cadastrado
+        </div>
+    <?php else: ?>
+        <!-- Se houver dependentes, cria os cards -->
+        <?php foreach ($dependentes as $dep): ?>
+            <?php
+                // Consulta a foto no banco usando o ID do dependente
+                $foto = '/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png'; // URL padrão
+                $id_dependente = $dep['id'];
 
-<script>
-    function criarCardsPaciente(nome, idade, cpf, fotoUrl, id_paciente) {
-        const card = document.createElement('div');
-        card.classList.add('card');
+                $stmt = $conn->prepare("SELECT foto FROM dependentes WHERE id = ?");
+                $stmt->bind_param("i", $id_dependente);
+                $stmt->execute();
+                $result = $stmt->get_result();
 
-        // Adiciona uma função de clique ao card
-        card.addEventListener('click', function() {
-            // Armazena o id_paciente na sessão
-            sessionStorage.setItem('id_paciente', id_paciente);
-            sessionStorage.setItem('nome', nome);
+                if ($row = $result->fetch_assoc()) {
+                    // Verifica se a foto não está vazia e converte para Base64
+                    if (!empty($row['foto'])) {
+                        $foto = 'data:image/jpeg;base64,' . base64_encode($row['foto']);
+                    }
+                }
 
-            allowUnload = true; // Define a variável para permitir o unload
+                $stmt->close();
+            ?>
+            <div class="card" onclick="window.location.href = '../escolha_tratamento/escolha_tratamento.php?id_paciente=<?= $dep['id'] ?>'">
+                <img src="<?= $foto ?>" alt="Foto de <?= $dep['nome'] ?>">
+                <p class="nome"><span>Nome:</span> <?= $dep['nome'] ?></p>
+                <p class="idade"><span>Idade:</span> <?= $dep['idade'] ?></p>
+                <p class="cpf"><span>CPF:</span> <?= mascaraCpf($dep['cpf']) ?></p>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
 
-            // Redireciona para a página escolha_tratamento.html
-            window.location.href = '../escolha_tratamento/escolha_tratamento.php';
-        }); 
-
-        card.innerHTML = `
-            <img src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="Foto de ${nome}">
-            <p class="nome"><span>Nome:</span> ${nome}</p>
-            <p class="idade"><span>Idade:</span> ${idade}</p>
-            <p class="cpf"><span>CPF:</span> ${mascaraCpf(cpf)}</p>
-        `;
-
-        return card;
-    }
-
-    // Função para mascarar o CPF, deixando os primeiros 3 e os dois últimos dígitos com asteriscos
-    function mascaraCpf(cpf) {
-        return cpf.replace(/(\d{3})\d{3}(\d{3})(\d{2})/, '***.$2.$3-**');
-    }
-
-    // Obter os dados dos dependentes
-    const dependentes = <?php echo json_encode($dependentes); ?>;
-    // console.log(dependentes);
-    
-    const cardsContainer = document.querySelector('.cards');
-
-    if (dependentes.length === 0) {
-        // Se não houver dependentes, adiciona um aviso dentro do contêiner de cards
-        const aviso = document.createElement('div');
-        aviso.classList.add('aviso');
-        aviso.innerHTML = "Você ainda não possui nenhum dependente cadastrado";
-        cardsContainer.appendChild(aviso);
-    } else {
-        // Se houver dependentes, cria os cards para cada dependente
-        dependentes.forEach(dep => {
-            const cardPaciente = criarCardsPaciente(dep.nome, dep.idade, dep.cpf, dep.foto, dep.id);
-            cardsContainer.appendChild(cardPaciente);
-        });
-    }
-</script>
+<?php
+// Função para mascarar o CPF, deixando os primeiros 3 e os dois últimos dígitos com asteriscos
+function mascaraCpf($cpf) {
+    return preg_replace('/(\d{3})\d{3}(\d{3})(\d{2})/', '***.$2.$3-**', $cpf);
+}
+?>
