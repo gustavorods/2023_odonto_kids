@@ -340,3 +340,16 @@ p {
 .botao-detalhes[style="display: none;"] {
     display: none; /* Quando o status for 'Cancelada', o botão é ocultado */
 }
+
+.botoes-acao{
+    display: flex;
+    gap: 10px;
+}
+
+.botoes-acao *{
+    cursor: pointer;
+}
+
+.botoes-acao img{
+    height: 33px;
+}

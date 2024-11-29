@@ -77,3 +77,38 @@ document.addEventListener("DOMContentLoaded", function() {
         filtrarPorStatus('Todos', todosButton); // Chamar a função com o filtro "Todos"
     }
 });
+
+// Adicionando um evento de clique nos links de "relatório" e "prontuário"
+document.querySelectorAll('.detalhes-consulta').forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault(); // Evita o redirecionamento padrão do link
+
+        // Captura o consulta_id a partir do atributo data-id
+        const consultaId = this.getAttribute('data-id');
+        const tipo = this.getAttribute('data-type'); // Pode ser "relatorio" ou "prontuario"
+
+        // Exemplo de uso: Você pode fazer uma requisição AJAX para buscar detalhes da consulta
+        console.log("Consulta ID:", consultaId);
+        console.log("Tipo:", tipo);
+
+        // Requisição AJAX para processar o ID da consulta
+        $.ajax({
+            url: '/2023_odonto_kids/assets/php/handlers/dashboard_medico/consulta_id.php',  // O arquivo PHP que processará os dados
+            type: 'POST',
+            data: { id_consulta: consultaId },  // Passa o valor de id_consulta
+            success: function(response) {
+                console.log('Resposta do servidor:', response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Erro na requisição AJAX SESSION:', error);
+            }
+        });
+
+        // Redireciona com base no tipo (relatório ou prontuário)
+        if (tipo === 'relatorio') {
+            window.location.href = '/2023_odonto_kids/assets/pages/dashboard_medico/views/relatorio.php?consulta_id=' + consultaId;
+        } else if (tipo === 'prontuario') {
+            window.location.href = '/2023_odonto_kids/assets/pages/dashboard_medico/views/prontuario.php?consulta_id=' + consultaId;
+        }
+    });
+});

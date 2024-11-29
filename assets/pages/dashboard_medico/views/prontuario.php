@@ -1,6 +1,23 @@
 <?php
 session_start(); // Inicia a sessão
 
+$session_medico_id = $_SESSION['medico_id'] ?? null;
+$cookie_medico_id = $_COOKIE['medico_id'] ?? null;
+
+if (empty($cookie_medico_id) && empty($session_medico_id)) {
+    header("Location: /2023_odonto_kids/assets/pages/login.php");
+    exit;
+}
+
+$medico_id = !empty($cookie_medico_id) ? $cookie_medico_id : $session_medico_id;
+
+echo '<script>console.log('.$medico_id.')</script>';
+
+if (!is_numeric($medico_id) || $medico_id <= 0) {
+    header("Location: /2023_odonto_kids/assets/pages/login.php");
+    exit;
+}
+
 // Verifica se o ID da consulta está na sessão
 if (isset($_SESSION['id_consulta'])) {
     $id_consulta = $_SESSION['id_consulta'];
@@ -45,12 +62,22 @@ try {
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-dark">
-        <div class="container-fluid">
-            <div id="div-logo">
-                <h1>Odonto kids</h1>
-                <img src="../../../img/geral/Logo.svg" alt="Odonto Kids logo">
+            <div class="container-fluid">
+
+                <div class="voltar" onclick=window.history.back();>
+                    <img src="/2023_odonto_kids/assets/img/login/seta_voltar.svg" alt="">
+                </div>                    
+                <div id="div-logo">
+                    <h1>Odonto kids</h1>
+                    <img src="/2023_odonto_kids/assets/img/geral/Logo.svg" alt="Odonto Kids logo">
+                </div>
+        
+                <!-- <div id="div_perfil">
+                    <a href="#">
+                        <img class="foto_de_perfil_responsavel" name="img_foto_perfil_responsavel"src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="foto de perfil">
+                    </a>
+                </div> -->
             </div>
-        </div>
     </nav>
 
     <div class="container-divs">
@@ -90,10 +117,6 @@ try {
                 <button id="cancel-delete" class="cancel">Não</button>
             </div>
         </div>
-    </div>
-
-    <div class="voltar" onclick="window.location.href='../dashboard_medico.php'">
-        <img src="/2023_odonto_kids/assets/img/login/seta_voltar.svg" alt="">
     </div>
 
     <script>

@@ -11,7 +11,7 @@
 
     $medico_id = !empty($cookie_medico_id) ? $cookie_medico_id : $session_medico_id;
 
-    echo '<script>console.log('.$medico_id.')</script>';
+    echo '<script>console.log('.$medico_id.')</script>'; //importante, não tirar nem comentar
 
     if (!is_numeric($medico_id) || $medico_id <= 0) {
         header("Location: /2023_odonto_kids/assets/pages/login.php");

@@ -1,3 +1,22 @@
+<?php
+    $session_medico_id = $_SESSION['medico_id'] ?? null;
+    $cookie_medico_id = $_COOKIE['medico_id'] ?? null;
+
+    if (empty($cookie_medico_id) && empty($session_medico_id)) {
+        header("Location: /2023_odonto_kids/assets/pages/login.php");
+        exit;
+    }
+
+    $medico_id = !empty($cookie_medico_id) ? $cookie_medico_id : $session_medico_id;
+
+    echo '<script>console.log('.$medico_id.')</script>';
+
+    if (!is_numeric($medico_id) || $medico_id <= 0) {
+        header("Location: /2023_odonto_kids/assets/pages/login.php");
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,6 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
     <link rel="stylesheet" href="/2023_odonto_kids/assets/css/dashboard_medico/dashboard_medico.css">
+    <link rel="stylesheet" href="/2023_odonto_kids/assets/css/relatorio/relatorio.css">
     <!-- <link rel="stylesheet" href="../css/servicos/servicos_responsivo.css"> -->
     <link rel="icon" type="image/png" href="/2023_odonto_kids/assets/img/geral/Logo.svg">
     <!-- Bootstrap -->
@@ -60,17 +80,6 @@
         .formulario{
             margin: 20px;
         }
-
-        .voltar{
-            position: fixed;
-            top: 18px;
-            left: 10px;
-            cursor: pointer;
-        }
-
-        .voltar img{
-            height: 31px;
-        }
     </style>
 </head>
 
@@ -94,12 +103,22 @@
 <body>
     <!--Navbar-->
     <nav class="navbar navbar-dark">
-        <div class="container-fluid">
-            <div id="div-logo">
-                <h1>Odonto kids</h1>
-                <img src="../../../img/geral/Logo.svg" alt="Odonto Kids logo">
+            <div class="container-fluid">
+
+                <div class="voltar" onclick=window.history.back();>
+                    <img src="/2023_odonto_kids/assets/img/login/seta_voltar.svg" alt="">
+                </div>                
+                <div id="div-logo">
+                    <h1>Odonto kids</h1>
+                    <img src="/2023_odonto_kids/assets/img/geral/Logo.svg" alt="Odonto Kids logo">
+                </div>
+        
+                <!-- <div id="div_perfil">
+                    <a href="#">
+                        <img class="foto_de_perfil_responsavel" name="img_foto_perfil_responsavel"src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="foto de perfil">
+                    </a>
+                </div> -->
             </div>
-        </div>
     </nav>
 
     <div class="formulario">
@@ -130,10 +149,6 @@
                 }
             ?>
         </form>
-
-        <div class="voltar" onclick="window.location.href='../dashboard_medico.php'">
-            <img src="/2023_odonto_kids/assets/img/login/seta_voltar.svg" alt="">
-        </div>
 
     </div>
 <script>

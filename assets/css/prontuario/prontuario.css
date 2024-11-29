@@ -151,16 +151,12 @@ li {
     background-color: #aaa;
 }
 
-.voltar{
-    position: fixed;
-    top:10px;
-    left:10px;
-    cursor: pointer;
+.container-fluid{
+    display: flex !important;
+    justify-content: center !important;
 }
 
-.voltar img{
-    height: 27px;
-}
+
 
 #file-list {
     list-style: none;
@@ -197,4 +193,20 @@ li {
     border: 1px rgba(0, 0, 0, 0.301) solid;
     border-radius: 8px;    
     overflow-x: hidden;
+}
+
+.container-fluid{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo */
+}
+
+.voltar {
+    position: absolute;
+    left: 20px; /* Define a distância do botão de voltar para a esquerda */
+    cursor: pointer;
 }
