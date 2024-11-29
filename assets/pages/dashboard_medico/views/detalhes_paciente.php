@@ -31,13 +31,23 @@
         die("Conexão falhou: " . $conn->connect_error);
     }
 
-    // Verificar se o consulta_id foi enviado via POST
-    if (isset($_POST['consulta_id'])) {
-        $id_dependente = intval($_POST['consulta_id']);
-        // var_dump($id_dependente);
-    } else {
-        echo "ID da consulta não fornecido!" .$id_dependente;
-    }    
+    $id_dependente = $_SESSION['consulta_id'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+        // Checar se o campo consulta_id foi enviado
+        if (isset($_POST['consulta_id']) && !empty($_POST['consulta_id'])) {
+            // Receber o valor do campo consulta_id
+            $consulta_id = intval($_POST['consulta_id']);
+            
+            // Armazenar o valor na sessão
+            $_SESSION['consulta_id'] = $consulta_id;
+
+            header("Location: /2023_odonto_kids/assets/pages/dashboard_medico/views/detalhes_paciente.php");
+            exit; // Importante para garantir que o script pare de executar
+        } else {
+            echo "ID da consulta não fornecido!";
+        }
+    }
 
 
 
