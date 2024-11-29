@@ -34,7 +34,6 @@
                         tratamento t ON c.cod_tratamento = t.Id
                     WHERE 
                         c.id_medico = ?
-                        AND c.data >= CURDATE()
                         AND c.status_consulta = 1;    
                 ");
                 $sql->bindParam(1,$medico_id,PDO::PARAM_INT);
