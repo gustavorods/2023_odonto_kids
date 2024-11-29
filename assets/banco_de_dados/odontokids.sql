@@ -146,13 +146,13 @@ ON UPDATE NO ACTION ON DELETE NO ACTION;
 ALTER TABLE `dependentes`
 ADD FOREIGN KEY(`id_sexo`) REFERENCES `sexo`(`id_sexo`)
 ON UPDATE NO ACTION ON DELETE NO ACTION;
-ALTER TABLE `depentente_tratamento`
+ALTER TABLE `dependente_tratamento`
 ADD FOREIGN KEY(`id_tratamento`) REFERENCES `tratamento`(`Id`)
 ON UPDATE NO ACTION ON DELETE NO ACTION;
-ALTER TABLE `depentente_tratamento`
-ADD FOREIGN KEY(`id_dependete`) REFERENCES `dependentes`(`id`)
+ALTER TABLE `dependente_tratamento`
+ADD FOREIGN KEY(`id_dependente`) REFERENCES `dependentes`(`id`)
 ON UPDATE NO ACTION ON DELETE NO ACTION;
-ALTER TABLE `depentente_tratamento`
+ALTER TABLE `dependente_tratamento`
 ADD FOREIGN KEY(`status_tratamento`) REFERENCES `status_tratamento`(`id_status_tratamento`)
 ON UPDATE NO ACTION ON DELETE NO ACTION;
 ALTER TABLE `responsavel`
