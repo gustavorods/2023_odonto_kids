@@ -10,11 +10,12 @@ class Dependente {
     private $id_sexo;
     private $tel_emergencia;
     private $endereco;
+    private $foto; // Novo campo para armazenar a foto
 
     private $conn;
 
     // Construtor
-    public function __construct($id_responsavel = null, $nome = null, $nasc = null, $cpf = null, $id_sexo = null, $tel_emergencia = null, $endereco = null, $id = null) {
+    public function __construct($id_responsavel = null, $nome = null, $nasc = null, $cpf = null, $id_sexo = null, $tel_emergencia = null, $endereco = null, $foto = null, $id = null) {
         $this->id_responsavel = $id_responsavel;
         $this->nome = $nome;
         $this->nasc = $nasc;
@@ -22,6 +23,7 @@ class Dependente {
         $this->id_sexo = $id_sexo;
         $this->tel_emergencia = $tel_emergencia;
         $this->endereco = $endereco;
+        $this->foto = $foto;
         if ($id !== null) {
             $this->id = $id;
         }
@@ -60,7 +62,15 @@ class Dependente {
         return $this->endereco;
     }
 
+    public function getFoto() {
+        return $this->foto;
+    }
+
     // Métodos Setters
+    public function setId($id) {
+        $this->id = $id;
+    }
+    
     public function setIdResponsavel($id_responsavel) {
         $this->id_responsavel = $id_responsavel;
     }
@@ -89,13 +99,18 @@ class Dependente {
         $this->endereco = $endereco;
     }
 
+    public function setFoto($foto) {
+        $this->foto = $foto;
+    }
+
+
     public function cadastrarDependente() {
         // Cria uma nova conexão com o banco de dados
         $this->conn = new Conectar();
     
         // Prepara a consulta SQL de INSERT
-        $sql = $this->conn->prepare("INSERT INTO dependentes (id_responsavel, nome, nasc, cpf, id_sexo, tel_emergencia, endereco) 
-                                    VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $sql = $this->conn->prepare("INSERT INTO dependentes (id_responsavel, nome, nasc, cpf, id_sexo, tel_emergencia, endereco, foto) 
+                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     
         // Bind dos parâmetros para o INSERT
         $sql->bindParam(1, $this->id_responsavel, PDO::PARAM_INT);
@@ -105,51 +120,37 @@ class Dependente {
         $sql->bindParam(5, $this->id_sexo, PDO::PARAM_INT);
         $sql->bindParam(6, $this->tel_emergencia, PDO::PARAM_STR);
         $sql->bindParam(7, $this->endereco, PDO::PARAM_STR);
+        $sql->bindParam(8, $this->foto, PDO::PARAM_STR);
     
         // Executa o comando
         $sql->execute();
     }
 
-    public function listarDependentes() {
+    public function listarDependentesById() {
         // Cria uma nova conexão com o banco de dados
         $this->conn = new Conectar();
-    
+        
+        // Obtém o ID do responsável
         $id_responsavel = $this->getIdResponsavel();
-
-        // Prepara a consulta SQL de SELECT
-        $sql = $this->conn->prepare("SELECT id, nome, cpf, nasc FROM dependentes WHERE id_responsavel = ?");
-        $sql->bindParam(1, $id_responsavel, PDO::PARAM_INT);
-        // Executa a consulta
-        $sql->execute();
+        
+        try {
+            // Prepara a consulta SQL de SELECT
+            $sql = $this->conn->prepare("SELECT * FROM dependentes WHERE id_responsavel = ?");
+            $sql->bindParam(1, $id_responsavel, PDO::PARAM_INT);
     
-        // Array para armazenar os dados dos dependentes
-        $dependentes = [];
+            // Executa a consulta
+            $sql->execute();
     
-        // Busca os resultados
-        while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
-            // Calcula a idade com base na data de nascimento
-            $nasc = new DateTime($row['nasc']);
-            $hoje = new DateTime();
-            $idade = $hoje->diff($nasc)->y;
+            // Retorna os resultados como um array associativo
+            $dependentes = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $dependentes;
     
-            // Cria o array para o dependente com os dados solicitados
-            $dependente = [
-                'id' => $row['id'],
-                'nome' => $row['nome'],
-                'cpf' => $row['cpf'], // Aplicando a máscara no CPF
-                'idade' => $idade,
-                'foto' => 'IMG/placeholder.jpg' // Placeholder para imagem por enquanto
-            ];
-    
-            // Adiciona o dependente ao array de dependentes
-            $dependentes[] = $dependente;
+        } catch (PDOException $e) {
+            // Tratamento de erro
+            echo "Erro ao listar dependentes: " . $e->getMessage();
+            return [];
         }
-    
-        // Retorna o array de dependentes
-        return $dependentes;
-    }
-    
-    
+    }    
 
     public function logDependente() {
         // Cria uma string com os valores das variáveis
@@ -164,6 +165,105 @@ class Dependente {
 
         // Envia para o log de erros do PHP
         error_log($log_message);
+    }
+    
+    public function nameToId($nome) {
+        $this->conn = new Conectar();
+
+        try {
+            $sql = $this->conn->prepare("SELECT id FROM dependentes WHERE nome LIKE ?");
+            $sql->bindParam(1, $nome, PDO::PARAM_STR);
+            $sql->execute();
+            return $sql->fetch(PDO::FETCH_ASSOC)['id'] ?? null;
+        } catch (PDOException $e) {
+            echo "Erro ao buscar ID pelo nome: " . $e->getMessage();
+            return null;
+        }
+    }
+
+    public function infoById($id) {
+        $this->conn = new Conectar();
+
+        try {
+            $sql = $this->conn->prepare("SELECT * FROM dependentes WHERE id = ?");
+            $sql->bindParam(1, $id, PDO::PARAM_STR);
+            $sql->execute();
+            return $sql->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Erro ao buscar dados do dependente: " . $e->getMessage();
+            return null;
+        }
+    }
+
+    public function alterarFoto($novaFoto) {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("UPDATE dependentes SET foto = ? WHERE id = ?");
+            $sql->bindParam(1, $novaFoto, PDO::PARAM_STR); 
+            $sql->bindParam(2, $this->getId(), PDO::PARAM_INT); 
+            if ($sql->execute()) {
+                return "Foto alterada com sucesso!";
+            } else {
+                return "Erro ao alterar a foto.";
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            return "Erro ao alterar a foto: " . $exc->getMessage();
+        }
+    }
+
+    public function alterar() {
+        try {
+            $this->conn = new Conectar();
+    
+            // Prepara a consulta SQL de UPDATE
+            $sql = $this->conn->prepare("UPDATE dependentes SET 
+                nome = ?, 
+                nasc = ?, 
+                cpf = ?, 
+                id_sexo = ?, 
+                tel_emergencia = ?, 
+                endereco = ?
+                WHERE id = ?");
+    
+            // Bind dos parâmetros para o UPDATE
+            $sql->bindParam(1, $this->nome, PDO::PARAM_STR);
+            $sql->bindParam(2, $this->nasc, PDO::PARAM_STR); // A data já deve estar no formato YYYY-MM-DD
+            $sql->bindParam(3, $this->cpf, PDO::PARAM_STR);
+            $sql->bindParam(4, $this->id_sexo, PDO::PARAM_INT);
+            $sql->bindParam(5, $this->tel_emergencia, PDO::PARAM_STR);
+            $sql->bindParam(6, $this->endereco, PDO::PARAM_STR);
+            $sql->bindParam(7, $this->id, PDO::PARAM_INT);
+    
+            // Executa a consulta
+            if ($sql->execute()) {
+                return "Dependente atualizado com sucesso!";
+            } else {
+                return "Erro ao atualizar o dependente.";
+            }
+        } catch (PDOException $e) {
+            // Tratamento de erro
+            return "Erro ao atualizar o dependente: " . $e->getMessage();
+        } finally {
+            // Fecha a conexão com o banco de dados
+            $this->conn = null;
+        }
+    }    
+
+    public function ExcluirFotoPerfil() {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("UPDATE dependentes SET foto = null WHERE id = ?");
+            $sql->bindParam(1, $this->getId(), PDO::PARAM_INT); 
+            if ($sql->execute()) {
+                return "Foto alterada com sucesso!";
+            } else {
+                return "Erro ao alterar a foto.";
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            return "Erro ao alterar a foto: " . $exc->getMessage();
+        }
     }
 }
 ?>

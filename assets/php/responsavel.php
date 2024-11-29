@@ -137,24 +137,7 @@ class responsavel
         try
         {
             $this->conn = new Conectar();
-            $sql = $this->conn->prepare("SELECT * FROM usuario WHERE id = ?");
-            @$sql->bindParam(1, $this->getId(), PDO::PARAM_INT);
-            $sql->execute();
-            return $sql->fetchAll();
-            $this->conn = null;
-        }
-        catch (PDOException $exc)
-        {
-            echo "Erro ao alterar. " . $exc->getMessage();
-        }
-    }
-
-    function alterar2()
-    {
-        try
-        {
-            $this->conn = new Conectar();
-            $sql = $this->conn->prepare("UPDATE usuario SET nome = ?, email = ?, cpf = ?, telefone = ?, nasc = ?, genero = ?, senha = ? WHERE id = ?");
+            $sql = $this->conn->prepare("UPDATE responsavel SET nome = ?, email = ?, cpf = ?, telefone = ?, nasc = ?, id_sexo = ?, senha = ? WHERE Id = ?");
             @$sql->bindParam(1, $this->getNome(), PDO::PARAM_STR);
             @$sql->bindParam(2, $this->getEmail(), PDO::PARAM_STR);
             @$sql->bindParam(3, $this->getCpf(), PDO::PARAM_STR);
@@ -163,7 +146,6 @@ class responsavel
             @$sql->bindParam(6, $this->getGenero(), PDO::PARAM_STR);
             @$sql->bindParam(7, $this->getSenha(), PDO::PARAM_STR);
             @$sql->bindParam(8, $this->getId(), PDO::PARAM_INT);
-            @$sql->bindParam(9, $this->getFoto(), PDO::PARAM_INT);
             if ($sql->execute()) {
                 return "Registro alterado com sucesso!";
             }
@@ -228,7 +210,7 @@ class responsavel
         try
         {
             $this->conn = new Conectar();
-            $sql = $this->conn->prepare("UPDATE responsavel SET senha = ? WHERE id = ?");
+            $sql = $this->conn->prepare("UPDATE responsavel SET senha = ? WHERE Id = ?");
             @$sql->bindParam(1, $this->getSenha(), PDO::PARAM_STR);
             @$sql->bindParam(2, $this->getId(), PDO::PARAM_INT);
             if ($sql->execute()) {
@@ -238,7 +220,40 @@ class responsavel
         }
         catch (PDOException $exc)
         {
-            echo "Erro ao salvar o registro. " . $exc->getMessage();
+            return "Erro ao salvar o registro. " . $exc->getMessage();
+        }
+    }
+
+    public function alterarFoto($novaFoto) {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("UPDATE responsavel SET foto = ? WHERE id = ?");
+            $sql->bindParam(1, $novaFoto, PDO::PARAM_STR); 
+            $sql->bindParam(2, $this->getId(), PDO::PARAM_INT); 
+            if ($sql->execute()) {
+                return "Foto alterada com sucesso!";
+            } else {
+                return "Erro ao alterar a foto.";
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            return "Erro ao alterar a foto: " . $exc->getMessage();
+        }
+    }
+
+    public function ExcluirFotoPerfil() {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("UPDATE responsavel SET foto = null WHERE id = ?");
+            $sql->bindParam(1, $this->getId(), PDO::PARAM_INT); 
+            if ($sql->execute()) {
+                return "Foto alterada com sucesso!";
+            } else {
+                return "Erro ao alterar a foto.";
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            return "Erro ao alterar a foto: " . $exc->getMessage();
         }
     }
 }

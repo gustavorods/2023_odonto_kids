@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
+@import '../geral/footerBlue.css';
+
+:root {
+    --primary: #1e2a78;
+    --secondary: #4a90e2;
+    --accent: #ff6f61;
+    --black: #222;
+    --white: #fff;
+    --gray-light: #f5f5f5;
+    --gray-dark: #888;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+.container {
+    font-size: 1.3rem !important;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    color: var(--white);
+}
+
+.titulo {
+    color: var(--primary);
+}
+
+.user-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 20px 0;
+    border: 1px solid var(--gray-dark);
+}
+
+.nav-tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    background-color: var(--secondary);
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.nav-tab {
+    color: var(--white);
+    padding: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1.5rem !important;
+}
+
+.tab-content {
+    margin-top: 15px;
+}
+
+.content {
+    display: none;
+    font-size: 1.3rem !important;
+}
+
+.content.active {
+    display: block;
+}
+
+.content-header {
+    background-color: var(--secondary);
+    color: var(--white);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.content-list {
+    margin-top: 10px;
+}
+
+.content-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+.content-item-icon {
+    margin-right: 10px;
+}
+
+.content-item-details {
+    flex-grow: 1;
+}
+
+.info {
+    background-color: var(--secondary);
+    border-radius: 5px;
+    margin-right: 10px;
+    float: right;
+    padding: 5px;
+    color: var(--gray-light);
+}
+
+.info:hover {
+    background-color: var(--primary);
+}
+
+.logo-icon {
+    background-color: var(--secondary);
+    border-radius: 5px;
+    padding: 5px;
+    height: 22px;
+    width: 22px;
+}
+
+.input {
+    padding: 10px;
+    border: 1px solid #ccc !important;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+}

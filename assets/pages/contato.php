@@ -39,24 +39,27 @@ ob_end_flush(); // Libera o buffer de saída
         <div class="bg-primary p-4 itens-nav">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="../../index.html">Home</a>
+                    <a class="nav-link active" href="/../2023_odonto_kids/index.php">Home</a>
                 </li>
                 <hr class="linha">
+
                 <li class="nav-item">
-                    <a class="nav-link active" href="./servicos.html">Serviços</a>
+                    <a class="nav-link active" href="/../2023_odonto_kids/assets/pages/servicos.html">Serviços</a>
                 </li>
                 <hr class="linha">
+
                 <li class="nav-item">
-                    <a class="nav-link active" href="./time-line.html">Sobre nós</a>
+                    <a class="nav-link active" href="/../2023_odonto_kids/assets/pages/time-line.html">Sobre nós</a>
                 </li>
                 <hr class="linha">
+
                 <li class="nav-item">
-                    <a class="nav-link active" href="./contato.html">Contato</a>
+                    <a class="nav-link active" href="/../2023_odonto_kids/assets/pages/contato.php">Contato</a>
                 </li>
             </ul>
         </div>
     </div>
-    
+     
     <nav class="navbar navbar-dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
@@ -66,11 +69,11 @@ ob_end_flush(); // Libera o buffer de saída
     
             <div id="div-logo">
                 <h1>Odonto kids</h1>
-                <img src="../img/geral/Logo.svg" alt="Odonto Kids logo">
+                <img src="/../2023_odonto_kids/assets/img/geral/Logo.svg" alt="Odonto Kids logo">
             </div>
     
             <div id="criar-conta">
-                <a href="./login.html">
+                <a href="/../2023_odonto_kids/assets/pages/login.php">
                     <button id="botao-entrar-header">Entrar / Cadastrar</button>
                 </a>
             </div>

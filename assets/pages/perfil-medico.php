@@ -29,8 +29,8 @@ $all_especialidades = $especialidades->getAllEspecialidades();
 // Lógica para alterar informações
 $mensagem;
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
-    var_dump($_POST['senha_nova']);
-    var_dump($_POST['senha_atual']);
+    //var_dump($_POST['senha_nova']);
+    //var_dump($_POST['senha_atual']);
     if (isset($_POST['btn_salvar_alteracoes'])) {
         // Armazena os valores em variáveis e mantém os dados no formulário
         $nome = $_POST['nome'];

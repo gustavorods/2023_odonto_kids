@@ -18,22 +18,22 @@
         <div class="bg-primary p-4 itens-nav">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="./index.html">Home</a>
+                    <a class="nav-link active" href="/../2023_odonto_kids/index.php">Home</a>
                 </li>
                 <hr class="linha">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="./assets/pages/servicos.html">Serviços</a>
+                    <a class="nav-link active" href="/../2023_odonto_kids/assets/pages/servicos.html">Serviços</a>
                 </li>
                 <hr class="linha">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="./assets/pages/time-line.html">Sobre nós</a>
+                    <a class="nav-link active" href="/../2023_odonto_kids/assets/pages/time-line.html">Sobre nós</a>
                 </li>
                 <hr class="linha">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="./assets/pages/contato.html">Contato</a>
+                    <a class="nav-link active" href="/../2023_odonto_kids/assets/pages/contato.php">Contato</a>
                 </li>
             </ul>
         </div>
@@ -48,11 +48,11 @@
     
             <div id="div-logo">
                 <h1>Odonto kids</h1>
-                <img src="./assets/img/geral/Logo.svg" alt="Odonto Kids logo">
+                <img src="/../2023_odonto_kids/assets/img/geral/Logo.svg" alt="Odonto Kids logo">
             </div>
     
             <div id="criar-conta">
-                <a href="./assets/pages/login.php">
+                <a href="/../2023_odonto_kids/assets/pages/login.php">
                     <button id="botao-entrar-header">Entrar / Cadastrar</button>
                 </a>
             </div>
