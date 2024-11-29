@@ -171,116 +171,114 @@
         display: block;
     }
 </style>
-
 <?php
     $historicoConsultasOrganizadas = $metodos_dashboard->listar_historico_consultas();
     // var_dump($historicoConsultasOrganizadas);
 ?>
 
+<div class="cards-historico-consulta">
+    <?php foreach ($historicoConsultasOrganizadas as $consulta): ?>
+        <?php
+            // Extrai as variáveis da consulta
+            $dia = $consulta['dia'];
+            $mes = $consulta['mes'];
+            $horario = $consulta['horario'];
+            $status = $consulta['status'];
+            $tratamento = $consulta['tratamento'];
+            $dependente = $consulta['dependente'];
+            $id_dependente = $consulta['id_dependente'];
+            $sexo = $consulta['sexo'];
+            $id = $consulta['id'];
 
-<script>
-    // Passando a variável PHP para o JavaScript
-    const historicoConsultas = <?php echo json_encode($historicoConsultasOrganizadas); ?>;
-    // console.log(historicoConsultas);
+            // Definindo a classe e mensagem de aviso com base no status da consulta
+            $avisoMessage = "";
+            $cardClass = "";
 
-    function criarCardsHistoricoConsulta(dia, mes, horario, status, tratamento, dependente, sexo, id) {
-        const card = document.createElement('div');
-        card.classList.add('card-historico');
+            switch ($status) {
+                case "Realizada":
+                    if ($sexo === "Masculino") {
+                        $cardClass = 'boy';
+                    } else if ($sexo === "Feminino") {
+                        $cardClass = 'girl';
+                    }
+                    break;
+                default:
+                    $cardClass = 'cancelada-ausente';
+                    if ($status === "Cancelada") {
+                        $avisoMessage = "";
+                    } else {
+                        $avisoMessage = "Você não compareceu a essa consulta";
+                    }
+                    break;
+            }
 
-        // Variável para a mensagem de aviso
-        let avisoMessage = "";
+            // Consulta para pegar a foto do dependente
+            $foto = '/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png'; // URL padrão
 
-        switch (status) {
-            case "Realizada":
-                if (sexo === "Masculino") {
-                    card.classList.add('boy');
-                } else if (sexo === "Feminino") {
-                    card.classList.add('girl');
+            // Conexão com o banco de dados
+            $conn = new mysqli('localhost', 'root', '', 'odontokids'); // Atualize os dados conforme seu banco de dados
+
+            if ($conn->connect_error) {
+                die("Falha na conexão: " . $conn->connect_error);
+            }
+
+            // Consultando a foto do dependente pelo ID
+            $stmt = $conn->prepare("SELECT foto FROM dependentes WHERE id = ?");
+            $stmt->bind_param("i", $id_dependente);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($row = $result->fetch_assoc()) {
+                // Verifica se a foto existe e converte para base64
+                if (!empty($row['foto'])) {
+                    $foto = 'data:image/jpeg;base64,' . base64_encode($row['foto']);
                 }
-                break;
-            default:
-                card.classList.add('cancelada-ausente');
-                if(status==="Cancelada"){
-                    avisoMessage = "Você cancelou essa consulta";
-                }
-                else{
-                    avisoMessage = "Você não compareceu a essa consulta";
-                }
-                break;
-        }
+            }
 
-        card.innerHTML = `
+            $stmt->close();
+            $conn->close();
+        ?>
+
+        <div class="card-historico <?php echo $cardClass; ?>">
             <div class="line"></div>
 
             <div class="corpo-card-historico">
                 <div class="data-status">
                     <div class="data">
-                        <p>${dia} de ${mes} às ${horario}</p>
+                        <p><?php echo $dia . ' de ' . $mes . ' às ' . $horario; ?></p>
                     </div>
                     
                     <div class="status">
-                        ${status}
+                        <?php echo $status; ?>
                     </div>
                 </div>
 
                 <div class="tipo-consulta">
                     <div>
-                        <p>${tratamento}</p>
+                        <p><?php echo $tratamento; ?></p>
                     </div>
                 </div>
 
                 <div class="perfil-detalhes">
                     <div class="left-container">
                         <div class="perfil-imagem">
-                            <img src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="">
+                            <img src="<?php echo $foto; ?>" alt="Foto de perfil de <?php echo $dependente; ?>">
                         </div>
 
                         <div class="nome-perfil">
-                            <p>${dependente}</p>
+                            <p><?php echo $dependente; ?></p>
                         </div>
                     </div>
 
                     <div class="botao-detalhes">
-                        <h1 class="aviso">${avisoMessage}</h1> <!-- Mensagem de aviso aqui -->
-                        <button class="detalhes-historico-consulta" data-id="${id}">
+                        <h1 class="aviso"><?php echo $avisoMessage; ?></h1> <!-- Mensagem de aviso aqui -->
+                        <button class="detalhes-historico-consulta" data-id="<?php echo $id; ?>">
                             Detalhes
                         </button>
                     </div>
                 </div>
             </div>
-        `;
+        </div>
 
-        return card;
-    }
-
-    // Iterar sobre as consultasOrganizadas e criar os cartões
-    historicoConsultas.forEach(historicoConsulta => {
-        // console.log('Depurando historicoConsulta:', historicoConsulta);
-        const card = criarCardsHistoricoConsulta(
-            historicoConsulta.dia,
-            historicoConsulta.mes,
-            historicoConsulta.horario,
-            historicoConsulta.status,
-            historicoConsulta.tratamento,
-            historicoConsulta.dependente,
-            historicoConsulta.sexo,
-            historicoConsulta.id
-        );
-
-        // Adiciona o card ao contêiner
-        document.querySelector('.cards-historico-consulta').appendChild(card);
-    });    
-
-    // document.querySelector('.cards-container').appendChild(
-    //     criarCardsHistoricoConsulta(
-    //         "26 de Setembro", // data
-    //         "14:00",          // hora
-    //         "Retirada de cárie", // tratamento
-    //         "Valentina",      // nome do dependente
-    //         "Masculino",      // sexo do dependente
-    //         "Realizada",      // status da consulta   
-    //         1
-    //     )
-    // )
-
-</script>
+    <?php endforeach; ?>
+</div>

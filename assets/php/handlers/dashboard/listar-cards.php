@@ -74,7 +74,8 @@
                         consulta.data, 
                         status_consulta.status_consulta AS status_consulta, 
                         tratamento.Tratamento AS cod_tratamento, 
-                        dependentes.nome AS id_dependente,
+                        dependentes.nome,
+                        dependentes.id AS id_dependente,
                         sexo.sexo AS sexo  -- Adicionando o campo sexo
                     FROM 
                         consulta 
@@ -108,9 +109,10 @@
                     $horario_formatado = date('H:i', strtotime(datetime: $historico_consulta['horario']));
                     $status = $historico_consulta['status_consulta'];
                     $tratamento = $historico_consulta['cod_tratamento'];
-                    $dependente = $historico_consulta['id_dependente'];
+                    $dependente = $historico_consulta['nome'];
                     $sexo = $historico_consulta['sexo'];
                     $id = $historico_consulta['id'];
+                    $id_dependente = $historico_consulta['id_dependente'];
 
                     $historico_consultas_organizadas[] = [
                         'dia' => $dia_consulta,
@@ -120,6 +122,7 @@
                         'tratamento' => $tratamento,
                         'dependente' => $dependente,
                         'sexo' => $sexo,
+                        'id_dependente' => $id_dependente,
                         'id' => $id
                     ];
                 }
