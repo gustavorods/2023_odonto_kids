@@ -85,10 +85,10 @@
                         }
         
                         // Se todos os médicos estiverem ocupados
-                        echo json_encode(['status' => 'success', 'available' => false, 'message' => 'Todos os médicos estão ocupados nesse horário.']);
+                        echo json_encode(['status' => 'success', 'available' => false, 'message' => 'Nenhum médico encontrado para fazer a substituição, fale com o suporte para cancelar essa consulta.']);
                     } else {
                         // Nenhum médico encontrado para o tratamento
-                        echo json_encode(['status' => 'error', 'message' => 'Nenhum médico encontrado para este tratamento.']);
+                        echo json_encode(['status' => 'error', 'message' => 'Nenhum médico encontrado para fazer a substituição, fale com o suporte para cancelar essa consulta.']);
                     }
                 } else {
                     // Consulta não encontrada

@@ -28,10 +28,20 @@ botao_detalhes_proxima_consulta.forEach(botao => {
                     body: JSON.stringify({consulta_id: consultaId})
                 })
                 .then(response => response.json())  // Se a resposta for JSON
-                .then(data => console.log('Sucesso:', data))
-                .catch((error) => console.error('Erro:', error));
-                location.reload();
-                location.reload();
+                .then(data => {
+                    // Exibe a mensagem no alert
+                    alert(data.message);  // Exibe a mensagem retornada da API
+                    
+                    // Se a resposta for de sucesso, pode recarregar a página
+                    if (data.status === 'success') {
+                        location.reload(); // Recarrega a página
+                    }
+                })
+                .catch((error) => {
+                    console.error('Erro:', error);
+                    alert('Ocorreu um erro na solicitação. Tente novamente.');
+                });
+                
             } else {
                 // Se o usuário clicar em "Cancelar", a ação é cancelada
                 // console.log("Ação cancelada.");
