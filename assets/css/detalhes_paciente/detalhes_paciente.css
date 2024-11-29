@@ -84,24 +84,66 @@ p {
 
 }
 
+/* Estilo básico para o cartão de histórico */
 .card-historico {
     margin: 20px 0;
     border-radius: 15px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.315);
     padding: 10px 40px;
     display: flex;
-    background-color: #d2eaff;
     flex-direction: column;
     min-height: 114px;
 }
 
-.line {
+.card-historico .line {
     width: 3px;
     height: 115px;
     margin-top: -11px;
     position: absolute;
-    background: #0681F3;
 }
+
+/* Estilo para o cartão de histórico do "boy" */
+.card-historico.boy {
+    background-color: #d2eaff; /* Cor de fundo do boy */
+}
+
+/* Estilo para o cartão de histórico do "girl" */
+.card-historico.girl {
+    background-color: #fbd2ff; /* Cor de fundo do girl */
+}
+
+/* Linha do cartão para o "boy" */
+.card-historico.boy .line {
+    background: #0681F3; /* Cor da linha para o boy */
+}
+
+/* Linha do cartão para o "girl" */
+.card-historico.girl .line {
+    background: #e336dc; /* Cor da linha para o girl */
+}
+
+/* Estilo do botão de detalhes para o "boy" */
+.card-historico.boy .detalhes-historico-consulta {
+    background-color: #0681F3; /* Cor do botão de detalhes para o boy */
+}
+
+/* Estilo do botão de detalhes para o "girl" */
+.card-historico.girl .detalhes-historico-consulta {
+    background-color: #ff55f8; /* Cor do botão de detalhes para o girl */
+}
+
+/* Estilo do status para o "boy" */
+.card-historico.boy .status {
+    color: #2e81c9; /* Cor do status para o boy */
+}
+
+/* Estilo do status para o "girl" */
+.card-historico.girl .status {
+    color: #ff55f8; /* Cor do status para o girl */
+}
+
+
+
 
 .corpo-card-historico {
     margin-left: 10px;
@@ -193,7 +235,7 @@ p {
 .card-tratamento {
     width: 100%;
     max-width: 600px;
-    background-color: #4a90e2;
+    background-color: #e4f1ff;
     color: #fff;
     border-radius: 10px;
     padding: 10px;

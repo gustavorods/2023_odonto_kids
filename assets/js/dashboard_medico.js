@@ -290,3 +290,29 @@ document.getElementById('ver-mais').addEventListener('click', function(event) {
     // Envia o formulário via POST
     document.getElementById('form-detalhes-paciente').submit();
 });
+
+// Função para enviar o formulário
+function enviarFormulario(consultaId) {
+    // Define o valor do input hidden consulta_id no formulário oculto
+    document.getElementById('consulta_id_form').value = consultaId;
+
+    // Envia o formulário via POST
+    document.getElementById('form-detalhes-paciente').submit();
+}
+
+// Seleciona todos os elementos com a classe 'clicar-imagem' (todas as imagens de perfil)
+document.querySelectorAll('.clicar-imagem').forEach(function(imagem) {
+    imagem.addEventListener('click', function() {
+        var consultaId = this.getAttribute('consulta_id'); // Obtém o valor de consulta_id
+        enviarFormulario(consultaId); // Envia o formulário com o consulta_id
+    });
+});
+
+// Seleciona todos os elementos com a classe 'clicar-nome' (todos os nomes de pacientes)
+document.querySelectorAll('.clicar-nome').forEach(function(nome) {
+    nome.addEventListener('click', function() {
+        var consultaId = this.getAttribute('consulta_id'); // Obtém o valor de consulta_id
+        enviarFormulario(consultaId); // Envia o formulário com o consulta_id
+    });
+});
+

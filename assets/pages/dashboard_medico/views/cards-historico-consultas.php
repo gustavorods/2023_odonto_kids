@@ -100,6 +100,10 @@
         margin-right: 4px;
     }
 
+    .perfil-detalhes .perfil-imagem.cancelada-ausente img{  
+        border: 2px solid #ff0000;
+    }
+
     .perfil-detalhes .botao-detalhes .detalhes-historico-consulta{
         background-color: #0681F3;
         padding: 8px 20px;
@@ -183,7 +187,7 @@
     const historicoConsultas = <?php echo json_encode($historicoConsultasOrganizadas); ?>;
     // console.log(historicoConsultas);
 
-    function criarCardsHistoricoConsulta(dia, mes, horario, status, tratamento, dependente, sexo, id) {
+    function criarCardsHistoricoConsulta(dia, mes, horario, status, tratamento, dependente, sexo, id, id_dependente) {
         const card = document.createElement('div');
         card.classList.add('card-historico');
 
@@ -230,19 +234,25 @@
                 </div>
 
                 <div class="perfil-detalhes">
+                    <form id="form-detalhes-paciente" action="/2023_odonto_kids/assets/pages/dashboard_medico/views/detalhes_paciente.php" method="POST" style="display: none;">
+                        <input type="hidden" name="consulta_id" id="consulta_id_form" value="">
+                    </form>
+
                     <div class="left-container">
-                        <div class="perfil-imagem">
-                            <img src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="">
+                        <div class="perfil-imagem clicar-imagem" consulta_id="${id_dependente}">
+                            <!-- Imagem de perfil dentro do form -->
+                            <img src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="Foto de perfil">
                         </div>
 
-                        <div class="nome-perfil">
+                        <div class="nome-perfil clicar-nome" consulta_id="${id_dependente}">
+                            <!-- Nome do paciente dentro do form -->
                             <p>${dependente}</p>
                         </div>
                     </div>
 
                     <div class="botao-detalhes">
                         <h1 class="aviso">${avisoMessage}</h1> <!-- Mensagem de aviso aqui -->
-                        <button class="detalhes-historico-consulta " data_id="${id}">
+                        <button class="detalhes-historico-consulta" data_id="${id}">
                             Detalhes
                         </button>
                     </div>
@@ -264,7 +274,8 @@
             historicoConsulta.tratamento,
             historicoConsulta.dependente,
             historicoConsulta.sexo,
-            historicoConsulta.id
+            historicoConsulta.id,
+            historicoConsulta.id_dependente
         );
 
         // Adiciona o card ao contêiner

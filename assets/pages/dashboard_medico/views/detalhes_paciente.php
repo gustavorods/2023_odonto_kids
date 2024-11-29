@@ -36,7 +36,7 @@
         $id_dependente = intval($_POST['consulta_id']);
         // var_dump($id_dependente);
     } else {
-        echo "ID da consulta não fornecido!";
+        echo "ID da consulta não fornecido!" .$id_dependente;
     }    
 
 
@@ -99,13 +99,15 @@
         t.Tratamento AS tratamento_nome,
         s.status_consulta AS status_consulta,
         c.id AS consulta_id,
-        d.nome AS nome_dependente
+        d.nome AS nome_dependente,
+        d.id_sexo AS sexo_dependente  -- Adiciona o campo sexo da tabela dependentes
     FROM dependentes d
     JOIN consulta c ON c.id_dependente = d.id
     JOIN tratamento t ON c.cod_tratamento = t.Id
     JOIN status_consulta s ON c.status_consulta = s.id_status_consulta
     WHERE d.id = ?;
     ";
+    
 
     $stmt = $conn->prepare($sql_historico_consultas);
     $stmt->bind_param("i", $id_dependente);
@@ -149,6 +151,7 @@
             // Armazenar histórico de consultas com a data e hora formatadas
             $historico_consultas[] = [
                 'consulta_id' => $row['consulta_id'],
+                'sexo' => $row['sexo_dependente'],
                 'nome_dependente' => $row['nome_dependente'],
                 'dia' => $consulta_dia,
                 'horario' => $horario_formatado,
@@ -300,13 +303,18 @@
                         // Se houver consultas, exibe as consultas
                         foreach ($historico_consultas as $consulta) {
                             extract($consulta);
-                        
+                            
                             // Verifica se o status é "Cancelada"
                             $status_cancelada = ($status == 'Cancelada' || $status == 'Ausente');
                             $class_cancelada = $status_cancelada ? 'cancelada' : '';
                             $botao_detalhes_display = $status_cancelada ? 'none' : 'block';
+                            $sexo_classe = ($sexo == 2) ? 'girl' : 'boy';
+                        
+                            // Modifica a URL das imagens dependendo do sexo
+                            $relatorio_img = ($sexo == 2) ? '/2023_odonto_kids/assets/img/dashboard_medico/relatorio2.png' : '/2023_odonto_kids/assets/img/dashboard_medico/relatorio.png';
+                            $prontuario_img = ($sexo == 2) ? '/2023_odonto_kids/assets/img/dashboard_medico/prontuario2.png' : '/2023_odonto_kids/assets/img/dashboard_medico/prontuario.png';
                         ?>
-                            <div class="card-historico <?php echo $class_cancelada; ?>">
+                            <div class="card-historico <?php echo $class_cancelada; ?> <?php echo $sexo_classe; ?>">
                                 <div class="line <?php echo $class_cancelada; ?>"></div>
                                 <div class="corpo-card-historico">
                                     <div class="data-status">
@@ -322,19 +330,19 @@
                                         <div class="botoes-acao">
                                             <div class="relatorio">
                                                 <a href="#" class="detalhes-consulta" data-id="<?php echo $consulta_id; ?>" data-type="relatorio">
-                                                    <img src="/2023_odonto_kids/assets/img/dashboard_medico/relatorio.png" alt="Relatório">
+                                                    <img src="<?php echo $relatorio_img; ?>" alt="Relatório">
                                                 </a>
                                             </div>
                                             <div class="prontuario">
                                                 <a href="#" class="detalhes-consulta" data-id="<?php echo $consulta_id; ?>" data-type="prontuario">
-                                                    <img src="/2023_odonto_kids/assets/img/dashboard_medico/prontuario.png" alt="Prontuário">
+                                                    <img src="<?php echo $prontuario_img; ?>" alt="Prontuário">
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        <?php }                       
+                        <?php }                     
                     }
                 ?>
             </div>

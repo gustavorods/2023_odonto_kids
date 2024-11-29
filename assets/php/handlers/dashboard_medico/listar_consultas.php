@@ -62,6 +62,7 @@
                         t.Tratamento,
                         c.id,
                         d.nome AS nome_dependente,
+                        d.id AS id_dependente,
                         sex.sexo
                     FROM 
                         consulta c
@@ -98,7 +99,8 @@
                     $dependente = $historico_consulta['nome_dependente'];
                     $sexo = $historico_consulta['sexo'];
                     $id = $historico_consulta['id'];
-
+                    $id_dependente = $historico_consulta['id_dependente'];
+                    
                     $historico_consultas_organizadas[] = [
                         'dia' => $dia_consulta,
                         'mes' => $mes_consulta,
@@ -107,7 +109,8 @@
                         'tratamento' => $tratamento,
                         'dependente' => $dependente,
                         'sexo' => $sexo,
-                        'id' => $id
+                        'id' => $id,
+                        'id_dependente' => $id_dependente
                     ];
                 }
                 

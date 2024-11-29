@@ -31,3 +31,10 @@
     display: none;
 }
 
+.nome-perfil p{
+    cursor: pointer;
+}
+
+.perfil-imagem img{
+    cursor: pointer;
+}
