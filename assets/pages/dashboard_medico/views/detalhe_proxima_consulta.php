@@ -151,7 +151,6 @@
             </div>
 
             <div class="info">
-                <img src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="Foto do paciente" class="avatar">
                 <div class="info-text">
                     <p><strong id="nome-dependente"></strong> <a href="#" consulta_id="" id="ver-mais">
                         Ver Mais

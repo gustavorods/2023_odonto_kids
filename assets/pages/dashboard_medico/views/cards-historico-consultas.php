@@ -1,297 +1,102 @@
-<style>
-    .historico-consulta{
-        margin: 30px 50px;
-    }
-
-    .historico-consulta h1{
-        font-weight: 1000;
-        font-size: 16pt;
-        margin: 20px 0px;
-    }
-
-    .cards-historico-consulta{
-        width: 700px;
-    }
-
-    .girl{
-        background-color: #FBD2FF;
-    }
-
-    .boy{
-        background-color: #D2EAFF;
-    }
-
-    .card-historico{
-        margin: 20px 0px;
-        border-radius: 8px;
-        border: 0px;
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.315);
-        padding: 10px 40px;
-    }
-
-    .corpo-card-historico{
-        margin-left: 10px;
-    }
-
-    .line{
-        width: 3px;
-        height: 144px;
-        position: absolute;
-        transform: translate(-8px, -10px);
-    }
-
-    .boy .line{
-        background: #0681F3;
-    }
-
-    .girl .line{
-        background: #E336DC;
-    }
-
-    .data-status{
-        display: flex;
-        justify-content: space-between;
-        font-weight: 1000;
-        font-size: 13pt;
-    }
-
-    .data-status .data{
-        color: #636363;
-    }
-
-    .boy .data-status .status{
-        color: #2E81C9;
-    }
-
-    .girl .data-status .status{
-        color: #FF55F8;
-    }
-
-    .left-container{
-        display: flex;
-        align-items: baseline;
-    }
-
-    .tipo-consulta{
-        font-weight: 1000;
-        font-size: 15pt;
-        margin-top: 3px;
-        line-height: 2px;
-    }
-
-    .tipo-endereco .endereco{
-        font-size: 12pt;
-        font-weight: bold;
-        color: #636363;
-    }
-
-    .perfil-detalhes{
-        margin-top: 30px;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .perfil-detalhes .perfil-imagem img{
-        height: 40px;
-        width: 40px;
-        object-fit: cover;
-        border-radius: 100px;    
-        border: 2px solid;
-        margin-right: 4px;
-    }
-
-    .perfil-detalhes .perfil-imagem.cancelada-ausente img{  
-        border: 2px solid #ff0000;
-    }
-
-    .perfil-detalhes .botao-detalhes .detalhes-historico-consulta{
-        background-color: #0681F3;
-        padding: 8px 20px;
-        border-radius: 8px;
-        color: white;
-    }
-
-    .girl .perfil-detalhes .botao-detalhes .detalhes-historico-consulta{
-        background-color: #FF55F8;
-    }
-
-    .boy .perfil-detalhes .botao-detalhes .detalhes-historico-consulta{
-        background-color: #0681F3;
-    }
-
-    .boy .perfil-detalhes .perfil-imagem img{
-        border-color: #0681F3;
-    }
-
-    .girl .perfil-detalhes .perfil-imagem img{
-        border-color: #E336DC;
-    }
-
-    .nome-perfil{
-        font-size: 12pt;
-        font-weight: bold;
-        color: #636363;
-    }
-    
-    .aviso-cancelada {
-        display: none;
-    }
-
-    .cancelada-ausente {
-        background-color: #ffd4d4;
-    }
-
-    .cancelada-ausente .status {
-        color: #8b0000;
-    }
-
-    .cancelada-ausente .line {
-        background: red;
-    }
-
-    .cancelada-ausente .aviso-cancelada .cancelada {
-        display: block;
-        line-height: 0px;
-        color: #9b0000;
-        font-size: 11pt;
-    }
-
-    .cancelada-ausente .detalhes-historico-consulta {
-        display: none;
-    }    
-
-    .aviso-ausente {
-        display: none;
-    }   
-
-    .botao-detalhes h1{
-        display: none;
-    }
-    
-    .cancelada-ausente .botao-detalhes h1 {
-        line-height: 0px;
-        color: #8b0000;
-        font-size: 11pt;
-        display: block;
-    }
-</style>
+<link rel="stylesheet" href="/2023_odonto_kids/assets/css/dashboard_medico/card-historico-consultas/card-historico-consultas.css">
 
 <?php
     $historicoConsultasOrganizadas = $listar_consulta->listar_historico_consultas();
-    // var_dump($historicoConsultasOrganizadas);
-?>
 
+    // Iterar sobre as consultas e gerar os cartões diretamente no PHP
+    foreach ($historicoConsultasOrganizadas as $consulta) {
+        // Definindo variáveis
+        $dia = $consulta['dia'];
+        $mes = $consulta['mes'];
+        $horario = $consulta['horario'];
+        $status = $consulta['status'];
+        $tratamento = $consulta['tratamento'];
+        $dependente = $consulta['dependente'];
+        $sexo = $consulta['sexo'];
+        $id = $consulta['id'];
+        $id_dependente = $consulta['id_dependente'];
+        $dependente_foto = $consulta['foto'];
 
-<script>
-    // Passando a variável PHP para o JavaScript
-    const historicoConsultas = <?php echo json_encode($historicoConsultasOrganizadas); ?>;
-    // console.log(historicoConsultas);
+        // Mensagem de aviso para consultas canceladas ou ausentes
+        $avisoMessage = "";
+        $classCard = "card-historico";
+        $classLine = "line";
 
-    function criarCardsHistoricoConsulta(dia, mes, horario, status, tratamento, dependente, sexo, id, id_dependente) {
-        const card = document.createElement('div');
-        card.classList.add('card-historico');
-
-        // Variável para a mensagem de aviso
-        let avisoMessage = "";
-
-        switch (status) {
-            case "Realizada":
-                if (sexo === "Masculino") {
-                    card.classList.add('boy');
-                } else if (sexo === "Feminino") {
-                    card.classList.add('girl');
-                }
-                break;
-            default:
-                card.classList.add('cancelada-ausente');
-                if(status==="Cancelada"){
-                    avisoMessage = "";
-                }
-                else{
-                    avisoMessage = "Paciente não compareceu à consulta";
-                }
-                break;
+        // Adiciona classe de gênero e status (Cancelada ou Ausente)
+        if ($status == "Realizada") {
+            if ($sexo == "Masculino") {
+                $classCard .= " boy";
+                $classLine .= " boy";
+            } else {
+                $classCard .= " girl";
+                $classLine .= " girl";
+            }
+        } else {
+            $classCard .= " cancelada-ausente";
+            if ($status === "Cancelada") {
+                $avisoMessage = "";
+            } else {
+                $avisoMessage = "Paciente não compareceu à consulta";
+            }
         }
 
-        card.innerHTML = `
-            <div class="line"></div>
+        // Verifica se o campo 'foto' não está vazio ou nulo
+        if (!empty($dependente_foto)) {
+            // Verifica o tipo da imagem
+            $image_info = getimagesizefromstring($dependente_foto);
+            $image_type = $image_info['mime']; // O tipo MIME (exemplo: image/jpeg, image/png, etc.)
+            
+            // Converte o BLOB para base64
+            $foto_base64 = base64_encode($dependente_foto);
+        } else {
+            // Caso não tenha imagem
+        }        
 
-            <div class="corpo-card-historico">
-                <div class="data-status">
-                    <div class="data">
-                        <p>${dia} de ${mes} às ${horario}</p>
-                    </div>
-                    
-                    <div class="status">
-                        ${status}
-                    </div>
+        // Gerar o HTML do card diretamente
+?>
+<div class="<?php echo $classCard; ?>">
+    <div class="<?php echo $classLine; ?>"></div>
+    <div class="corpo-card-historico">
+        <div class="data-status">
+            <div class="data">
+                <p><?php echo $dia . ' de ' . $mes . ' às ' . $horario; ?></p>
+            </div>
+            <div class="status">
+                <?php echo $status; ?>
+            </div>
+        </div>
+
+        <div class="tipo-consulta">
+            <p><?php echo $tratamento; ?></p>
+        </div>
+
+        <div class="perfil-detalhes">
+            <form id="form-detalhes-paciente" action="/2023_odonto_kids/assets/pages/dashboard_medico/views/detalhes_paciente.php" method="POST" style="display: none;">
+                <input type="hidden" name="consulta_id" id="consulta_id_form" value="<?php echo $id; ?>">
+            </form>
+
+            <div class="left-container">
+                <div class="perfil-imagem clicar-imagem" consulta_id="<?php echo $id_dependente; ?>">
+                    <!-- Exibe a foto do paciente -->
+                    <?php
+                    $foto_src = !empty($foto_base64) ? 'data:' . $image_type . ';base64,' . $foto_base64 : '/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png';
+
+                    echo '<img src="' . $foto_src . '" alt="Foto do paciente" class="foto-perfil">';
+                    ?>
                 </div>
-
-                <div class="tipo-consulta">
-                    <div>
-                        <p>${tratamento}</p>
-                    </div>
-                </div>
-
-                <div class="perfil-detalhes">
-                    <form id="form-detalhes-paciente" action="/2023_odonto_kids/assets/pages/dashboard_medico/views/detalhes_paciente.php" method="POST" style="display: none;">
-                        <input type="hidden" name="consulta_id" id="consulta_id_form" value="">
-                    </form>
-
-                    <div class="left-container">
-                        <div class="perfil-imagem clicar-imagem" consulta_id="${id_dependente}">
-                            <!-- Imagem de perfil dentro do form -->
-                            <img src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="Foto de perfil">
-                        </div>
-
-                        <div class="nome-perfil clicar-nome" consulta_id="${id_dependente}">
-                            <!-- Nome do paciente dentro do form -->
-                            <p>${dependente}</p>
-                        </div>
-                    </div>
-
-                    <div class="botao-detalhes">
-                        <h1 class="aviso">${avisoMessage}</h1> <!-- Mensagem de aviso aqui -->
-                        <button class="detalhes-historico-consulta" data_id="${id}">
-                            Detalhes
-                        </button>
-                    </div>
+                <div class="nome-perfil clicar-nome" consulta_id="<?php echo $id_dependente; ?>">
+                    <p><?php echo $dependente; ?></p>
                 </div>
             </div>
-        `;
 
-        return card;
+            <div class="botao-detalhes">
+                <h1 class="aviso"><?php echo $avisoMessage; ?></h1>
+                <button class="detalhes-historico-consulta" data_id="<?php echo $id; ?>">Detalhes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
     }
-
-    // Iterar sobre as consultasOrganizadas e criar os cartões
-    historicoConsultas.forEach(historicoConsulta => {
-        // console.log('Depurando historicoConsulta:', historicoConsulta);
-        const card = criarCardsHistoricoConsulta(
-            historicoConsulta.dia,
-            historicoConsulta.mes,
-            historicoConsulta.horario,
-            historicoConsulta.status,
-            historicoConsulta.tratamento,
-            historicoConsulta.dependente,
-            historicoConsulta.sexo,
-            historicoConsulta.id,
-            historicoConsulta.id_dependente
-        );
-
-        // Adiciona o card ao contêiner
-        document.querySelector('.cards-historico-consulta').appendChild(card);
-    });    
-
-    // document.querySelector('.cards-container').appendChild(
-    //     criarCardsHistoricoConsulta(
-    //         "26 de Setembro", // data
-    //         "14:00",          // hora
-    //         "Retirada de cárie", // tratamento
-    //         "Valentina",      // nome do dependente
-    //         "Masculino",      // sexo do dependente
-    //         "Realizada",      // status da consulta   
-    //         1
-    //     )
-    // )
-
-</script>
+?>

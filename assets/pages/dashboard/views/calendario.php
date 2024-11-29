@@ -15,7 +15,8 @@
             border-radius: 10px;
         }
         .dayCell {
-            height: 30px;
+            height: 38px;
+            width: 44px;
             text-align: center;
             vertical-align: middle;
             border: 1px solid #94c3ef;

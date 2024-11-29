@@ -38,8 +38,11 @@
         font-weight: normal;
     }
 
-    .detalhes-proxima-consulta .calendario{
+    .detalhes-proxima-consulta .calendario {
         margin: 14px 0px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
     }
 
     .detalhes-proxima-consulta .dia-consulta{
@@ -60,9 +63,10 @@
         text-align: center;
     }
 
-    .detalhes-proxima-consulta .bottom{
+    .detalhes-proxima-consulta .bottom {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 42px;
     }
 
     .detalhes-proxima-consulta .left-bottom{
@@ -70,18 +74,15 @@
         align-items: center;
     }
 
-    .detalhes-proxima-consulta .right-bottom{
-        max-width: max-content;
-        border-left: 1px solid;
-        padding-left: 13px;
-        min-width: 151px;
-    }
-
     .detalhes-proxima-consulta .paciente{
-        margin-left: 4px;
         max-width: 160px;
         overflow: hidden;
         text-overflow: ellipsis;
+        text-align: center;
+    }
+
+    .right-bottom{
+        text-align: center;
     }
 
     .detalhes-proxima-consulta .nome-paciente, .titulo-tratamento{
@@ -121,9 +122,7 @@
 
         <div class="bottom">
             <div class="left-bottom">
-                <div class="perfil-imagem">
-                    <img src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="">
-                </div>
+
         
                 <div class="paciente">
                     <div class="nome-paciente">

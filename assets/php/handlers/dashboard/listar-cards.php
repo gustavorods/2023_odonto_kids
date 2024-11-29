@@ -23,7 +23,7 @@
                     FROM consulta 
                     JOIN dependentes ON consulta.id_dependente = dependentes.id 
                     WHERE dependentes.id_responsavel = ? 
-                    AND consulta.data > CURDATE()  -- Filtra para consultas acima da data de hoje
+                    AND consulta.data >= CURDATE()  -- Filtra para consultas acima da data de hoje
                     AND consulta.status_consulta = 1
                     ORDER BY consulta.data ASC, consulta.horario ASC
                 ");
