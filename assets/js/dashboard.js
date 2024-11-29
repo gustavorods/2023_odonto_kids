@@ -101,6 +101,7 @@ const botoesDetalhes = document.querySelectorAll('.detalhes-historico-consulta')
 // Seleciona o modal e os elementos dentro dele
 const modal = document.querySelector('.modal_detalhes_proxima_consulta');
 const pDataConsulta = modal.querySelector('.data-consulta');
+const nomePaciente = modal.querySelector('.paciente-consulta');
 const prontuarioButton = modal.querySelector('#prontuario');
 const relatorioButton = modal.querySelector('#relatorio');
 
@@ -112,15 +113,18 @@ botoesDetalhes.forEach(botao => {
         
         // Dentro do card, encontra o <p> dentro da classe 'data'
         const dataElement = card.querySelector('.data p');
+        const nomeElement = card.querySelector('.nome-perfil p');
         
         // Agora você pode pegar o conteúdo do <p> (que é a data)
         const dataConteudo = dataElement.textContent;
+        const nomeConteudo = nomeElement.textContent;
 
         // Pega o data-id do botão clicado
         const dataId = botao.getAttribute('data-id');
         
         // Preenche o conteúdo do modal
         pDataConsulta.textContent = dataConteudo; // Preenche a data da consulta no modal
+        nomePaciente.textContent = nomeConteudo; // Preenche a data da consulta no modal
         pDataConsulta.setAttribute('data-id', dataId); // Adiciona o data-id ao <p>
 
         // Define o data-id nos botões de ação também
