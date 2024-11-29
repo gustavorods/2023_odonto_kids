@@ -157,3 +157,19 @@ document.querySelector('.botao-voltar').addEventListener("click", function(){
 document.querySelector('.btn-modal').addEventListener("click", function(){
     allowUnload = true;
 })
+
+// Função para lidar com o clique no card
+function handleCardClick(cardElement) {
+    allowUnload = true;
+
+    // Obtém os dados do dependente do atributo 'data-*'
+    var idPaciente = cardElement.getAttribute('data-id');
+    var nomePaciente = cardElement.getAttribute('data-nome');
+
+    // Armazena os dados na sessão
+    sessionStorage.setItem('id_paciente', idPaciente);
+    sessionStorage.setItem('nome', nomePaciente);
+
+    // Redireciona para a página escolha_tratamento.php
+    window.location.href = '../escolha_tratamento/escolha_tratamento.php';
+}

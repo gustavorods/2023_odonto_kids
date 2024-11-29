@@ -43,7 +43,7 @@
 
                 $stmt->close();
             ?>
-            <div class="card" onclick="window.location.href = '../escolha_tratamento/escolha_tratamento.php?id_paciente=<?= $dep['id'] ?>'">
+            <div class="card" id="card_<?= $dep['id'] ?>" data-id="<?= $dep['id'] ?>" data-nome="<?= $dep['nome'] ?>" onclick="handleCardClick(this)">
                 <img src="<?= $foto ?>" alt="Foto de <?= $dep['nome'] ?>">
                 <p class="nome"><span>Nome:</span> <?= $dep['nome'] ?></p>
                 <p class="idade"><span>Idade:</span> <?= $dep['idade'] ?></p>
