@@ -128,9 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
                 <div class="popup-content">
                 <ul>
-                    <li><a href="#"><span>Agendamentos</span></a></li>
-                    <li><a href="#"><span>Prontuários</span></a></li>
-                    <li><a href="perfilR.php"><span>Minha Conta</span></a></li>
+                    <li><a href="/2023_odonto_kids/assets/pages/perfil_responsavel.php"><span>Minha Conta</span></a></li>
                     <hr>
                     <li><a href="#"><span>Sair</span></a></li>
                 </ul>

@@ -78,11 +78,6 @@
             <div class="left-container">
                 <div class="perfil-imagem clicar-imagem" consulta_id="<?php echo $id_dependente; ?>">
                     <!-- Exibe a foto do paciente -->
-                    <?php
-                    $foto_src = !empty($foto_base64) ? 'data:' . $image_type . ';base64,' . $foto_base64 : '/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png';
-
-                    echo '<img src="' . $foto_src . '" alt="Foto do paciente" class="foto-perfil">';
-                    ?>
                 </div>
                 <div class="nome-perfil clicar-nome" consulta_id="<?php echo $id_dependente; ?>">
                     <p><?php echo $dependente; ?></p>

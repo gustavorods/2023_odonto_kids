@@ -35,7 +35,7 @@
 
     .line {
         width: 3px;
-        height: 144px;
+        height: 143px;
         position: absolute;
         transform: translate(-8px, -10px);
     }
@@ -128,7 +128,7 @@
     }
 
     .nome-perfil {
-        font-size: 12pt;
+        font-size: 15pt;
         font-weight: bold;
         color: #636363;
     }

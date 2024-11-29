@@ -80,7 +80,7 @@
                 </div>
         
                 <div id="div_perfil">
-                    <a href="#">
+                    <a href="/2023_odonto_kids/assets/pages/perfil_responsavel.php">
                         <img class="foto_de_perfil_responsavel" name="img_foto_perfil_responsavel"src="/2023_odonto_kids/assets/img/geral/foto_perfil_teste.png" alt="foto de perfil">
                     </a>
                 </div>
