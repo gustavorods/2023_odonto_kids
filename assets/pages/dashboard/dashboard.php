@@ -95,6 +95,11 @@
         <?php
             include './views/detalhes-card-proxima-consulta.php'
         ?>
+
+        <!-- Detalhes histórico consulta card -->
+        <?php
+            include './views/detalhe-historico-consultas.php'
+        ?>        
         
         <div class="proxima-consulta"> 
 
